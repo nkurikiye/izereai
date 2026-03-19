@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Izere — Execution Intelligence Layer</title>
+  <meta name="description" content="AI-based delivery intelligence for EU-funded programmes and public infrastructure investment."/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* HERO */
+    .hero{background:var(--white);overflow:hidden;position:relative;padding:80px 0 96px;}
+    .hero-bg{position:absolute;inset:0;pointer-events:none;}
+    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:48px 48px;opacity:0.35;}
+    .hero-c1{position:absolute;top:-200px;right:-200px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(26,78,216,0.06) 0%,transparent 65%);}
+    .hero-c2{position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(224,49,90,0.05) 0%,transparent 65%);}
+    .hero-inner{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+    .hero-tag-row{display:flex;align-items:center;gap:8px;margin-bottom:24px;}
+    .hero-tag-line{width:28px;height:1.5px;background:var(--blue);}
+    .hero h1{font-family:var(--serif);font-size:clamp(38px,5vw,60px);font-weight:400;line-height:1.1;color:var(--ink);margin-bottom:22px;}
+    .hero h1 em{font-style:italic;color:var(--blue);}
+    .hero-sub{font-size:17px;color:var(--ink3);line-height:1.7;margin-bottom:36px;max-width:480px;}
+    .hero-actions{display:flex;gap:12px;align-items:center;margin-bottom:36px;flex-wrap:wrap;}
+    .hero-proof{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;color:var(--ink4);flex-wrap:wrap;}
+    .proof-div{width:1px;height:12px;background:var(--border2);}
+    /* HERO CARD */
+    .hero-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);position:relative;}
+    .hcard-header{background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;}
+    .hcard-label{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.75);}
+    .hcard-sub{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.5);margin-top:3px;}
+    .hcard-score{font-family:var(--mono);font-size:26px;font-weight:500;color:#fff;line-height:1;}
+    .hcard-score span{font-size:12px;color:rgba(255,255,255,0.6);margin-left:4px;}
+    .hcard-score-label{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.5);text-align:right;}
+    .hcard-body{padding:16px 20px;}
+    .risk-row{display:flex;align-items:center;margin-bottom:9px;}
+    .risk-lbl{font-size:10px;font-weight:500;color:var(--ink2);width:155px;flex-shrink:0;}
+    .risk-bar{flex:1;height:5px;background:var(--surface3);border-radius:3px;margin:0 10px;overflow:hidden;}
+    .risk-fill{height:100%;border-radius:3px;}
+    .risk-fill.h{background:linear-gradient(90deg,var(--rose),#F472B6);}
+    .risk-fill.m{background:linear-gradient(90deg,#D97706,#FCD34D);}
+    .risk-fill.l{background:linear-gradient(90deg,var(--green),#6EE7B7);}
+    .risk-val{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--ink3);width:22px;text-align:right;}
+    .hcard-alert{display:flex;align-items:flex-start;gap:8px;background:var(--rose-soft);border:1px solid rgba(224,49,90,0.15);border-radius:var(--r8);padding:10px 12px;margin-top:10px;}
+    .alert-dot{width:7px;height:7px;border-radius:50%;background:var(--rose);flex-shrink:0;margin-top:3px;}
+    .alert-txt{font-size:11px;color:var(--ink2);line-height:1.45;}
+    .alert-txt strong{color:var(--rose);}
+    .float-b1{position:absolute;bottom:-16px;left:-20px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:10px 14px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:8px;}
+    .float-icon{width:30px;height:30px;border-radius:8px;background:var(--blue-soft);display:flex;align-items:center;justify-content:center;font-size:14px;}
+    .fl-lbl{font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:0.07em;text-transform:uppercase;margin-bottom:2px;}
+    .fl-val{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--blue);}
+    .float-b2{position:absolute;top:-16px;right:-16px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:10px 14px;box-shadow:var(--shadow-md);}
+    .fl-val2{font-family:var(--mono);font-size:22px;font-weight:500;color:var(--ink);line-height:1;}
+    .fl-lbl2{font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:0.06em;text-transform:uppercase;}
+    /* PROBLEM */
+    .problem{background:var(--ink);color:white;padding:88px 0;}
+    .problem-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+    .pstats{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    .pstat{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r12);padding:24px;}
+    .pstat-num{font-family:var(--display);font-size:40px;font-weight:700;line-height:1;margin-bottom:8px;}
+    .pstat-num.rose{color:var(--rose2);}
+    .pstat-num.blue{color:var(--blue3);}
+    .pstat-lbl{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.5;}
+    .problem h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,42px);font-weight:400;line-height:1.2;margin-bottom:20px;}
+    .problem h2 em{font-style:italic;color:var(--rose2);}
+    .problem p{font-size:15px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:16px;}
+    .p-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:24px;}
+    .p-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:rgba(255,255,255,0.7);line-height:1.55;}
+    .p-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--rose2);flex-shrink:0;margin-top:6px;}
+    /* HOW IT WORKS */
+    .hiw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border-radius:var(--r16);overflow:hidden;margin-top:56px;}
+    .hiw-step{background:var(--white);padding:36px 32px;}
+    .hiw-num{font-family:var(--display);font-size:48px;font-weight:800;-webkit-text-stroke:2px var(--blue);color:transparent;line-height:1;margin-bottom:20px;}
+    .hiw-icon{width:48px;height:48px;border-radius:var(--r12);background:var(--blue-soft);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;}
+    .hiw-step h3{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--ink);margin-bottom:10px;}
+    .hiw-step p{font-size:14px;color:var(--ink3);line-height:1.65;}
+    /* NUMBERS */
+    .numbers{background:linear-gradient(135deg,var(--blue) 0%,#1E3A8A 100%);padding:64px 0;}
+    .numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(255,255,255,0.1);border-radius:var(--r16);overflow:hidden;}
+    .num-item{padding:32px 28px;text-align:center;}
+    .num-val{font-family:var(--display);font-size:clamp(28px,3.5vw,42px);font-weight:700;color:#fff;margin-bottom:6px;line-height:1;}
+    .num-lbl{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.55);}
+  </style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <div class="nav-logomark">
+          <svg class="logosvg" viewBox="0 0 18 18" fill="none">
+            <path d="M9 2L14.5 5.5V12.5L9 16L3.5 12.5V5.5L9 2Z" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.15)"/>
+            <circle cx="9" cy="9" r="2.5" fill="white"/>
+          </svg>
+        </div>
+        <span class="nav-wordmark">Izere</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="platform.html" class="nav-link">Platform</a>
+        <a href="use-cases.html" class="nav-link">Use Cases</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn-ghost">Log in</a>
+        <a href="contact.html" class="btn-primary">Request Demo</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-c1"></div>
+    <div class="hero-c2"></div>
+  </div>
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag-row">
+          <div class="hero-tag-line"></div>
+          <span class="eyebrow blue">Delivery Intelligence Platform</span>
+        </div>
+        <h1>Europe's capital is committed.<br/><em>Execution</em> is the gap.</h1>
+        <p class="hero-sub">Izere is the AI-based delivery intelligence layer that helps EU institutions, DFIs, and infrastructure programmes detect execution risk 2–3 months earlier — before delays become losses.</p>
+        <div class="hero-actions">
+          <a href="platform.html" class="btn-primary btn-lg">Explore the Platform</a>
+          <a href="contact.html" class="btn-outline">Request a Demo</a>
+        </div>
+        <div class="hero-proof">
+          <span>Luxembourg · LHoFT</span>
+          <div class="proof-div"></div>
+          <span>EU AI Act Compliant</span>
+          <div class="proof-div"></div>
+          <span>Built for Managing Authorities &amp; DFIs</span>
+        </div>
+      </div>
+      <div style="position:relative;">
+        <div class="float-b2">
+          <div class="fl-val2">€378B</div>
+          <div class="fl-lbl2">2021–27 Cohesion Policy</div>
+        </div>
+        <div class="hero-card">
+          <div class="hcard-header">
+            <div>
+              <div class="hcard-label">Portfolio Risk Overview</div>
+              <div class="hcard-sub">5 Programmes · €481B Monitored</div>
+            </div>
+            <div>
+              <div class="hcard-score">84 <span>/ 100</span></div>
+              <div class="hcard-score-label">MAX RISK SCORE</div>
+            </div>
+          </div>
+          <div class="hcard-body">
+            <div class="risk-row"><div class="risk-lbl">Rail Baltica — CEF TEN-T</div><div class="risk-bar"><div class="risk-fill h" style="width:84%"></div></div><div class="risk-val">84</div></div>
+            <div class="risk-row"><div class="risk-lbl">Romania RRF — NRRP</div><div class="risk-bar"><div class="risk-fill h" style="width:77%"></div></div><div class="risk-val">77</div></div>
+            <div class="risk-row"><div class="risk-lbl">Canal Seine-Nord — CEF</div><div class="risk-bar"><div class="risk-fill m" style="width:58%"></div></div><div class="risk-val">58</div></div>
+            <div class="risk-row"><div class="risk-lbl">Poland RRF — KPO</div><div class="risk-bar"><div class="risk-fill m" style="width:52%"></div></div><div class="risk-val">52</div></div>
+            <div class="risk-row"><div class="risk-lbl">EU Cohesion Policy 21–27</div><div class="risk-bar"><div class="risk-fill l" style="width:44%"></div></div><div class="risk-val">44</div></div>
+            <div class="hcard-alert">
+              <div class="alert-dot"></div>
+              <div class="alert-txt"><strong>Critical:</strong> Rail Baltica cost overrun 4× baseline — €23.8B vs €5.8B original. Latvia signals 2035 completion. ECA flagged Jan 2026.</div>
+            </div>
+          </div>
+        </div>
+        <div class="float-b1">
+          <div class="float-icon">⚡</div>
+          <div>
+            <div class="fl-lbl">Early Warning</div>
+            <div class="fl-val">2–3 months earlier</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <div class="problem-inner">
+      <div class="pstats">
+        <div class="pstat fade-in"><div class="pstat-num rose">30–40%</div><div class="pstat-lbl">of EU public-investment projects experience significant delays, cost overruns or performance shortfalls</div></div>
+        <div class="pstat fade-in d1"><div class="pstat-num blue">€2.3T</div><div class="pstat-lbl">in EU public procurement annually — execution risk is now the primary bottleneck, not capital</div></div>
+        <div class="pstat fade-in d2"><div class="pstat-num rose">5–10%</div><div class="pstat-lbl">of project value spent on repetitive due diligence, monitoring and ex-post audits — with poor early visibility</div></div>
+        <div class="pstat fade-in d3"><div class="pstat-num blue">11%</div><div class="pstat-lbl">of the 2021–2027 Cohesion Policy envelope implemented by August 2025 — worst start on record</div></div>
+      </div>
+      <div class="fade-in">
+        <div class="eyebrow" style="color:rgba(255,255,255,0.45);margin-bottom:14px;">The Problem</div>
+        <h2>Europe can commit capital at scale. It cannot <em>systematically</em> convert it into delivery.</h2>
+        <p>EU-funded programmes depend on fragmented ecosystems of SMEs, subcontractors, utilities, and regional authorities. Delivery-relevant data is dispersed across siloed systems, largely qualitative, and not reusable.</p>
+        <p>Execution risks are detected too late. By the time traditional audits surface a problem, remediation is expensive or impossible.</p>
+        <ul class="p-list">
+          <li>No real-time visibility into delivery capacity across complex multi-actor chains</li>
+          <li>Performance data is administrative, siloed, and non-reusable across programmes</li>
+          <li>Consulting and audit firms provide episodic insights — not continuous intelligence</li>
+          <li>No programme-level layer that identifies risk early enough to intervene</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" style="background:var(--bg);">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="eyebrow blue">How It Works</div>
+      <h2>From fragmented data to explainable delivery intelligence</h2>
+      <p>Izere operates as a decision-support layer alongside existing procurement, programme-management, and supervision systems — not replacing them.</p>
+    </div>
+    <div class="hiw-grid">
+      <div class="hiw-step fade-in">
+        <div class="hiw-num">01</div>
+        <div class="hiw-icon">🔗</div>
+        <h3>Ingest &amp; Structure</h3>
+        <p>Izere ingests delivery-relevant data already generated within programmes — milestone reports, change events, coordination signals, governance structures, disbursement patterns — and structures it into a unified execution data model.</p>
+      </div>
+      <div class="hiw-step fade-in d1">
+        <div class="hiw-num">02</div>
+        <div class="hiw-icon">🔍</div>
+        <h3>Analyse &amp; Score</h3>
+        <p>The explainable AI engine identifies patterns, anomalies, and early-warning signals. All outputs are transparent, traceable, and evidence-based — designed for institutional scrutiny and audit readiness.</p>
+      </div>
+      <div class="hiw-step fade-in d2">
+        <div class="hiw-num">03</div>
+        <div class="hiw-icon">⚡</div>
+        <h3>Detect &amp; Intervene Early</h3>
+        <p>Programme managers and managing authorities receive structured risk intelligence 2–3 months before traditional monitoring surfaces the same issue — enabling timely corrective action.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers">
+  <div class="container">
+    <div class="numbers-grid">
+      <div class="num-item"><div class="num-val">€7–10B</div><div class="num-lbl">European TAM — delivery intelligence &amp; execution-risk analytics</div></div>
+      <div class="num-item"><div class="num-val">€1.5–2B</div><div class="num-lbl">SAM — EU-funded green transition &amp; infrastructure programmes</div></div>
+      <div class="num-item"><div class="num-val">40–60</div><div class="num-lbl">Target institutional clients — managing authorities, DFIs, EPCs</div></div>
+      <div class="num-item"><div class="num-val">€200–400K</div><div class="num-lbl">Average annual contract value per institutional programme</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section class="section" style="background:var(--white);">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="eyebrow blue">Who We Serve</div>
+      <h2>Built for institutions with delivery accountability</h2>
+      <p>Izere targets a clearly defined institutional audience — not end users, not individuals. Every feature is built for programme-level accountability.</p>
+    </div>
+    <div class="grid-3">
+      <div class="seg-card fade-in"><div class="seg-icon blue">🏛</div><h3>Managing Authorities</h3><p>EU and Member State authorities responsible for RRF, Cohesion Policy, ESF+ and national green-transition programmes, under strong political and audit pressure to improve absorption and delivery performance.</p></div>
+      <div class="seg-card fade-in d1"><div class="seg-icon rose">🏦</div><h3>European DFIs &amp; Public Banks</h3><p>Institutions financing or co-financing infrastructure and green investments, where execution reliability directly affects bankability, disbursement schedules, and portfolio risk.</p></div>
+      <div class="seg-card fade-in d2"><div class="seg-icon blue">⚙</div><h3>Infrastructure Developers &amp; EPCs</h3><p>Organisations operating large, distributed delivery networks reliant on SMEs and subcontractors, requiring early visibility into execution capacity and coordination risk.</p></div>
+      <div class="seg-card fade-in"><div class="seg-icon rose">📋</div><h3>Technical Assistance Firms</h3><p>Consortium leads responsible for programme design, implementation support, and monitoring of EU-funded projects — increasingly under pressure to demonstrate delivery effectiveness.</p></div>
+      <div class="seg-card fade-in d1"><div class="seg-icon blue">🌍</div><h3>Cross-Border Programmes</h3><p>EU initiatives spanning multiple Member States or regions, where fragmented data and non-portable delivery information significantly increase coordination and execution risk.</p></div>
+      <div class="seg-card fade-in d2"><div class="seg-icon rose">🔬</div><h3>Research &amp; Innovation Partners</h3><p>Academic institutions and research bodies supporting applied AI development for institutional decision-making, explainability, and federated learning across programme ecosystems.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-sm">
+  <div class="cta-band">
+    <div class="eyebrow blue" style="margin-bottom:14px;">Get Started</div>
+    <h2>Ready to see Izere in action?</h2>
+    <p>Book a 45-minute institutional briefing. We'll demonstrate the platform against real EU programme data and discuss fit with your specific portfolio.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn-primary btn-lg">Request Institutional Briefing</a>
+      <a href="platform.html" class="btn-outline">Explore the Platform →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <div class="footer-brand-logo"><svg viewBox="0 0 18 18" fill="none" width="16" height="16"><path d="M9 2L14.5 5.5V12.5L9 16L3.5 12.5V5.5L9 2Z" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.15)"/><circle cx="9" cy="9" r="2.5" fill="white"/></svg></div>
+          Izere
+        </div>
+        <p class="footer-desc">Delivery intelligence for EU-funded programmes and public infrastructure investment. Explainable AI for institutions that cannot afford to fail.</p>
+        <div class="footer-badges">
+          <span class="footer-badge">EU AI Act Compliant</span>
+          <span class="footer-badge">GDPR</span>
+          <span class="footer-badge">XAI Enabled</span>
+          <span class="footer-badge">Luxembourg</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="platform.html">Platform</a>
+        <a href="use-cases.html">Use Cases</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Data Governance</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Izere Sàrl-S · Luxembourg · All rights reserved</span>
+      <span class="footer-copy">Built at LHoFT · Luxembourg House of Financial Technology</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll fade
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold: 0.12});
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

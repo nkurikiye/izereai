@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — Izere</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .about-hero{background:var(--white);padding:80px 0;}
+    .about-hero h1{font-family:var(--serif);font-size:clamp(34px,5vw,52px);font-weight:400;color:var(--ink);margin-bottom:20px;}
+    .about-hero h1 em{font-style:italic;color:var(--blue);}
+    .about-visual{background:linear-gradient(135deg,var(--blue-soft) 0%,var(--rose-soft) 100%);border-radius:24px;padding:36px;border:1px solid var(--border);}
+    .astat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .astat{background:var(--white);border-radius:var(--r12);padding:20px;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+    .astat-num{font-family:var(--display);font-size:32px;font-weight:700;color:var(--blue);line-height:1;margin-bottom:5px;}
+    .astat-lbl{font-size:12px;color:var(--ink3);line-height:1.4;}
+    /* FOUNDER */
+    .founder-sec{background:var(--surface2);padding:80px 0;}
+    .founder-inner{display:grid;grid-template-columns:300px 1fr;gap:56px;align-items:start;}
+    .founder-card{background:var(--white);border-radius:var(--r16);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow-md);}
+    .founder-card-hd{background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);padding:32px 28px;text-align:center;}
+    .founder-initials{width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:24px;font-weight:700;color:white;margin:0 auto 14px;}
+    .founder-name{font-family:var(--display);font-size:17px;font-weight:700;color:white;margin-bottom:4px;}
+    .founder-role-lbl{font-family:var(--mono);font-size:10px;letter-spacing:0.09em;color:rgba(255,255,255,0.6);text-transform:uppercase;}
+    .founder-card-body{padding:20px;}
+    .founder-fact{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);}
+    .founder-fact:last-child{border-bottom:none;}
+    .founder-fact-text{font-size:12px;color:var(--ink3);line-height:1.45;}
+    .founder-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px;}
+    .founder-tag{font-family:var(--mono);font-size:10px;color:var(--ink3);background:var(--white);border:1px solid var(--border);padding:4px 10px;border-radius:var(--r999);}
+    /* PARTNERS */
+    .partners-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+    .partner-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r12);padding:20px 16px;text-align:center;transition:all 0.15s;}
+    .partner-card:hover{box-shadow:var(--shadow-sm);border-color:var(--border2);}
+    .partner-icon{width:44px;height:44px;border-radius:var(--r12);background:var(--blue-soft);display:flex;align-items:center;justify-content:center;font-size:20px;margin:0 auto 10px;}
+    .partner-name{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+    .partner-role{font-size:11px;color:var(--ink4);line-height:1.4;}
+    /* VALUES */
+    .values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+    .value-item{padding:24px;}
+    .value-num{font-family:var(--display);font-size:48px;font-weight:800;-webkit-text-stroke:2px var(--blue3);color:transparent;line-height:1;margin-bottom:14px;}
+    .value-item h3{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:8px;}
+    .value-item p{font-size:13px;color:var(--ink3);line-height:1.65;}
+  </style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand"><div class="nav-logomark"><svg class="logosvg" viewBox="0 0 18 18" fill="none"><path d="M9 2L14.5 5.5V12.5L9 16L3.5 12.5V5.5L9 2Z" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.15)"/><circle cx="9" cy="9" r="2.5" fill="white"/></svg></div><span class="nav-wordmark">Izere</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="platform.html" class="nav-link">Platform</a>
+        <a href="use-cases.html" class="nav-link">Use Cases</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-cta"><a href="contact.html" class="btn-ghost">Log in</a><a href="contact.html" class="btn-primary">Request Demo</a></div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="container">
+    <div class="grid-2-1">
+      <div class="fade-in">
+        <div class="eyebrow blue" style="margin-bottom:14px;">About Izere</div>
+        <h1>Built at the intersection of <em>institutional experience</em> and explainable AI.</h1>
+        <p style="font-size:15px;color:var(--ink3);line-height:1.75;margin-top:16px;margin-bottom:14px;">Izere was founded on a simple observation: Europe's execution gap is not a technology problem, a funding problem, or a regulatory problem. It is an intelligence problem.</p>
+        <p style="font-size:15px;color:var(--ink3);line-height:1.75;">The data to detect delivery risk earlier already exists within every programme. It is fragmented, qualitative, and non-reusable. Izere exists to change that.</p>
+        <a href="contact.html" class="btn-primary" style="margin-top:28px;display:inline-block;">Get in Touch</a>
+      </div>
+      <div class="about-visual fade-in d1">
+        <div class="astat-grid">
+          <div class="astat"><div class="astat-num">18+</div><div class="astat-lbl">Years of EU programme &amp; development finance experience</div></div>
+          <div class="astat"><div class="astat-num">€B+</div><div class="astat-lbl">In EU-funded programmes directly advised or managed</div></div>
+          <div class="astat"><div class="astat-num">2026</div><div class="astat-lbl">Founded in Luxembourg at LHoFT</div></div>
+          <div class="astat"><div class="astat-num">EU-27</div><div class="astat-lbl">Target deployment geography — all Member States</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="founder-sec">
+  <div class="container">
+    <div class="founder-inner">
+      <div class="founder-card fade-in">
+        <div class="founder-card-hd" style="padding:0;background:none;">
+          <img src="alain-photo.jpg" alt="Alain Nkurikiye" style="width:100%;height:240px;object-fit:cover;object-position:center top;display:block;border-radius:0;"/>
+          <div style="background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);padding:16px 22px;">
+            <div class="founder-name">Alain Nkurikiye</div>
+            <div class="founder-role-lbl">Founder &amp; CEO</div>
+          </div>
+        </div>
+        <div class="founder-card-body">
+          <div class="founder-fact"><span style="font-size:12px;flex-shrink:0;">📍</span><span class="founder-fact-text">Luxembourg House of Financial Technology (LHoFT)</span></div>
+          <div class="founder-fact"><span style="font-size:12px;flex-shrink:0;">🎓</span><span class="founder-fact-text">18+ years in EU-funded programmes &amp; multilateral development finance</span></div>
+          <div class="founder-fact"><span style="font-size:12px;flex-shrink:0;">🌍</span><span class="founder-fact-text">Advisory work with DFIs, EU institutions, and international agencies</span></div>
+          <div class="founder-fact"><span style="font-size:12px;flex-shrink:0;">⚙</span><span class="founder-fact-text">Infrastructure delivery, bankability, and execution-risk management</span></div>
+          <div class="founder-fact"><span style="font-size:12px;flex-shrink:0;">🏛</span><span class="founder-fact-text">RRF, Cohesion Policy, ESF+, Green Deal, CEF experience</span></div>
+        </div>
+      </div>
+      <div class="fade-in d1">
+        <h2 style="font-family:var(--serif);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:16px;">The founder-market fit that matters</h2>
+        <p style="font-size:15px;color:var(--ink3);line-height:1.75;margin-bottom:14px;">Alain Nkurikiye brings 18 years of direct experience across EU-funded programmes, multilateral development finance, and public-sector infrastructure delivery. He has worked with DFIs, EU institutions, and international agencies — advising on programme design, bankability assessment, and execution-risk management across instruments including the RRF, Cohesion Policy, ESF+, and Green Deal.</p>
+        <p style="font-size:15px;color:var(--ink3);line-height:1.75;margin-bottom:14px;">This background is not incidental to Izere. It is the reason the platform exists. The delivery-intelligence gap Izere addresses is one Alain observed first-hand, across multiple programmes and geographies. The product is built by someone who has sat on both sides of the monitoring table.</p>
+        <p style="font-size:15px;color:var(--ink3);line-height:1.75;">Izere's long-term vision — DELIX, Delivery Infrastructure for Public Investment Capital — is to become the intelligence backbone for how Europe's public investment capital is deployed, monitored, and improved over time.</p>
+        <div class="founder-tags">
+          <span class="founder-tag">RRF</span><span class="founder-tag">Cohesion Policy</span><span class="founder-tag">ESF+</span><span class="founder-tag">Green Deal</span><span class="founder-tag">CEF</span><span class="founder-tag">DFI Advisory</span><span class="founder-tag">Bankability</span><span class="founder-tag">Execution Risk</span><span class="founder-tag">B2G SaaS</span><span class="founder-tag">Explainable AI</span><span class="founder-tag">Luxembourg</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="section" style="background:var(--white);">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="eyebrow blue">Ecosystem &amp; Advisory</div>
+      <h2>Grounded in Luxembourg's innovation infrastructure</h2>
+      <p>Izere benefits from advisory support, research collaboration, and ecosystem connectivity through Luxembourg's leading technology and finance institutions.</p>
+    </div>
+    <div class="partners-grid">
+      <div class="partner-card fade-in"><div class="partner-icon">🏦</div><div class="partner-name">LHoFT</div><div class="partner-role">Headquarters &amp; ecosystem access · fintech and DFI connectivity</div></div>
+      <div class="partner-card fade-in d1"><div class="partner-icon">🔬</div><div class="partner-name">LIST</div><div class="partner-role">Applied AI research · XAI models for public-sector use cases</div></div>
+      <div class="partner-card fade-in d2"><div class="partner-icon">🎓</div><div class="partner-name">University of Luxembourg</div><div class="partner-role">AI ethics, data science, digital governance collaboration</div></div>
+      <div class="partner-card fade-in d3"><div class="partner-icon">🚀</div><div class="partner-name">House of Startups</div><div class="partner-role">Founder ecosystem · scale-up resources</div></div>
+      <div class="partner-card fade-in"><div class="partner-icon">🤖</div><div class="partner-name">Luxembourg AI Factory</div><div class="partner-role">National AI initiatives · compute access · responsible AI</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section" style="background:var(--surface2);">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="eyebrow blue">What We Believe</div>
+      <h2>Principles that shape every product decision</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-item fade-in"><div class="value-num">01</div><h3>Infrastructure framing over tool framing</h3><p>Izere is not a dashboard. It is decision infrastructure for public investment capital. That framing changes what we build, how we price, and who we sell to.</p></div>
+      <div class="value-item fade-in d1"><div class="value-num">02</div><h3>Explainability is non-negotiable</h3><p>Every risk score must be contestable. Every output must include an evidence chain. We build for institutions that will be audited — so our platform must be audit-ready.</p></div>
+      <div class="value-item fade-in d2"><div class="value-num">03</div><h3>Non-dilutive first</h3><p>EU grants and R&amp;D support before equity. Capital-efficient growth over venture-scale moonshots. We build for the long term.</p></div>
+      <div class="value-item fade-in d3"><div class="value-num">04</div><h3>Category creation over competition</h3><p>We operate in white space. The right positioning is not "better than X" — it is "the only platform that does Y". We build for the gap, not the market.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-sm">
+  <div class="cta-band">
+    <h2>Want to learn more about our approach?</h2>
+    <p style="margin-top:12px;">We're happy to share our research, methodology, and programme data openly with institutional partners and research collaborators.</p>
+    <div class="cta-actions" style="margin-top:28px;"><a href="contact.html" class="btn-primary btn-lg">Get in Touch</a></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand"><div class="footer-brand-logo"><svg viewBox="0 0 18 18" fill="none" width="16" height="16"><path d="M9 2L14.5 5.5V12.5L9 16L3.5 12.5V5.5L9 2Z" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.15)"/><circle cx="9" cy="9" r="2.5" fill="white"/></svg></div>Izere</div><p class="footer-desc">Delivery intelligence for EU-funded programmes and public infrastructure investment.</p><div class="footer-badges"><span class="footer-badge">EU AI Act Compliant</span><span class="footer-badge">GDPR</span><span class="footer-badge">XAI Enabled</span><span class="footer-badge">Luxembourg</span></div></div>
+      <div class="footer-col"><h4>Product</h4><a href="platform.html">Platform</a><a href="use-cases.html">Use Cases</a><a href="pricing.html">Pricing</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">© 2026 Izere Sàrl-S · Luxembourg</span><span class="footer-copy">Built at LHoFT</span></div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, {threshold:0.12});
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20); });
+</script>
+</body>
+</html>
