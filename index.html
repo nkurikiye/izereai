@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Izere — Delivery intelligence for European public capital</title>
 <meta name="description" content="Izere is the execution-intelligence layer for EU-funded programmes, DFIs, and public infrastructure investment. Detect delivery risk 2–3 months earlier." />
+<link rel="canonical" href="https://izereai.com/" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Izere" />
+<meta property="og:title" content="Izere — Delivery intelligence for European public capital" />
+<meta property="og:description" content="The execution-intelligence layer for EU-funded programmes, DFIs and public infrastructure. Detect delivery risk 2–3 months earlier." />
+<meta property="og:url" content="https://izereai.com/" />
+<meta property="og:image" content="https://izereai.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Izere — Delivery intelligence for European public capital" />
+<meta name="twitter:description" content="Detect delivery risk 2–3 months earlier across EU-funded programmes." />
+<meta name="twitter:image" content="https://izereai.com/og-image.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -24,6 +38,7 @@
       <a href="#top" class="brand">
         <span class="brand-wm">I<span class="cut">z</span>ere</span>
       </a>
+      <input class="nav-toggle-cb" type="checkbox" id="nav-toggle" aria-hidden="true" />
       <div class="nav-links">
         <a href="platform.html">Platform</a>
         <a href="methodology.html">Methodology</a>
@@ -35,6 +50,7 @@
         <a href="#contact" class="btn btn-ghost">Log in</a>
         <a href="#contact" class="btn btn-primary">Request demo <span class="arr">→</span></a>
       </div>
+      <label class="nav-burger" for="nav-toggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></label>
     </div>
   </div>
 </nav>
@@ -319,8 +335,18 @@
       <h2>Book a 45-minute<br/><em>institutional</em> briefing.</h2>
       <div class="right">
         <p>We'll demonstrate the platform against real EU programme data and discuss fit with your specific portfolio. No slide deck — just the system.</p>
-        <a href="mailto:hello@izere.eu" class="btn btn-primary btn-lg" style="background:var(--paper);color:var(--ink);">hello@izere.eu <span class="arr">→</span></a>
-        <span class="mono" style="font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.08em;margin-top:6px;">USUAL RESPONSE · 1 BUSINESS DAY · LUXEMBOURG TIME</span>
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html" class="cta-form">
+          <input type="hidden" name="form-name" value="contact" />
+          <p hidden><label>Leave this field empty: <input name="bot-field" /></label></p>
+          <div class="cta-form-row">
+            <input type="text" name="name" placeholder="Full name" required aria-label="Full name" />
+            <input type="email" name="email" placeholder="Work email" required aria-label="Work email" />
+          </div>
+          <input type="text" name="organisation" placeholder="Organisation" aria-label="Organisation" />
+          <textarea name="message" rows="3" placeholder="What would you like to see? (optional)" aria-label="Message"></textarea>
+          <button type="submit" class="btn btn-primary btn-lg" style="background:var(--paper);color:var(--ink);">Request a briefing <span class="arr">→</span></button>
+        </form>
+        <span class="mono" style="font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.08em;margin-top:10px;">USUAL RESPONSE · 1 BUSINESS DAY · LUXEMBOURG TIME · OR EMAIL <a href="mailto:alain@izereai.com" style="color:rgba(255,255,255,0.7);text-decoration:underline;">alain@izereai.com</a></span>
       </div>
     </div>
   </div>
