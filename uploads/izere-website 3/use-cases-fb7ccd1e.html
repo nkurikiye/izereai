@@ -39,6 +39,26 @@
     .uc-metric-val.blue{color:var(--blue);}
     .uc-metric-val.amber{color:var(--amber);}
     .src-note{margin-top:16px;padding:12px;background:var(--blue-soft);border-radius:8px;font-family:var(--mono);font-size:10px;color:var(--blue);line-height:1.6;}
+    /* Gauge */
+    .gauge-section{padding:16px 22px;border-top:1px solid var(--border);display:flex;align-items:center;gap:20px;}
+    .gauge-wrap{position:relative;width:80px;height:44px;flex-shrink:0;}
+    .gauge-track{fill:none;stroke:var(--surface3);stroke-width:8;stroke-linecap:round;}
+    .gauge-fill{fill:none;stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1);}
+    .gauge-num{font-family:var(--mono);font-size:14px;font-weight:700;line-height:1;}
+    .gauge-sub{font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink4);margin-top:2px;}
+    /* Mini bar chart */
+    .mini-bar-chart{padding:16px 22px 0;border-top:1px solid var(--border);}
+    .mbc-label{font-family:var(--mono);font-size:9px;letter-spacing:0.09em;text-transform:uppercase;color:var(--ink4);margin-bottom:8px;}
+    .mbc-bars{display:flex;align-items:flex-end;gap:4px;height:40px;}
+    .mbc-bar{flex:1;border-radius:3px 3px 0 0;min-width:8px;transition:height 1s ease;}
+    .mbc-bar-labels{display:flex;gap:4px;margin-top:4px;}
+    .mbc-bar-lbl{flex:1;font-family:var(--mono);font-size:8px;color:var(--ink5);text-align:center;}
+    /* Tab upgrade */
+    .uc-tabs{background:var(--white);border:1px solid var(--border);border-radius:var(--r12);overflow:hidden;margin-bottom:40px;box-shadow:var(--shadow-sm);display:flex;}
+    .uc-tab{border-bottom:2px solid transparent;border-right:1px solid var(--border);}
+    .uc-tab.active{background:var(--blue);color:white;border-bottom-color:var(--blue);}
+    /* UC card enhanced */
+    .uc-card{box-shadow:var(--shadow-lg);}
   </style>
 </head>
 <body>
@@ -99,15 +119,50 @@
       </div>
       <div>
         <div class="uc-card">
-          <div class="uc-card-hd"><div class="uc-card-lbl">Izere Intelligence Brief</div><div class="uc-card-name">Romania RRF — NRRP</div><div class="uc-card-sub">Managing Authority Intelligence Brief</div></div>
+          <div class="uc-card-hd">
+            <div class="uc-card-lbl">Izere Intelligence Brief</div>
+            <div class="uc-card-name">Romania RRF — NRRP</div>
+            <div class="uc-card-sub" style="display:flex;align-items:center;gap:6px;"><span class="live-dot rose" style="font-size:9px;">HIGH RISK</span></div>
+          </div>
           <div class="uc-card-body">
             <div class="uc-metric"><div class="uc-metric-lbl">Absorption rate (actual, Dec 2024)</div><div class="uc-metric-val rose">2%</div></div>
             <div class="uc-metric"><div class="uc-metric-lbl">SCF decommitment risk</div><div class="uc-metric-val rose">€5.2B</div></div>
             <div class="uc-metric"><div class="uc-metric-lbl">RRF deadline</div><div class="uc-metric-val">31 Aug 2026</div></div>
-            <div class="uc-metric"><div class="uc-metric-lbl">Risk score</div><div class="uc-metric-val rose">77 / 100</div></div>
             <div class="uc-metric"><div class="uc-metric-lbl">Primary signal</div><div class="uc-metric-val">SOE governance blockage</div></div>
-            <div class="uc-metric"><div class="uc-metric-lbl">Time to detect (est.)</div><div class="uc-metric-val green">−10 weeks</div></div>
-            <div class="src-note">↗ Source: Romanian Fiscal Council Feb 2025 · EC RRF Dashboard · Izere Delivery Intelligence Engine</div>
+            <div class="uc-metric"><div class="uc-metric-lbl">Time to detect (est.)</div><div class="uc-metric-val green">−10 weeks earlier</div></div>
+          </div>
+          <!-- Gauge -->
+          <div class="gauge-section">
+            <svg width="80" height="44" viewBox="0 0 80 44">
+              <path class="gauge-track" d="M10 40 A30 30 0 0 1 70 40"/>
+              <path class="gauge-fill" id="g0" d="M10 40 A30 30 0 0 1 70 40" stroke="#E0315A" stroke-dasharray="94.25" stroke-dashoffset="94.25"/>
+            </svg>
+            <div>
+              <div class="gauge-num" style="color:#E0315A;">77<span style="font-size:10px;color:var(--ink4);">/100</span></div>
+              <div class="gauge-sub">Risk Score</div>
+            </div>
+            <div style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--ink4);text-align:right;">
+              <div style="color:var(--green);font-size:12px;font-weight:600;">↑ 10 weeks</div>
+              <div>earlier detection</div>
+            </div>
+          </div>
+          <!-- Mini bar chart — absorption trend -->
+          <div class="mini-bar-chart">
+            <div class="mbc-label">Absorption rate trend (%)</div>
+            <div class="mbc-bars" id="bars0">
+              <div class="mbc-bar" style="background:var(--blue-soft);border:1px solid var(--border);" data-h="8"></div>
+              <div class="mbc-bar" style="background:var(--blue-soft);border:1px solid var(--border);" data-h="12"></div>
+              <div class="mbc-bar" style="background:var(--blue-soft);border:1px solid var(--border);" data-h="9"></div>
+              <div class="mbc-bar" style="background:var(--rose-soft);border:1px solid rgba(224,49,90,0.2);" data-h="5"></div>
+              <div class="mbc-bar" style="background:var(--rose-soft);border:1px solid rgba(224,49,90,0.2);" data-h="3"></div>
+              <div class="mbc-bar" style="background:var(--rose);opacity:0.85;" data-h="2"></div>
+            </div>
+            <div class="mbc-bar-labels">
+              <div class="mbc-bar-lbl">Q3'23</div><div class="mbc-bar-lbl">Q4'23</div><div class="mbc-bar-lbl">Q1'24</div><div class="mbc-bar-lbl">Q2'24</div><div class="mbc-bar-lbl">Q3'24</div><div class="mbc-bar-lbl">Q4'24</div>
+            </div>
+          </div>
+          <div style="padding:0 22px 16px;margin-top:8px;">
+            <div class="src-note">↗ Source: Romanian Fiscal Council Feb 2025 · EC RRF Dashboard · Izere Engine</div>
           </div>
         </div>
       </div>
@@ -133,14 +188,47 @@
       </div>
       <div>
         <div class="uc-card">
-          <div class="uc-card-hd"><div class="uc-card-lbl">Izere Intelligence Brief</div><div class="uc-card-name">Rail Baltica — CEF TEN-T</div><div class="uc-card-sub">DFI Execution Risk Brief</div></div>
+          <div class="uc-card-hd">
+            <div class="uc-card-lbl">Izere Intelligence Brief</div>
+            <div class="uc-card-name">Rail Baltica — CEF TEN-T</div>
+            <div class="uc-card-sub" style="display:flex;align-items:center;gap:6px;"><span class="live-dot rose" style="font-size:9px;">CRITICAL RISK</span></div>
+          </div>
           <div class="uc-card-body">
             <div class="uc-metric"><div class="uc-metric-lbl">Total cost overrun</div><div class="uc-metric-val rose">4× baseline</div></div>
             <div class="uc-metric"><div class="uc-metric-lbl">Budget: orig → current</div><div class="uc-metric-val rose">€5.8B → €23.8B</div></div>
             <div class="uc-metric"><div class="uc-metric-lbl">Projected completion delay</div><div class="uc-metric-val rose">5–10 years</div></div>
-            <div class="uc-metric"><div class="uc-metric-lbl">Risk score</div><div class="uc-metric-val rose">84 / 100</div></div>
             <div class="uc-metric"><div class="uc-metric-lbl">Cobra-Elecnor contract</div><div class="uc-metric-val green">€1.77B signed</div></div>
-            <div class="uc-metric"><div class="uc-metric-lbl">Financing gap 2027–28</div><div class="uc-metric-val">€3–4B unconfirmed</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">Financing gap 2027–28</div><div class="uc-metric-val amber">€3–4B unconfirmed</div></div>
+          </div>
+          <div class="gauge-section">
+            <svg width="80" height="44" viewBox="0 0 80 44">
+              <path class="gauge-track" d="M10 40 A30 30 0 0 1 70 40"/>
+              <path class="gauge-fill" id="g1" d="M10 40 A30 30 0 0 1 70 40" stroke="#E0315A" stroke-dasharray="94.25" stroke-dashoffset="94.25"/>
+            </svg>
+            <div>
+              <div class="gauge-num" style="color:#E0315A;">84<span style="font-size:10px;color:var(--ink4);">/100</span></div>
+              <div class="gauge-sub">Risk Score</div>
+            </div>
+            <div style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--ink4);text-align:right;">
+              <div style="color:var(--green);font-size:12px;font-weight:600;">ECA flagged</div>
+              <div>Jan 2026</div>
+            </div>
+          </div>
+          <!-- Cost overrun bar chart -->
+          <div class="mini-bar-chart">
+            <div class="mbc-label">Budget evolution (€B)</div>
+            <div class="mbc-bars" id="bars1">
+              <div class="mbc-bar" style="background:var(--blue-soft);border:1px solid var(--border);" data-h="24"></div>
+              <div class="mbc-bar" style="background:var(--amber-soft);border:1px solid rgba(180,83,9,0.2);" data-h="35"></div>
+              <div class="mbc-bar" style="background:var(--amber-soft);border:1px solid rgba(180,83,9,0.2);" data-h="50"></div>
+              <div class="mbc-bar" style="background:var(--rose-soft);border:1px solid rgba(224,49,90,0.2);" data-h="72"></div>
+              <div class="mbc-bar" style="background:var(--rose);opacity:0.85;" data-h="100"></div>
+            </div>
+            <div class="mbc-bar-labels">
+              <div class="mbc-bar-lbl">2006</div><div class="mbc-bar-lbl">2017</div><div class="mbc-bar-lbl">2020</div><div class="mbc-bar-lbl">2023</div><div class="mbc-bar-lbl">2026</div>
+            </div>
+          </div>
+          <div style="padding:0 22px 16px;margin-top:8px;">
             <div class="src-note">↗ Source: ECA Special Report Jan 2026 · Baltic SAIs Joint Report Jun 2024 · Izere Engine</div>
           </div>
         </div>
@@ -167,14 +255,33 @@
       </div>
       <div>
         <div class="uc-card">
-          <div class="uc-card-hd"><div class="uc-card-lbl">Izere Intelligence Brief</div><div class="uc-card-name">Canal Seine-Nord Europe</div><div class="uc-card-sub">EPC Execution Intelligence Brief</div></div>
+          <div class="uc-card-hd">
+            <div class="uc-card-lbl">Izere Intelligence Brief</div>
+            <div class="uc-card-name">Canal Seine-Nord Europe</div>
+            <div class="uc-card-sub" style="display:flex;align-items:center;gap:6px;"><span class="live-dot amber" style="font-size:9px;">MEDIUM RISK</span></div>
+          </div>
           <div class="uc-card-body">
             <div class="uc-metric"><div class="uc-metric-lbl">Original estimate (2006)</div><div class="uc-metric-val">€3.6B</div></div>
             <div class="uc-metric"><div class="uc-metric-lbl">Current target (early 2026)</div><div class="uc-metric-val amber">€7.3B</div></div>
             <div class="uc-metric"><div class="uc-metric-lbl">Environmental permit delay</div><div class="uc-metric-val amber">5 years</div></div>
             <div class="uc-metric"><div class="uc-metric-lbl">Current completion target</div><div class="uc-metric-val">2032</div></div>
             <div class="uc-metric"><div class="uc-metric-lbl">Bouygues contract status</div><div class="uc-metric-val green">Active on site</div></div>
-            <div class="uc-metric"><div class="uc-metric-lbl">Risk score</div><div class="uc-metric-val amber">58 / 100</div></div>
+          </div>
+          <div class="gauge-section">
+            <svg width="80" height="44" viewBox="0 0 80 44">
+              <path class="gauge-track" d="M10 40 A30 30 0 0 1 70 40"/>
+              <path class="gauge-fill" id="g2" d="M10 40 A30 30 0 0 1 70 40" stroke="#D97706" stroke-dasharray="94.25" stroke-dashoffset="94.25"/>
+            </svg>
+            <div>
+              <div class="gauge-num" style="color:#D97706;">58<span style="font-size:10px;color:var(--ink4);">/100</span></div>
+              <div class="gauge-sub">Risk Score</div>
+            </div>
+            <div style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--ink4);text-align:right;">
+              <div style="color:var(--amber);font-size:12px;font-weight:600;">Cost +€3.7B</div>
+              <div>vs 2006 est.</div>
+            </div>
+          </div>
+          <div style="padding:0 22px 16px;margin-top:8px;">
             <div class="src-note">↗ Source: CESER Nord-Pas-de-Calais · ING Think Nov 2025 · Izere Engine</div>
           </div>
         </div>
@@ -201,14 +308,46 @@
       </div>
       <div>
         <div class="uc-card">
-          <div class="uc-card-hd"><div class="uc-card-lbl">Izere Intelligence Brief</div><div class="uc-card-name">EU Cohesion Policy 2021–27</div><div class="uc-card-sub">TA Programme Intelligence Brief</div></div>
+          <div class="uc-card-hd">
+            <div class="uc-card-lbl">Izere Intelligence Brief</div>
+            <div class="uc-card-name">EU Cohesion Policy 2021–27</div>
+            <div class="uc-card-sub" style="display:flex;align-items:center;gap:6px;"><span class="live-dot amber" style="font-size:9px;">MEDIUM RISK · PORTFOLIO</span></div>
+          </div>
           <div class="uc-card-body">
             <div class="uc-metric"><div class="uc-metric-lbl">Total envelope</div><div class="uc-metric-val blue">€378B</div></div>
             <div class="uc-metric"><div class="uc-metric-lbl">Absorption by Aug 2025</div><div class="uc-metric-val rose">11%</div></div>
             <div class="uc-metric"><div class="uc-metric-lbl">N+3 decommitment risk</div><div class="uc-metric-val amber">Multiple MS</div></div>
             <div class="uc-metric"><div class="uc-metric-lbl">Programmes active</div><div class="uc-metric-val">~500+ OPs</div></div>
-            <div class="uc-metric"><div class="uc-metric-lbl">Risk score (portfolio)</div><div class="uc-metric-val amber">44 / 100</div></div>
             <div class="uc-metric"><div class="uc-metric-lbl">Cycle extended to</div><div class="uc-metric-val green">2030</div></div>
+          </div>
+          <div class="gauge-section">
+            <svg width="80" height="44" viewBox="0 0 80 44">
+              <path class="gauge-track" d="M10 40 A30 30 0 0 1 70 40"/>
+              <path class="gauge-fill" id="g3" d="M10 40 A30 30 0 0 1 70 40" stroke="#D97706" stroke-dasharray="94.25" stroke-dashoffset="94.25"/>
+            </svg>
+            <div>
+              <div class="gauge-num" style="color:#D97706;">44<span style="font-size:10px;color:var(--ink4);">/100</span></div>
+              <div class="gauge-sub">Portfolio Risk</div>
+            </div>
+            <div style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--ink4);text-align:right;">
+              <div style="color:var(--rose);font-size:12px;font-weight:600;">11% absorbed</div>
+              <div>worst start on record</div>
+            </div>
+          </div>
+          <!-- Absorption bar chart -->
+          <div class="mini-bar-chart">
+            <div class="mbc-label">Absorption vs. target (%)</div>
+            <div class="mbc-bars" id="bars3">
+              <div class="mbc-bar" style="background:var(--blue-soft);border:1px solid var(--border);" data-h="20"></div>
+              <div class="mbc-bar" style="background:var(--blue-soft);border:1px solid var(--border);" data-h="30"></div>
+              <div class="mbc-bar" style="background:var(--blue);opacity:0.5;" data-h="100" title="Target"></div>
+              <div class="mbc-bar" style="background:var(--rose);opacity:0.8;" data-h="11"></div>
+            </div>
+            <div class="mbc-bar-labels">
+              <div class="mbc-bar-lbl">14–20</div><div class="mbc-bar-lbl">21–27</div><div class="mbc-bar-lbl">Target</div><div class="mbc-bar-lbl">Aug'25</div>
+            </div>
+          </div>
+          <div style="padding:0 22px 16px;margin-top:8px;">
             <div class="src-note">↗ Source: EC Cohesion Open Data Platform · Mid-Term Review 2024 · Izere Engine</div>
           </div>
         </div>
@@ -242,11 +381,65 @@
 </footer>
 
 <script>
+  // Gauge animation: score out of 100, arc length 94.25px for a half-circle
+  function animateGauge(id, score) {
+    const el = document.getElementById(id);
+    if(!el) return;
+    const arcLen = 94.25;
+    const offset = arcLen - (score / 100) * arcLen;
+    el.style.strokeDashoffset = arcLen; // start hidden
+    setTimeout(() => {
+      el.style.transition = 'stroke-dashoffset 1.3s cubic-bezier(0.4,0,0.2,1)';
+      el.style.strokeDashoffset = offset;
+    }, 200);
+  }
+
+  // Mini bar animation
+  function animateBars(containerId) {
+    const container = document.getElementById(containerId);
+    if(!container) return;
+    const bars = container.querySelectorAll('.mbc-bar');
+    const maxH = 40; // px, total chart height
+    bars.forEach(bar => {
+      const pct = parseInt(bar.dataset.h) / 100;
+      bar.style.height = '0px';
+      setTimeout(() => {
+        bar.style.height = (maxH * pct) + 'px';
+      }, 150);
+    });
+  }
+
+  // Map tab index to gauge IDs and bar IDs
+  const tabData = [
+    { gauges: ['g0'], bars: ['bars0'] },
+    { gauges: ['g1'], bars: ['bars1'] },
+    { gauges: ['g2'], bars: [] },
+    { gauges: ['g3'], bars: ['bars3'] },
+  ];
+  const gaugeScores = { g0: 77, g1: 84, g2: 58, g3: 44 };
+  let animatedTabs = new Set();
+
+  function activateTab(i) {
+    if(!animatedTabs.has(i)) {
+      animatedTabs.add(i);
+      const d = tabData[i];
+      d.gauges.forEach(gid => animateGauge(gid, gaugeScores[gid]));
+      d.bars.forEach(bid => animateBars(bid));
+    }
+  }
+
   function showTab(i) {
     document.querySelectorAll('.uc-tab').forEach((t,idx) => t.classList.toggle('active', idx===i));
     document.querySelectorAll('.uc-panel').forEach((p,idx) => p.classList.toggle('active', idx===i));
+    activateTab(i);
   }
-  const observer = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, {threshold:0.12});
+
+  // Animate first tab on load
+  setTimeout(() => activateTab(0), 600);
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold:0.12});
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20); });
 </script>

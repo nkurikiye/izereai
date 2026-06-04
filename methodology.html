@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Methodology — Izere</title>
+<meta name="description" content="The Izere methodology white paper. Model class, explainability framework, evaluation protocols, and audit pathway." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared.css" />
+<style>
+  /* Methodology page — long-form editorial */
+  .page-hero{padding:148px 0 80px;border-bottom:1px solid var(--line);}
+  .page-crumb{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:var(--ink-4);text-transform:uppercase;}
+  .page-crumb .sep{opacity:0.4;}
+  .page-crumb .here{color:var(--ink-2);}
+  .page-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(48px,7vw,108px);line-height:0.96;letter-spacing:-0.025em;margin-top:24px;}
+  .page-hero h1 em{color:var(--accent);font-style:italic;}
+  .page-hero .lede{font-size:20px;line-height:1.5;color:var(--ink-2);max-width:680px;margin-top:32px;}
+
+  /* Document layout — two col with sidebar TOC */
+  .doc{padding:80px 0 120px;display:grid;grid-template-columns:240px 1fr;gap:80px;align-items:start;}
+  .toc{position:sticky;top:96px;}
+  .toc h6{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--ink-4);text-transform:uppercase;margin-bottom:16px;}
+  .toc ol{list-style:none;counter-reset:toc;}
+  .toc li{counter-increment:toc;padding:6px 0;font-size:13px;line-height:1.5;color:var(--ink-3);position:relative;padding-left:32px;}
+  .toc li::before{content:'§ ' counter(toc,decimal-leading-zero);position:absolute;left:0;font-family:var(--mono);font-size:10px;color:var(--ink-4);top:8px;}
+  .toc a{transition:color .15s;}
+  .toc a:hover{color:var(--ink);}
+  .toc li.current a{color:var(--ink);font-weight:500;}
+
+  .doc-body section{margin-bottom:96px;scroll-margin-top:96px;}
+  .doc-body h2{font-family:var(--serif);font-weight:400;font-size:48px;line-height:1.05;letter-spacing:-0.02em;margin-bottom:8px;}
+  .doc-body h2 em{color:var(--accent);font-style:italic;}
+  .doc-body .sec-num{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;color:var(--accent);text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:14px;}
+  .doc-body .sec-num::after{content:'';flex:1;height:1px;background:var(--line);}
+  .doc-body p{font-size:16px;line-height:1.75;color:var(--ink-2);margin-top:24px;max-width:680px;}
+  .doc-body p strong{color:var(--ink);font-weight:500;}
+  .doc-body p .hi{background:color-mix(in srgb, var(--accent) 16%, transparent);padding:0 4px;border-radius:3px;}
+  .doc-body h3{font-family:var(--serif);font-size:28px;font-weight:400;letter-spacing:-0.01em;line-height:1.2;margin-top:40px;margin-bottom:8px;}
+
+  .pull{
+    margin:48px 0;padding:32px 36px;
+    border-left:3px solid var(--accent);
+    background:var(--paper-2);
+    font-family:var(--serif);font-size:28px;line-height:1.3;letter-spacing:-0.01em;color:var(--ink);
+  }
+  .pull em{color:var(--accent);font-style:italic;}
+
+  .formula{
+    background:var(--ink);color:var(--paper);
+    border-radius:14px;padding:28px 32px;
+    margin:32px 0;
+    font-family:var(--mono);font-size:14px;line-height:1.7;
+    overflow-x:auto;
+  }
+  body.dark .formula{background:#06070A;}
+  .formula .cmt{color:rgba(255,255,255,0.45);}
+  .formula .acc{color:oklch(0.72 0.18 268);}
+
+  /* feature table */
+  .ft-table{margin:36px 0;border-top:1px solid var(--line);}
+  .ft-row{display:grid;grid-template-columns:60px 1fr 100px 120px;gap:18px;padding:16px 0;border-bottom:1px solid var(--line);align-items:center;font-size:13.5px;}
+  .ft-row.hd{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-4);padding:12px 0;}
+  .ft-row .id{font-family:var(--mono);color:var(--ink-4);font-size:11px;}
+  .ft-row .nm{color:var(--ink);font-weight:500;}
+  .ft-row .nm small{display:block;color:var(--ink-3);font-weight:400;margin-top:3px;font-size:12.5px;line-height:1.5;}
+  .ft-row .src{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);}
+  .ft-row .w{font-family:var(--mono);font-size:11px;color:var(--accent);text-align:right;}
+
+  /* eval table */
+  .eval-table{margin:36px 0;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  .eval-row{display:grid;grid-template-columns:1fr 100px 100px 100px;padding:16px 24px;border-bottom:1px solid var(--line);font-size:13.5px;align-items:center;}
+  .eval-row:last-child{border-bottom:none;}
+  .eval-row.hd{background:var(--paper-3);font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);}
+  .eval-row .met{color:var(--ink-2);}
+  .eval-row .v{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;color:var(--ink);}
+  .eval-row .v.good{color:var(--moss);font-weight:500;}
+  .eval-row .v.bad{color:var(--ink-4);}
+
+  /* doc downloads */
+  .doc-dl{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:32px;}
+  .doc-dl a{
+    display:flex;align-items:center;gap:14px;padding:16px 20px;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:10px;
+    transition:background .15s, border-color .15s;
+  }
+  .doc-dl a:hover{background:var(--paper-3);border-color:var(--line-2);}
+  .doc-dl .ic{width:32px;height:32px;border-radius:6px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;font-weight:600;flex-shrink:0;}
+  .doc-dl .nm{font-size:13px;color:var(--ink);font-weight:500;}
+  .doc-dl .sz{font-family:var(--mono);font-size:10.5px;color:var(--ink-4);margin-top:2px;}
+
+  @media(max-width:1100px){
+    .doc{grid-template-columns:1fr;gap:48px;}
+    .toc{position:static;}
+    .doc-dl{grid-template-columns:1fr;}
+    .ft-row{grid-template-columns:50px 1fr;gap:10px;}
+    .ft-row .src,.ft-row .w{display:none;}
+    .eval-row{grid-template-columns:1fr 80px;gap:10px;}
+    .eval-row .v:nth-child(3),.eval-row .v:nth-child(4),.eval-row.hd .v:nth-child(3),.eval-row.hd .v:nth-child(4){display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <a href="index.html" class="brand"><span class="brand-wm">I<span class="cut">z</span>ere</span></a>
+      <div class="nav-links">
+        <a href="platform.html">Platform</a>
+        <a href="methodology.html" style="color:var(--ink);font-weight:600;">Methodology</a>
+        <a href="case-studies/rail-baltica.html">Case studies</a>
+        <a href="team.html">Team</a>
+        <a href="index.html#demo">Live demo</a>
+      </div>
+      <div class="nav-cta">
+        <a href="index.html#contact" class="btn btn-ghost">Log in</a>
+        <a href="index.html#contact" class="btn btn-primary">Request demo <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="page-crumb">
+      <a href="index.html">Izere</a><span class="sep">/</span><span class="here">Methodology</span>
+    </div>
+    <span class="eyebrow" style="margin-top:24px;display:block;"><span class="dot"></span>White paper · v2.4 · 2026-04</span>
+    <h1>If your auditors<br/>cannot read it,<br/>you should not <em>deploy</em> it.</h1>
+    <p class="lede">The full Izere methodology — model class, training protocol, explainability framework, evaluation results, and the audit pathway any institutional reviewer can use to contest a score. Reviewable in advance of procurement.</p>
+
+    <div class="doc-dl" style="max-width:560px;margin-top:40px;">
+      <a href="#">
+        <span class="ic">PDF</span>
+        <div><div class="nm">Methodology white paper</div><div class="sz">42 PP · 1.8 MB</div></div>
+      </a>
+      <a href="#">
+        <span class="ic">PDF</span>
+        <div><div class="nm">EU AI Act conformity statement</div><div class="sz">18 PP · 740 KB</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="doc">
+    <aside class="toc">
+      <h6>Contents</h6>
+      <ol>
+        <li><a href="#s1">Problem framing</a></li>
+        <li><a href="#s2">Model class</a></li>
+        <li><a href="#s3">Feature definitions</a></li>
+        <li><a href="#s4">Training protocol</a></li>
+        <li><a href="#s5">Explainability</a></li>
+        <li><a href="#s6">Evaluation</a></li>
+        <li><a href="#s7">Audit pathway</a></li>
+        <li><a href="#s8">Limitations</a></li>
+      </ol>
+    </aside>
+
+    <article class="doc-body">
+      <section id="s1">
+        <div class="sec-num">§ 01</div>
+        <h2>Problem framing</h2>
+        <p>EU-funded programmes are delivered through fragmented ecosystems of contracting authorities, prime contractors, subcontractors, regional managing authorities, and sub-recipients. Delivery-relevant signal is dispersed across procurement notices, milestone reports, governance changes, and disbursement events — none of which, in isolation, predicts execution risk.</p>
+        <p>Traditional supervision treats programmes as <strong>independent objects</strong> with linear KPIs. The European Court of Auditors and DG-level oversight rely on retrospective sampling. By the time a programme is flagged, the cost gap has typically <span class="hi">compounded for 12–18 months</span>.</p>
+
+        <div class="pull">Execution risk is structural — it lives in the <em>relationships</em> between actors, not in any single actor's reporting line.</div>
+
+        <p>Izere reframes the problem as <strong>graph-structured prediction</strong>. A programme is modelled as a dynamic graph of actors and dependencies; risk is a property of the graph's evolving topology, not of any individual node. This recasting is what enables the 2–3 month lead time observed across our backtests.</p>
+      </section>
+
+      <section id="s2">
+        <div class="sec-num">§ 02</div>
+        <h2>Model class</h2>
+        <p>The Izere risk model is a <strong>heterogeneous graph neural network</strong> (GraphSAGE base, with attention-based message passing) trained jointly on procurement, governance, and financial-execution graphs. Heterogeneity matters: contracting authorities, suppliers, sub-recipients, and dependency edges all carry different feature spaces and embedding dimensions.</p>
+        <h3>Why graph NNs and not gradient boosting</h3>
+        <p>Tabular models — including the boosted-tree class used in Arachne — capture single-actor risk well. They cannot represent <strong>structural risk</strong>: bidder concentration patterns, governance distance, brittleness from supplier dependency chains. These are precisely the signals that lead Izere's score in the Rail Baltica backtest.</p>
+
+        <div class="formula">
+          <span class="cmt"># layer-wise message passing</span><br/>
+          <span class="acc">h_v</span>^(k+1) = σ( W^(k) · concat(<br/>
+          &nbsp;&nbsp;<span class="acc">h_v</span>^(k),<br/>
+          &nbsp;&nbsp;AGG_{u ∈ N(v)}( att(<span class="acc">h_v</span>^(k), <span class="acc">h_u</span>^(k)) · <span class="acc">h_u</span>^(k) )<br/>
+          ) )<br/>
+          <br/>
+          <span class="cmt"># risk score = sigmoid(MLP(pooled_graph_embedding))</span>
+        </div>
+
+        <h3>Production model</h3>
+        <p>Production model is <strong>v2.4</strong>, trained 2026-03. Architecture: 4 GAT layers, 256-dim hidden state, 8 attention heads, dropout 0.2. Trained over ~487K nodes and 2.4M edges across the EU procurement graph 2014–2025. Versioned, reproducible from raw inputs.</p>
+      </section>
+
+      <section id="s3">
+        <div class="sec-num">§ 03</div>
+        <h2>Feature definitions</h2>
+        <p>Features are <strong>derived deterministically</strong> from public and institutional data sources (see <a href="platform.html" style="color:var(--accent);">Platform → Sources</a>). Every feature has a public formula and a versioned reference implementation. Auditors can recompute any feature from raw inputs.</p>
+
+        <div class="ft-table">
+          <div class="ft-row hd"><span>ID</span><span>Feature</span><span>Source</span><span class="w" style="text-align:right;">Pop. weight</span></div>
+          <div class="ft-row"><span class="id">F.001</span><span class="nm">Bidder concentration<small>Herfindahl-Hirschman across N awards in rolling 4-quarter window</small></span><span class="src">TED · PPDS</span><span class="w">0.18</span></div>
+          <div class="ft-row"><span class="id">F.002</span><span class="nm">Subcontractor dependency depth<small>Max depth of disclosed sub-recipient chain</small></span><span class="src">ESPD · MS</span><span class="w">0.12</span></div>
+          <div class="ft-row"><span class="id">F.003</span><span class="nm">Coordination cadence<small>Inter-MS meeting frequency Δ vs. baseline</small></span><span class="src">Programme reports</span><span class="w">0.11</span></div>
+          <div class="ft-row"><span class="id">F.004</span><span class="nm">Milestone amendment frequency<small>Count of formal milestone changes per quarter</small></span><span class="src">RRF Scoreboard</span><span class="w">0.09</span></div>
+          <div class="ft-row"><span class="id">F.005</span><span class="nm">Governance distance<small>Path length actor → ultimate decision authority</small></span><span class="src">UBO · org charts</span><span class="w">0.08</span></div>
+          <div class="ft-row"><span class="id">F.006</span><span class="nm">Disbursement-request bottleneck<small>Mean processing time per request, normalised by programme</small></span><span class="src">Cohesion OPs</span><span class="w">0.07</span></div>
+          <div class="ft-row"><span class="id">F.007</span><span class="nm">Bidder retention QoQ<small>Δ in qualified bidders quarter-on-quarter</small></span><span class="src">TED · PPDS</span><span class="w">0.06</span></div>
+          <div class="ft-row"><span class="id">F.008</span><span class="nm">Reform-conditioning resolution<small>Days between conditional milestone notice and resolution</small></span><span class="src">RRF Scoreboard</span><span class="w">0.05</span></div>
+          <div class="ft-row"><span class="id">F.009</span><span class="nm">UBO sanctions cross-reference<small>Match score against EU restrictive measures lists</small></span><span class="src">UBO · OFAC</span><span class="w">0.04</span></div>
+          <div class="ft-row"><span class="id">F.010</span><span class="nm">Cross-border financing gap<small>Confirmed vs. announced co-financing per period</small></span><span class="src">CEF · Member States</span><span class="w">0.04</span></div>
+        </div>
+
+        <p>Full feature catalogue (62 features as of v2.4) is documented in the methodology appendix. Population weights shown are global; per-programme attribution via SHAP — see § 05.</p>
+      </section>
+
+      <section id="s4">
+        <div class="sec-num">§ 04</div>
+        <h2>Training protocol</h2>
+        <p>Models train via <strong>federated learning</strong> across institutional deployments. Raw data never leaves an institution's perimeter. Each deployment computes local gradients, encrypts them, and contributes to a shared model via secure aggregation. The aggregator never sees individual gradients in the clear.</p>
+        <h3>Why federated</h3>
+        <p>Two reasons. First, GDPR Art. 6 lawful-basis questions disappear when data does not move. Second, cross-institutional intelligence compounds: insights from one DFI's deployment improve the model for all participants without requiring data-sharing agreements that take years to negotiate.</p>
+        <h3>Cadence</h3>
+        <p>Production retraining is monthly. Out-of-distribution detection (covariance drift, label drift) runs hourly. <span class="hi">No model deploys to production without sign-off from a designated institutional reviewer</span> within each participating institution.</p>
+      </section>
+
+      <section id="s5">
+        <div class="sec-num">§ 05</div>
+        <h2>Explainability</h2>
+        <p>Every Izere score decomposes into the specific features that drove it. We use <strong>SHAP</strong> (Shapley Additive exPlanations) computed over the trained graph model — the explanation framework with the strongest theoretical guarantees for additive feature attribution.</p>
+        <p>Crucially, SHAP values in Izere are computed over the <strong>full graph context</strong>, not just node-local features. Attribution for a programme score includes contributions from neighbouring actors and dependency structure — making structural risk explicit and contestable.</p>
+
+        <div class="pull">No score is published without an evidence chain that an institutional auditor can read end-to-end — and <em>contest</em>.</div>
+
+        <p>Every score persists with its full SHAP decomposition and provenance to raw input. An auditor reviewing a flagged programme can trace any contribution back to the contract notice, governance event, or financial signal that generated it.</p>
+      </section>
+
+      <section id="s6">
+        <div class="sec-num">§ 06</div>
+        <h2>Evaluation</h2>
+        <p>Izere v2.4 is evaluated against a held-out test set of 312 EU programmes (CEF, Cohesion, RRF) from the 2014–2020 cycle, with ground-truth delivery outcomes determined by ECA/OECD final-report findings. Backtested predictions are dated as of T-12 months relative to ECA detection.</p>
+
+        <div class="eval-table">
+          <div class="eval-row hd"><span class="met">Metric</span><span class="v">Izere v2.4</span><span class="v">Arachne</span><span class="v">Linear</span></div>
+          <div class="eval-row"><span class="met">AUC-ROC (delay &gt; 6 mo)</span><span class="v good">0.847</span><span class="v">0.681</span><span class="v bad">0.612</span></div>
+          <div class="eval-row"><span class="met">Recall @ 10% precision</span><span class="v good">0.74</span><span class="v">0.51</span><span class="v bad">0.38</span></div>
+          <div class="eval-row"><span class="met">Lead time to ECA flag (median)</span><span class="v good">14.2 mo</span><span class="v">3.1 mo</span><span class="v bad">— </span></div>
+          <div class="eval-row"><span class="met">False positive rate</span><span class="v">0.094</span><span class="v">0.116</span><span class="v">0.182</span></div>
+          <div class="eval-row"><span class="met">Calibration ECE</span><span class="v good">0.031</span><span class="v">0.087</span><span class="v">0.142</span></div>
+        </div>
+
+        <p>Sensitivity analyses across programme size, geography, and policy area are documented in the methodology appendix. Performance is consistent across cohorts; we publish disaggregated metrics so institutions can verify Izere works on the kind of programmes they actually run.</p>
+      </section>
+
+      <section id="s7">
+        <div class="sec-num">§ 07</div>
+        <h2>Audit pathway</h2>
+        <p>Every Izere deployment ships with a defined audit pathway. Independent third-party auditors — including ECA and institutional internal-audit teams — receive read-access to:</p>
+        <p>· Versioned model cards and training run metadata<br/>
+           · Full feature derivation pipeline with reference implementations<br/>
+           · SHAP attribution for every score, with provenance to raw input<br/>
+           · Append-only event log of all data ingestion and model decisions<br/>
+           · Continuous EU AI Act high-risk system documentation</p>
+        <p>The audit pathway is designed so that any score, at any point in time, is <strong>reproducible end-to-end from raw inputs</strong>. This is not a feature added retrospectively to satisfy regulation — it is the system's first design constraint.</p>
+      </section>
+
+      <section id="s8">
+        <div class="sec-num">§ 08</div>
+        <h2>Limitations</h2>
+        <p>We document Izere's limits openly. The model performs less well on programmes &lt; €5M (sparse signal), on programmes from Member States with limited national procurement-registry transparency, and on early-stage RRF measures where milestone definitions are still being negotiated.</p>
+        <p>Izere is a <strong>decision-support layer</strong>, not a decision-maker. Risk scores inform — they do not replace — institutional judgement. The system is explicitly designed so that no automated action follows from a score without human institutional sign-off.</p>
+        <p>For the full discussion of failure modes, sensitivity analyses, and known biases, see the methodology white paper.</p>
+
+        <div class="doc-dl" style="margin-top:48px;">
+          <a href="#"><span class="ic">PDF</span><div><div class="nm">Full methodology · v2.4</div><div class="sz">42 PP · 1.8 MB</div></div></a>
+          <a href="#"><span class="ic">PDF</span><div><div class="nm">Conformity statement</div><div class="sz">18 PP · 740 KB</div></div></a>
+          <a href="#"><span class="ic">JSON</span><div><div class="nm">Model card · v2.4</div><div class="sz">64 KB</div></div></a>
+          <a href="#"><span class="ic">CSV</span><div><div class="nm">Feature catalogue</div><div class="sz">128 KB</div></div></a>
+        </div>
+      </section>
+    </article>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Izere</div>
+        <p class="footer-desc">Delivery intelligence for EU-funded programmes and public infrastructure investment. Explainable AI for institutions that cannot afford to fail.</p>
+        <div class="footer-badges">
+          <span class="footer-badge">EU AI Act</span><span class="footer-badge">GDPR</span><span class="footer-badge">XAI Enabled</span><span class="footer-badge">Luxembourg</span>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Product</h5>
+        <a href="platform.html">Platform</a><a href="methodology.html">Methodology</a><a href="case-studies/rail-baltica.html">Case studies</a><a href="index.html#demo">Live demo</a>
+      </div>
+      <div class="footer-col"><h5>Company</h5>
+        <a href="team.html">Team</a><a href="index.html#contact">Contact</a><a href="#">Press</a>
+      </div>
+      <div class="footer-col"><h5>Legal</h5>
+        <a href="#">Privacy policy</a><a href="#">Terms of use</a><a href="#">Data governance</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 IZERE SÀRL-S · LUXEMBOURG · ALL RIGHTS RESERVED</span><span>LUXEMBOURG · EUROPE</span></div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 24); });
+
+  // TOC active state
+  const sections = document.querySelectorAll('.doc-body section');
+  const tocLinks = document.querySelectorAll('.toc li');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = [...sections].indexOf(e.target);
+        tocLinks.forEach((l, j) => l.classList.toggle('current', j === i));
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => io.observe(s));
+</script>
+
+</body>
+</html>

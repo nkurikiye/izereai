@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Izere</title>
+    <meta name="description" content="Learn about Izere's mission to bring digital trust infrastructure to Africa's 400M informal workers.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #D84315;
+            --accent: #F7931E;
+            --deep-blue: #004E89;
+            --midnight: #001233;
+            --sand: #FFF8E7;
+            --warm-white: #FFFCF5;
+            --text-dark: #1A1A1A;
+            --text-medium: #4A4A4A;
+            --text-light: #8A8A8A;
+            --font-display: 'Archivo Black', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --section-padding: clamp(60px, 10vw, 120px);
+            --container-width: min(1200px, 90vw);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background: var(--warm-white);
+            line-height: 1.6;
+        }
+        
+        /* Navigation - Same as homepage */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 252, 245, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+        }
+        
+        .nav-container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.75rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+        
+        .cta-button:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        /* Page Header */
+        .page-header {
+            margin-top: 80px;
+            padding: var(--section-padding) 2rem;
+            background: linear-gradient(135deg, var(--midnight) 0%, var(--deep-blue) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .page-header p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Content Sections */
+        section {
+            padding: var(--section-padding) 2rem;
+        }
+        
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+        
+        .section-tag {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        
+        /* Mission Section */
+        .mission {
+            background: white;
+        }
+        
+        .mission-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .mission-text h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .mission-text p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-medium);
+            margin-bottom: 1.5rem;
+        }
+        
+        .mission-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .stat-box {
+            background: var(--sand);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(255, 107, 53, 0.1);
+        }
+        
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            font-weight: 500;
+        }
+        
+        /* Story Section */
+        .story {
+            background: var(--sand);
+        }
+        
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .story-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--deep-blue);
+        }
+        
+        .story-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-medium);
+            margin-bottom: 1.5rem;
+        }
+        
+        .highlight-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+            margin: 2rem 0;
+        }
+        
+        .highlight-box p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text-dark);
+            margin: 0;
+        }
+        
+        /* Team Section */
+        .team {
+            background: white;
+        }
+        
+        .founder-card {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 3rem;
+            background: var(--sand);
+            padding: 3rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+        
+        .founder-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+        }
+        
+        .founder-info h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .founder-title {
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .founder-bio {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-medium);
+            margin-bottom: 1.5rem;
+        }
+        
+        .founder-highlights {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .founder-highlights li {
+            padding: 0.5rem 0;
+            color: var(--text-medium);
+        }
+        
+        .founder-highlights li:before {
+            content: '→';
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+        
+        /* Recruiting Section */
+        .recruiting {
+            background: var(--deep-blue);
+            color: white;
+            text-align: center;
+        }
+        
+        .recruiting h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+        }
+        
+        .recruiting p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .role-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .role-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+        
+        .role-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .role-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .role-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .role-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+        
+        .role-card li {
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .role-card li:before {
+            content: '✓';
+            color: var(--accent);
+            margin-right: 0.75rem;
+            font-weight: bold;
+        }
+        
+        .apply-button {
+            background: var(--accent);
+            color: var(--midnight);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .apply-button:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--midnight);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand {
+            max-width: 350px;
+        }
+        
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-description {
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section h4 {
+            color: white;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mission-content,
+            .founder-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">IZERE</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="index.html#solution">Solution</a></li>
+                <li><a href="index.html#customers">Customers</a></li>
+            </ul>
+            <a href="/cdn-cgi/l/email-protection#5f3e333e36311f36253a2d3a712b3a3c37" class="cta-button">Get in Touch</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Building Trust Infrastructure for Africa</h1>
+        <p>Our mission is to make 400 million invisible workers visible through voice-first digital identity and AI-powered trust scoring.</p>
+    </div>
+
+    <!-- Mission Section -->
+    <section class="mission">
+        <div class="container">
+            <div class="mission-content">
+                <div class="mission-text">
+                    <div class="section-tag">OUR MISSION</div>
+                    <h2>Creating Economic Opportunity Through Digital Trust</h2>
+                    <p>
+                        Every day, 400 million African workers wake up and go to work. They drive taxis, build homes, sell goods, provide services. They are skilled, reliable, and essential to their communities.
+                    </p>
+                    <p>
+                        Yet to banks, lenders, and formal employers, they simply don't exist. No credit history. No verifiable identity. No proof of reliability. They are digitally invisible.
+                    </p>
+                    <p>
+                        <strong>Izere changes this.</strong> We use voice biometrics and AI to create verified digital identities that informal workers can carry with them throughout their lives - building reputation, accessing credit, and unlocking economic mobility.
+                    </p>
+                </div>
+                
+                <div class="mission-stats">
+                    <div class="stat-box">
+                        <span class="stat-number">400M</span>
+                        <span class="stat-label">Informal Workers in Sub-Saharan Africa</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">85%</span>
+                        <span class="stat-label">of Workforce Cannot Access Credit</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">$100B+</span>
+                        <span class="stat-label">Lending Opportunity Untapped</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">30-50%</span>
+                        <span class="stat-label">Default Reduction Potential</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story">
+        <div class="container">
+            <div class="story-content">
+                <div class="section-tag">OUR STORY</div>
+                <h2 class="section-title">Why This Matters</h2>
+                
+                <p style="font-size: 1.2rem; font-weight: 500; color: var(--text-dark);">
+                    Meet Jean. Every morning at 5 AM, he wakes up in Kigali, checks his motorcycle, and begins another day as a moto taxi driver. He's been doing this for eight years. He knows every street, every shortcut. His regular customers trust him completely. He's never missed a payment to his cooperative. He's reliable, skilled, and essential to his community.
+                </p>
+                
+                <p style="font-size: 1.2rem; font-weight: 500; color: var(--text-dark);">
+                    But to the bank downtown, Jean doesn't exist.
+                </p>
+                
+                <div class="highlight-box" style="background: linear-gradient(135deg, rgba(255,107,53,0.05) 0%, rgba(247,147,30,0.05) 100%); border-left-width: 6px;">
+                    <p style="font-size: 1.3rem; line-height: 1.8;">
+                        "I wanted to buy a better motorcycle—one that uses less fuel, breaks down less. I needed $800. The bank asked for employment letters, bank statements, a credit score. I had none of those. I have eight years of customer reviews in my head. Eight years of on-time payments. Eight years of building a reputation. But none of it counted. To them, I was invisible."
+                    </p>
+                    <p style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.7; font-style: normal;">— Jean, composite from 50+ interviews with informal workers</p>
+                </div>
+                
+                <h3 style="margin-top: 3rem;">The Numbers Behind the Stories</h3>
+                <p>
+                    Jean isn't alone. There are <strong>400 million workers</strong> just like him across Sub-Saharan Africa. Every day, they:
+                </p>
+                <ul style="list-style: none; padding-left: 0; margin: 2rem 0;">
+                    <li style="margin-bottom: 1.5rem; padding-left: 2rem; border-left: 3px solid var(--accent);">
+                        <strong style="color: var(--primary);">Wake up at dawn</strong> and work 12-hour days building homes, driving taxis, selling goods, providing services that keep cities running
+                    </li>
+                    <li style="margin-bottom: 1.5rem; padding-left: 2rem; border-left: 3px solid var(--accent);">
+                        <strong style="color: var(--primary);">Generate $10 trillion</strong> in annual economic activity—more than the GDP of Germany and France combined
+                    </li>
+                    <li style="margin-bottom: 1.5rem; padding-left: 2rem; border-left: 3px solid var(--accent);">
+                        <strong style="color: var(--primary);">Support families</strong>, pay school fees, invest in their communities—all without a single credit score
+                    </li>
+                    <li style="margin-bottom: 1.5rem; padding-left: 2rem; border-left: 3px solid var(--accent);">
+                        <strong style="color: var(--primary);">Build reputations</strong> through word-of-mouth, community endorsements, years of consistent work
+                    </li>
+                </ul>
+                
+                <p style="font-size: 1.2rem; color: var(--text-dark); font-weight: 500;">
+                    And yet, when they walk into a bank, they're told the same thing: <em>"We cannot verify you."</em>
+                </p>
+                
+                <h3>The System is Broken—For Everyone</h3>
+                <p>
+                    This isn't just a problem for workers. Banks and microfinance institutions are losing billions because they cannot distinguish between reliable borrowers and risky ones.
+                </p>
+                
+                <div style="background: white; padding: 2.5rem; border-radius: 15px; margin: 2rem 0; border: 2px solid rgba(255,107,53,0.1);">
+                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                        <strong style="color: var(--primary); font-size: 1.2rem;">The Bank's Dilemma:</strong>
+                    </p>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 1.2rem; display: flex; align-items: start;">
+                            <span style="color: var(--primary); font-size: 1.5rem; margin-right: 1rem; line-height: 1;">❌</span>
+                            <div>
+                                <strong>Reject 70% of applicants?</strong> You lose a massive market opportunity. That's $100 billion in lending potential left on the table.
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 1.2rem; display: flex; align-items: start;">
+                            <span style="color: var(--primary); font-size: 1.5rem; margin-right: 1rem; line-height: 1;">❌</span>
+                            <div>
+                                <strong>Lend blindly?</strong> Default rates hit 15-30%, destroying profitability and forcing higher interest rates that hurt everyone.
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 1.2rem; display: flex; align-items: start;">
+                            <span style="color: var(--primary); font-size: 1.5rem; margin-right: 1rem; line-height: 1;">❌</span>
+                            <div>
+                                <strong>Manual verification?</strong> Send field officers to verify each applicant at $50-150 per visit. A $200 loan becomes unprofitable.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p>
+                    So banks do what any rational institution would do: they say no. They reject Jean. They reject the market vendor who's never missed a rent payment. They reject the construction worker who's built half the new buildings in town.
+                </p>
+                
+                <p style="font-size: 1.15rem; margin-top: 2rem;">
+                    The result? <strong>Workers remain trapped in poverty despite years of hard work. Banks miss out on billions in sustainable lending. Economies grow slower than they should.</strong>
+                </p>
+                
+                <div class="highlight-box" style="margin: 3rem 0; background: var(--deep-blue); border-left-color: var(--accent);">
+                    <p style="color: white; font-size: 1.25rem; line-height: 1.8;">
+                        "This isn't a lack of credit demand. It's not a lack of creditworthy borrowers. It's a lack of <em>trust infrastructure</em>—a way to make reputation portable, verifiable, and actionable."
+                    </p>
+                </div>
+                
+                <h3>The Invisible Tax of Being Invisible</h3>
+                <p>
+                    When you can't be verified, everything costs more. You pay higher interest to informal lenders. You can't bulk-buy materials to save money. You can't invest in better equipment that would make you more efficient. You can't smooth income across bad months.
+                </p>
+                
+                <p>
+                    Research shows that <strong>informal workers pay an "invisibility tax" of 20-40% annually</strong>—money that could go to school fees, healthcare, or business growth, lost simply because the financial system can't see them.
+                </p>
+                
+                <div style="background: var(--sand); padding: 2.5rem; border-radius: 15px; margin: 2.5rem 0;">
+                    <h4 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.4rem;">What $800 Could Mean</h4>
+                    <p style="margin-bottom: 1rem;">
+                        For Jean, that $800 loan for a better motorcycle could:
+                    </p>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 1rem;">💰 <strong>Reduce fuel costs by 30%</strong> ($150/month savings)</li>
+                        <li style="margin-bottom: 1rem;">⚙️ <strong>Cut repair costs in half</strong> (fewer breakdowns = more earning days)</li>
+                        <li style="margin-bottom: 1rem;">📈 <strong>Take 3-4 more fares per day</strong> (more reliable vehicle)</li>
+                        <li style="margin-bottom: 1rem;">🎓 <strong>Send his daughter to secondary school</strong> (with the extra income)</li>
+                        <li style="margin-bottom: 1rem;">🏠 <strong>Build credit history</strong> for a future home loan</li>
+                    </ul>
+                    <p style="margin-top: 1.5rem; font-weight: 600; color: var(--text-dark);">
+                        That's not just an $800 loan. That's a pathway to economic mobility. That's generational change. That's what trust infrastructure unlocks.
+                    </p>
+                </div>
+                
+                <h3>For the First Time, Technology Can Solve This</h3>
+                <p>
+                    For decades, financial inclusion advocates have talked about serving the informal sector. But the economics never worked. Manual verification was too expensive. Document-based systems excluded the very people who needed help most. Credit bureaus couldn't track cash transactions and word-of-mouth reputations.
+                </p>
+                
+                <p style="font-size: 1.15rem; font-weight: 500; color: var(--text-dark); margin: 2rem 0;">
+                    Then, in 2024, everything changed.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 2.5rem 0;">
+                    <div style="background: white; padding: 2rem; border-radius: 15px; border: 2px solid rgba(255,107,53,0.1);">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎤</div>
+                        <h4 style="color: var(--primary); margin-bottom: 0.75rem;">Voice AI Matured</h4>
+                        <p style="font-size: 0.95rem; line-height: 1.6;">99.8% accuracy. Works in any language. Costs $0.01 per verification. Can't be faked or borrowed like IDs.</p>
+                    </div>
+                    
+                    <div style="background: white; padding: 2rem; border-radius: 15px; border: 2px solid rgba(255,107,53,0.1);">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">💬</div>
+                        <h4 style="color: var(--primary); margin-bottom: 0.75rem;">WhatsApp Everywhere</h4>
+                        <p style="font-size: 0.95rem; line-height: 1.6;">95% penetration in Africa. No app download needed. Zero friction onboarding. The UI everyone already knows.</p>
+                    </div>
+                    
+                    <div style="background: white; padding: 2rem; border-radius: 15px; border: 2px solid rgba(255,107,53,0.1);">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🧠</div>
+                        <h4 style="color: var(--primary); margin-bottom: 0.75rem;">Behavioral AI</h4>
+                        <p style="font-size: 0.95rem; line-height: 1.6;">Assess reliability from patterns, peer endorsements, consistency—not just credit scores.</p>
+                    </div>
+                    
+                    <div style="background: white; padding: 2rem; border-radius: 15px; border: 2px solid rgba(255,107,53,0.1);">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">📱</div>
+                        <h4 style="color: var(--primary); margin-bottom: 0.75rem;">Mobile Money</h4>
+                        <p style="font-size: 0.95rem; line-height: 1.6;">80% adoption. M-Pesa ecosystem ready. Payment infrastructure exists. Just needed the identity layer.</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-box" style="background: linear-gradient(135deg, var(--deep-blue) 0%, var(--primary-dark) 100%); border: none;">
+                    <p style="color: white; font-size: 1.3rem; line-height: 1.8;">
+                        "This is Africa's Aadhaar moment—but voice-first, AI-native, and built by the private sector rather than waiting decades for government infrastructure. The technology stack is ready. The market is desperate. The timing is now."
+                    </p>
+                </div>
+                
+                <h3>What We're Building</h3>
+                <p>
+                    Izere creates <strong>portable, verified digital identities</strong> for informal workers using just their voice. No documents required. No literacy barriers. No app downloads.
+                </p>
+                
+                <div style="background: white; padding: 2.5rem; border-radius: 15px; margin: 2rem 0; border: 2px solid var(--primary);">
+                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem;"><strong>Here's how it works for Jean:</strong></p>
+                    <ol style="list-style: none; counter-reset: step-counter; padding: 0;">
+                        <li style="margin-bottom: 1.5rem; padding-left: 3rem; position: relative; counter-increment: step-counter;">
+                            <span style="position: absolute; left: 0; top: 0; background: var(--primary); color: white; width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">1</span>
+                            <strong>One-Time Setup (30 seconds):</strong> Jean calls a WhatsApp number and records a 30-second voice sample. Our AI creates a unique voiceprint—like a fingerprint, but using his voice.
+                        </li>
+                        <li style="margin-bottom: 1.5rem; padding-left: 3rem; position: relative; counter-increment: step-counter;">
+                            <span style="position: absolute; left: 0; top: 0; background: var(--primary); color: white; width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">2</span>
+                            <strong>Build Trust Score:</strong> As Jean works, our AI tracks behavioral signals. Does he show up on time? Do customers re-hire him? Does he maintain his cooperative payments? All of this builds a Trust Score (0-100).
+                        </li>
+                        <li style="margin-bottom: 1.5rem; padding-left: 3rem; position: relative; counter-increment: step-counter;">
+                            <span style="position: absolute; left: 0; top: 0; background: var(--primary); color: white; width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">3</span>
+                            <strong>Apply for Loan:</strong> When Jean needs that motorcycle loan, the bank queries our API. In 2 seconds, they get: verified identity + trust score (say, 87/100) + full risk assessment.
+                        </li>
+                        <li style="padding-left: 3rem; position: relative; counter-increment: step-counter;">
+                            <span style="position: absolute; left: 0; top: 0; background: var(--primary); color: white; width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">4</span>
+                            <strong>Get the Loan:</strong> Bank lends confidently because they have actual data. Jean gets his motorcycle. His score improves as he repays. Next loan is easier. Upward mobility unlocked.
+                        </li>
+                    </ol>
+                </div>
+                
+                <p style="font-size: 1.15rem; margin-top: 2rem;">
+                    <strong>Cost to verify Jean manually:</strong> $50-150  
+                    <br><strong>Cost with Izere:</strong> $0.50-1.00  
+                    <br><strong>Time to verify manually:</strong> 3-7 days  
+                    <br><strong>Time with Izere:</strong> 2 seconds
+                </p>
+                
+                <h3>The Path Forward</h3>
+                <p>
+                    We're starting where the opportunity is clearest: <strong>East Africa</strong> (Kenya, Rwanda, Uganda). High mobile money adoption, progressive regulators, strong cooperative networks, English/Swahili coverage.
+                </p>
+                
+                <div style="display: grid; gap: 1.5rem; margin: 2rem 0;">
+                    <div style="display: flex; align-items: start; gap: 1.5rem; background: var(--sand); padding: 2rem; border-radius: 15px;">
+                        <div style="font-size: 3rem; line-height: 1;">🏍️</div>
+                        <div>
+                            <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Phase 1: Moto Taxi Drivers</h4>
+                            <p>14M+ in East Africa, organized in cooperatives, need financing for vehicles and maintenance, existing trust networks we can digitize.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: start; gap: 1.5rem; background: var(--sand); padding: 2rem; border-radius: 15px;">
+                        <div style="font-size: 3rem; line-height: 1;">🏗️</div>
+                        <div>
+                            <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Phase 2: Construction & Artisans</h4>
+                            <p>Skilled workers need tool loans, material financing, and a way to prove expertise to new clients.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: start; gap: 1.5rem; background: var(--sand); padding: 2rem; border-radius: 15px;">
+                        <div style="font-size: 3rem; line-height: 1;">🌍</div>
+                        <div>
+                            <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Phase 3: Pan-African Scale</h4>
+                            <p>Once proven in East Africa, expand to Nigeria (80M+ informal workers), West Africa, and eventually the entire continent.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 3rem; background: rgba(81,207,102,0.1); border-left-color: #51cf66;">
+                    <p style="font-size: 1.2rem; color: var(--text-dark);">
+                        <strong style="color: #51cf66;">Our Goal:</strong> Within 5 years, when a moto driver in Lagos, a market vendor in Nairobi, or a seamstress in Kigali wakes up with an idea to grow their business, they can get a verified digital identity and a fair loan—not based on paperwork they don't have, but based on the reputation they've spent years building.
+                    </p>
+                </div>
+                
+                <h3>This Is Why We Exist</h3>
+                <p style="font-size: 1.15rem; line-height: 1.8;">
+                    400 million people work hard every day in Africa's informal economy. They support families. They build communities. They drive economic growth. They deserve to be seen. They deserve access to opportunity. They deserve a financial system that recognizes their worth.
+                </p>
+                
+                <p style="font-size: 1.15rem; line-height: 1.8;">
+                    Izere exists to make sure that when they speak, the world hears them.
+                </p>
+                
+                <div style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); padding: 3rem; border-radius: 20px; margin-top: 3rem; text-align: center; color: white;">
+                    <p style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: white;">
+                        If you can speak, you can be verified.
+                    </p>
+                    <p style="font-size: 1.2rem; opacity: 0.95; color: white;">
+                        It's that simple. And it's that important.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team">
+        <div class="container">
+            <div class="section-tag">OUR TEAM</div>
+            <h2 class="section-title">Founded in Luxembourg, Operating in Africa</h2>
+            
+            <div class="founder-card">
+                <div class="founder-image">
+                    <img src="alain-photo.jpg" alt="Alain Nkurikiye" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                </div>
+                <div class="founder-info">
+                    <h3>Alain Nkurikiye</h3>
+                    <div class="founder-title">Founder & CEO</div>
+                    <p class="founder-bio">
+                        Luxembourg-based entrepreneur with deep experience bridging European capital and African markets. Previous ventures include Wajenzi and Dunia Ventures, focused on entrepreneurship, finance, and economic inclusion across East Africa.
+                    </p>
+                    <ul class="founder-highlights">
+                        <li><strong>Network:</strong> Established partnerships in Rwanda, Burundi, Kenya, and Uganda</li>
+                        <li><strong>Location:</strong> Based in Luxembourg with access to EU funding ecosystem (Fit4Start, Luxinnovation, LuxDev)</li>
+                        <li><strong>Mission:</strong> Passionate about financial inclusion and building infrastructure for Africa's digital economy</li>
+                        <li><strong>Contact:</strong> <a href="/cdn-cgi/l/email-protection#3958555850577950435c4b5c174d5c5a51" style="color: var(--primary);"><span class="__cf_email__" data-cfemail="e2838e838b8ca28b98879087cc9687818a">[email&#160;protected]</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recruiting Section -->
+    <section class="recruiting">
+        <div class="container">
+            <h2>Join Us in Building Africa's Trust Layer</h2>
+            <p>We're looking for exceptional people who want to make a massive impact on financial inclusion.</p>
+            
+            <div class="role-cards">
+                <div class="role-card">
+                    <h3>Technical Co-Founder / CTO</h3>
+                    <p><strong>25-30% equity stake</strong></p>
+                    <p>Lead technical development of voice biometrics, behavioral AI, and trust scoring infrastructure.</p>
+                    <ul>
+                        <li>ML/AI engineering background</li>
+                        <li>Experience with voice tech or behavioral models</li>
+                        <li>Startup experience preferred</li>
+                        <li>Based in Luxembourg or Nairobi</li>
+                    </ul>
+                    <a href="/cdn-cgi/l/email-protection#8beae7eae2e5cbe2f1eef9eea5ffeee8e3b4f8fee9e1eee8ffb6c8e4a6cde4fee5efeef9abc2e5ffeef9eef8ff" class="apply-button">Express Interest</a>
+                </div>
+                
+                <div class="role-card">
+                    <h3>Advisors & Board Members</h3>
+                    <p><strong>Equity compensation</strong></p>
+                    <p>We're seeking advisors with expertise in:</p>
+                    <ul>
+                        <li>African fintech & mobile money</li>
+                        <li>Voice biometrics / AI/ML</li>
+                        <li>Development finance (DFIs, IFC, AfDB)</li>
+                        <li>Data privacy & regulatory (Africa)</li>
+                    </ul>
+                    <a href="/cdn-cgi/l/email-protection#9ffef3fef6f1dff6e5faedfab1ebfafcf7a0eceafdf5fafceba2defbe9f6ecf0ede6bfd6f1ebfaedfaeceb" class="apply-button">Get Involved</a>
+                </div>
+                
+                <div class="role-card">
+                    <h3>Strategic Investors</h3>
+                    <p><strong>€500k pre-seed round</strong></p>
+                    <p>Looking for AI-focused VCs and impact investors who understand:</p>
+                    <ul>
+                        <li>African market opportunity</li>
+                        <li>B2B SaaS infrastructure plays</li>
+                        <li>Financial inclusion thesis</li>
+                        <li>Early-stage deep tech</li>
+                    </ul>
+                    <a href="/cdn-cgi/l/email-protection#8cede0ede5e2cce5f6e9fee9a2f8e9efe4b3fff9eee6e9eff8b1c5e2fae9fff8e1e9e2f8acc5e2fdf9e5fef5" class="apply-button">View Deck</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">IZERE</div>
+                <p class="footer-description">
+                    Voice-first trust infrastructure for Africa's informal economy. Making 400M invisible workers visible through AI-powered digital identity and behavioral scoring.
+                </p>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">
+                    <strong>Based in Luxembourg • Operating in East Africa</strong>
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="index.html#solution">Solution</a></li>
+                    <li><a href="index.html#customers">Customers</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>For Investors</h4>
+                <ul class="footer-links">
+                    <li><a href="/cdn-cgi/l/email-protection#5839343931361831223d2a3d762c3d3b30672b2d3a323d3b2c6508312c3b30781c3d3b33780a3d292d3d2b2c">Pitch Deck</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#ef8e838e8681af86958a9d8ac19b8a8c87d09c9a8d858a8c9bd2a986818e818c868e83cfa2808b8a83">Financial Model</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#c3a2afa2aaad83aab9a6b1a6edb7a6a0abfcb0b6a1a9a6a0b7fe8aadb5a6b0b7aea6adb7e38aadb2b6aab1ba">Schedule Call</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul class="footer-links">
+          

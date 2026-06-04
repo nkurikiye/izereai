@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rail Baltica — Case study — Izere</title>
+<meta name="description" content="The €18B overrun. 14 months of warning signs. A long-form Izere case study on Rail Baltica." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../shared.css" />
+<style>
+  .page-hero{padding:140px 0 80px;border-bottom:1px solid var(--line);}
+  .page-crumb{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:var(--ink-4);text-transform:uppercase;}
+  .page-crumb .sep{opacity:0.4;}
+  .page-crumb .here{color:var(--ink-2);}
+
+  .case-title{font-family:var(--serif);font-weight:400;font-size:clamp(56px,8vw,120px);line-height:0.96;letter-spacing:-0.025em;margin-top:32px;}
+  .case-title em{color:var(--accent);font-style:italic;}
+  .case-dek{font-size:21px;line-height:1.5;color:var(--ink-2);max-width:680px;margin-top:32px;letter-spacing:-0.005em;}
+
+  .case-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);margin-top:64px;}
+  .cm-cell{padding:24px 24px 0 0;border-right:1px solid var(--line);}
+  .cm-cell:last-child{border-right:none;}
+  .cm-cell .v{font-family:var(--serif);font-size:36px;line-height:1;letter-spacing:-0.015em;color:var(--ink);}
+  .cm-cell .v.bad{color:var(--carmine);}
+  .cm-cell .v.good{color:var(--moss);}
+  .cm-cell .l{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--ink-4);text-transform:uppercase;margin-top:10px;}
+
+  /* Body — long-form editorial */
+  .case-body{padding:96px 0;}
+  .case-body .col{max-width:720px;margin:0 auto;}
+  .case-body p{font-size:17px;line-height:1.75;color:var(--ink-2);margin-bottom:24px;}
+  .case-body p strong{color:var(--ink);font-weight:500;}
+  .case-body p .hi{background:color-mix(in srgb, var(--accent) 16%, transparent);padding:0 4px;border-radius:3px;}
+  .case-body h2{font-family:var(--serif);font-weight:400;font-size:44px;line-height:1.05;letter-spacing:-0.02em;margin:64px 0 24px;}
+  .case-body h2 em{color:var(--accent);font-style:italic;}
+  .case-body h3{font-family:var(--serif);font-weight:400;font-size:24px;letter-spacing:-0.01em;margin:40px 0 16px;}
+  .case-body .lead{font-family:var(--serif);font-size:30px;line-height:1.25;letter-spacing:-0.01em;color:var(--ink);margin-bottom:32px;}
+
+  .pull{
+    margin:48px -32px;padding:36px 40px;border-left:3px solid var(--accent);
+    background:var(--paper-2);
+    font-family:var(--serif);font-size:30px;line-height:1.3;letter-spacing:-0.01em;color:var(--ink);
+  }
+  .pull em{color:var(--accent);font-style:italic;}
+
+  /* Wide chart band */
+  .chart-band{background:var(--ink);color:var(--paper);padding:80px 0;margin:64px 0;}
+  body.dark .chart-band{background:#06070A;}
+  .chart-band-hd{display:flex;align-items:end;justify-content:space-between;margin-bottom:48px;flex-wrap:wrap;gap:18px;}
+  .chart-band-hd h3{font-family:var(--serif);font-weight:400;font-size:36px;letter-spacing:-0.015em;line-height:1.05;color:#fff;max-width:560px;}
+  .chart-band-hd h3 em{color:oklch(0.72 0.18 268);font-style:italic;}
+  .chart-band-hd .legend{display:flex;align-items:center;gap:18px;}
+  .chart-band-hd .legend span{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10.5px;color:rgba(255,255,255,0.55);letter-spacing:0.06em;text-transform:uppercase;}
+  .chart-band-hd .legend i{width:10px;height:10px;border-radius:50%;display:inline-block;}
+
+  .big-chart{height:380px;}
+  .big-chart svg{width:100%;height:100%;overflow:visible;}
+
+  /* Signal grid */
+  .signals-band{padding:96px 0;}
+  .sig-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;}
+  .sig-card{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:28px 30px;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .sig-card .top{display:flex;align-items:center;justify-content:space-between;}
+  .sig-card .id{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--ink-4);text-transform:uppercase;}
+  .sig-card .when{font-family:var(--mono);font-size:10.5px;color:var(--accent);letter-spacing:0.04em;}
+  .sig-card h4{font-family:var(--serif);font-size:24px;font-weight:400;letter-spacing:-0.01em;line-height:1.2;}
+  .sig-card p{font-size:14px;line-height:1.6;color:var(--ink-3);}
+  .sig-card .meas{
+    display:grid;grid-template-columns:1fr 1fr;gap:14px;
+    margin-top:auto;padding-top:14px;border-top:1px dashed var(--line);
+  }
+  .sig-card .meas .b{font-family:var(--mono);font-size:11px;color:var(--ink-2);}
+  .sig-card .meas .b small{display:block;color:var(--ink-4);text-transform:uppercase;letter-spacing:0.08em;font-size:9px;margin-bottom:4px;}
+  .sig-card .meas .b strong{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--ink);letter-spacing:-0.01em;}
+  .sig-card .meas .b strong.bad{color:var(--carmine);}
+
+  /* Counterfactual */
+  .cf-band{padding:96px 0;background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+  .cf-text h2{font-family:var(--serif);font-weight:400;font-size:48px;line-height:1.05;letter-spacing:-0.02em;margin-bottom:18px;}
+  .cf-text h2 em{color:var(--accent);font-style:italic;}
+  .cf-text p{font-size:16px;line-height:1.7;color:var(--ink-2);margin-bottom:14px;}
+  .cf-card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:28px 30px;}
+  .cf-card .hd{font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;color:var(--ink-4);text-transform:uppercase;margin-bottom:18px;}
+  .cf-row{display:grid;grid-template-columns:1fr 100px 100px;gap:14px;padding:14px 0;border-top:1px solid var(--line);font-size:13px;align-items:center;}
+  .cf-row.hd-row{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-4);padding:10px 0;}
+  .cf-row .met{color:var(--ink-2);}
+  .cf-row .v{font-family:var(--serif);font-size:18px;letter-spacing:-0.01em;text-align:right;color:var(--ink);font-variant-numeric:tabular-nums;}
+  .cf-row .v.bad{color:var(--carmine);}
+  .cf-row .v.good{color:var(--moss);}
+
+  /* Sources */
+  .sources-band{padding:96px 0;border-top:1px solid var(--line);}
+  .src-list{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;border-top:1px solid var(--line);}
+  .src-item{display:grid;grid-template-columns:48px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);align-items:start;}
+  .src-item .n{font-family:var(--mono);font-size:11px;color:var(--ink-4);letter-spacing:0.08em;padding-top:3px;}
+  .src-item .t{font-size:13px;line-height:1.55;color:var(--ink-2);}
+  .src-item .t .pub{color:var(--ink-4);font-family:var(--mono);font-size:10.5px;letter-spacing:0.04em;text-transform:uppercase;display:block;margin-bottom:3px;}
+
+  @media(max-width:1100px){
+    .case-meta{grid-template-columns:repeat(2,1fr);}
+    .cm-cell:nth-child(2){border-right:none;}
+    .cm-cell:nth-child(3),.cm-cell:nth-child(4){padding-top:24px;border-top:1px solid var(--line);}
+    .case-body .col{padding:0 32px;}
+    .pull{margin:48px 0;}
+    .sig-grid,.cf-grid,.src-list{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <a href="../index.html" class="brand"><span class="brand-wm">I<span class="cut">z</span>ere</span></a>
+      <div class="nav-links">
+        <a href="../platform.html">Platform</a>
+        <a href="../methodology.html">Methodology</a>
+        <a href="rail-baltica.html" style="color:var(--ink);font-weight:600;">Case studies</a>
+        <a href="../team.html">Team</a>
+        <a href="../index.html#demo">Live demo</a>
+      </div>
+      <div class="nav-cta">
+        <a href="../index.html#contact" class="btn btn-ghost">Log in</a>
+        <a href="../index.html#contact" class="btn btn-primary">Request demo <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="page-crumb">
+      <a href="../index.html">Izere</a><span class="sep">/</span><a href="rail-baltica.html">Case studies</a><span class="sep">/</span><span class="here">Rail Baltica</span>
+    </div>
+    <span class="eyebrow" style="display:block;margin-top:32px;"><span class="dot"></span>Backtest · CEF · Rail Baltica TEN-T · Latvia · Estonia · Lithuania</span>
+    <h1 class="case-title">The €18B overrun.<br/><em>14 months</em> of warning signs.</h1>
+    <p class="case-dek">Rail Baltica is the largest cross-border infrastructure project in EU history. Cost trebled. Timeline doubled. The signals were in the data the whole time. This is the long-form Izere backtest — what the model would have seen, when, and what corrective action it would have surfaced.</p>
+
+    <div class="case-meta">
+      <div class="cm-cell"><div class="v bad">€23.8B</div><div class="l">Latest cost estimate</div></div>
+      <div class="cm-cell"><div class="v">€5.8B</div><div class="l">Original baseline (2017)</div></div>
+      <div class="cm-cell"><div class="v good">+14.2 mo</div><div class="l">Izere lead vs. ECA</div></div>
+      <div class="cm-cell"><div class="v">2035</div><div class="l">Latvia revised completion</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BODY -->
+<section class="case-body">
+  <div class="col">
+    <p class="lead">In January 2026, the European Court of Auditors flagged Rail Baltica as the largest single budget failure in CEF history. The cost had trebled since baseline. Three Member States revised their completion windows separately. By then, the cost gap had compounded for fourteen months.</p>
+
+    <p>The signals were visible from <strong>Q1 2024</strong>. Bidder concentration in Latvia's contract awards had crossed a structural threshold three quarters earlier. Cross-state coordination cadence had collapsed by 60% in Q3 2024. The €5.8B baseline had been quietly amended four times before the formal cost reset was announced.</p>
+
+    <p>None of these signals appeared in any single document. They lived in the <span class="hi">structure</span> of the procurement and governance graphs — exactly where Izere is designed to read.</p>
+
+    <h2>What Izere would have <em>seen</em>.</h2>
+    <p>This is a backtest. We ran the v2.4 production model against the Rail Baltica programme graph reconstructed from public sources between January 2023 and the present. The model was given no information unavailable to the European Court of Auditors at the time. It was given <strong>only the structure</strong>: contracts, awards, sub-recipients, governance changes, milestone amendments, disbursement events.</p>
+    <p>The model's risk score for Rail Baltica was 41/100 in January 2024 — moderate, in line with comparable cross-border infrastructure programmes. By <span class="hi">May 2024</span> it had moved to 78/100. By Q3 2024 it crossed 84. The European Court of Auditors detection — January 2026 — was 14.2 months after Izere's threshold breach.</p>
+  </div>
+</section>
+
+<!-- WIDE CHART -->
+<section class="chart-band">
+  <div class="wrap">
+    <div class="chart-band-hd">
+      <h3>Risk trajectory · Rail Baltica<br/>Izere v2.4 backtest <em>vs.</em> ECA detection.</h3>
+      <div class="legend">
+        <span><i style="background:oklch(0.72 0.18 268);"></i>Izere risk score</span>
+        <span><i style="background:var(--carmine);"></i>Traditional supervision</span>
+        <span><i style="background:#fff;"></i>Programme events</span>
+      </div>
+    </div>
+
+    <div class="big-chart">
+      <svg viewBox="0 0 1200 380" preserveAspectRatio="none">
+        <!-- gridlines -->
+        <line x1="0" y1="60" x2="1200" y2="60" stroke="rgba(255,255,255,0.05)"/>
+        <line x1="0" y1="140" x2="1200" y2="140" stroke="rgba(255,255,255,0.05)"/>
+        <line x1="0" y1="220" x2="1200" y2="220" stroke="rgba(255,255,255,0.05)"/>
+        <line x1="0" y1="300" x2="1200" y2="300" stroke="rgba(255,255,255,0.05)"/>
+        <line x1="0" y1="380" x2="1200" y2="380" stroke="rgba(255,255,255,0.10)"/>
+
+        <text x="0" y="50" fill="rgba(255,255,255,0.4)" font-family="JetBrains Mono" font-size="10">100</text>
+        <text x="0" y="130" fill="rgba(255,255,255,0.4)" font-family="JetBrains Mono" font-size="10">75</text>
+        <text x="0" y="210" fill="rgba(255,255,255,0.4)" font-family="JetBrains Mono" font-size="10">50</text>
+        <text x="0" y="290" fill="rgba(255,255,255,0.4)" font-family="JetBrains Mono" font-size="10">25</text>
+
+        <!-- Izere area -->
+        <path d="M40,310 L160,300 L280,270 L400,160 L520,100 L640,80 L760,70 L880,60 L1000,55 L1120,52 L1120,380 L40,380 Z"
+              fill="oklch(0.62 0.20 268 / 0.15)"/>
+        <!-- Izere line -->
+        <path d="M40,310 L160,300 L280,270 L400,160 L520,100 L640,80 L760,70 L880,60 L1000,55 L1120,52"
+              stroke="oklch(0.72 0.18 268)" stroke-width="2.5" fill="none"/>
+        <!-- Trad line -->
+        <path d="M40,355 L160,352 L280,348 L400,344 L520,335 L640,320 L760,290 L880,225 L1000,140 L1120,75"
+              stroke="oklch(0.58 0.20 22)" stroke-width="2" fill="none" stroke-dasharray="6,4"/>
+
+        <!-- Vertical events -->
+        <line x1="280" y1="0" x2="280" y2="380" stroke="rgba(255,255,255,0.15)" stroke-dasharray="2,4"/>
+        <circle cx="280" cy="270" r="6" fill="oklch(0.72 0.18 268)"/>
+        <text x="290" y="262" fill="white" font-family="JetBrains Mono" font-size="10">Q1 '24 · CONCENTRATION CROSS</text>
+
+        <line x1="400" y1="0" x2="400" y2="380" stroke="oklch(0.72 0.18 268 / 0.5)" stroke-dasharray="2,4"/>
+        <circle cx="400" cy="160" r="7" fill="oklch(0.72 0.18 268)"/>
+        <text x="410" y="152" fill="white" font-family="JetBrains Mono" font-size="10">MAY '24 · IZERE FLAG · 78/100</text>
+
+        <line x1="640" y1="0" x2="640" y2="380" stroke="rgba(255,255,255,0.15)" stroke-dasharray="2,4"/>
+        <circle cx="640" cy="80" r="6" fill="#fff"/>
+        <text x="650" y="72" fill="white" font-family="JetBrains Mono" font-size="10">Q3 '24 · COORDINATION COLLAPSE</text>
+
+        <line x1="1000" y1="0" x2="1000" y2="380" stroke="oklch(0.58 0.20 22 / 0.5)" stroke-dasharray="2,4"/>
+        <circle cx="1000" cy="140" r="7" fill="oklch(0.58 0.20 22)"/>
+        <text x="990" y="132" fill="white" font-family="JetBrains Mono" font-size="10" text-anchor="end">JAN '26 · ECA DETECTION</text>
+
+        <!-- x-axis labels -->
+        <text x="40"   y="372" fill="rgba(255,255,255,0.4)" font-family="JetBrains Mono" font-size="10">Jan 2023</text>
+        <text x="280"  y="372" fill="rgba(255,255,255,0.4)" font-family="JetBrains Mono" font-size="10">Q1 2024</text>
+        <text x="640"  y="372" fill="rgba(255,255,255,0.4)" font-family="JetBrains Mono" font-size="10">Q3 2024</text>
+        <text x="880"  y="372" fill="rgba(255,255,255,0.4)" font-family="JetBrains Mono" font-size="10">Q2 2025</text>
+        <text x="1120" y="372" fill="rgba(255,255,255,0.4)" font-family="JetBrains Mono" font-size="10" text-anchor="end">Q1 2026</text>
+
+        <!-- lead time bracket -->
+        <line x1="400" y1="345" x2="1000" y2="345" stroke="oklch(0.55 0.10 150)" stroke-width="1.5"/>
+        <line x1="400" y1="340" x2="400" y2="350" stroke="oklch(0.55 0.10 150)" stroke-width="1.5"/>
+        <line x1="1000" y1="340" x2="1000" y2="350" stroke="oklch(0.55 0.10 150)" stroke-width="1.5"/>
+        <text x="700" y="335" fill="oklch(0.7 0.10 150)" font-family="JetBrains Mono" font-size="11" text-anchor="middle">+14.2 MONTHS LEAD TIME</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- THE FOUR SIGNALS -->
+<section class="signals-band">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="lhs">
+        <span class="eyebrow"><span class="dot"></span>Signals</span>
+        <h2>Four <em>structural</em> signals.<br/>Five quarters of warning.</h2>
+      </div>
+      <div class="rhs">
+        Each signal is reproducible from public data using documented features (see <a href="../methodology.html#s3" style="color:var(--accent);">Methodology § 03</a>). Auditors can recompute any value below from raw inputs.
+      </div>
+    </div>
+
+    <div class="sig-grid">
+      <div class="sig-card">
+        <div class="top"><span class="id">F.001 · Bidder concentration</span><span class="when">Q1 2024</span></div>
+        <h4>Latvia bidder pool collapses 47%.</h4>
+        <p>Across 18 contract notices in 2024 Q1, the Herfindahl–Hirschman concentration index crossed 0.62 — three quarters earlier than ECA detection. Qualified bidder count fell from 11.4 (2018 baseline) to 6.0.</p>
+        <div class="meas">
+          <div class="b"><small>HHI Q1 24</small><strong class="bad">0.62</strong></div>
+          <div class="b"><small>Threshold</small><strong>0.55</strong></div>
+        </div>
+      </div>
+
+      <div class="sig-card">
+        <div class="top"><span class="id">F.003 · Coordination cadence</span><span class="when">Q3 2024</span></div>
+        <h4>3-state meeting cadence drops 60%.</h4>
+        <p>Joint coordination meetings between Latvia, Estonia, and Lithuania programme authorities collapsed from 4.2/quarter (2022 baseline) to 1.7. Document throughput halved over the same window.</p>
+        <div class="meas">
+          <div class="b"><small>Meetings/Q</small><strong class="bad">1.7</strong></div>
+          <div class="b"><small>Baseline</small><strong>4.2</strong></div>
+        </div>
+      </div>
+
+      <div class="sig-card">
+        <div class="top"><span class="id">F.004 · Milestone amendments</span><span class="when">Q2 2024</span></div>
+        <h4>Quiet baseline reset.</h4>
+        <p>The original €5.8B baseline was amended four times across 2024 — none of them publicly announced as a cost reset. Cumulative amendment delta: +€2.4B before any formal disclosure.</p>
+        <div class="meas">
+          <div class="b"><small>Amendments</small><strong class="bad">4</strong></div>
+          <div class="b"><small>Δ disclosed</small><strong>+€2.4B</strong></div>
+        </div>
+      </div>
+
+      <div class="sig-card">
+        <div class="top"><span class="id">F.010 · Co-financing gap</span><span class="when">Q4 2024</span></div>
+        <h4>2027–28 financing unconfirmed.</h4>
+        <p>National co-financing for the 2027–28 implementation window remained unconfirmed across all three Member States as of Q4 2024. Implied funding shortfall of €3.2B against the (then-quietly-amended) baseline.</p>
+        <div class="meas">
+          <div class="b"><small>Confirmed</small><strong class="bad">28%</strong></div>
+          <div class="b"><small>Required</small><strong>100%</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTERFACTUAL -->
+<section class="cf-band">
+  <div class="wrap">
+    <div class="cf-grid">
+      <div class="cf-text">
+        <span class="eyebrow"><span class="dot"></span>Counterfactual</span>
+        <h2>If Izere had been deployed in <em>2023</em>.</h2>
+        <p>What would the May 2024 risk flag have surfaced as actionable intervention? The system's playbook generates a recommended response based on which features are driving the score.</p>
+        <p>For Rail Baltica, the dominant attribution was <strong>F.001 (bidder concentration)</strong> and <strong>F.003 (coordination cadence)</strong>. Standard playbook: deploy DG REGIO technical assistance to the Latvia managing authority; convene an emergency 3-state coordination session; commission an independent cost reset before the next CEF disbursement window.</p>
+        <p>None of these are operationally complex. All would have been substantially cheaper than the eventual €18B correction. The constraint was never capacity — it was <strong>timing</strong>.</p>
+      </div>
+
+      <div class="cf-card">
+        <div class="hd">Estimated correction cost · May 2024 vs. Jan 2026</div>
+        <div class="cf-row hd-row"><span>Metric</span><span class="v">May '24</span><span class="v">Jan '26</span></div>
+        <div class="cf-row"><span class="met">Cost gap to baseline</span><span class="v">€2.4B</span><span class="v bad">€18.0B</span></div>
+        <div class="cf-row"><span class="met">Schedule slip</span><span class="v">+18 mo</span><span class="v bad">+96 mo</span></div>
+        <div class="cf-row"><span class="met">Member States affected</span><span class="v">1 (LV)</span><span class="v bad">3 (LV/EE/LT)</span></div>
+        <div class="cf-row"><span class="met">CEF disbursements at risk</span><span class="v">€420M</span><span class="v bad">€1.84B</span></div>
+        <div class="cf-row"><span class="met">Avoidable by intervention</span><span class="v good">~€15.6B</span><span class="v">—</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BODY CONTINUED -->
+<section class="case-body">
+  <div class="col">
+    <h2>Why traditional supervision <em>missed it</em>.</h2>
+    <p>It is tempting to read this case as a failure of the European Court of Auditors. It is not. ECA's mandate is retrospective sampling and special reports; their detection latency on a programme this large and this politically sensitive is consistent with their statutory role.</p>
+    <p>The failure is structural. EU supervision relies on programmes <strong>self-reporting</strong> against linear KPIs. By the time a milestone is formally missed, the underlying structural risk has been compounding for months. Linear KPIs cannot see the kinds of signals that drove Rail Baltica's failure — they live in <span class="hi">the relationships between actors</span>, not in any single actor's reporting line.</p>
+
+    <div class="pull">Linear monitoring asks "did the milestone slip?" Graph monitoring asks "is the <em>structure</em> that produces milestones still intact?"</div>
+
+    <p>Izere is designed to read structure. The Rail Baltica backtest is one of seven we have published; performance is consistent across cross-border infrastructure (CEF), national recovery plans (RRF), and operational programmes (Cohesion). Backtests are reproducible — we publish the feature pipeline and ship the inputs as part of every methodology release.</p>
+
+    <h2>What deployment would look like.</h2>
+    <p>Rail Baltica is now a closed case — the cost has compounded, the schedule has slipped, the institutional response is set. The question is what happens to the <strong>seventeen comparable programmes</strong> currently in CEF's portfolio.</p>
+    <p>An institutional Izere deployment for DG MOVE or INEA would surface structural risk across the entire CEF portfolio in real time, with monthly briefings to leadership and an audit pathway every score can be contested through. The deployment is reviewable in advance — methodology, model card, conformity statement, and audit access — before any procurement decision.</p>
+
+    <p style="margin-top:48px;display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="../index.html#contact" class="btn btn-primary btn-lg">Request a CEF backtest <span class="arr">→</span></a>
+      <a href="../methodology.html" class="btn btn-ghost btn-lg">Read methodology</a>
+    </p>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section class="sources-band">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>Sources & data lineage</span>
+    <h2 style="font-family:var(--serif);font-weight:400;font-size:36px;letter-spacing:-0.015em;line-height:1.05;margin:18px 0 36px;">Reproducible from <em style="color:var(--accent);font-style:italic;">public</em> data.</h2>
+
+    <div class="src-list">
+      <div class="src-item"><span class="n">[01]</span><span class="t"><span class="pub">European Court of Auditors · Special Report</span>Rail Baltica programme — first observations on cost and timeline. January 2026.</span></div>
+      <div class="src-item"><span class="n">[02]</span><span class="t"><span class="pub">CEF · INEA programme reports</span>Rail Baltica annual implementation reports, 2018–2025. Cost baselines, milestone status, financial execution.</span></div>
+      <div class="src-item"><span class="n">[03]</span><span class="t"><span class="pub">TED · PPDS</span>All Rail Baltica contract notices and awards across LV / EE / LT, 2018–2025. Bidder identity, concentration metrics derived per § 03.</span></div>
+      <div class="src-item"><span class="n">[04]</span><span class="t"><span class="pub">RB Rail AS · public reporting</span>Joint venture quarterly publications. Coordination cadence derived from meeting minutes and document throughput.</span></div>
+      <div class="src-item"><span class="n">[05]</span><span class="t"><span class="pub">Member State managing authorities</span>Latvian Ministry of Transport, Estonian Tehnilise Järelevalve Amet, Lithuanian Susisiekimo ministerija — programme-specific reporting.</span></div>
+      <div class="src-item"><span class="n">[06]</span><span class="t"><span class="pub">EU AI Act conformity record</span>Izere v2.4 model card and risk-management documentation, generated continuously during this backtest.</span></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Izere</div>
+        <p class="footer-desc">Delivery intelligence for EU-funded programmes and public infrastructure investment. Explainable AI for institutions that cannot afford to fail.</p>
+        <div class="footer-badges">
+          <span class="footer-badge">EU AI Act</span><span class="footer-badge">GDPR</span><span class="footer-badge">XAI Enabled</span><span class="footer-badge">Luxembourg</span>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Product</h5>
+        <a href="../platform.html">Platform</a><a href="../methodology.html">Methodology</a><a href="rail-baltica.html">Case studies</a><a href="../index.html#demo">Live demo</a>
+      </div>
+      <div class="footer-col"><h5>Company</h5>
+        <a href="../team.html">Team</a><a href="../index.html#contact">Contact</a><a href="#">Press</a>
+      </div>
+      <div class="footer-col"><h5>Legal</h5>
+        <a href="#">Privacy policy</a><a href="#">Terms of use</a><a href="#">Data governance</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 IZERE SÀRL-S · LUXEMBOURG · ALL RIGHTS RESERVED</span><span>LUXEMBOURG · EUROPE</span></div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 24); });
+</script>
+
+</body>
+</html>

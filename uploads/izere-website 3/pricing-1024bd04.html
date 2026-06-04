@@ -29,6 +29,17 @@
     .pricing-note{background:var(--surface2);border-radius:var(--r12);padding:28px 32px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
     .pnote-item h4{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink4);margin-bottom:8px;}
     .pnote-item p{font-size:13px;color:var(--ink2);line-height:1.6;}
+    /* ROI visual */
+    .roi-band{background:var(--ink);border-radius:var(--r16);padding:48px;margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+    .roi-chart{display:flex;flex-direction:column;gap:10px;}
+    .roi-row{display:flex;align-items:center;gap:12px;}
+    .roi-lbl{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.5);width:80px;flex-shrink:0;}
+    .roi-bar-wrap{flex:1;height:8px;background:rgba(255,255,255,0.07);border-radius:4px;overflow:hidden;}
+    .roi-bar-fill{height:100%;border-radius:4px;width:0;transition:width 1.3s cubic-bezier(0.4,0,0.2,1);}
+    .roi-val{font-family:var(--mono);font-size:11px;font-weight:600;color:white;width:50px;text-align:right;flex-shrink:0;}
+    /* Price card hover */
+    .price-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);}
+    .price-card{transition:all 0.2s;}
   </style>
 </head>
 <body>
@@ -125,6 +136,33 @@
         <p>Multi-year framework agreements reduce onboarding costs and allow delivery intelligence to compound over successive programme cycles. Preferred by managing authorities and DFIs.</p>
       </div>
     </div>
+
+    <!-- ROI VISUAL -->
+    <div class="roi-band fade-in">
+      <div>
+        <div class="eyebrow" style="color:rgba(255,255,255,0.4);margin-bottom:14px;">Return on Investment</div>
+        <h3 style="font-family:var(--serif);font-size:clamp(22px,2.5vw,32px);font-weight:400;color:white;margin-bottom:14px;">One avoided overrun pays for years of coverage</h3>
+        <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:24px;">On a €200M programme, a 5% cost overrun equals €10M in losses. An Izere Tier 2 contract at €300K delivers a potential 33× return if even one significant overrun is detected and corrected early.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r12);padding:16px 20px;flex:1;min-width:120px;">
+            <div style="font-family:var(--display);font-size:28px;font-weight:700;color:#86EFAC;line-height:1;">33×</div>
+            <div style="font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;">Potential ROI</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r12);padding:16px 20px;flex:1;min-width:120px;">
+            <div style="font-family:var(--display);font-size:28px;font-weight:700;color:#93C5FD;line-height:1;">10w</div>
+            <div style="font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;">Earlier Detection</div>
+          </div>
+        </div>
+      </div>
+      <div class="roi-chart">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:4px;">Estimated value / contract cost ratio</div>
+        <div class="roi-row"><div class="roi-lbl">Cost avoided</div><div class="roi-bar-wrap"><div class="roi-bar-fill" data-w="100" style="background:linear-gradient(90deg,#86EFAC,#34D399);"></div></div><div class="roi-val">€10M</div></div>
+        <div class="roi-row"><div class="roi-lbl">Contract cost</div><div class="roi-bar-wrap"><div class="roi-bar-fill" data-w="3" style="background:rgba(255,255,255,0.3);"></div></div><div class="roi-val">€300K</div></div>
+        <div class="roi-row"><div class="roi-lbl">Audit saving</div><div class="roi-bar-wrap"><div class="roi-bar-fill" data-w="20" style="background:linear-gradient(90deg,#93C5FD,#60A5FA);"></div></div><div class="roi-val">€2M</div></div>
+        <div class="roi-row"><div class="roi-lbl">DD reduction</div><div class="roi-bar-wrap"><div class="roi-bar-fill" data-w="15" style="background:linear-gradient(90deg,#C4B5FD,#A78BFA);"></div></div><div class="roi-val">€1.5M</div></div>
+        <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.08);font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.3);">Based on a €200M programme · illustrative estimates</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -164,7 +202,16 @@
 </footer>
 
 <script>
-  const observer = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, {threshold:0.12});
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        e.target.classList.add('visible');
+        e.target.querySelectorAll && e.target.querySelectorAll('.roi-bar-fill[data-w]').forEach(bar => {
+          bar.style.width = bar.dataset.w + '%';
+        });
+      }
+    });
+  }, {threshold:0.15});
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20); });
 </script>

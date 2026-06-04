@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Izere — Delivery intelligence for European public capital</title>
+<meta name="description" content="Izere is the execution-intelligence layer for EU-funded programmes, DFIs, and public infrastructure investment. Detect delivery risk 2–3 months earlier." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     IZERE — editorial-modern
+     ============================================================ */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+  :root{
+    /* Surfaces */
+    --paper:#F4F1EA;          /* warm institutional cream */
+    --paper-2:#EAE6DC;
+    --paper-3:#DED9CD;
+    --ink:#0E0F12;            /* near-black */
+    --ink-2:#22242B;
+    --ink-3:#52555F;
+    --ink-4:#86899A;
+    --ink-5:#B7B9C4;
+    --line:rgba(14,15,18,0.10);
+    --line-2:rgba(14,15,18,0.18);
+
+    /* Accents (oklch) */
+    --ultra:oklch(0.52 0.22 268);          /* ultramarine */
+    --ultra-soft:oklch(0.94 0.04 268);
+    --ultra-2:oklch(0.62 0.20 268);
+    --carmine:oklch(0.58 0.20 22);
+    --carmine-soft:oklch(0.94 0.04 22);
+    --moss:oklch(0.55 0.10 150);
+    --moss-soft:oklch(0.94 0.04 150);
+    --amber:oklch(0.74 0.16 70);
+
+    /* Type */
+    --serif:'Instrument Serif',ui-serif,Georgia,serif;
+    --sans:'Inter',ui-sans-serif,-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+
+    --r-sm:6px;--r:10px;--r-lg:16px;--r-xl:24px;
+  }
+
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  button{font:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+  ::selection{background:var(--ink);color:var(--paper);}
+
+  /* ─── primitives ─── */
+  .wrap{max-width:1280px;margin:0 auto;padding:0 32px;}
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;}
+  .mono{font-family:var(--mono);font-feature-settings:"ss01","cv01";}
+  .serif{font-family:var(--serif);}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-3);}
+  .eyebrow .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--ultra);margin-right:8px;vertical-align:middle;transform:translateY(-1px);}
+
+  /* ─── nav ─── */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    backdrop-filter:saturate(180%) blur(14px);
+    background:rgba(244,241,234,0.78);
+    border-bottom:1px solid transparent;
+    transition:border-color .2s, background .2s;
+  }
+  .nav.scrolled{border-bottom-color:var(--line);background:rgba(244,241,234,0.92);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-0.01em;}
+  .brand-mark{
+    width:28px;height:28px;border-radius:7px;background:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .brand-mark svg{width:16px;height:16px;}
+  .brand-name{font-size:18px;}
+  .brand-name .reg{font-family:var(--mono);font-size:9px;color:var(--ink-4);margin-left:6px;letter-spacing:0.1em;vertical-align:super;}
+
+  .nav-links{display:flex;align-items:center;gap:2px;}
+  .nav-links a{
+    font-size:13.5px;font-weight:500;color:var(--ink-2);
+    padding:8px 14px;border-radius:var(--r);
+    transition:color .15s, background .15s;
+  }
+  .nav-links a:hover{background:rgba(14,15,18,0.05);}
+  .nav-links a.active{color:var(--ultra);}
+
+  .nav-cta{display:flex;align-items:center;gap:10px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:10px 18px;border-radius:999px;
+    font-size:13.5px;font-weight:500;letter-spacing:-0.005em;
+    transition:transform .12s ease, background .15s, color .15s, border-color .15s;
+    border:1px solid transparent;cursor:pointer;
+  }
+  .btn-primary{background:var(--ink);color:var(--paper);}
+  .btn-primary:hover{background:var(--ultra);}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-2);}
+  .btn-ghost:hover{background:rgba(14,15,18,0.05);}
+  .btn-lg{padding:14px 26px;font-size:14.5px;}
+  .btn .arr{font-family:var(--mono);font-size:12px;transition:transform .15s;}
+  .btn:hover .arr{transform:translateX(2px);}
+
+  /* ─── HERO ─── */
+  .hero{padding:148px 0 80px;position:relative;}
+  .hero-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end;}
+  .hero-eyebrow{grid-column:1 / 13;display:flex;align-items:center;gap:14px;margin-bottom:48px;}
+  .hero-eyebrow .num{
+    font-family:var(--mono);font-size:11px;color:var(--ink-4);letter-spacing:0.1em;
+  }
+  .hero-eyebrow .rule{flex:1;height:1px;background:var(--line);}
+  .hero-eyebrow .loc{font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:0.08em;}
+
+  .hero h1{
+    grid-column:1 / 10;
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:clamp(56px, 9vw, 132px);
+    line-height:0.96;
+    letter-spacing:-0.025em;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  .hero h1 em{font-style:italic;color:var(--ultra);}
+  .hero h1 .strike{
+    position:relative;display:inline-block;
+  }
+  .hero h1 .strike::after{
+    content:'';position:absolute;left:-2%;right:-2%;top:54%;height:6px;background:var(--carmine);
+    transform:scaleX(0);transform-origin:left;
+    transition:transform 1.1s cubic-bezier(.7,0,.2,1) 0.5s;
+  }
+  .hero.in-view h1 .strike::after{transform:scaleX(1);}
+
+  .hero-meta{
+    grid-column:10 / 13;
+    align-self:end;
+    border-left:1px solid var(--line-2);
+    padding-left:20px;
+    padding-bottom:8px;
+  }
+  .hero-meta .mono{font-size:11px;color:var(--ink-3);letter-spacing:0.06em;line-height:1.7;}
+  .hero-meta .mono span{color:var(--ink);}
+
+  .hero-sub-row{
+    grid-column:1 / 13;
+    margin-top:64px;
+    display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:start;
+  }
+  .hero-lede{
+    grid-column:1 / 7;
+    font-size:21px;line-height:1.45;letter-spacing:-0.005em;
+    color:var(--ink-2);max-width:580px;
+  }
+  .hero-lede .accent{color:var(--ink);font-weight:500;}
+  .hero-actions{
+    grid-column:7 / 13;
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  }
+
+  /* tag strip */
+  .hero-strip{
+    margin-top:80px;
+    display:flex;align-items:center;gap:0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:18px 0;
+    overflow:hidden;
+  }
+  .hero-strip-track{display:flex;gap:48px;animation:strip 38s linear infinite;flex-shrink:0;}
+  .hero-strip-item{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--ink-3);white-space:nowrap;display:flex;align-items:center;gap:48px;
+  }
+  .hero-strip-item::after{
+    content:'';width:6px;height:6px;border-radius:50%;background:var(--ink-5);
+  }
+  @keyframes strip{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ─── DASHBOARD MOMENT ─── */
+  .dash-section{padding:80px 0 120px;}
+  .dash-frame{
+    background:var(--ink);color:var(--paper);
+    border-radius:var(--r-xl);
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 40px 80px -30px rgba(14,15,18,0.35);
+  }
+  .dash-bar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px;border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .dash-bar-l{display:flex;align-items:center;gap:18px;}
+  .dash-tabs{display:flex;align-items:center;gap:4px;}
+  .dash-tab{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
+    padding:6px 12px;border-radius:6px;color:rgba(255,255,255,0.5);
+  }
+  .dash-tab.active{background:rgba(255,255,255,0.08);color:#fff;}
+  .dash-bar-r{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.5);}
+  .live-dot{display:inline-flex;align-items:center;gap:7px;color:rgba(255,255,255,0.75);}
+  .live-dot::before{
+    content:'';width:7px;height:7px;border-radius:50%;background:#22C55E;
+    box-shadow:0 0 0 0 rgba(34,197,94,0.45);animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(34,197,94,0.45);}
+    70%{box-shadow:0 0 0 8px rgba(34,197,94,0);}
+    100%{box-shadow:0 0 0 0 rgba(34,197,94,0);}
+  }
+
+  .dash-body{display:grid;grid-template-columns:1.4fr 1fr;}
+  .dash-left{padding:36px 36px 30px;border-right:1px solid rgba(255,255,255,0.08);}
+  .dash-overline{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
+  .dash-overline-l{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);}
+  .dash-overline-r{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.45);}
+
+  .dash-headline{
+    font-family:var(--serif);font-size:42px;line-height:1.05;font-weight:400;letter-spacing:-0.015em;
+    margin-bottom:32px;
+  }
+  .dash-headline em{color:var(--ultra-2);font-style:italic;}
+
+  .risk-list{display:flex;flex-direction:column;gap:14px;}
+  .risk-row{display:grid;grid-template-columns:1fr 70px 50px;gap:16px;align-items:center;}
+  .risk-label{display:flex;align-items:center;gap:10px;}
+  .risk-label .tag{
+    font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;
+    color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.06);
+    padding:2px 7px;border-radius:4px;flex-shrink:0;
+  }
+  .risk-label .name{font-size:13px;color:rgba(255,255,255,0.92);}
+  .risk-bar{height:4px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden;}
+  .risk-bar-fill{height:100%;width:0;border-radius:99px;transition:width 1.4s cubic-bezier(.4,0,.2,1) .4s;}
+  .risk-bar-fill.h{background:linear-gradient(90deg,var(--carmine),oklch(0.7 0.18 22));}
+  .risk-bar-fill.m{background:linear-gradient(90deg,var(--amber),oklch(0.82 0.14 70));}
+  .risk-bar-fill.l{background:linear-gradient(90deg,var(--moss),oklch(0.7 0.1 150));}
+  .risk-val{font-family:var(--mono);font-size:13px;text-align:right;color:#fff;}
+
+  .dash-right{padding:36px;display:flex;flex-direction:column;gap:24px;}
+  .dash-stat{display:flex;flex-direction:column;gap:6px;}
+  .dash-stat .lbl{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);}
+  .dash-stat .val{font-family:var(--serif);font-size:64px;line-height:1;letter-spacing:-0.02em;color:#fff;font-weight:400;}
+  .dash-stat .val em{color:var(--ultra-2);font-style:italic;}
+  .dash-stat .sub{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.55;max-width:320px;}
+
+  .alert-card{
+    background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);
+    border-left:3px solid var(--carmine);
+    border-radius:var(--r);padding:14px 16px;
+    display:flex;flex-direction:column;gap:6px;
+  }
+  .alert-card .h{
+    display:flex;align-items:center;gap:8px;
+    font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--carmine);
+  }
+  .alert-card .h::before{
+    content:'';width:6px;height:6px;border-radius:50%;background:var(--carmine);
+    box-shadow:0 0 0 0 oklch(0.58 0.20 22 / 0.4);animation:pulse-c 2s infinite;
+  }
+  @keyframes pulse-c{
+    0%{box-shadow:0 0 0 0 oklch(0.58 0.20 22 / 0.4);}
+    70%{box-shadow:0 0 0 8px oklch(0.58 0.20 22 / 0);}
+    100%{box-shadow:0 0 0 0 oklch(0.58 0.20 22 / 0);}
+  }
+  .alert-card p{font-size:12.5px;color:rgba(255,255,255,0.78);line-height:1.55;}
+  .alert-card p strong{color:#fff;font-weight:600;}
+
+  /* ticker */
+  .dash-ticker{
+    border-top:1px solid rgba(255,255,255,0.08);
+    padding:14px 36px;display:flex;align-items:center;gap:24px;overflow:hidden;
+  }
+  .ticker-label{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);flex-shrink:0;}
+  .ticker-feed{flex:1;overflow:hidden;height:18px;}
+  .ticker-track{display:flex;gap:36px;animation:ticker 28s linear infinite;white-space:nowrap;}
+  @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .tick{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.55);display:inline-flex;align-items:center;gap:8px;}
+  .tick .pip{
+    font-family:var(--mono);font-size:9px;letter-spacing:0.06em;
+    padding:2px 6px;border-radius:3px;
+  }
+  .tick .pip.h{background:oklch(0.58 0.20 22 / 0.18);color:oklch(0.78 0.16 22);}
+  .tick .pip.m{background:oklch(0.74 0.16 70 / 0.16);color:oklch(0.86 0.14 70);}
+  .tick .pip.l{background:oklch(0.55 0.10 150 / 0.16);color:oklch(0.78 0.10 150);}
+
+  /* ─── PROBLEM (paper-2 band) ─── */
+  .band{padding:120px 0;}
+  .band.dark{background:var(--ink);color:var(--paper);}
+  .band.cream-2{background:var(--paper-2);}
+
+  .section-header{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end;margin-bottom:80px;}
+  .section-header .lhs{grid-column:1 / 8;}
+  .section-header .rhs{grid-column:9 / 13;font-size:14px;color:var(--ink-3);line-height:1.7;}
+  .band.dark .section-header .rhs{color:rgba(255,255,255,0.6);}
+  .section-header h2{
+    font-family:var(--serif);font-weight:400;
+    font-size:clamp(36px,5.5vw,72px);line-height:1.02;letter-spacing:-0.02em;
+    margin-top:18px;
+  }
+  .section-header h2 em{font-style:italic;color:var(--ultra);}
+  .band.dark .section-header h2 em{color:var(--ultra-2);}
+
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);}
+  .band.dark .stat-grid{border-color:rgba(255,255,255,0.10);}
+  .stat-cell{
+    padding:32px 28px 36px;
+    border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    display:flex;flex-direction:column;gap:14px;
+    transition:background .2s;
+  }
+  .band.dark .stat-cell{border-color:rgba(255,255,255,0.10);}
+  .stat-cell:hover{background:rgba(14,15,18,0.025);}
+  .band.dark .stat-cell:hover{background:rgba(255,255,255,0.03);}
+  .stat-num{
+    font-family:var(--serif);font-weight:400;
+    font-size:84px;line-height:0.95;letter-spacing:-0.025em;
+  }
+  .stat-num.carmine{color:var(--carmine);}
+  .stat-num.ultra{color:var(--ultra);}
+  .band.dark .stat-num.ultra{color:var(--ultra-2);}
+  .stat-num.ink{color:var(--ink);}
+  .band.dark .stat-num.ink{color:var(--paper);}
+  .stat-cap{font-size:13px;line-height:1.55;color:var(--ink-3);max-width:240px;}
+  .band.dark .stat-cap{color:rgba(255,255,255,0.55);}
+  .stat-meta{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--ink-4);text-transform:uppercase;margin-top:auto;}
+  .band.dark .stat-meta{color:rgba(255,255,255,0.4);}
+
+  .problem-text{
+    grid-column:1 / 13;
+    margin-top:72px;
+    display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+  }
+  .problem-text .a{grid-column:1 / 7;}
+  .problem-text .b{grid-column:7 / 13;}
+  .problem-text p{font-size:16px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:16px;}
+  .pl{display:flex;flex-direction:column;gap:14px;margin-top:8px;}
+  .pl li{display:flex;gap:16px;font-size:14.5px;color:rgba(255,255,255,0.7);line-height:1.6;list-style:none;}
+  .pl li .pl-num{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.4);width:28px;flex-shrink:0;padding-top:3px;}
+
+  /* ─── HOW IT WORKS ─── */
+  .hiw{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line-2);}
+  .hiw-step{
+    padding:48px 32px 56px;
+    border-right:1px solid var(--line);
+    position:relative;
+    transition:background .25s;
+  }
+  .hiw-step:last-child{border-right:none;}
+  .hiw-step:hover{background:rgba(14,15,18,0.03);}
+  .hiw-step .num{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.12em;color:var(--ultra);
+    margin-bottom:48px;display:flex;align-items:center;gap:12px;
+  }
+  .hiw-step .num::after{flex:1;content:'';height:1px;background:var(--line);}
+  .hiw-step h3{
+    font-family:var(--serif);font-weight:400;
+    font-size:34px;line-height:1.08;letter-spacing:-0.015em;
+    margin-bottom:20px;
+  }
+  .hiw-step p{font-size:14.5px;line-height:1.65;color:var(--ink-3);margin-bottom:24px;}
+  .hiw-tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .hiw-tags .t{
+    font-family:var(--mono);font-size:10px;letter-spacing:0.06em;
+    background:var(--paper-2);color:var(--ink-2);
+    padding:4px 9px;border-radius:99px;
+  }
+
+  /* ─── OPPORTUNITY (numbers, big) ─── */
+  .opp{padding:120px 0;background:var(--ink);color:var(--paper);position:relative;overflow:hidden;}
+  .opp::before{
+    content:'';position:absolute;top:-30%;right:-10%;width:600px;height:600px;
+    background:radial-gradient(circle,var(--ultra) 0%,transparent 65%);opacity:0.18;
+    pointer-events:none;
+  }
+  .opp .section-header h2{color:var(--paper);}
+  .opp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;position:relative;}
+  .opp-card{
+    border-top:1px solid rgba(255,255,255,0.18);
+    padding-top:28px;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .opp-card .lbl{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);}
+  .opp-card .val{
+    font-family:var(--serif);font-size:72px;font-weight:400;line-height:0.95;letter-spacing:-0.02em;
+  }
+  .opp-card.a .val{color:var(--ultra-2);}
+  .opp-card.b .val{color:var(--carmine);}
+  .opp-card.c .val{color:#fff;}
+  .opp-card.d .val{color:#fff;}
+  .opp-card .cap{font-size:13.5px;line-height:1.6;color:rgba(255,255,255,0.65);}
+
+  /* ─── WHO WE SERVE ─── */
+  .serve-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .serve-card{
+    background:var(--paper-2);
+    border-radius:var(--r-lg);
+    padding:32px 28px;
+    display:flex;flex-direction:column;gap:14px;
+    transition:transform .2s, background .2s;
+    position:relative;overflow:hidden;
+  }
+  .serve-card:hover{transform:translateY(-3px);background:var(--paper-3);}
+  .serve-card .num{font-family:var(--mono);font-size:11px;color:var(--ink-4);letter-spacing:0.1em;}
+  .serve-card h3{font-family:var(--serif);font-size:26px;line-height:1.1;letter-spacing:-0.01em;font-weight:400;}
+  .serve-card p{font-size:14px;line-height:1.65;color:var(--ink-3);}
+  .serve-card .meta{
+    margin-top:8px;font-family:var(--mono);font-size:10px;letter-spacing:0.08em;
+    color:var(--ink-4);text-transform:uppercase;
+    padding-top:14px;border-top:1px solid var(--line);
+  }
+
+  /* ─── PLATFORM (architecture) ─── */
+  .plat-band{padding:120px 0;background:var(--paper);}
+  .plat-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:start;}
+  .plat-feature{
+    display:grid;grid-template-columns:60px 1fr;gap:20px;
+    padding:24px 0;border-top:1px solid var(--line);
+  }
+  .plat-feature:last-child{border-bottom:1px solid var(--line);}
+  .plat-feature .idx{font-family:var(--mono);font-size:11px;color:var(--ink-4);letter-spacing:0.1em;padding-top:6px;}
+  .plat-feature h4{
+    font-family:var(--serif);font-size:24px;line-height:1.15;font-weight:400;letter-spacing:-0.01em;
+    margin-bottom:8px;
+  }
+  .plat-feature p{font-size:14px;line-height:1.6;color:var(--ink-3);}
+
+  /* terminal-ish detail card */
+  .arch-card{
+    position:sticky;top:100px;
+    background:var(--ink);color:var(--paper);
+    border-radius:var(--r-xl);
+    overflow:hidden;
+    box-shadow:0 30px 60px -25px rgba(14,15,18,0.4);
+  }
+  .arch-hd{
+    padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.08);
+    display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.45);
+  }
+  .arch-hd .dots{display:flex;gap:6px;}
+  .arch-hd .dots span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.18);}
+  .arch-hd .path{margin-left:auto;}
+  .arch-body{padding:24px;display:flex;flex-direction:column;gap:14px;}
+
+  .arch-layer{
+    background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+    border-radius:10px;padding:14px 16px;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    transition:border-color .2s, background .2s;
+  }
+  .arch-layer:hover{border-color:rgba(255,255,255,0.18);background:rgba(255,255,255,0.06);}
+  .arch-layer .l{display:flex;flex-direction:column;gap:3px;}
+  .arch-layer .lname{font-size:13px;color:#fff;font-weight:500;}
+  .arch-layer .lsub{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:0.05em;}
+  .arch-layer .r{display:flex;align-items:center;gap:6px;}
+  .arch-layer .r .pill{
+    font-family:var(--mono);font-size:9px;letter-spacing:0.08em;
+    background:rgba(34,197,94,0.18);color:#86EFAC;
+    padding:3px 8px;border-radius:99px;
+  }
+  .arch-arrow{
+    text-align:center;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.3);
+    margin:-6px 0;
+  }
+
+  /* ─── FOUNDER ─── */
+  .founder-band{background:var(--paper-2);padding:120px 0;}
+  .founder-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:start;}
+  .founder-photo-wrap{position:relative;}
+  .founder-photo{
+    width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 20%;
+    border-radius:var(--r-lg);
+    filter:grayscale(0.15) contrast(1.02);
+  }
+  .founder-photo-tag{
+    position:absolute;left:20px;bottom:20px;right:20px;
+    background:rgba(14,15,18,0.85);backdrop-filter:blur(10px);
+    color:var(--paper);
+    border-radius:var(--r);padding:14px 18px;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+  }
+  .founder-photo-tag .who{display:flex;flex-direction:column;gap:2px;}
+  .founder-photo-tag .name{font-size:15px;font-weight:600;}
+  .founder-photo-tag .role{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.55);letter-spacing:0.08em;text-transform:uppercase;}
+  .founder-photo-tag .yrs{font-family:var(--serif);font-size:36px;line-height:1;color:var(--ultra-2);}
+
+  .founder-text h2{
+    font-family:var(--serif);font-size:clamp(36px,4.5vw,60px);line-height:1.05;letter-spacing:-0.02em;font-weight:400;
+    margin-bottom:32px;
+  }
+  .founder-text h2 em{color:var(--ultra);font-style:italic;}
+  .founder-text p{font-size:17px;line-height:1.65;color:var(--ink-2);margin-bottom:18px;}
+  .founder-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:28px;}
+  .founder-tags .t{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.04em;
+    background:var(--paper);border:1px solid var(--line);color:var(--ink-2);
+    padding:5px 11px;border-radius:99px;
+  }
+
+  /* ─── PRICING ─── */
+  .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .price-card{
+    background:var(--paper);border:1px solid var(--line);
+    border-radius:var(--r-lg);padding:36px 32px;
+    display:flex;flex-direction:column;gap:20px;
+    position:relative;
+  }
+  .price-card.featured{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .price-card .tier{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;color:var(--ultra);text-transform:uppercase;}
+  .price-card.featured .tier{color:var(--ultra-2);}
+  .price-card .pname{font-family:var(--serif);font-size:36px;line-height:1.05;font-weight:400;letter-spacing:-0.015em;}
+  .price-card .pprice{display:flex;align-items:baseline;gap:6px;}
+  .price-card .pprice .v{font-family:var(--serif);font-size:44px;line-height:1;letter-spacing:-0.02em;}
+  .price-card .pprice .u{font-family:var(--mono);font-size:12px;color:var(--ink-3);}
+  .price-card.featured .pprice .u{color:rgba(255,255,255,0.55);}
+  .price-card .pdesc{font-size:14px;color:var(--ink-3);line-height:1.6;}
+  .price-card.featured .pdesc{color:rgba(255,255,255,0.65);}
+  .price-list{display:flex;flex-direction:column;gap:10px;margin-top:8px;border-top:1px solid var(--line);padding-top:20px;}
+  .price-card.featured .price-list{border-top-color:rgba(255,255,255,0.12);}
+  .price-list li{display:flex;gap:10px;font-size:13.5px;line-height:1.55;list-style:none;color:var(--ink-2);}
+  .price-card.featured .price-list li{color:rgba(255,255,255,0.85);}
+  .price-list li::before{content:'+';font-family:var(--mono);color:var(--ultra);flex-shrink:0;}
+  .price-card.featured .price-list li::before{color:var(--ultra-2);}
+  .price-card .pcta{margin-top:auto;padding-top:8px;}
+
+  /* ─── PARTNERS ─── */
+  .partners-row{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;
+  }
+  .partner{
+    background:var(--paper);padding:32px 20px;text-align:center;
+    display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;min-height:120px;
+    transition:background .2s;
+  }
+  .partner:hover{background:var(--paper-2);}
+  .partner .pname{font-family:var(--serif);font-size:22px;letter-spacing:-0.01em;font-weight:400;}
+  .partner .prole{font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--ink-3);text-transform:uppercase;}
+
+  /* ─── CONTACT / CTA ─── */
+  .cta-band{padding:140px 0;background:var(--ink);color:var(--paper);position:relative;overflow:hidden;}
+  .cta-bg{position:absolute;inset:0;pointer-events:none;}
+  .cta-bg-grid{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse at center,#000 30%,transparent 70%);
+  }
+  .cta-content{position:relative;text-align:left;display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end;}
+  .cta-content h2{
+    grid-column:1 / 9;
+    font-family:var(--serif);font-weight:400;font-size:clamp(48px,8vw,108px);
+    line-height:0.98;letter-spacing:-0.025em;
+  }
+  .cta-content h2 em{color:var(--ultra-2);font-style:italic;}
+  .cta-content .right{
+    grid-column:9 / 13;display:flex;flex-direction:column;gap:18px;align-items:flex-start;
+  }
+  .cta-content .right p{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.7;}
+
+  /* ─── FOOTER ─── */
+  .footer{background:var(--ink);color:rgba(255,255,255,0.7);padding:48px 0 36px;border-top:1px solid rgba(255,255,255,0.10);}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:32px;margin-bottom:48px;}
+  .footer-brand{font-family:var(--serif);font-size:22px;color:#fff;letter-spacing:-0.01em;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+  .footer-brand .brand-mark{background:#fff;}
+  .footer-brand .brand-mark svg path{stroke:var(--ink);}
+  .footer-brand .brand-mark svg circle{fill:var(--ink);}
+  .footer-desc{font-size:13.5px;line-height:1.7;max-width:280px;margin-bottom:18px;color:rgba(255,255,255,0.55);}
+  .footer-badges{display:flex;flex-wrap:wrap;gap:6px;}
+  .footer-badge{font-family:var(--mono);font-size:9px;letter-spacing:0.08em;color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.12);padding:4px 9px;border-radius:99px;}
+  .footer-col h5{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:18px;}
+  .footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:9px;transition:color .15s;}
+  .footer-col a:hover{color:#fff;}
+  .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);font-family:var(--mono);font-size:10.5px;color:rgba(255,255,255,0.35);letter-spacing:0.04em;flex-wrap:wrap;gap:10px;}
+
+  /* ─── motion utility ─── */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  .reveal.d1{transition-delay:.1s;}
+  .reveal.d2{transition-delay:.2s;}
+  .reveal.d3{transition-delay:.3s;}
+
+  /* ─── responsive ─── */
+  @media(max-width:1100px){
+    .hero h1{grid-column:1/13;font-size:clamp(46px,11vw,84px);}
+    .hero-meta{grid-column:1/13;border-left:none;border-top:1px solid var(--line-2);padding:18px 0 0;}
+    .hero-lede{grid-column:1/13;}
+    .hero-actions{grid-column:1/13;}
+    .dash-body{grid-template-columns:1fr;}
+    .dash-left{border-right:none;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .stat-grid{grid-template-columns:repeat(2,1fr);}
+    .opp-grid{grid-template-columns:repeat(2,1fr);}
+    .hiw{grid-template-columns:1fr;}
+    .hiw-step{border-right:none;border-bottom:1px solid var(--line);}
+    .serve-grid{grid-template-columns:repeat(2,1fr);}
+    .pricing-grid{grid-template-columns:1fr;}
+    .partners-row{grid-template-columns:repeat(2,1fr);}
+    .plat-grid{grid-template-columns:1fr;}
+    .arch-card{position:relative;top:auto;}
+    .founder-grid{grid-template-columns:1fr;}
+    .section-header{grid-template-columns:1fr;}
+    .section-header .lhs,.section-header .rhs{grid-column:1/13;}
+    .problem-text .a,.problem-text .b{grid-column:1/13;}
+    .cta-content h2,.cta-content .right{grid-column:1/13;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:680px){
+    .wrap{padding:0 20px;}
+    .nav-links{display:none;}
+    .stat-grid,.opp-grid,.serve-grid{grid-template-columns:1fr;}
+    .stat-num{font-size:64px;}
+    .hero{padding:120px 0 60px;}
+    .partners-row{grid-template-columns:1fr;}
+    .cta-band{padding:80px 0;}
+    .band{padding:80px 0;}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAV
+     ═══════════════════════════════════════════════════════════ -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark">
+          <svg viewBox="0 0 18 18" fill="none">
+            <path d="M9 2L14.5 5.5V12.5L9 16L3.5 12.5V5.5L9 2Z" stroke="#F4F1EA" stroke-width="1.5" fill="rgba(244,241,234,0.18)"/>
+            <circle cx="9" cy="9" r="2.4" fill="#F4F1EA"/>
+          </svg>
+        </span>
+        <span class="brand-name">Izere<span class="reg">EU</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#platform">Platform</a>
+        <a href="#problem">The Gap</a>
+        <a href="#opportunity">Market</a>
+        <a href="#founder">About</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#contact" class="btn btn-ghost">Log in</a>
+        <a href="#contact" class="btn btn-primary">Request demo <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════════════════ -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-eyebrow reveal">
+        <span class="num">№ 001 / DELIVERY INTELLIGENCE</span>
+        <span class="rule"></span>
+        <span class="loc">LUXEMBOURG</span>
+      </div>
+
+      <h1 class="reveal d1">
+        Europe commits<br/>
+        the capital.<br/>
+        <em>Execution</em> is the <span class="strike">gap</span>.
+      </h1>
+
+      <div class="hero-meta reveal d2">
+        <div class="mono">
+          ESTABLISHED <span>2026</span><br/>
+          STATUS <span>Pre-seed</span><br/>
+          FOCUS <span>EU-27 institutions</span>
+        </div>
+      </div>
+
+      <div class="hero-sub-row">
+        <p class="hero-lede reveal d2">
+          Izere is the <span class="accent">execution-intelligence layer</span> for EU institutions, DFIs and infrastructure programmes — explainable AI that detects delivery risk <span class="accent">2–3 months earlier</span>, before delays harden into losses.
+        </p>
+        <div class="hero-actions reveal d3">
+          <a href="#platform" class="btn btn-primary btn-lg">See the platform <span class="arr">→</span></a>
+          <a href="#contact" class="btn btn-ghost btn-lg">Book a briefing</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- moving credentials strip -->
+  <div class="hero-strip">
+    <div class="hero-strip-track">
+      <span class="hero-strip-item">€378B Cohesion Policy 2021–27</span>
+      <span class="hero-strip-item">EU AI Act compliant</span>
+      <span class="hero-strip-item">RRF · ESF+ · CEF · Green Deal</span>
+      <span class="hero-strip-item">Built for managing authorities</span>
+      <span class="hero-strip-item">DFI-grade auditability</span>
+      <span class="hero-strip-item">Explainable by design</span>
+      <!-- duplicate -->
+      <span class="hero-strip-item">€378B Cohesion Policy 2021–27</span>
+      <span class="hero-strip-item">EU AI Act compliant</span>
+      <span class="hero-strip-item">RRF · ESF+ · CEF · Green Deal</span>
+      <span class="hero-strip-item">Built for managing authorities</span>
+      <span class="hero-strip-item">DFI-grade auditability</span>
+      <span class="hero-strip-item">Explainable by design</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     DASHBOARD MOMENT
+     ═══════════════════════════════════════════════════════════ -->
+<section class="dash-section">
+  <div class="wrap">
+    <div class="dash-frame reveal">
+      <div class="dash-bar">
+        <div class="dash-bar-l">
+          <span class="mono" style="font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:0.08em;">izere/portfolio</span>
+          <div class="dash-tabs">
+            <span class="dash-tab active">Overview</span>
+            <span class="dash-tab">Programmes</span>
+            <span class="dash-tab">Signals</span>
+            <span class="dash-tab">Audit</span>
+          </div>
+        </div>
+        <div class="dash-bar-r">
+          <span class="live-dot">LIVE · 5 PROGRAMMES MONITORED</span>
+          <span>· €481B</span>
+        </div>
+      </div>
+
+      <div class="dash-body">
+        <div class="dash-left">
+          <div class="dash-overline">
+            <span class="dash-overline-l">Portfolio risk overview</span>
+            <span class="dash-overline-r">UPDATED 04.30.26 — 14:08 UTC</span>
+          </div>
+          <h3 class="dash-headline">
+            Five programmes.<br/>
+            <em>Three</em> tracking late.
+          </h3>
+
+          <div class="risk-list">
+            <div class="risk-row">
+              <div class="risk-label"><span class="tag">CEF</span><span class="name">Rail Baltica TEN-T</span></div>
+              <div class="risk-bar"><div class="risk-bar-fill h" data-w="84"></div></div>
+              <div class="risk-val">84</div>
+            </div>
+            <div class="risk-row">
+              <div class="risk-label"><span class="tag">RRF</span><span class="name">Romania NRRP</span></div>
+              <div class="risk-bar"><div class="risk-bar-fill h" data-w="77"></div></div>
+              <div class="risk-val">77</div>
+            </div>
+            <div class="risk-row">
+              <div class="risk-label"><span class="tag">CEF</span><span class="name">Canal Seine-Nord</span></div>
+              <div class="risk-bar"><div class="risk-bar-fill m" data-w="58"></div></div>
+              <div class="risk-val">58</div>
+            </div>
+            <div class="risk-row">
+              <div class="risk-label"><span class="tag">RRF</span><span class="name">Poland KPO</span></div>
+              <div class="risk-bar"><div class="risk-bar-fill m" data-w="52"></div></div>
+              <div class="risk-val">52</div>
+            </div>
+            <div class="risk-row">
+              <div class="risk-label"><span class="tag">COH</span><span class="name">EU Cohesion 21–27</span></div>
+              <div class="risk-bar"><div class="risk-bar-fill l" data-w="44"></div></div>
+              <div class="risk-val">44</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-right">
+          <div class="dash-stat">
+            <span class="lbl">Composite risk score</span>
+            <span class="val">84<em>/100</em></span>
+            <span class="sub">Maximum across portfolio. Driven by Rail Baltica cost overrun (4× baseline) and unconfirmed 2027–28 financing gap.</span>
+          </div>
+
+          <div class="alert-card">
+            <div class="h">Critical · flagged 03.14</div>
+            <p><strong>Rail Baltica</strong> — €23.8B vs €5.8B original. Latvia signals 2035 completion. ECA flagged Jan 2026.</p>
+          </div>
+
+          <div class="dash-stat">
+            <span class="lbl">Early warning lead time</span>
+            <span class="val"><em>+11.4</em>w</span>
+            <span class="sub">Median lead time vs. traditional monitoring across the portfolio.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-ticker">
+        <span class="ticker-label">Recent signals →</span>
+        <div class="ticker-feed">
+          <div class="ticker-track">
+            <span class="tick"><span class="pip h">HIGH</span>Rail Baltica · Latvia financing gap 2027–28 · €3–4B</span>
+            <span class="tick"><span class="pip h">HIGH</span>Romania NRRP · SOE governance blockage · absorption 2%</span>
+            <span class="tick"><span class="pip m">MED</span>Canal Seine-Nord · environmental permit delay +5y · cost +€3.7B</span>
+            <span class="tick"><span class="pip m">MED</span>Poland KPO · milestone drift Q3 · 4 sub-measures flagged</span>
+            <span class="tick"><span class="pip l">LOW</span>EU Cohesion 21–27 · absorption 11% Aug 2025 · N+3 risk 6 MS</span>
+            <!-- duplicate -->
+            <span class="tick"><span class="pip h">HIGH</span>Rail Baltica · Latvia financing gap 2027–28 · €3–4B</span>
+            <span class="tick"><span class="pip h">HIGH</span>Romania NRRP · SOE governance blockage · absorption 2%</span>
+            <span class="tick"><span class="pip m">MED</span>Canal Seine-Nord · environmental permit delay +5y · cost +€3.7B</span>
+            <span class="tick"><span class="pip m">MED</span>Poland KPO · milestone drift Q3 · 4 sub-measures flagged</span>
+            <span class="tick"><span class="pip l">LOW</span>EU Cohesion 21–27 · absorption 11% Aug 2025 · N+3 risk 6 MS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PROBLEM
+     ═══════════════════════════════════════════════════════════ -->
+<section class="band dark" id="problem">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <div class="lhs">
+        <span class="eyebrow"><span class="dot"></span>The execution gap</span>
+        <h2>Europe can <em>commit</em> capital at scale.<br/>It cannot systematically convert it into delivery.</h2>
+      </div>
+      <div class="rhs">
+        EU-funded programmes depend on fragmented ecosystems of SMEs, subcontractors, utilities, and regional authorities. Delivery-relevant data is dispersed, qualitative, and not reusable across programmes.
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-cell reveal">
+        <span class="stat-num carmine">35%</span>
+        <span class="stat-cap">of EU public-investment projects experience significant delays, cost overruns, or performance shortfalls.</span>
+        <span class="stat-meta">Source · ECA, OECD</span>
+      </div>
+      <div class="stat-cell reveal d1">
+        <span class="stat-num ultra">€2.3T</span>
+        <span class="stat-cap">in EU public procurement annually — execution risk is the primary bottleneck, not capital.</span>
+        <span class="stat-meta">Source · DG GROW</span>
+      </div>
+      <div class="stat-cell reveal d2">
+        <span class="stat-num carmine">7%</span>
+        <span class="stat-cap">of project value spent on repetitive due diligence, monitoring, and ex-post audits — with poor early visibility.</span>
+        <span class="stat-meta">Source · institutional benchmarks</span>
+      </div>
+      <div class="stat-cell reveal d3">
+        <span class="stat-num ultra">11%</span>
+        <span class="stat-cap">of the 2021–2027 Cohesion Policy envelope implemented by August 2025 — worst start on record.</span>
+        <span class="stat-meta">Source · DG REGIO</span>
+      </div>
+    </div>
+
+    <div class="problem-text">
+      <div class="a reveal">
+        <p>Execution risks are detected too late. By the time traditional audits surface a problem, remediation is expensive or impossible. Consulting firms provide episodic insights — not continuous intelligence.</p>
+      </div>
+      <div class="b reveal d1">
+        <ol class="pl">
+          <li><span class="pl-num">01</span><span>No real-time visibility into delivery capacity across complex multi-actor chains.</span></li>
+          <li><span class="pl-num">02</span><span>Performance data is administrative, siloed, and non-reusable across programmes.</span></li>
+          <li><span class="pl-num">03</span><span>Audit firms provide episodic insights — not the continuous, programme-level layer needed.</span></li>
+          <li><span class="pl-num">04</span><span>No early-warning intelligence to identify risk early enough to intervene.</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HOW IT WORKS
+     ═══════════════════════════════════════════════════════════ -->
+<section class="band">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <div class="lhs">
+        <span class="eyebrow"><span class="dot"></span>How it works</span>
+        <h2>From fragmented data to <em>explainable</em> delivery intelligence.</h2>
+      </div>
+      <div class="rhs">
+        Izere operates as a decision-support layer alongside existing procurement, programme-management, and supervision systems — not replacing them.
+      </div>
+    </div>
+
+    <div class="hiw">
+      <div class="hiw-step reveal">
+        <div class="num">STEP 01 / INGEST</div>
+        <h3>Ingest &amp; structure delivery-relevant signals.</h3>
+        <p>Milestone reports, change events, coordination signals, governance structures, and disbursement patterns — already generated within programmes — are unified into a single execution data model.</p>
+        <div class="hiw-tags">
+          <span class="t">TED / PPDS</span>
+          <span class="t">ESPD</span>
+          <span class="t">Arachne</span>
+          <span class="t">API-first</span>
+        </div>
+      </div>
+      <div class="hiw-step reveal d1">
+        <div class="num">STEP 02 / ANALYSE</div>
+        <h3>Score, explain, and trace every output.</h3>
+        <p>The explainable AI engine identifies patterns, anomalies, and early-warning signals. All outputs are transparent, traceable, and evidence-based — designed for institutional scrutiny and audit readiness.</p>
+        <div class="hiw-tags">
+          <span class="t">XAI / SHAP</span>
+          <span class="t">Graph NN</span>
+          <span class="t">Audit trail</span>
+          <span class="t">Federated</span>
+        </div>
+      </div>
+      <div class="hiw-step reveal d2">
+        <div class="num">STEP 03 / INTERVENE</div>
+        <h3>Detect risk 2–3 months before traditional monitoring.</h3>
+        <p>Programme managers and managing authorities receive structured risk intelligence months earlier — enabling timely corrective action while the cost of correction is still small.</p>
+        <div class="hiw-tags">
+          <span class="t">Risk score</span>
+          <span class="t">Alert feed</span>
+          <span class="t">Dashboard</span>
+          <span class="t">Audit pack</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     OPPORTUNITY
+     ═══════════════════════════════════════════════════════════ -->
+<section class="opp" id="opportunity">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <div class="lhs">
+        <span class="eyebrow" style="color:rgba(255,255,255,0.7);"><span class="dot"></span>Market opportunity</span>
+        <h2>The scale of the problem<br/>is the <em>scale</em> of the opportunity.</h2>
+      </div>
+      <div class="rhs" style="color:rgba(255,255,255,0.6);">
+        Izere targets a clearly-defined institutional category — not end users, not individuals. Every feature is built for programme-level accountability.
+      </div>
+    </div>
+
+    <div class="opp-grid">
+      <div class="opp-card a reveal">
+        <span class="lbl">European TAM</span>
+        <span class="val">€7–10B</span>
+        <span class="cap">Delivery intelligence &amp; execution-risk analytics across EU public investment.</span>
+      </div>
+      <div class="opp-card b reveal d1">
+        <span class="lbl">SAM · serviceable</span>
+        <span class="val">€1.5–2B</span>
+        <span class="cap">EU-funded green-transition &amp; infrastructure programmes — RRF, Cohesion, CEF.</span>
+      </div>
+      <div class="opp-card c reveal d2">
+        <span class="lbl">Target accounts</span>
+        <span class="val">40–60</span>
+        <span class="cap">Institutional clients — managing authorities, DFIs, EPCs, technical-assistance firms.</span>
+      </div>
+      <div class="opp-card d reveal d3">
+        <span class="lbl">Avg. annual contract</span>
+        <span class="val">€200–400K</span>
+        <span class="cap">Per institutional programme — multi-year, expansion-led pricing.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PLATFORM
+     ═══════════════════════════════════════════════════════════ -->
+<section class="plat-band" id="platform">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <div class="lhs">
+        <span class="eyebrow"><span class="dot"></span>The platform</span>
+        <h2>One execution data model.<br/><em>Four</em> intelligence layers.</h2>
+      </div>
+      <div class="rhs">
+        Architecturally, Izere sits beside existing systems and reads what they already produce. Every layer is independently auditable, every output independently contestable.
+      </div>
+    </div>
+
+    <div class="plat-grid">
+      <div>
+        <div class="plat-feature reveal">
+          <span class="idx">L1</span>
+          <div>
+            <h4>Connectors &amp; ingestion</h4>
+            <p>Native integrations with EU public-data systems (TED, PPDS, Arachne, ESPD), national programme-management platforms, and procurement databases. API-first; nothing proprietary required.</p>
+          </div>
+        </div>
+        <div class="plat-feature reveal">
+          <span class="idx">L2</span>
+          <div>
+            <h4>Execution data model</h4>
+            <p>Programme, project, contract, actor, and signal entities — unified into a portable schema that survives across instruments, geographies, and Member States.</p>
+          </div>
+        </div>
+        <div class="plat-feature reveal">
+          <span class="idx">L3</span>
+          <div>
+            <h4>Explainable risk engine</h4>
+            <p>Graph neural networks for actor-relationship modelling. SHAP-based explanations on every score. Federated learning so insights compound without data ever leaving an institution's perimeter.</p>
+          </div>
+        </div>
+        <div class="plat-feature reveal">
+          <span class="idx">L4</span>
+          <div>
+            <h4>Decision surface</h4>
+            <p>Programme dashboards, risk feeds, audit packs, and structured intervention playbooks — designed for managing authorities and DFI investment officers, not data scientists.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-card reveal d1">
+        <div class="arch-hd">
+          <span class="dots"><span></span><span></span><span></span></span>
+          <span>izere · architecture</span>
+          <span class="path">/v2.4</span>
+        </div>
+        <div class="arch-body">
+          <div class="arch-layer">
+            <div class="l">
+              <span class="lname">Decision surface</span>
+              <span class="lsub">L4 · dashboards · audit packs</span>
+            </div>
+            <div class="r"><span class="pill">PROD</span></div>
+          </div>
+          <div class="arch-arrow">↑</div>
+          <div class="arch-layer">
+            <div class="l">
+              <span class="lname">Explainable risk engine</span>
+              <span class="lsub">L3 · GNN · SHAP · federated</span>
+            </div>
+            <div class="r"><span class="pill">PROD</span></div>
+          </div>
+          <div class="arch-arrow">↑</div>
+          <div class="arch-layer">
+            <div class="l">
+              <span class="lname">Execution data model</span>
+              <span class="lsub">L2 · unified schema</span>
+            </div>
+            <div class="r"><span class="pill">PROD</span></div>
+          </div>
+          <div class="arch-arrow">↑</div>
+          <div class="arch-layer">
+            <div class="l">
+              <span class="lname">Connectors &amp; ingestion</span>
+              <span class="lsub">L1 · TED · PPDS · Arachne</span>
+            </div>
+            <div class="r"><span class="pill">PROD</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     WHO WE SERVE
+     ═══════════════════════════════════════════════════════════ -->
+<section class="band cream-2">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <div class="lhs">
+        <span class="eyebrow"><span class="dot"></span>Who we serve</span>
+        <h2>Built for institutions with <em>delivery</em> accountability.</h2>
+      </div>
+      <div class="rhs">
+        Every Izere feature is built for programme-level accountability — for institutions whose mandates depend on outcomes being delivered, not just budgets being committed.
+      </div>
+    </div>
+
+    <div class="serve-grid">
+      <div class="serve-card reveal">
+        <span class="num">01</span>
+        <h3>Managing authorities</h3>
+        <p>EU and Member-State authorities responsible for RRF, Cohesion Policy, ESF+ and national green-transition programmes — under political and audit pressure to improve absorption.</p>
+        <span class="meta">Primary buyer · €200–400K ACV</span>
+      </div>
+      <div class="serve-card reveal d1">
+        <span class="num">02</span>
+        <h3>European DFIs &amp; public banks</h3>
+        <p>Institutions financing or co-financing infrastructure, where execution reliability directly affects bankability, disbursement schedules, and portfolio risk.</p>
+        <span class="meta">Co-deployment partner</span>
+      </div>
+      <div class="serve-card reveal d2">
+        <span class="num">03</span>
+        <h3>Infrastructure developers &amp; EPCs</h3>
+        <p>Organisations operating large, distributed delivery networks reliant on SMEs and subcontractors, requiring early visibility into execution capacity.</p>
+        <span class="meta">Programme-level deployment</span>
+      </div>
+      <div class="serve-card reveal">
+        <span class="num">04</span>
+        <h3>Technical assistance firms</h3>
+        <p>Consortium leads responsible for programme design, implementation support, and monitoring — increasingly required to demonstrate delivery effectiveness, not just compliance.</p>
+        <span class="meta">Embedded use</span>
+      </div>
+      <div class="serve-card reveal d1">
+        <span class="num">05</span>
+        <h3>Cross-border programmes</h3>
+        <p>EU initiatives spanning multiple Member States, where fragmented data and non-portable delivery information significantly increase coordination risk.</p>
+        <span class="meta">Multi-tenant deployment</span>
+      </div>
+      <div class="serve-card reveal d2">
+        <span class="num">06</span>
+        <h3>Research &amp; innovation partners</h3>
+        <p>Academic institutions and research bodies supporting applied AI for institutional decision-making, explainability, and federated learning across programme ecosystems.</p>
+        <span class="meta">Research collaboration</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOUNDER
+     ═══════════════════════════════════════════════════════════ -->
+<section class="founder-band" id="founder">
+  <div class="wrap">
+    <div class="section-header reveal" style="margin-bottom:64px;">
+      <div class="lhs">
+        <span class="eyebrow"><span class="dot"></span>About</span>
+        <h2>Built at the intersection of <em>institutional experience</em><br/>and explainable AI.</h2>
+      </div>
+      <div class="rhs">
+        Izere was founded on a simple observation: Europe's execution gap is not a technology, funding or regulatory problem. It is an intelligence problem. The data to detect delivery risk earlier already exists.
+      </div>
+    </div>
+
+    <div class="founder-grid">
+      <div class="founder-photo-wrap reveal">
+        <img src="assets/alain.jpg" alt="Alain Nkurikiye" class="founder-photo" />
+        <div class="founder-photo-tag">
+          <div class="who">
+            <span class="name">Alain Nkurikiye</span>
+            <span class="role">Founder · CEO</span>
+          </div>
+          <span class="yrs">18+</span>
+        </div>
+      </div>
+
+      <div class="founder-text reveal d1">
+        <h2>The delivery-intelligence gap is one Alain has <em>seen</em> first-hand — across instruments and geographies.</h2>
+        <p>Eighteen years of direct experience across EU-funded programmes, multilateral development finance, and public-sector infrastructure delivery. Advisory work with DFIs, EU institutions, and international agencies — on programme design, bankability, and execution-risk management.</p>
+        <p>This background is not incidental to Izere. It is the reason the platform exists. The product is built by someone who has sat on both sides of the monitoring table — including across the RRF, Cohesion Policy, ESF+, the Green Deal, and CEF.</p>
+        <p style="color:var(--ink-3);font-size:15.5px;margin-top:24px;">Long-term vision — <strong style="color:var(--ink);font-weight:600;">DELIX</strong>, Delivery Infrastructure for Public Investment Capital — is to become the intelligence backbone for how Europe's public investment capital is deployed, monitored, and improved over time.</p>
+
+        <div class="founder-tags">
+          <span class="t">RRF</span><span class="t">Cohesion Policy</span><span class="t">ESF+</span>
+          <span class="t">Green Deal</span><span class="t">CEF</span><span class="t">DFI advisory</span>
+          <span class="t">Bankability</span><span class="t">Execution risk</span>
+          <span class="t">Explainable AI</span><span class="t">B2G SaaS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- partners -->
+    <div style="margin-top:96px;" class="reveal">
+      <div class="eyebrow" style="margin-bottom:32px;"><span class="dot"></span>Ecosystem · Luxembourg innovation infrastructure</div>
+      <div class="partners-row">
+        <div class="partner"><span class="pname">LIST</span><span class="prole">Applied AI · XAI research</span></div>
+        <div class="partner"><span class="pname">Uni. Luxembourg</span><span class="prole">AI ethics · governance</span></div>
+        <div class="partner"><span class="pname">House of Startups</span><span class="prole">Founder ecosystem</span></div>
+        <div class="partner"><span class="pname">LUX AI Factory</span><span class="prole">National AI · compute</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PRICING
+     ═══════════════════════════════════════════════════════════ -->
+<section class="band" id="pricing">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <div class="lhs">
+        <span class="eyebrow"><span class="dot"></span>Engagement model</span>
+        <h2>Institutional pricing.<br/><em>Multi-year</em> by design.</h2>
+      </div>
+      <div class="rhs">
+        Izere is sold as a programme-level subscription with implementation services. Pilots are scoped against a single programme and convert to annual contracts on validation.
+      </div>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <span class="tier">Pilot</span>
+        <span class="pname">Programme Pilot</span>
+        <div class="pprice"><span class="v">€60K</span><span class="u">/ 90 days</span></div>
+        <p class="pdesc">A scoped, fixed-price diagnostic against one of your programmes — to validate fit, signal density, and lead time before annual commitment.</p>
+        <ul class="price-list">
+          <li>One programme · up to €5B portfolio</li>
+          <li>Full data ingestion &amp; signal mapping</li>
+          <li>Risk model calibration on your data</li>
+          <li>Findings report &amp; intervention playbook</li>
+          <li>Convertible into annual subscription</li>
+        </ul>
+        <div class="pcta"><a href="#contact" class="btn btn-ghost">Scope a pilot <span class="arr">→</span></a></div>
+      </div>
+
+      <div class="price-card featured reveal d1">
+        <span class="tier">Most institutions</span>
+        <span class="pname">Programme Subscription</span>
+        <div class="pprice"><span class="v">€200–400K</span><span class="u">/ year</span></div>
+        <p class="pdesc">Continuous delivery intelligence across one programme — risk feed, audit packs, and structured intervention playbooks for the full programme team.</p>
+        <ul class="price-list">
+          <li>One programme · unlimited users</li>
+          <li>Continuous risk scoring &amp; explainability</li>
+          <li>Quarterly audit-ready reporting</li>
+          <li>Federated learning across deployments</li>
+          <li>SLA-backed monitoring &amp; alerting</li>
+        </ul>
+        <div class="pcta"><a href="#contact" class="btn btn-primary" style="background:var(--paper);color:var(--ink);">Request quote <span class="arr">→</span></a></div>
+      </div>
+
+      <div class="price-card reveal d2">
+        <span class="tier">Portfolio</span>
+        <span class="pname">DELIX Portfolio</span>
+        <div class="pprice"><span class="v">Custom</span><span class="u">/ multi-year</span></div>
+        <p class="pdesc">Cross-programme deployment for managing authorities and DFIs operating multiple instruments concurrently — with bespoke governance and integrations.</p>
+        <ul class="price-list">
+          <li>Unlimited programmes &amp; instruments</li>
+          <li>Cross-portfolio benchmarking</li>
+          <li>Custom data-residency &amp; integration</li>
+          <li>Dedicated implementation team</li>
+          <li>Quarterly executive briefings</li>
+        </ul>
+        <div class="pcta"><a href="#contact" class="btn btn-ghost">Talk to founder <span class="arr">→</span></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CTA
+     ═══════════════════════════════════════════════════════════ -->
+<section class="cta-band" id="contact">
+  <div class="cta-bg"><div class="cta-bg-grid"></div></div>
+  <div class="wrap">
+    <div class="cta-content">
+      <h2>Book a 45-minute<br/><em>institutional</em> briefing.</h2>
+      <div class="right">
+        <p>We'll demonstrate the platform against real EU programme data and discuss fit with your specific portfolio. No slide deck — just the system.</p>
+        <a href="mailto:hello@izere.eu" class="btn btn-primary btn-lg" style="background:var(--paper);color:var(--ink);">hello@izere.eu <span class="arr">→</span></a>
+        <span class="mono" style="font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.08em;margin-top:6px;">USUAL RESPONSE · 1 BUSINESS DAY · LUXEMBOURG TIME</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="brand-mark">
+            <svg viewBox="0 0 18 18" fill="none">
+              <path d="M9 2L14.5 5.5V12.5L9 16L3.5 12.5V5.5L9 2Z" stroke="#0E0F12" stroke-width="1.5" fill="rgba(14,15,18,0.18)"/>
+              <circle cx="9" cy="9" r="2.4" fill="#0E0F12"/>
+            </svg>
+          </span>
+          Izere
+        </div>
+        <p class="footer-desc">Delivery intelligence for EU-funded programmes and public infrastructure investment. Explainable AI for institutions that cannot afford to fail.</p>
+        <div class="footer-badges">
+          <span class="footer-badge">EU AI Act</span>
+          <span class="footer-badge">GDPR</span>
+          <span class="footer-badge">XAI Enabled</span>
+          <span class="footer-badge">Luxembourg</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Product</h5>
+        <a href="#platform">Platform</a>
+        <a href="#problem">The gap</a>
+        <a href="#opportunity">Market</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#founder">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#">Press</a>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms of use</a>
+        <a href="#">Data governance</a>
+      </div>
+      <div class="footer-col">
+        <h5>Office</h5>
+        <a href="#">Luxembourg</a>
+        <a href="mailto:hello@izere.eu">hello@izere.eu</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 IZERE SÀRL-S · LUXEMBOURG · ALL RIGHTS RESERVED</span>
+      <span>LUXEMBOURG · EUROPE</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ─── nav scroll state
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 24);
+  });
+
+  // ─── reveal-on-scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        // animate any data-w bars within
+        e.target.querySelectorAll && e.target.querySelectorAll('.risk-bar-fill[data-w]').forEach(bar => {
+          bar.style.width = bar.dataset.w + '%';
+        });
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // hero is above-the-fold — kick the animation immediately
+  document.querySelector('.hero').classList.add('in-view');
+  setTimeout(() => {
+    document.querySelectorAll('.dash-frame .risk-bar-fill[data-w]').forEach(bar => {
+      bar.style.width = bar.dataset.w + '%';
+    });
+  }, 600);
+</script>
+</body>
+</html>

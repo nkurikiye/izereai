@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Use Cases — Izere</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .uc-hero{background:linear-gradient(135deg,var(--rose-soft) 0%,var(--blue-soft) 60%,var(--white) 100%);padding:80px 0;}
+    .uc-hero h1{font-family:var(--serif);font-size:clamp(36px,5vw,56px);font-weight:400;line-height:1.1;color:var(--ink);margin-bottom:20px;}
+    .uc-hero h1 em{font-style:italic;color:var(--rose);}
+    .uc-tabs{display:flex;background:var(--white);border:1px solid var(--border);border-radius:var(--r12);overflow:hidden;margin-bottom:40px;box-shadow:var(--shadow-sm);}
+    .uc-tab{flex:1;padding:14px 12px;font-size:13px;font-weight:500;color:var(--ink3);text-align:center;transition:all 0.15s;border-right:1px solid var(--border);cursor:pointer;background:none;font-family:var(--body);}
+    .uc-tab:last-child{border-right:none;}
+    .uc-tab.active{background:var(--blue);color:white;font-weight:600;}
+    .uc-tab:not(.active):hover{background:var(--surface2);color:var(--ink);}
+    .uc-panel{display:none;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+    .uc-panel.active{display:grid;}
+    .uc-left h2{font-family:var(--serif);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:8px;}
+    .uc-left p{font-size:15px;color:var(--ink3);line-height:1.7;margin-bottom:20px;}
+    .uc-pain{background:var(--rose-soft);border:1px solid rgba(224,49,90,0.12);border-radius:var(--r8);padding:12px 14px;margin-bottom:10px;}
+    .uc-pain-title{font-size:12px;font-weight:600;color:var(--rose);margin-bottom:3px;}
+    .uc-pain-desc{font-size:12px;color:var(--ink3);}
+    .uc-help-label{font-family:var(--mono);font-size:10px;letter-spacing:0.09em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;font-weight:600;}
+    .uc-outcome{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--ink2);margin-bottom:8px;}
+    .uc-outcome::before{content:'→';color:var(--blue);font-weight:600;flex-shrink:0;}
+    .uc-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r16);overflow:hidden;box-shadow:var(--shadow-md);}
+    .uc-card-hd{background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);padding:20px 22px;color:white;}
+    .uc-card-lbl{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:6px;}
+    .uc-card-name{font-family:var(--serif);font-size:18px;}
+    .uc-card-sub{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.5);margin-top:4px;}
+    .uc-card-body{padding:20px 22px;}
+    .uc-metric{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
+    .uc-metric:last-child{border-bottom:none;}
+    .uc-metric-lbl{font-size:12px;color:var(--ink3);}
+    .uc-metric-val{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--ink);}
+    .uc-metric-val.rose{color:var(--rose);}
+    .uc-metric-val.green{color:var(--green);}
+    .uc-metric-val.blue{color:var(--blue);}
+    .uc-metric-val.amber{color:var(--amber);}
+    .src-note{margin-top:16px;padding:12px;background:var(--blue-soft);border-radius:8px;font-family:var(--mono);font-size:10px;color:var(--blue);line-height:1.6;}
+    /* Gauge */
+    .gauge-section{padding:16px 22px;border-top:1px solid var(--border);display:flex;align-items:center;gap:20px;}
+    .gauge-wrap{position:relative;width:80px;height:44px;flex-shrink:0;}
+    .gauge-track{fill:none;stroke:var(--surface3);stroke-width:8;stroke-linecap:round;}
+    .gauge-fill{fill:none;stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1);}
+    .gauge-num{font-family:var(--mono);font-size:14px;font-weight:700;line-height:1;}
+    .gauge-sub{font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink4);margin-top:2px;}
+    /* Mini bar chart */
+    .mini-bar-chart{padding:16px 22px 0;border-top:1px solid var(--border);}
+    .mbc-label{font-family:var(--mono);font-size:9px;letter-spacing:0.09em;text-transform:uppercase;color:var(--ink4);margin-bottom:8px;}
+    .mbc-bars{display:flex;align-items:flex-end;gap:4px;height:40px;}
+    .mbc-bar{flex:1;border-radius:3px 3px 0 0;min-width:8px;transition:height 1s ease;}
+    .mbc-bar-labels{display:flex;gap:4px;margin-top:4px;}
+    .mbc-bar-lbl{flex:1;font-family:var(--mono);font-size:8px;color:var(--ink5);text-align:center;}
+    /* Tab upgrade */
+    .uc-tabs{background:var(--white);border:1px solid var(--border);border-radius:var(--r12);overflow:hidden;margin-bottom:40px;box-shadow:var(--shadow-sm);display:flex;}
+    .uc-tab{border-bottom:2px solid transparent;border-right:1px solid var(--border);}
+    .uc-tab.active{background:var(--blue);color:white;border-bottom-color:var(--blue);}
+    /* UC card enhanced */
+    .uc-card{box-shadow:var(--shadow-lg);}
+  </style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand"><div class="nav-logomark"><svg class="logosvg" viewBox="0 0 18 18" fill="none"><path d="M9 2L14.5 5.5V12.5L9 16L3.5 12.5V5.5L9 2Z" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.15)"/><circle cx="9" cy="9" r="2.5" fill="white"/></svg></div><span class="nav-wordmark">Izere</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="platform.html" class="nav-link">Platform</a>
+        <a href="use-cases.html" class="nav-link active">Use Cases</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-cta"><a href="contact.html" class="btn-ghost">Log in</a><a href="contact.html" class="btn-primary">Request Demo</a></div>
+    </div>
+  </div>
+</nav>
+
+<section class="uc-hero">
+  <div class="container">
+    <div style="max-width:640px;">
+      <div class="eyebrow rose" style="margin-bottom:14px;">Use Cases</div>
+      <h1>Intelligence for institutions that<br/><em>cannot afford</em> to fail.</h1>
+      <p style="font-size:16px;color:var(--ink3);line-height:1.7;margin-top:16px;">Izere is purpose-built for four institutional buyer types — each with distinct accountability, risk exposure, and decision-making context.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="uc-tabs">
+      <button class="uc-tab active" onclick="showTab(0)">🏛 Managing Authorities</button>
+      <button class="uc-tab" onclick="showTab(1)">🏦 DFIs &amp; Public Banks</button>
+      <button class="uc-tab" onclick="showTab(2)">⚙ Infrastructure &amp; EPCs</button>
+      <button class="uc-tab" onclick="showTab(3)">📋 Technical Assistance Firms</button>
+    </div>
+
+    <!-- TAB 0 -->
+    <div class="uc-panel active" id="tab-0">
+      <div class="uc-left">
+        <span class="badge blue">RRF · Cohesion Policy · ESF+ · Green Deal</span>
+        <h2 style="margin-top:12px;">Managing Authorities</h2>
+        <p style="margin-top:12px;">Managing authorities are directly accountable for programme absorption rates, milestone compliance, and audit readiness. They operate under intense political and EC scrutiny — and their monitoring tools have not kept pace with programme complexity.</p>
+        <div style="margin-bottom:20px;">
+          <div class="uc-pain"><div class="uc-pain-title">⚠ Detection too late</div><div class="uc-pain-desc">Delays and cost overruns are surfaced at programme reviews, not weeks before they materialise.</div></div>
+          <div class="uc-pain"><div class="uc-pain-title">⚠ Fragmented delivery data</div><div class="uc-pain-desc">Performance data is spread across dozens of beneficiaries and reporting systems with no unified view.</div></div>
+          <div class="uc-pain"><div class="uc-pain-title">⚠ Audit pressure</div><div class="uc-pain-desc">EC and national audit institutions require traceable, evidence-based oversight — not self-reported dashboards.</div></div>
+        </div>
+        <div class="uc-help-label">How Izere Helps</div>
+        <div class="uc-outcome">Detect execution risks 2–3 months before programme reviews</div>
+        <div class="uc-outcome">Provide EC auditors with traceable, XAI-explainable oversight evidence</div>
+        <div class="uc-outcome">Reduce repetitive due diligence by reusing delivery intelligence across cycles</div>
+        <div class="uc-outcome">Improve absorption rates by identifying bottlenecks while corrective action is still possible</div>
+        <a href="contact.html" class="btn-primary" style="margin-top:28px;display:inline-block;">Discuss Your Programme →</a>
+      </div>
+      <div>
+        <div class="uc-card">
+          <div class="uc-card-hd">
+            <div class="uc-card-lbl">Izere Intelligence Brief</div>
+            <div class="uc-card-name">Romania RRF — NRRP</div>
+            <div class="uc-card-sub" style="display:flex;align-items:center;gap:6px;"><span class="live-dot rose" style="font-size:9px;">HIGH RISK</span></div>
+          </div>
+          <div class="uc-card-body">
+            <div class="uc-metric"><div class="uc-metric-lbl">Absorption rate (actual, Dec 2024)</div><div class="uc-metric-val rose">2%</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">SCF decommitment risk</div><div class="uc-metric-val rose">€5.2B</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">RRF deadline</div><div class="uc-metric-val">31 Aug 2026</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">Primary signal</div><div class="uc-metric-val">SOE governance blockage</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">Time to detect (est.)</div><div class="uc-metric-val green">−10 weeks earlier</div></div>
+          </div>
+          <!-- Gauge -->
+          <div class="gauge-section">
+            <svg width="80" height="44" viewBox="0 0 80 44">
+              <path class="gauge-track" d="M10 40 A30 30 0 0 1 70 40"/>
+              <path class="gauge-fill" id="g0" d="M10 40 A30 30 0 0 1 70 40" stroke="#E0315A" stroke-dasharray="94.25" stroke-dashoffset="94.25"/>
+            </svg>
+            <div>
+              <div class="gauge-num" style="color:#E0315A;">77<span style="font-size:10px;color:var(--ink4);">/100</span></div>
+              <div class="gauge-sub">Risk Score</div>
+            </div>
+            <div style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--ink4);text-align:right;">
+              <div style="color:var(--green);font-size:12px;font-weight:600;">↑ 10 weeks</div>
+              <div>earlier detection</div>
+            </div>
+          </div>
+          <!-- Mini bar chart — absorption trend -->
+          <div class="mini-bar-chart">
+            <div class="mbc-label">Absorption rate trend (%)</div>
+            <div class="mbc-bars" id="bars0">
+              <div class="mbc-bar" style="background:var(--blue-soft);border:1px solid var(--border);" data-h="8"></div>
+              <div class="mbc-bar" style="background:var(--blue-soft);border:1px solid var(--border);" data-h="12"></div>
+              <div class="mbc-bar" style="background:var(--blue-soft);border:1px solid var(--border);" data-h="9"></div>
+              <div class="mbc-bar" style="background:var(--rose-soft);border:1px solid rgba(224,49,90,0.2);" data-h="5"></div>
+              <div class="mbc-bar" style="background:var(--rose-soft);border:1px solid rgba(224,49,90,0.2);" data-h="3"></div>
+              <div class="mbc-bar" style="background:var(--rose);opacity:0.85;" data-h="2"></div>
+            </div>
+            <div class="mbc-bar-labels">
+              <div class="mbc-bar-lbl">Q3'23</div><div class="mbc-bar-lbl">Q4'23</div><div class="mbc-bar-lbl">Q1'24</div><div class="mbc-bar-lbl">Q2'24</div><div class="mbc-bar-lbl">Q3'24</div><div class="mbc-bar-lbl">Q4'24</div>
+            </div>
+          </div>
+          <div style="padding:0 22px 16px;margin-top:8px;">
+            <div class="src-note">↗ Source: Romanian Fiscal Council Feb 2025 · EC RRF Dashboard · Izere Engine</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 1 -->
+    <div class="uc-panel" id="tab-1">
+      <div class="uc-left">
+        <span class="badge rose">EIB · KfW · EBRD · SNCI · National Development Banks</span>
+        <h2 style="margin-top:12px;">DFIs &amp; Public Banks</h2>
+        <p style="margin-top:12px;">Development finance institutions co-finance EU infrastructure and green investments. Execution reliability directly affects bankability, disbursement schedules, and portfolio risk — but DFIs currently lack visibility into delivery performance between reporting periods.</p>
+        <div style="margin-bottom:20px;">
+          <div class="uc-pain"><div class="uc-pain-title">⚠ Subcontractor opacity</div><div class="uc-pain-desc">The subcontractor layer is effectively invisible. Prime contractors are visible in TED; who actually delivers is not.</div></div>
+          <div class="uc-pain"><div class="uc-pain-title">⚠ Selection intelligence gap</div><div class="uc-pain-desc">Due diligence relies on track records that are qualitative, non-standardised, and not portable across programmes.</div></div>
+          <div class="uc-pain"><div class="uc-pain-title">⚠ Post-commitment blind spots</div><div class="uc-pain-desc">Risk monitoring ends at contract signature. Delivery performance during implementation is opaque.</div></div>
+        </div>
+        <div class="uc-help-label">How Izere Helps</div>
+        <div class="uc-outcome">Structure delivery track records for applicants and their subcontractor chains</div>
+        <div class="uc-outcome">Generate OLAF-aligned fraud risk indicators for pre-award due diligence</div>
+        <div class="uc-outcome">Monitor post-award execution in real time across DFI portfolio</div>
+        <div class="uc-outcome">Produce contestable, human-overseen intelligence briefings — not automated exclusion recommendations</div>
+        <a href="contact.html" class="btn-primary" style="margin-top:28px;display:inline-block;">Discuss Your Programme →</a>
+      </div>
+      <div>
+        <div class="uc-card">
+          <div class="uc-card-hd">
+            <div class="uc-card-lbl">Izere Intelligence Brief</div>
+            <div class="uc-card-name">Rail Baltica — CEF TEN-T</div>
+            <div class="uc-card-sub" style="display:flex;align-items:center;gap:6px;"><span class="live-dot rose" style="font-size:9px;">CRITICAL RISK</span></div>
+          </div>
+          <div class="uc-card-body">
+            <div class="uc-metric"><div class="uc-metric-lbl">Total cost overrun</div><div class="uc-metric-val rose">4× baseline</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">Budget: orig → current</div><div class="uc-metric-val rose">€5.8B → €23.8B</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">Projected completion delay</div><div class="uc-metric-val rose">5–10 years</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">Cobra-Elecnor contract</div><div class="uc-metric-val green">€1.77B signed</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">Financing gap 2027–28</div><div class="uc-metric-val amber">€3–4B unconfirmed</div></div>
+          </div>
+          <div class="gauge-section">
+            <svg width="80" height="44" viewBox="0 0 80 44">
+              <path class="gauge-track" d="M10 40 A30 30 0 0 1 70 40"/>
+              <path class="gauge-fill" id="g1" d="M10 40 A30 30 0 0 1 70 40" stroke="#E0315A" stroke-dasharray="94.25" stroke-dashoffset="94.25"/>
+            </svg>
+            <div>
+              <div class="gauge-num" style="color:#E0315A;">84<span style="font-size:10px;color:var(--ink4);">/100</span></div>
+              <div class="gauge-sub">Risk Score</div>
+            </div>
+            <div style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--ink4);text-align:right;">
+              <div style="color:var(--green);font-size:12px;font-weight:600;">ECA flagged</div>
+              <div>Jan 2026</div>
+            </div>
+          </div>
+          <!-- Cost overrun bar chart -->
+          <div class="mini-bar-chart">
+            <div class="mbc-label">Budget evolution (€B)</div>
+            <div class="mbc-bars" id="bars1">
+              <div class="mbc-bar" style="background:var(--blue-soft);border:1px solid var(--border);" data-h="24"></div>
+              <div class="mbc-bar" style="background:var(--amber-soft);border:1px solid rgba(180,83,9,0.2);" data-h="35"></div>
+              <div class="mbc-bar" style="background:var(--amber-soft);border:1px solid rgba(180,83,9,0.2);" data-h="50"></div>
+              <div class="mbc-bar" style="background:var(--rose-soft);border:1px solid rgba(224,49,90,0.2);" data-h="72"></div>
+              <div class="mbc-bar" style="background:var(--rose);opacity:0.85;" data-h="100"></div>
+            </div>
+            <div class="mbc-bar-labels">
+              <div class="mbc-bar-lbl">2006</div><div class="mbc-bar-lbl">2017</div><div class="mbc-bar-lbl">2020</div><div class="mbc-bar-lbl">2023</div><div class="mbc-bar-lbl">2026</div>
+            </div>
+          </div>
+          <div style="padding:0 22px 16px;margin-top:8px;">
+            <div class="src-note">↗ Source: ECA Special Report Jan 2026 · Baltic SAIs Joint Report Jun 2024 · Izere Engine</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2 -->
+    <div class="uc-panel" id="tab-2">
+      <div class="uc-left">
+        <span class="badge blue">Utilities · EPCs · Construction Primes · Programme Integrators</span>
+        <h2 style="margin-top:12px;">Infrastructure Developers &amp; EPCs</h2>
+        <p style="margin-top:12px;">Large infrastructure developers and EPCs operate distributed delivery networks reliant on SMEs and subcontractors. Early visibility into subcontractor capacity and coordination risk is a commercial imperative — and increasingly a condition of EU-funded contract compliance.</p>
+        <div style="margin-bottom:20px;">
+          <div class="uc-pain"><div class="uc-pain-title">⚠ SME capacity opacity</div><div class="uc-pain-desc">SME and subcontractor execution capacity is hard to assess at procurement. Failures compound across the delivery chain.</div></div>
+          <div class="uc-pain"><div class="uc-pain-title">⚠ Change event management</div><div class="uc-pain-desc">Design revisions, environmental permits, and coordination failures are poorly tracked across multi-actor programmes.</div></div>
+          <div class="uc-pain"><div class="uc-pain-title">⚠ Compliance documentation burden</div><div class="uc-pain-desc">EU co-funded contracts require extensive performance documentation that is costly to produce manually.</div></div>
+        </div>
+        <div class="uc-help-label">How Izere Helps</div>
+        <div class="uc-outcome">Assess subcontractor delivery capacity before contract award</div>
+        <div class="uc-outcome">Monitor multi-tier delivery chains in real time</div>
+        <div class="uc-outcome">Automate milestone and change-event documentation for EU compliance</div>
+        <div class="uc-outcome">Generate early warnings on coordination failures within the delivery network</div>
+        <a href="contact.html" class="btn-primary" style="margin-top:28px;display:inline-block;">Discuss Your Programme →</a>
+      </div>
+      <div>
+        <div class="uc-card">
+          <div class="uc-card-hd">
+            <div class="uc-card-lbl">Izere Intelligence Brief</div>
+            <div class="uc-card-name">Canal Seine-Nord Europe</div>
+            <div class="uc-card-sub" style="display:flex;align-items:center;gap:6px;"><span class="live-dot amber" style="font-size:9px;">MEDIUM RISK</span></div>
+          </div>
+          <div class="uc-card-body">
+            <div class="uc-metric"><div class="uc-metric-lbl">Original estimate (2006)</div><div class="uc-metric-val">€3.6B</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">Current target (early 2026)</div><div class="uc-metric-val amber">€7.3B</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">Environmental permit delay</div><div class="uc-metric-val amber">5 years</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">Current completion target</div><div class="uc-metric-val">2032</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">Bouygues contract status</div><div class="uc-metric-val green">Active on site</div></div>
+          </div>
+          <div class="gauge-section">
+            <svg width="80" height="44" viewBox="0 0 80 44">
+              <path class="gauge-track" d="M10 40 A30 30 0 0 1 70 40"/>
+              <path class="gauge-fill" id="g2" d="M10 40 A30 30 0 0 1 70 40" stroke="#D97706" stroke-dasharray="94.25" stroke-dashoffset="94.25"/>
+            </svg>
+            <div>
+              <div class="gauge-num" style="color:#D97706;">58<span style="font-size:10px;color:var(--ink4);">/100</span></div>
+              <div class="gauge-sub">Risk Score</div>
+            </div>
+            <div style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--ink4);text-align:right;">
+              <div style="color:var(--amber);font-size:12px;font-weight:600;">Cost +€3.7B</div>
+              <div>vs 2006 est.</div>
+            </div>
+          </div>
+          <div style="padding:0 22px 16px;margin-top:8px;">
+            <div class="src-note">↗ Source: CESER Nord-Pas-de-Calais · ING Think Nov 2025 · Izere Engine</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3 -->
+    <div class="uc-panel" id="tab-3">
+      <div class="uc-left">
+        <span class="badge rose">TA Consortia · Programme Consultants · Implementation Partners</span>
+        <h2 style="margin-top:12px;">Technical Assistance Firms</h2>
+        <p style="margin-top:12px;">Technical assistance firms and consortium leads are responsible for programme design, implementation support, and monitoring. They are increasingly under pressure to demonstrate delivery effectiveness — not just compliance.</p>
+        <div style="margin-bottom:20px;">
+          <div class="uc-pain"><div class="uc-pain-title">⚠ Delivery effectiveness vs compliance</div><div class="uc-pain-desc">EC and managing authorities are moving toward outcome-based accountability — TA firms must follow.</div></div>
+          <div class="uc-pain"><div class="uc-pain-title">⚠ Data non-portability</div><div class="uc-pain-desc">Insights from one programme cannot be reused in the next. Knowledge is locked in static reports.</div></div>
+          <div class="uc-pain"><div class="uc-pain-title">⚠ Competitive differentiation</div><div class="uc-pain-desc">Differentiating TA proposals on delivery intelligence capability is a growing competitive requirement.</div></div>
+        </div>
+        <div class="uc-help-label">How Izere Helps</div>
+        <div class="uc-outcome">Embed Izere as a delivery-intelligence work package in EU consortium proposals</div>
+        <div class="uc-outcome">Demonstrate programme effectiveness with XAI-evidenced outcomes</div>
+        <div class="uc-outcome">Reuse delivery intelligence across programme cycles</div>
+        <div class="uc-outcome">Win competitive proposals by offering continuous intelligence rather than periodic reports</div>
+        <a href="contact.html" class="btn-primary" style="margin-top:28px;display:inline-block;">Discuss Your Programme →</a>
+      </div>
+      <div>
+        <div class="uc-card">
+          <div class="uc-card-hd">
+            <div class="uc-card-lbl">Izere Intelligence Brief</div>
+            <div class="uc-card-name">EU Cohesion Policy 2021–27</div>
+            <div class="uc-card-sub" style="display:flex;align-items:center;gap:6px;"><span class="live-dot amber" style="font-size:9px;">MEDIUM RISK · PORTFOLIO</span></div>
+          </div>
+          <div class="uc-card-body">
+            <div class="uc-metric"><div class="uc-metric-lbl">Total envelope</div><div class="uc-metric-val blue">€378B</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">Absorption by Aug 2025</div><div class="uc-metric-val rose">11%</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">N+3 decommitment risk</div><div class="uc-metric-val amber">Multiple MS</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">Programmes active</div><div class="uc-metric-val">~500+ OPs</div></div>
+            <div class="uc-metric"><div class="uc-metric-lbl">Cycle extended to</div><div class="uc-metric-val green">2030</div></div>
+          </div>
+          <div class="gauge-section">
+            <svg width="80" height="44" viewBox="0 0 80 44">
+              <path class="gauge-track" d="M10 40 A30 30 0 0 1 70 40"/>
+              <path class="gauge-fill" id="g3" d="M10 40 A30 30 0 0 1 70 40" stroke="#D97706" stroke-dasharray="94.25" stroke-dashoffset="94.25"/>
+            </svg>
+            <div>
+              <div class="gauge-num" style="color:#D97706;">44<span style="font-size:10px;color:var(--ink4);">/100</span></div>
+              <div class="gauge-sub">Portfolio Risk</div>
+            </div>
+            <div style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--ink4);text-align:right;">
+              <div style="color:var(--rose);font-size:12px;font-weight:600;">11% absorbed</div>
+              <div>worst start on record</div>
+            </div>
+          </div>
+          <!-- Absorption bar chart -->
+          <div class="mini-bar-chart">
+            <div class="mbc-label">Absorption vs. target (%)</div>
+            <div class="mbc-bars" id="bars3">
+              <div class="mbc-bar" style="background:var(--blue-soft);border:1px solid var(--border);" data-h="20"></div>
+              <div class="mbc-bar" style="background:var(--blue-soft);border:1px solid var(--border);" data-h="30"></div>
+              <div class="mbc-bar" style="background:var(--blue);opacity:0.5;" data-h="100" title="Target"></div>
+              <div class="mbc-bar" style="background:var(--rose);opacity:0.8;" data-h="11"></div>
+            </div>
+            <div class="mbc-bar-labels">
+              <div class="mbc-bar-lbl">14–20</div><div class="mbc-bar-lbl">21–27</div><div class="mbc-bar-lbl">Target</div><div class="mbc-bar-lbl">Aug'25</div>
+            </div>
+          </div>
+          <div style="padding:0 22px 16px;margin-top:8px;">
+            <div class="src-note">↗ Source: EC Cohesion Open Data Platform · Mid-Term Review 2024 · Izere Engine</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section-sm">
+  <div class="cta-band">
+    <h2>Find out how Izere fits your programme</h2>
+    <p style="margin-top:12px;">Book a 45-minute briefing tailored to your institution type and programme portfolio.</p>
+    <div class="cta-actions" style="margin-top:28px;">
+      <a href="contact.html" class="btn-primary btn-lg">Book Institutional Briefing</a>
+      <a href="pricing.html" class="btn-outline">View Pricing →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand"><div class="footer-brand-logo"><svg viewBox="0 0 18 18" fill="none" width="16" height="16"><path d="M9 2L14.5 5.5V12.5L9 16L3.5 12.5V5.5L9 2Z" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.15)"/><circle cx="9" cy="9" r="2.5" fill="white"/></svg></div>Izere</div><p class="footer-desc">Delivery intelligence for EU-funded programmes and public infrastructure investment.</p><div class="footer-badges"><span class="footer-badge">EU AI Act Compliant</span><span class="footer-badge">GDPR</span><span class="footer-badge">XAI Enabled</span><span class="footer-badge">Luxembourg</span></div></div>
+      <div class="footer-col"><h4>Product</h4><a href="platform.html">Platform</a><a href="use-cases.html">Use Cases</a><a href="pricing.html">Pricing</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">© 2026 Izere Sàrl-S · Luxembourg</span><span class="footer-copy">Built at LHoFT</span></div>
+  </div>
+</footer>
+
+<script>
+  // Gauge animation: score out of 100, arc length 94.25px for a half-circle
+  function animateGauge(id, score) {
+    const el = document.getElementById(id);
+    if(!el) return;
+    const arcLen = 94.25;
+    const offset = arcLen - (score / 100) * arcLen;
+    el.style.strokeDashoffset = arcLen; // start hidden
+    setTimeout(() => {
+      el.style.transition = 'stroke-dashoffset 1.3s cubic-bezier(0.4,0,0.2,1)';
+      el.style.strokeDashoffset = offset;
+    }, 200);
+  }
+
+  // Mini bar animation
+  function animateBars(containerId) {
+    const container = document.getElementById(containerId);
+    if(!container) return;
+    const bars = container.querySelectorAll('.mbc-bar');
+    const maxH = 40; // px, total chart height
+    bars.forEach(bar => {
+      const pct = parseInt(bar.dataset.h) / 100;
+      bar.style.height = '0px';
+      setTimeout(() => {
+        bar.style.height = (maxH * pct) + 'px';
+      }, 150);
+    });
+  }
+
+  // Map tab index to gauge IDs and bar IDs
+  const tabData = [
+    { gauges: ['g0'], bars: ['bars0'] },
+    { gauges: ['g1'], bars: ['bars1'] },
+    { gauges: ['g2'], bars: [] },
+    { gauges: ['g3'], bars: ['bars3'] },
+  ];
+  const gaugeScores = { g0: 77, g1: 84, g2: 58, g3: 44 };
+  let animatedTabs = new Set();
+
+  function activateTab(i) {
+    if(!animatedTabs.has(i)) {
+      animatedTabs.add(i);
+      const d = tabData[i];
+      d.gauges.forEach(gid => animateGauge(gid, gaugeScores[gid]));
+      d.bars.forEach(bid => animateBars(bid));
+    }
+  }
+
+  function showTab(i) {
+    document.querySelectorAll('.uc-tab').forEach((t,idx) => t.classList.toggle('active', idx===i));
+    document.querySelectorAll('.uc-panel').forEach((p,idx) => p.classList.toggle('active', idx===i));
+    activateTab(i);
+  }
+
+  // Animate first tab on load
+  setTimeout(() => activateTab(0), 600);
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold:0.12});
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20); });
+</script>
+</body>
+</html>

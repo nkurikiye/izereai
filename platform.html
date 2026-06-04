@@ -1,280 +1,541 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Platform — Izere</title>
-  <meta name="description" content="Three-layer delivery intelligence architecture built for EU public-sector environments."/>
-  <link rel="stylesheet" href="style.css"/>
-  <style>
-    .platform-hero{background:linear-gradient(160deg,var(--ink) 0%,#1a2e5a 100%);padding:88px 0 112px;color:white;position:relative;overflow:hidden;}
-    .platform-hero::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:60px;background:var(--bg);clip-path:ellipse(55% 100% at 50% 100%);}
-    .platform-hero h1{font-family:var(--serif);font-size:clamp(36px,5vw,58px);font-weight:400;line-height:1.1;color:white;margin-bottom:20px;max-width:700px;}
-    .platform-hero h1 em{font-style:italic;color:#93C5FD;}
-    .platform-hero p{font-size:16px;color:rgba(255,255,255,0.65);line-height:1.7;max-width:560px;}
-    /* ARCHITECTURE */
-    .arch{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border-radius:var(--r16);overflow:hidden;}
-    .arch-layer{background:var(--white);padding:32px 28px;position:relative;}
-    .arch-layer::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
-    .arch-layer.l1::before{background:var(--blue);}
-    .arch-layer.l2::before{background:var(--rose);}
-    .arch-layer.l3::before{background:var(--green);}
-    .arch-badge{display:inline-flex;align-items:center;font-family:var(--mono);font-size:9px;letter-spacing:0.09em;text-transform:uppercase;font-weight:500;margin-bottom:16px;padding:3px 8px;border-radius:var(--r999);}
-    .arch-badge.l1{background:var(--blue-soft);color:var(--blue);}
-    .arch-badge.l2{background:var(--rose-soft);color:var(--rose);}
-    .arch-badge.l3{background:var(--green-soft);color:var(--green);}
-    .arch-layer h3{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:10px;}
-    .arch-layer p{font-size:13px;color:var(--ink3);line-height:1.65;margin-bottom:16px;}
-    .arch-tags{display:flex;flex-wrap:wrap;gap:5px;}
-    .arch-tag{font-family:var(--mono);font-size:9px;color:var(--ink4);background:var(--surface2);border:1px solid var(--border);padding:2px 8px;border-radius:var(--r999);}
-    /* COMPLIANCE */
-    .comp-row{display:flex;gap:16px;flex-wrap:wrap;}
-    .comp-item{display:flex;align-items:center;gap:10px;background:var(--white);border:1px solid var(--border);border-radius:var(--r12);padding:14px 18px;flex:1;min-width:180px;}
-    .comp-icon{width:36px;height:36px;border-radius:var(--r8);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
-    .comp-icon.blue{background:var(--blue-soft);}
-    .comp-icon.green{background:var(--green-soft);}
-    .comp-lbl{font-family:var(--mono);font-size:10px;letter-spacing:0.07em;color:var(--blue);font-weight:600;text-transform:uppercase;margin-bottom:2px;}
-    .comp-sub{font-size:11px;color:var(--ink4);}
-    /* ROADMAP */
-    .roadmap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-    .roadmap-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r16);padding:28px;}
-    .roadmap-card h3{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:14px;}
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Platform — Izere</title>
+<meta name="description" content="System architecture, data model, and integration surface of the Izere execution-intelligence platform." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared.css" />
+<style>
+  /* Page-specific */
+  .page-hero{padding:148px 0 80px;border-bottom:1px solid var(--line);}
+  .page-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(56px,9vw,128px);line-height:0.96;letter-spacing:-0.025em;margin-top:24px;}
+  .page-hero h1 em{color:var(--accent);font-style:italic;}
+  .page-hero p.lede{font-size:20px;line-height:1.45;color:var(--ink-2);max-width:680px;margin-top:32px;letter-spacing:-0.005em;}
+  .page-crumb{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:var(--ink-4);text-transform:uppercase;}
+  .page-crumb .sep{opacity:0.4;}
+  .page-crumb .here{color:var(--ink-2);}
+
+  /* Architecture diagram */
+  .arch{padding:120px 0;}
+  .arch-frame{background:var(--ink);color:var(--paper);border-radius:24px;padding:48px 36px;box-shadow:0 40px 80px -30px rgba(14,15,18,0.35);}
+  body.dark .arch-frame{background:#06070A;}
+  .arch-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.10);}
+  .arch-hd .t{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:rgba(255,255,255,0.55);text-transform:uppercase;}
+  .arch-hd .v{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.4);}
+
+  .arch-svg-wrap{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;margin:0 -8px;padding:0 8px;}
+  .arch-svg-wrap::-webkit-scrollbar{height:6px;}
+  .arch-svg-wrap::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.18);border-radius:3px;}
+  .arch-svg{width:100%;height:auto;display:block;min-width:1000px;}
+  @media(max-width:1100px){
+    .arch-svg{min-width:1100px;}
+    .arch-frame{padding:36px 24px;}
+  }
+
+  .arch-legend{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:36px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.10);}
+  .arch-leg{display:flex;flex-direction:column;gap:6px;}
+  .arch-leg .k{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:rgba(255,255,255,0.45);text-transform:uppercase;}
+  .arch-leg .n{font-size:13px;color:rgba(255,255,255,0.85);font-weight:500;}
+  .arch-leg .d{font-size:11.5px;color:rgba(255,255,255,0.5);line-height:1.5;}
+
+  /* Data sources strip */
+  .sources{padding:120px 0;border-top:1px solid var(--line);}
+  .sources-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);}
+  .src-cell{padding:28px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:160px;display:flex;flex-direction:column;gap:10px;}
+  .src-cell .k{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--ink-4);text-transform:uppercase;}
+  .src-cell h4{font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:-0.01em;line-height:1.2;}
+  .src-cell p{font-size:13px;line-height:1.55;color:var(--ink-3);margin-top:auto;}
+
+  /* Integration grid */
+  .integ{padding:120px 0;background:var(--paper-2);}
+  .integ-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);}
+  .int-cell{padding:32px 28px;background:var(--paper);border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .int-cell .k{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--accent);text-transform:uppercase;margin-bottom:14px;}
+  .int-cell h4{font-family:var(--serif);font-size:24px;font-weight:400;letter-spacing:-0.01em;line-height:1.2;margin-bottom:10px;}
+  .int-cell p{font-size:13.5px;line-height:1.6;color:var(--ink-3);margin-bottom:16px;}
+  .int-cell code{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);background:var(--paper-2);padding:2px 6px;border-radius:4px;}
+
+  /* Specs table */
+  .specs{padding:120px 0;}
+  .spec-row{display:grid;grid-template-columns:240px 1fr 200px;gap:24px;padding:22px 0;border-top:1px solid var(--line);align-items:start;}
+  .spec-row:last-child{border-bottom:1px solid var(--line);}
+  .spec-row .k{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--ink-4);text-transform:uppercase;padding-top:4px;}
+  .spec-row .v{font-size:15px;line-height:1.6;color:var(--ink-2);}
+  .spec-row .v strong{color:var(--ink);font-weight:500;}
+  .spec-row .badge{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--accent);text-transform:uppercase;padding-top:4px;text-align:right;}
+
+  @media(max-width:1100px){
+    .arch-legend{grid-template-columns:repeat(2,1fr);}
+    .sources-grid{grid-template-columns:1fr 1fr;}
+    .integ-grid{grid-template-columns:1fr;}
+    .spec-row{grid-template-columns:1fr;gap:6px;}
+    .spec-row .badge{text-align:left;}
+  }
+</style>
 </head>
 <body>
 
 <nav class="nav" id="nav">
-  <div class="container">
+  <div class="wrap">
     <div class="nav-inner">
-      <a href="index.html" class="nav-brand"><div class="nav-logomark"><svg class="logosvg" viewBox="0 0 18 18" fill="none"><path d="M9 2L14.5 5.5V12.5L9 16L3.5 12.5V5.5L9 2Z" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.15)"/><circle cx="9" cy="9" r="2.5" fill="white"/></svg></div><span class="nav-wordmark">Izere</span></a>
+      <a href="index.html" class="brand">
+        <span class="brand-wm">I<span class="cut">z</span>ere</span>
+      </a>
       <div class="nav-links">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="platform.html" class="nav-link active">Platform</a>
-        <a href="use-cases.html" class="nav-link">Use Cases</a>
-        <a href="pricing.html" class="nav-link">Pricing</a>
-        <a href="about.html" class="nav-link">About</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="platform.html" style="color:var(--ink);font-weight:600;">Platform</a>
+        <a href="methodology.html">Methodology</a>
+        <a href="case-studies/rail-baltica.html">Case studies</a>
+        <a href="team.html">Team</a>
+        <a href="index.html#demo">Live demo</a>
       </div>
-      <div class="nav-cta"><a href="contact.html" class="btn-ghost">Log in</a><a href="contact.html" class="btn-primary">Request Demo</a></div>
+      <div class="nav-cta">
+        <a href="index.html#contact" class="btn btn-ghost">Log in</a>
+        <a href="index.html#contact" class="btn btn-primary">Request demo <span class="arr">→</span></a>
+      </div>
     </div>
   </div>
 </nav>
 
-<section class="platform-hero">
-  <div class="container">
-    <div class="eyebrow" style="color:rgba(255,255,255,0.45);margin-bottom:14px;">The Platform</div>
-    <h1>Execution intelligence.<br/><em>Explainable</em> by design.</h1>
-    <p style="margin-top:16px;">Izere is a modular, cloud-native delivery-intelligence platform built for EU public-sector environments. It analyses delivery data that already exists within your programmes and transforms it into structured, auditable early-warning insights.</p>
+<section class="page-hero">
+  <div class="wrap">
+    <div class="page-crumb">
+      <a href="index.html">Izere</a><span class="sep">/</span><span class="here">Platform</span>
+    </div>
+    <h1>The <em>execution</em><br/>intelligence layer.</h1>
+    <p class="lede">Izere ingests programme data from existing institutional systems, models actors and dependencies as a dynamic graph, and produces explainable risk intelligence with a continuous audit trail. Five layers. API-first. Federated by default.</p>
   </div>
 </section>
 
 <!-- ARCHITECTURE -->
-<section class="section" style="background:var(--bg);">
-  <div class="container">
-    <div class="section-header fade-in">
-      <div class="eyebrow blue">Architecture</div>
-      <h2>Three-layer delivery intelligence</h2>
-      <p>Izere is not a replacement for your existing systems. It is an intelligence layer that sits across them — ingesting, structuring, and analysing the execution data already being generated.</p>
+<section class="arch">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="lhs">
+        <span class="eyebrow"><span class="dot"></span>System architecture</span>
+        <h2>Five layers, <em>one</em> evidence chain.</h2>
+      </div>
+      <div class="rhs">
+        Each layer is independently deployable and independently auditable. Data flows are versioned end-to-end so any score can be reproduced from raw inputs at any point in time.
+      </div>
     </div>
-    <div class="arch fade-in">
-      <div class="arch-layer l1">
-        <div class="arch-badge l1">Layer 1</div>
-        <h3>Data Ingestion &amp; Structuring</h3>
-        <p>Secure APIs ingest delivery-relevant information from procurement systems, programme-management tools, milestone reports, disbursement records, and coordination signals. Data is entity-resolved into a unified execution data model.</p>
-        <div class="arch-tags">
-          <span class="arch-tag">TED / PPDS Integration</span>
-          <span class="arch-tag">ESPD Declarations</span>
-          <span class="arch-tag">Arachne Signals</span>
-          <span class="arch-tag">API-First</span>
-          <span class="arch-tag">GDPR Compliant</span>
-        </div>
+
+    <div class="arch-frame">
+      <div class="arch-hd">
+        <span class="t">izere/architecture · v2.4.0</span>
+        <span class="v">SCALE 1:1 · UTC 2026-04-30</span>
       </div>
-      <div class="arch-layer l2">
-        <div class="arch-badge l2">Layer 2</div>
-        <h3>Explainable AI Engine</h3>
-        <p>Graph neural networks and explainable AI techniques identify patterns, anomalies, and early-warning signals. Every output includes an evidence chain — traceable to source data, transparent in logic, auditable for institutional review.</p>
-        <div class="arch-tags">
-          <span class="arch-tag">XAI / LIME-SHAP</span>
-          <span class="arch-tag">Graph Neural Networks</span>
-          <span class="arch-tag">Federated Learning</span>
-          <span class="arch-tag">Audit Trail</span>
-          <span class="arch-tag">EU AI Act Aligned</span>
-        </div>
+
+      <div class="arch-svg-wrap">
+      <svg class="arch-svg" viewBox="0 0 1200 560" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <pattern id="dotgrid" width="20" height="20" patternUnits="userSpaceOnUse">
+            <circle cx="1" cy="1" r="0.6" fill="rgba(255,255,255,0.06)"/>
+          </pattern>
+          <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 Z" fill="rgba(255,255,255,0.5)"/>
+          </marker>
+          <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 Z" fill="oklch(0.62 0.20 268)"/>
+          </marker>
+        </defs>
+
+        <rect x="0" y="0" width="1200" height="560" fill="url(#dotgrid)"/>
+
+        <!-- LAYER 01: SOURCES -->
+        <g>
+          <text x="40" y="48" fill="rgba(255,255,255,0.45)" font-family="JetBrains Mono" font-size="11" letter-spacing="1.5">L1 · SOURCES</text>
+          <rect x="40" y="64" width="180" height="52" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)"/>
+          <text x="60" y="86" fill="white" font-family="Geist" font-size="13" font-weight="500">TED · PPDS</text>
+          <text x="60" y="102" fill="rgba(255,255,255,0.5)" font-family="JetBrains Mono" font-size="10">Procurement notices</text>
+
+          <rect x="40" y="128" width="180" height="52" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)"/>
+          <text x="60" y="150" fill="white" font-family="Geist" font-size="13" font-weight="500">Arachne</text>
+          <text x="60" y="166" fill="rgba(255,255,255,0.5)" font-family="JetBrains Mono" font-size="10">Risk scoring</text>
+
+          <rect x="40" y="192" width="180" height="52" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)"/>
+          <text x="60" y="214" fill="white" font-family="Geist" font-size="13" font-weight="500">Cohesion OPs</text>
+          <text x="60" y="230" fill="rgba(255,255,255,0.5)" font-family="JetBrains Mono" font-size="10">Programme reports</text>
+
+          <rect x="40" y="256" width="180" height="52" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)"/>
+          <text x="60" y="278" fill="white" font-family="Geist" font-size="13" font-weight="500">RRF Scoreboard</text>
+          <text x="60" y="294" fill="rgba(255,255,255,0.5)" font-family="JetBrains Mono" font-size="10">Milestones · targets</text>
+
+          <rect x="40" y="320" width="180" height="52" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)"/>
+          <text x="60" y="342" fill="white" font-family="Geist" font-size="13" font-weight="500">Member State APIs</text>
+          <text x="60" y="358" fill="rgba(255,255,255,0.5)" font-family="JetBrains Mono" font-size="10">National systems</text>
+        </g>
+
+        <!-- LAYER 02: INGEST -->
+        <g>
+          <text x="280" y="48" fill="rgba(255,255,255,0.45)" font-family="JetBrains Mono" font-size="11" letter-spacing="1.5">L2 · INGEST</text>
+          <rect x="280" y="64" width="200" height="308" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)"/>
+          <text x="300" y="98" fill="white" font-family="Instrument Serif" font-size="22">Unified data model</text>
+          <text x="300" y="124" fill="rgba(255,255,255,0.55)" font-family="JetBrains Mono" font-size="10">Schema · entities · events</text>
+
+          <rect x="300" y="148" width="160" height="34" rx="5" fill="rgba(255,255,255,0.06)"/>
+          <text x="312" y="170" fill="rgba(255,255,255,0.85)" font-family="JetBrains Mono" font-size="11">programmes</text>
+
+          <rect x="300" y="190" width="160" height="34" rx="5" fill="rgba(255,255,255,0.06)"/>
+          <text x="312" y="212" fill="rgba(255,255,255,0.85)" font-family="JetBrains Mono" font-size="11">contracts · actors</text>
+
+          <rect x="300" y="232" width="160" height="34" rx="5" fill="rgba(255,255,255,0.06)"/>
+          <text x="312" y="254" fill="rgba(255,255,255,0.85)" font-family="JetBrains Mono" font-size="11">milestones · events</text>
+
+          <rect x="300" y="274" width="160" height="34" rx="5" fill="rgba(255,255,255,0.06)"/>
+          <text x="312" y="296" fill="rgba(255,255,255,0.85)" font-family="JetBrains Mono" font-size="11">disbursements</text>
+
+          <rect x="300" y="316" width="160" height="34" rx="5" fill="rgba(255,255,255,0.06)"/>
+          <text x="312" y="338" fill="rgba(255,255,255,0.85)" font-family="JetBrains Mono" font-size="11">governance graph</text>
+        </g>
+
+        <!-- LAYER 03: MODEL -->
+        <g>
+          <text x="540" y="48" fill="oklch(0.62 0.20 268)" font-family="JetBrains Mono" font-size="11" letter-spacing="1.5">L3 · MODEL</text>
+          <rect x="540" y="64" width="200" height="308" rx="10" fill="oklch(0.62 0.20 268 / 0.10)" stroke="oklch(0.62 0.20 268 / 0.5)"/>
+          <text x="560" y="98" fill="white" font-family="Instrument Serif" font-size="22">Graph neural net</text>
+          <text x="560" y="124" fill="rgba(255,255,255,0.55)" font-family="JetBrains Mono" font-size="10">Actor · dependency · risk</text>
+
+          <!-- mini graph viz -->
+          <g transform="translate(560, 150)">
+            <line x1="20" y1="40" x2="80" y2="20" stroke="oklch(0.62 0.20 268 / 0.6)" stroke-width="1"/>
+            <line x1="20" y1="40" x2="80" y2="60" stroke="oklch(0.62 0.20 268 / 0.6)" stroke-width="1"/>
+            <line x1="20" y1="40" x2="40" y2="100" stroke="oklch(0.62 0.20 268 / 0.6)" stroke-width="1"/>
+            <line x1="80" y1="20" x2="140" y2="40" stroke="oklch(0.62 0.20 268 / 0.6)" stroke-width="1"/>
+            <line x1="80" y1="60" x2="140" y2="40" stroke="oklch(0.62 0.20 268 / 0.6)" stroke-width="1"/>
+            <line x1="80" y1="60" x2="100" y2="120" stroke="oklch(0.62 0.20 268 / 0.6)" stroke-width="1"/>
+            <line x1="140" y1="40" x2="140" y2="100" stroke="oklch(0.62 0.20 268 / 0.6)" stroke-width="1"/>
+            <line x1="40" y1="100" x2="100" y2="120" stroke="oklch(0.62 0.20 268 / 0.6)" stroke-width="1"/>
+            <line x1="100" y1="120" x2="140" y2="100" stroke="oklch(0.62 0.20 268 / 0.6)" stroke-width="1"/>
+
+            <circle cx="20" cy="40" r="6" fill="oklch(0.62 0.20 268)"/>
+            <circle cx="80" cy="20" r="5" fill="white"/>
+            <circle cx="80" cy="60" r="7" fill="oklch(0.58 0.20 22)"/>
+            <circle cx="140" cy="40" r="5" fill="white"/>
+            <circle cx="140" cy="100" r="6" fill="oklch(0.62 0.20 268)"/>
+            <circle cx="100" cy="120" r="5" fill="white"/>
+            <circle cx="40" cy="100" r="5" fill="white"/>
+          </g>
+
+          <text x="560" y="320" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="10">edges: 2.4M</text>
+          <text x="560" y="340" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="10">nodes: 487K</text>
+          <text x="560" y="360" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="10">trained: federated</text>
+        </g>
+
+        <!-- LAYER 04: EXPLAIN -->
+        <g>
+          <text x="800" y="48" fill="rgba(255,255,255,0.45)" font-family="JetBrains Mono" font-size="11" letter-spacing="1.5">L4 · EXPLAIN</text>
+          <rect x="800" y="64" width="200" height="308" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)"/>
+          <text x="820" y="98" fill="white" font-family="Instrument Serif" font-size="22">SHAP · audit</text>
+          <text x="820" y="124" fill="rgba(255,255,255,0.55)" font-family="JetBrains Mono" font-size="10">Per-score attribution</text>
+
+          <!-- SHAP bars -->
+          <g transform="translate(820, 150)">
+            <rect x="0" y="0" width="120" height="14" rx="2" fill="oklch(0.62 0.20 268 / 0.7)"/>
+            <text x="0" y="-4" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="9">+18.4 Bidder conc.</text>
+
+            <rect x="0" y="28" width="92" height="14" rx="2" fill="oklch(0.62 0.20 268 / 0.7)"/>
+            <text x="0" y="24" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="9">+14.2 Coordination</text>
+
+            <rect x="0" y="56" width="76" height="14" rx="2" fill="oklch(0.62 0.20 268 / 0.7)"/>
+            <text x="0" y="52" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="9">+11.8 Financing gap</text>
+
+            <rect x="0" y="84" width="58" height="14" rx="2" fill="oklch(0.62 0.20 268 / 0.7)"/>
+            <text x="0" y="80" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="9">+9.1 Milestone amend.</text>
+
+            <rect x="0" y="112" width="46" height="14" rx="2" fill="oklch(0.62 0.20 268 / 0.7)"/>
+            <text x="0" y="108" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="9">+7.3 Governance dist.</text>
+
+            <line x1="0" y1="148" x2="160" y2="148" stroke="rgba(255,255,255,0.15)" stroke-dasharray="2,3"/>
+            <text x="0" y="174" fill="white" font-family="JetBrains Mono" font-size="11">Σ = 84/100</text>
+            <text x="0" y="190" fill="rgba(255,255,255,0.5)" font-family="JetBrains Mono" font-size="9">contestable · versioned</text>
+          </g>
+        </g>
+
+        <!-- LAYER 05: SURFACES -->
+        <g>
+          <text x="1040" y="48" fill="rgba(255,255,255,0.45)" font-family="JetBrains Mono" font-size="11" letter-spacing="1.5">L5 · SURFACES</text>
+          <rect x="1040" y="64" width="140" height="52" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)"/>
+          <text x="1056" y="86" fill="white" font-family="Geist" font-size="13" font-weight="500">Dashboard</text>
+          <text x="1056" y="102" fill="rgba(255,255,255,0.5)" font-family="JetBrains Mono" font-size="10">PM · Auth.</text>
+
+          <rect x="1040" y="128" width="140" height="52" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)"/>
+          <text x="1056" y="150" fill="white" font-family="Geist" font-size="13" font-weight="500">Alert feed</text>
+          <text x="1056" y="166" fill="rgba(255,255,255,0.5)" font-family="JetBrains Mono" font-size="10">Webhook · email</text>
+
+          <rect x="1040" y="192" width="140" height="52" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)"/>
+          <text x="1056" y="214" fill="white" font-family="Geist" font-size="13" font-weight="500">Audit pack</text>
+          <text x="1056" y="230" fill="rgba(255,255,255,0.5)" font-family="JetBrains Mono" font-size="10">Reproducible PDF</text>
+
+          <rect x="1040" y="256" width="140" height="52" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)"/>
+          <text x="1056" y="278" fill="white" font-family="Geist" font-size="13" font-weight="500">REST · GraphQL</text>
+          <text x="1056" y="294" fill="rgba(255,255,255,0.5)" font-family="JetBrains Mono" font-size="10">Programmatic</text>
+
+          <rect x="1040" y="320" width="140" height="52" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)"/>
+          <text x="1056" y="342" fill="white" font-family="Geist" font-size="13" font-weight="500">Briefing report</text>
+          <text x="1056" y="358" fill="rgba(255,255,255,0.5)" font-family="JetBrains Mono" font-size="10">Monthly · PDF</text>
+        </g>
+
+        <!-- ARROWS between layers -->
+        <line x1="220" y1="90"  x2="278" y2="90"  stroke="rgba(255,255,255,0.4)" stroke-width="1" marker-end="url(#arrow)"/>
+        <line x1="220" y1="154" x2="278" y2="154" stroke="rgba(255,255,255,0.4)" stroke-width="1" marker-end="url(#arrow)"/>
+        <line x1="220" y1="218" x2="278" y2="218" stroke="rgba(255,255,255,0.4)" stroke-width="1" marker-end="url(#arrow)"/>
+        <line x1="220" y1="282" x2="278" y2="282" stroke="rgba(255,255,255,0.4)" stroke-width="1" marker-end="url(#arrow)"/>
+        <line x1="220" y1="346" x2="278" y2="346" stroke="rgba(255,255,255,0.4)" stroke-width="1" marker-end="url(#arrow)"/>
+
+        <line x1="480" y1="218" x2="538" y2="218" stroke="oklch(0.62 0.20 268)" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+        <line x1="740" y1="218" x2="798" y2="218" stroke="oklch(0.62 0.20 268)" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+        <line x1="1000" y1="90"  x2="1038" y2="90"  stroke="rgba(255,255,255,0.4)" stroke-width="1" marker-end="url(#arrow)"/>
+        <line x1="1000" y1="154" x2="1038" y2="154" stroke="rgba(255,255,255,0.4)" stroke-width="1" marker-end="url(#arrow)"/>
+        <line x1="1000" y1="218" x2="1038" y2="218" stroke="rgba(255,255,255,0.4)" stroke-width="1" marker-end="url(#arrow)"/>
+        <line x1="1000" y1="282" x2="1038" y2="282" stroke="rgba(255,255,255,0.4)" stroke-width="1" marker-end="url(#arrow)"/>
+        <line x1="1000" y1="346" x2="1038" y2="346" stroke="rgba(255,255,255,0.4)" stroke-width="1" marker-end="url(#arrow)"/>
+
+        <!-- AUDIT LANE -->
+        <rect x="40" y="420" width="1140" height="100" rx="10" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)" stroke-dasharray="4,4"/>
+        <text x="60" y="450" fill="rgba(255,255,255,0.55)" font-family="JetBrains Mono" font-size="11" letter-spacing="1.5">AUDIT LANE · L0</text>
+        <text x="60" y="476" fill="white" font-family="Instrument Serif" font-size="22">Versioned lineage · model cards · access logs · evidence chain</text>
+        <text x="60" y="500" fill="rgba(255,255,255,0.5)" font-family="JetBrains Mono" font-size="10">Spans every layer · reproducible to raw input · EU AI Act high-risk system documentation generated continuously</text>
+      </svg>
       </div>
-      <div class="arch-layer l3">
-        <div class="arch-badge l3">Layer 3</div>
-        <h3>Intelligence Products</h3>
-        <p>Role-based dashboards for managing authorities, DFIs, programme managers, and analysts. Programme-level risk scores, portfolio comparisons, early-warning alerts, and execution-readiness reports structured for human decision-making.</p>
-        <div class="arch-tags">
-          <span class="arch-tag">Risk Scoring</span>
-          <span class="arch-tag">Early Warning</span>
-          <span class="arch-tag">Portfolio View</span>
-          <span class="arch-tag">Exportable Reports</span>
-          <span class="arch-tag">Role-Based Access</span>
+
+      <div class="arch-legend">
+        <div class="arch-leg">
+          <span class="k">L1</span>
+          <span class="n">Sources</span>
+          <span class="d">Public-data feeds and institutional APIs. No proprietary integration required.</span>
+        </div>
+        <div class="arch-leg">
+          <span class="k">L2</span>
+          <span class="n">Ingest</span>
+          <span class="d">Unified data model with versioned schema. Raw inputs preserved for reproducibility.</span>
+        </div>
+        <div class="arch-leg">
+          <span class="k">L3</span>
+          <span class="n">Model</span>
+          <span class="d">Graph NN trained federated; insights compound without raw data leaving perimeter.</span>
+        </div>
+        <div class="arch-leg">
+          <span class="k">L4</span>
+          <span class="n">Explain</span>
+          <span class="d">SHAP attribution per score. Every output is contestable by an institutional auditor.</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CAPABILITIES -->
-<section class="section" style="background:var(--white);">
-  <div class="container">
-    <div class="section-header fade-in">
-      <div class="eyebrow blue">Capabilities</div>
-      <h2>What Izere does that nothing else does</h2>
+<!-- DATA SOURCES -->
+<section class="sources">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="lhs">
+        <span class="eyebrow"><span class="dot"></span>Data sources</span>
+        <h2>Read what programmes <em>already</em> produce.</h2>
+      </div>
+      <div class="rhs">
+        Izere does not ask institutions to change their procurement, programme-management, or supervision systems. We integrate against existing public and institutional data feeds.
+      </div>
     </div>
-    <div class="grid-2">
-      <div class="feat-card fade-in">
-        <div class="feat-icon blue">🔍</div>
-        <h3>Explainable Risk Intelligence</h3>
-        <p>Every risk score comes with a full evidence chain. Izere explains what signals drove the assessment, which data sources were used, and what corrective actions are indicated — suitable for public-sector scrutiny.</p>
-        <ul class="feat-list">
-          <li>Evidence-linked risk factors</li>
-          <li>Source-traceable reasoning</li>
-          <li>Contestable and auditable outputs</li>
-          <li>Aligned with EU AI Act transparency requirements</li>
-        </ul>
+
+    <div class="sources-grid">
+      <div class="src-cell">
+        <span class="k">EU.001</span>
+        <h4>TED · PPDS</h4>
+        <p>EU procurement notices. Contract awards, modifications, contracting authority structure, supplier identity.</p>
       </div>
-      <div class="feat-card fade-in d1">
-        <div class="feat-icon rose">⚡</div>
-        <h3>Early Warning — 2–3 Months Earlier</h3>
-        <p>Traditional monitoring surfaces problems after they become visible. Izere identifies convergent risk signals — coordination failures, capacity constraints, milestone drift — before they translate into delays.</p>
-        <ul class="feat-list">
-          <li>Real-time signal monitoring</li>
-          <li>Cross-programme pattern detection</li>
-          <li>Proactive alert feed</li>
-          <li>Configurable risk thresholds</li>
-        </ul>
+      <div class="src-cell">
+        <span class="k">EU.002</span>
+        <h4>Arachne</h4>
+        <p>Commission risk-scoring database. Supplier-level fraud and irregularity signals, beneficial-ownership network.</p>
       </div>
-      <div class="feat-card fade-in">
-        <div class="feat-icon blue">📊</div>
-        <h3>Portfolio-Level Oversight</h3>
-        <p>Compare execution performance across programmes, regions, and investment cycles. Identify structural patterns in delivery failures. Reduce repetitive due diligence by reusing delivery intelligence.</p>
-        <ul class="feat-list">
-          <li>Cross-programme benchmarking</li>
-          <li>Absorption rate tracking</li>
-          <li>Partner performance history</li>
-          <li>Reusable delivery intelligence</li>
-        </ul>
+      <div class="src-cell">
+        <span class="k">EU.003</span>
+        <h4>Cohesion OPs</h4>
+        <p>Operational programme reports. Absorption rate, milestone status, financial execution, performance framework.</p>
       </div>
-      <div class="feat-card fade-in d1">
-        <div class="feat-icon rose">🏗</div>
-        <h3>Contractor &amp; Subcontractor Intelligence</h3>
-        <p>The most critical — and most invisible — execution risk lies in the subcontractor layer. Izere structures available signals to assess delivery capacity throughout the implementation chain.</p>
-        <ul class="feat-list">
-          <li>Delivery track record analysis</li>
-          <li>Capacity signal assessment</li>
-          <li>Coordination risk indicators</li>
-          <li>OLAF-aligned fraud typologies</li>
-        </ul>
+      <div class="src-cell">
+        <span class="k">EU.004</span>
+        <h4>RRF Scoreboard</h4>
+        <p>Recovery and Resilience Facility milestones and targets. Disbursement requests, fulfilment ratings, reform conditioning.</p>
+      </div>
+      <div class="src-cell">
+        <span class="k">MS.001</span>
+        <h4>Member State APIs</h4>
+        <p>National managing authority systems. Contract-level execution data, governance changes, sub-recipient reporting.</p>
+      </div>
+      <div class="src-cell">
+        <span class="k">EU.005</span>
+        <h4>ECA reports</h4>
+        <p>European Court of Auditors special and annual reports. Findings, recommendations, observations, follow-up status.</p>
+      </div>
+      <div class="src-cell">
+        <span class="k">PUB.001</span>
+        <h4>Procurement registries</h4>
+        <p>National-level procurement systems beyond TED scope. Below-threshold contracts, framework call-offs, regional authorities.</p>
+      </div>
+      <div class="src-cell">
+        <span class="k">REG.001</span>
+        <h4>Beneficial ownership</h4>
+        <p>UBO registries across EU-27. Cross-border ownership chains, ultimate beneficial owners, sanctions cross-reference.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- COMPLIANCE -->
-<section class="section-sm" style="background:var(--surface2);">
-  <div class="container">
-    <div class="section-header fade-in" style="margin-bottom:36px;">
-      <div class="eyebrow blue">Compliance &amp; Governance</div>
-      <h2>Built for institutional trust</h2>
-      <p>Izere operates exclusively on non-personal, institutional data. Security, explainability, and human oversight are embedded by design.</p>
+<!-- INTEGRATION SURFACES -->
+<section class="integ">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="lhs">
+        <span class="eyebrow"><span class="dot"></span>Integration surfaces</span>
+        <h2>Three ways to <em>consume</em> Izere.</h2>
+      </div>
+      <div class="rhs">
+        Choose the surface that fits your institutional process. All three sit on the same evidence chain — programme managers, auditors, and policy leadership see the same scores.
+      </div>
     </div>
-    <div class="comp-row fade-in">
-      <div class="comp-item"><div class="comp-icon blue">🇪🇺</div><div><div class="comp-lbl">EU AI Act</div><div class="comp-sub">High-risk system requirements met</div></div></div>
-      <div class="comp-item"><div class="comp-icon green">🔒</div><div><div class="comp-lbl">GDPR</div><div class="comp-sub">Non-personal institutional data only</div></div></div>
-      <div class="comp-item"><div class="comp-icon blue">🔍</div><div><div class="comp-lbl">XAI Enabled</div><div class="comp-sub">Full explainability &amp; audit trail</div></div></div>
-      <div class="comp-item"><div class="comp-icon green">🛡</div><div><div class="comp-lbl">Data Residency</div><div class="comp-sub">EU-hosted cloud infrastructure</div></div></div>
-      <div class="comp-item"><div class="comp-icon blue">👤</div><div><div class="comp-lbl">Human Oversight</div><div class="comp-sub">No automated enforcement decisions</div></div></div>
-      <div class="comp-item"><div class="comp-icon green">📋</div><div><div class="comp-lbl">Audit Ready</div><div class="comp-sub">Traceable, versioned, documented</div></div></div>
-    </div>
-  </div>
-</section>
 
-<!-- ROADMAP -->
-<section class="section" style="background:var(--white);">
-  <div class="container">
-    <div class="section-header fade-in">
-      <div class="eyebrow blue">Technology Roadmap</div>
-      <h2>Where the platform is going</h2>
-    </div>
-    <div class="roadmap-grid">
-      <div class="roadmap-card fade-in">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
-          <span class="badge blue">Foundation</span>
-          <span style="font-family:var(--mono);font-size:12px;color:var(--ink4);font-weight:500;">2026</span>
-        </div>
-        <h3>Core Intelligence Engine</h3>
-        <ul class="feat-list">
-          <li>Platform architecture &amp; AI prototyping</li>
-          <li>Delivery intelligence data model</li>
-          <li>Initial institutional pilots</li>
-          <li>EU AI Act alignment validation</li>
-        </ul>
+    <div class="integ-grid">
+      <div class="int-cell">
+        <span class="k">SURFACE 01</span>
+        <h4>Dashboard UI</h4>
+        <p>Programme managers and managing authorities. Real-time portfolio view, programme detail with full evidence chain, what-if intervention modelling, exportable audit packs.</p>
+        <code>https://app.izere.eu/portfolio</code>
       </div>
-      <div class="roadmap-card fade-in d1">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
-          <span class="badge rose">Scale</span>
-          <span style="font-family:var(--mono);font-size:12px;color:var(--ink4);font-weight:500;">2027</span>
-        </div>
-        <h3>Cross-Programme Intelligence</h3>
-        <ul class="feat-list">
-          <li>Federated learning across programmes</li>
-          <li>Advanced early-warning indicators</li>
-          <li>3–5 institutional clients onboarded</li>
-          <li>PPDS procurement data integration</li>
-        </ul>
+      <div class="int-cell">
+        <span class="k">SURFACE 02</span>
+        <h4>REST + GraphQL API</h4>
+        <p>Programmatic access for institutions integrating Izere into existing supervision pipelines. Risk scores, signals, audit metadata. Webhook subscriptions for threshold events.</p>
+        <code>POST /v2/programmes/:id/score</code>
       </div>
-      <div class="roadmap-card fade-in d2">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
-          <span class="badge blue">Expansion</span>
-          <span style="font-family:var(--mono);font-size:12px;color:var(--ink4);font-weight:500;">2028</span>
-        </div>
-        <h3>EU-Wide Deployment</h3>
-        <ul class="feat-list">
-          <li>Expansion into 3–5 Member States</li>
-          <li>ISO security certifications</li>
-          <li>Deep DFI / EIB integration</li>
-          <li>Portfolio-level analytics at scale</li>
-        </ul>
+      <div class="int-cell">
+        <span class="k">SURFACE 03</span>
+        <h4>Briefing reports</h4>
+        <p>Monthly PDF briefings for policy leadership and audit committees. Portfolio summary, top-risk programmes, intervention recommendations, methodology notes.</p>
+        <code>monthly · institutional · branded</code>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section-sm">
-  <div class="cta-band">
-    <div class="eyebrow blue" style="margin-bottom:14px;">See It Live</div>
-    <h2>Schedule a platform demonstration</h2>
-    <p>We'll run a live session on real EU programme data and walk through how the XAI engine would apply to your specific portfolio.</p>
-    <div class="cta-actions"><a href="contact.html" class="btn-primary btn-lg">Book a Demonstration</a></div>
+<!-- TECHNICAL SPECS -->
+<section class="specs">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="lhs">
+        <span class="eyebrow"><span class="dot"></span>Specifications</span>
+        <h2>Built for <em>institutional</em> deployment.</h2>
+      </div>
+      <div class="rhs">
+        These are the constraints Izere ships against. Reviewable in detail by institutional security and procurement before contracting.
+      </div>
+    </div>
+
+    <div class="spec-row">
+      <span class="k">Hosting</span>
+      <span class="v">EU sovereign cloud · OVHcloud (FR), Open Telekom Cloud (DE), or institutional on-premise. <strong>No US-jurisdiction routing</strong> at any layer.</span>
+      <span class="badge">EU-only</span>
+    </div>
+    <div class="spec-row">
+      <span class="k">Data residency</span>
+      <span class="v">All raw and derived data resides within the institution's selected EU jurisdiction. Federated training emits gradients only — never raw data.</span>
+      <span class="badge">Federated</span>
+    </div>
+    <div class="spec-row">
+      <span class="k">Encryption</span>
+      <span class="v">AES-256 at rest, TLS 1.3 in transit, customer-managed KMS keys optional. <strong>Confidential compute</strong> for sensitive programmes.</span>
+      <span class="badge">CC available</span>
+    </div>
+    <div class="spec-row">
+      <span class="k">Compliance</span>
+      <span class="v">GDPR Art. 28 DPA, EU AI Act high-risk system documentation, ISO 27001 (in audit), SOC 2 Type II (Q3 2026 target).</span>
+      <span class="badge">Auditable</span>
+    </div>
+    <div class="spec-row">
+      <span class="k">Authentication</span>
+      <span class="v">SAML 2.0, OIDC, eIDAS-compliant institutional identity. SCIM provisioning. MFA enforced. Granular role-based access by programme.</span>
+      <span class="badge">eIDAS</span>
+    </div>
+    <div class="spec-row">
+      <span class="k">SLA</span>
+      <span class="v">99.9% availability for dashboard and API. P95 score-query latency &lt; 250ms. Recovery time objective 4h, recovery point objective 15min.</span>
+      <span class="badge">99.9%</span>
+    </div>
+    <div class="spec-row">
+      <span class="k">Audit trail</span>
+      <span class="v">Every score reproducible end-to-end from raw inputs. Append-only event log. Independent third-party auditor read-access available.</span>
+      <span class="badge">Reproducible</span>
+    </div>
+    <div class="spec-row">
+      <span class="k">Procurement</span>
+      <span class="v">Compatible with EU framework agreement procedures. DG REGIO, DG GROW, ECA, EIB pre-qualified vendor list (in progress).</span>
+      <span class="badge">Pre-qual.</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="cta-bg"><div class="cta-bg-grid"></div></div>
+  <div class="wrap">
+    <div class="cta-content">
+      <h2>Need a <em>technical</em> walkthrough?</h2>
+      <div class="right">
+        <p>We provide architecture deep-dives for institutional security, audit, and procurement teams. Reviewable documentation in advance. Two-hour technical session.</p>
+        <a href="index.html#contact" class="btn btn-primary btn-lg" style="background:var(--paper);color:var(--ink);">Request technical session <span class="arr">→</span></a>
+      </div>
+    </div>
   </div>
 </section>
 
 <footer class="footer">
-  <div class="container">
+  <div class="wrap">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand"><div class="footer-brand-logo"><svg viewBox="0 0 18 18" fill="none" width="16" height="16"><path d="M9 2L14.5 5.5V12.5L9 16L3.5 12.5V5.5L9 2Z" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.15)"/><circle cx="9" cy="9" r="2.5" fill="white"/></svg></div>Izere</div>
-        <p class="footer-desc">Delivery intelligence for EU-funded programmes and public infrastructure investment.</p>
-        <div class="footer-badges"><span class="footer-badge">EU AI Act Compliant</span><span class="footer-badge">GDPR</span><span class="footer-badge">XAI Enabled</span><span class="footer-badge">Luxembourg</span></div>
+        <div class="footer-brand">Izere</div>
+        <p class="footer-desc">Delivery intelligence for EU-funded programmes and public infrastructure investment. Explainable AI for institutions that cannot afford to fail.</p>
+        <div class="footer-badges">
+          <span class="footer-badge">EU AI Act</span>
+          <span class="footer-badge">GDPR</span>
+          <span class="footer-badge">XAI Enabled</span>
+          <span class="footer-badge">Luxembourg</span>
+        </div>
       </div>
-      <div class="footer-col"><h4>Product</h4><a href="platform.html">Platform</a><a href="use-cases.html">Use Cases</a><a href="pricing.html">Pricing</a></div>
-      <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact</a></div>
-      <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Data Governance</a></div>
+      <div class="footer-col">
+        <h5>Product</h5>
+        <a href="platform.html">Platform</a>
+        <a href="methodology.html">Methodology</a>
+        <a href="case-studies/rail-baltica.html">Case studies</a>
+        <a href="index.html#demo">Live demo</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="team.html">Team</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="#">Press</a>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms of use</a>
+        <a href="#">Data governance</a>
+      </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2026 Izere Sàrl-S · Luxembourg · All rights reserved</span>
-      <span class="footer-copy">Built at LHoFT · Luxembourg House of Financial Technology</span>
+      <span>© 2026 IZERE SÀRL-S · LUXEMBOURG · ALL RIGHTS RESERVED</span>
+      <span>LUXEMBOURG · EUROPE</span>
     </div>
   </div>
 </footer>
 
 <script>
-  const observer = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, {threshold:0.12});
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20); });
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 24); });
 </script>
+
 </body>
 </html>
