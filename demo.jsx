@@ -103,7 +103,7 @@ function IzereDemo(){
     <div className="demo-frame">
       <div className="demo-bar">
         <div className="demo-bar-l">
-          <span className="mono" style={{fontSize:11,color:'rgba(255,255,255,0.6)',letterSpacing:'0.08em'}}>izere/portfolio</span>
+          <span className="mono" style={{fontSize:11,color:'var(--ink-3)',letterSpacing:'0.08em'}}>izere/portfolio</span>
           <div className="demo-tabs">
             <span className="demo-tab active">Overview</span>
             <span className="demo-tab">Programmes</span>
@@ -112,7 +112,7 @@ function IzereDemo(){
           </div>
         </div>
         <div className="demo-bar-r">
-          <span className="live-dot">LIVE · 5 PROGRAMMES MONITORED</span>
+          <span className="live-dot">DEMO · 5 PROGRAMMES</span>
           <span>· €481B</span>
         </div>
       </div>
@@ -122,13 +122,14 @@ function IzereDemo(){
         <div className="demo-left">
           <div className="demo-overline">
             <span className="demo-overline-l">Portfolio risk overview</span>
-            <span className="demo-overline-r">UPDATED 04.30.26 — 14:08 UTC</span>
+            <span className="demo-overline-r">ILLUSTRATIVE SCORES</span>
           </div>
           <h3 className="demo-headline">Five programmes.<br/><em>Three</em> tracking late.</h3>
 
           <div className="prog-list">
             {PROGRAMMES.map(p => (
-              <div key={p.id}
+              <button type="button" key={p.id}
+                   aria-pressed={selectedId === p.id}
                    className={`prog-row ${selectedId === p.id ? 'selected' : ''}`}
                    onClick={() => { setSelected(p.id); setInterventions({}); }}>
                 <div className="lbl">
@@ -139,7 +140,7 @@ function IzereDemo(){
                   <div className={`prog-bar-fill ${p.band}`} style={{width: p.score + '%'}}></div>
                 </div>
                 <div className="prog-val">{p.score}</div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -149,20 +150,22 @@ function IzereDemo(){
           <div>
             <div className="panel-headline">Programme detail · evidence chain</div>
             <div className="panel-name" style={{marginTop:6}}>{selected.name}</div>
-            <div style={{fontSize:12.5,color:'rgba(255,255,255,0.55)',marginTop:4,fontFamily:'var(--mono)'}}>{selected.note}</div>
+            <div style={{fontSize:12.5,color:'var(--ink-3)',marginTop:4,fontFamily:'var(--mono)'}}>{selected.note}</div>
           </div>
 
           <div style={{display:'flex',alignItems:'baseline',gap:14}}>
-            <div className={`panel-score ${projectedBand}`}>{projected}<span className="out">/100</span></div>
+            <div className={`panel-score ${projectedBand} ${totalImpact !== 0 ? 'is-projection' : ''}`}>{projected}<span className="out">/100</span></div>
             {totalImpact !== 0 && (
-              <div style={{fontFamily:'var(--mono)',fontSize:12,color:'rgba(255,255,255,0.55)'}}>
+              <div style={{fontFamily:'var(--mono)',fontSize:12,color:'var(--ink-3)'}}>
                 <div>Baseline {selected.score}</div>
-                <div style={{color: totalImpact < 0 ? 'oklch(0.7 0.1 150)' : 'var(--carmine)'}}>
+                <div className="forecast-delta">
                   Δ {totalImpact > 0 ? '+' : ''}{totalImpact}
                 </div>
               </div>
             )}
           </div>
+
+          <div className={`status-label ${totalImpact !== 0 ? 'forecast' : selected.band === 'l' ? 'on-track' : ''}`} role="status">{totalImpact !== 0 ? 'Scenario forecast' : selected.band === 'h' ? 'At risk' : selected.band === 'm' ? 'Watch' : 'On track'}</div>
 
           <div className="evidence">
             {selected.evidence.map((ev, i) => (
@@ -193,7 +196,7 @@ function IzereDemo(){
               ))}
             </div>
             <div className="whatif-impact">
-              <span>Projected impact on score</span>
+              <span>Scenario impact on score</span>
               <span className={`delta ${totalImpact >= 0 ? 'neg' : ''}`}>
                 {totalImpact === 0 ? '—' : (totalImpact > 0 ? '+' : '') + totalImpact + ' pts'}
               </span>
@@ -207,3 +210,4 @@ function IzereDemo(){
 
 const root = ReactDOM.createRoot(document.getElementById('izere-demo'));
 root.render(<IzereDemo />);
+

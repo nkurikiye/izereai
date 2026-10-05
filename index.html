@@ -21,14 +21,19 @@
 <meta name="twitter:image" content="https://izereai.com/og-image.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="shared.css" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared.css?v=brand-01" />
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
 
+<style>
+.page-hero h1,.case-title{font-size:clamp(40px,6vw,80px);line-height:1.1;font-weight:700;}
+.page-hero h1 em,.case-title em{color:inherit;font-style:normal;}
+.page-hero{padding-top:160px;}
+</style>
 </head>
 <body>
 
@@ -60,17 +65,12 @@
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-eyebrow">
-        <span class="num">№ 001 / DELIVERY INTELLIGENCE</span>
+        <span class="num">DELIVERY INTELLIGENCE</span>
         <span class="rule"></span>
         <span class="loc">LUXEMBOURG · EU-27</span>
       </div>
 
-      <h1>
-        Europe <span class="swap"><span class="word"></span></span><br/>
-        the capital.<br/>
-        <em>Execution</em><br/>
-        is the <span class="swap solid">gap</span>.
-      </h1>
+      <h1>Europe has the capital.<br/>Execution is the gap.</h1>
 
       <div class="hero-sub-row">
         <p class="hero-lede">
@@ -95,8 +95,8 @@
 <!-- INTERACTIVE DEMO -->
 <section class="demo-section" id="demo">
   <div class="wrap">
-    <div class="eyebrow" style="margin-bottom:18px;"><span class="dot"></span>Live demo · five real EU programmes</div>
-    <h2 style="font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.5vw,46px);line-height:1.05;letter-spacing:-0.02em;margin-bottom:32px;max-width:720px;">Click a programme. See the <em style="color:var(--accent);font-style:italic;">evidence chain</em>. Run interventions.</h2>
+    <div class="eyebrow" style="margin-bottom:18px;"><span class="dot"></span>Interactive demo · five EU programmes</div>
+    <h2 style="font-family:var(--serif);font-weight:600;font-size:clamp(28px,3.5vw,46px);line-height:1.05;letter-spacing:-0.02em;margin-bottom:32px;max-width:720px;">Click a programme. See the <em style="color:var(--accent);font-style:normal;">evidence chain</em>. Run interventions.</h2>
     <div id="izere-demo"></div>
   </div>
 </section>
@@ -140,7 +140,7 @@
     <div class="section-header">
       <div class="lhs">
         <span class="eyebrow"><span class="dot"></span>Case study · Rail Baltica</span>
-        <h2 style="margin-top:18px;">A €18B overrun.<br/><em>14 months</em> of warning signs.</h2>
+        <h2 style="margin-top:18px;">Rail Baltica.<br/>The delivery risk behind the numbers.</h2>
       </div>
       <div class="rhs">
         Rail Baltica is the largest cross-border infrastructure project in EU history. Its cost trebled and timeline doubled. The signals were in the data the whole time — they just weren't being read.
@@ -149,7 +149,7 @@
 
     <div class="case-grid">
       <div class="case-text">
-        <h2 style="font-size:clamp(28px,3.5vw,46px);">Where Izere would have <em>flagged</em> it.</h2>
+        <h2 style="font-size:clamp(28px,3.5vw,46px);">The signals behind the risk.</h2>
         <p>By <span class="hi">May 2024</span>, Latvia's procurement signals across 18 contract notices showed a 47% drop in qualified bidders versus the 2018 baseline. Subcontractor concentration crossed the 0.62 Herfindahl threshold three quarters earlier than ECA detection.</p>
         <p>Coordination signals between the three Member States — meeting cadence, document throughput, milestone amendments — diverged sharply in <span class="hi">Q3 2024</span>. Izere's graph model would have moved Rail Baltica's risk score from 41 to 78 between June and September.</p>
         <p>By the time the European Court of Auditors flagged the programme in <strong>January 2026</strong>, the cost had compounded for fourteen months. Earlier detection would have surfaced corrective action while the cost gap was still €2.4B — not €18B.</p>
@@ -181,23 +181,23 @@
 
             <!-- Izere line (rises early) -->
             <path id="izere-line" d="M0,180 L75,170 L150,150 L225,90 L300,55 L375,40 L450,35 L525,30 L600,28"
-                  stroke="oklch(0.62 0.20 268)" stroke-width="2" fill="none" stroke-dasharray="1200" stroke-dashoffset="1200"/>
+                  stroke="#007AFF" stroke-width="2" fill="none" stroke-dasharray="1200" stroke-dashoffset="1200"/>
             <!-- Izere area -->
             <path d="M0,180 L75,170 L150,150 L225,90 L300,55 L375,40 L450,35 L525,30 L600,28 L600,220 L0,220 Z"
-                  fill="oklch(0.62 0.20 268 / 0.12)" id="izere-area" style="opacity:0;"/>
+                  fill="rgba(0,122,255,0.12)" id="izere-area" style="opacity:0;"/>
 
             <!-- Traditional line (rises late) -->
             <path id="trad-line" d="M0,200 L75,198 L150,195 L225,190 L300,185 L375,170 L450,135 L525,80 L600,40"
-                  stroke="oklch(0.58 0.20 22)" stroke-width="2" fill="none" stroke-dasharray="6,4" stroke-dashoffset="1200"/>
+                  stroke="#FF9500" stroke-width="2" fill="none" stroke-dasharray="6,4" stroke-dashoffset="1200"/>
 
             <!-- vertical: Izere flag (May 2024) -->
-            <line x1="225" y1="0" x2="225" y2="220" stroke="oklch(0.62 0.20 268 / 0.4)" stroke-width="1" stroke-dasharray="2,3"/>
-            <circle cx="225" cy="90" r="5" fill="oklch(0.62 0.20 268)"/>
+            <line x1="225" y1="0" x2="225" y2="220" stroke="rgba(0,122,255,0.4)" stroke-width="1" stroke-dasharray="2,3"/>
+            <circle cx="225" cy="90" r="5" fill="#007AFF"/>
             <text x="232" y="84" fill="rgba(255,255,255,0.85)" font-family="JetBrains Mono" font-size="9">IZERE FLAG · MAY '24</text>
 
             <!-- vertical: ECA flag (Jan 2026) -->
-            <line x1="525" y1="0" x2="525" y2="220" stroke="oklch(0.58 0.20 22 / 0.4)" stroke-width="1" stroke-dasharray="2,3"/>
-            <circle cx="525" cy="80" r="5" fill="oklch(0.58 0.20 22)"/>
+            <line x1="525" y1="0" x2="525" y2="220" stroke="rgba(255,149,0,0.4)" stroke-width="1" stroke-dasharray="2,3"/>
+            <circle cx="525" cy="80" r="5" fill="#FF9500"/>
             <text x="450" y="74" fill="rgba(255,255,255,0.85)" font-family="JetBrains Mono" font-size="9" text-anchor="end">ECA FLAG · JAN '26</text>
 
             <!-- x-labels -->
@@ -302,7 +302,7 @@
       </div>
 
       <div>
-        <p style="font-family:var(--serif);font-size:28px;line-height:1.2;letter-spacing:-0.01em;color:var(--ink);margin-bottom:24px;">If your auditors cannot read it, you should not deploy it.</p>
+        <p style="font-family:var(--serif);font-size:28px;line-height:1.2;letter-spacing:-0.01em;color:var(--ink);margin-bottom:24px;">See it early. Explain it clearly.</p>
         <p style="font-size:14.5px;line-height:1.7;color:var(--ink-3);margin-bottom:16px;">Izere ships full methodology documentation with every deployment. Model cards, evaluation protocols, and sensitivity analyses are reviewable before procurement.</p>
 
         <div class="meth-cta">
@@ -357,7 +357,7 @@
     <div class="footer-grid">
       <div>
         <div class="footer-brand"><img class="footer-logo" src="assets/izere-lockup-dark.svg" alt="Izere" width="232" height="64" loading="lazy" /></div>
-        <p class="footer-desc">Delivery intelligence for EU-funded programmes and public infrastructure investment. Explainable AI for institutions that cannot afford to fail.</p>
+        <p class="footer-desc">Delivery intelligence for EU-funded programmes and public infrastructure investment. Clear evidence for decisions about public investment.</p>
         <div class="footer-badges">
           <span class="footer-badge">EU AI Act</span>
           <span class="footer-badge">GDPR</span>
@@ -392,19 +392,9 @@
   </div>
 </footer>
 
-<div id="tweaks-root"></div>
+
 
 <script>
-  // Headline word-cycle: rotate Europe verbs every 1.5s
-  (function(){
-    const words = ['commits', 'allocates', 'pledges', 'announces'];
-    const el = document.querySelector('.hero h1 .swap .word');
-    if(!el) return;
-    let i = 0;
-    el.textContent = words[0];
-    setInterval(() => { i = (i+1) % words.length; el.textContent = words[i]; }, 1800);
-  })();
-
   // Reveal-on-scroll for non-demo sections
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
@@ -441,9 +431,7 @@
   }
 </script>
 
-<script type="text/babel" src="tweaks-panel.jsx"></script>
-<script type="text/babel" src="demo.jsx"></script>
-<script type="text/babel" src="tweaks.jsx"></script>
+<script type="text/babel" src="demo.jsx?v=brand-01"></script>
 
 </body>
 </html>

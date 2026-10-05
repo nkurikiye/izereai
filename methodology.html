@@ -21,16 +21,16 @@
 <meta name="twitter:image" content="https://izereai.com/og-image.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="shared.css" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared.css?v=brand-01" />
 <style>
   /* Methodology page — long-form editorial */
   .page-hero{padding:148px 0 80px;border-bottom:1px solid var(--line);}
   .page-crumb{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:var(--ink-4);text-transform:uppercase;}
   .page-crumb .sep{opacity:0.4;}
   .page-crumb .here{color:var(--ink-2);}
-  .page-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(48px,7vw,108px);line-height:0.96;letter-spacing:-0.025em;margin-top:24px;}
-  .page-hero h1 em{color:var(--accent);font-style:italic;}
+  .page-hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(48px,7vw,108px);line-height:0.96;letter-spacing:-0.025em;margin-top:24px;}
+  .page-hero h1 em{color:var(--accent);font-style:normal;}
   .page-hero .lede{font-size:20px;line-height:1.5;color:var(--ink-2);max-width:680px;margin-top:32px;}
 
   /* Document layout — two col with sidebar TOC */
@@ -45,14 +45,14 @@
   .toc li.current a{color:var(--ink);font-weight:500;}
 
   .doc-body section{margin-bottom:96px;scroll-margin-top:96px;}
-  .doc-body h2{font-family:var(--serif);font-weight:400;font-size:48px;line-height:1.05;letter-spacing:-0.02em;margin-bottom:8px;}
-  .doc-body h2 em{color:var(--accent);font-style:italic;}
+  .doc-body h2{font-family:var(--serif);font-weight:600;font-size:48px;line-height:1.05;letter-spacing:-0.02em;margin-bottom:8px;}
+  .doc-body h2 em{color:var(--accent);font-style:normal;}
   .doc-body .sec-num{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;color:var(--accent);text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:14px;}
   .doc-body .sec-num::after{content:'';flex:1;height:1px;background:var(--line);}
   .doc-body p{font-size:16px;line-height:1.75;color:var(--ink-2);margin-top:24px;max-width:680px;}
   .doc-body p strong{color:var(--ink);font-weight:500;}
   .doc-body p .hi{background:color-mix(in srgb, var(--accent) 16%, transparent);padding:0 4px;border-radius:3px;}
-  .doc-body h3{font-family:var(--serif);font-size:28px;font-weight:400;letter-spacing:-0.01em;line-height:1.2;margin-top:40px;margin-bottom:8px;}
+  .doc-body h3{font-family:var(--serif);font-size:28px;font-weight:600;letter-spacing:-0.01em;line-height:1.2;margin-top:40px;margin-bottom:8px;}
 
   .pull{
     margin:48px 0;padding:32px 36px;
@@ -60,7 +60,7 @@
     background:var(--paper-2);
     font-family:var(--serif);font-size:28px;line-height:1.3;letter-spacing:-0.01em;color:var(--ink);
   }
-  .pull em{color:var(--accent);font-style:italic;}
+  .pull em{color:var(--accent);font-style:normal;}
 
   .formula{
     background:var(--ink);color:var(--paper);
@@ -71,7 +71,7 @@
   }
   body.dark .formula{background:#06070A;}
   .formula .cmt{color:rgba(255,255,255,0.45);}
-  .formula .acc{color:oklch(0.72 0.18 268);}
+  .formula .acc{color:#007AFF;}
 
   /* feature table */
   .ft-table{margin:36px 0;border-top:1px solid var(--line);}
@@ -79,7 +79,7 @@
   .ft-row.hd{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-4);padding:12px 0;}
   .ft-row .id{font-family:var(--mono);color:var(--ink-4);font-size:11px;}
   .ft-row .nm{color:var(--ink);font-weight:500;}
-  .ft-row .nm small{display:block;color:var(--ink-3);font-weight:400;margin-top:3px;font-size:12.5px;line-height:1.5;}
+  .ft-row .nm small{display:block;color:var(--ink-3);font-weight:600;margin-top:3px;font-size:12.5px;line-height:1.5;}
   .ft-row .src{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);}
   .ft-row .w{font-family:var(--mono);font-size:11px;color:var(--accent);text-align:right;}
 
@@ -114,6 +114,11 @@
     .eval-row{grid-template-columns:1fr 80px;gap:10px;}
     .eval-row .v:nth-child(3),.eval-row .v:nth-child(4),.eval-row.hd .v:nth-child(3),.eval-row.hd .v:nth-child(4){display:none;}
   }
+</style>
+<style>
+.page-hero h1,.case-title{font-size:clamp(40px,6vw,80px);line-height:1.1;font-weight:700;}
+.page-hero h1 em,.case-title em{color:inherit;font-style:normal;}
+.page-hero{padding-top:160px;}
 </style>
 </head>
 <body>
@@ -305,7 +310,7 @@
     <div class="footer-grid">
       <div>
         <div class="footer-brand"><img class="footer-logo" src="assets/izere-lockup-dark.svg" alt="Izere" width="232" height="64" loading="lazy" /></div>
-        <p class="footer-desc">Delivery intelligence for EU-funded programmes and public infrastructure investment. Explainable AI for institutions that cannot afford to fail.</p>
+        <p class="footer-desc">Delivery intelligence for EU-funded programmes and public infrastructure investment. Clear evidence for decisions about public investment.</p>
         <div class="footer-badges">
           <span class="footer-badge">EU AI Act</span><span class="footer-badge">GDPR</span><span class="footer-badge">XAI Enabled</span><span class="footer-badge">Luxembourg</span>
         </div>
