@@ -68,12 +68,11 @@
   .nav.scrolled{border-bottom-color:var(--line);background:color-mix(in srgb, var(--paper) 92%, transparent);}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px;flex-wrap:nowrap;}
   .brand{display:flex;align-items:center;gap:12px;font-weight:600;flex-shrink:0;}
-  .brand-wm{font-family:var(--serif);font-size:26px;letter-spacing:-0.015em;line-height:1;color:var(--ink);white-space:nowrap;}
-  .brand-wm .cut{display:inline-block;position:relative;}
-  .brand-wm .cut::after{
-    content:'';position:absolute;top:18%;left:48%;width:10%;height:64%;background:var(--paper);
-    transform:skewX(-15deg);
-  }
+  .brand-logo{display:block;width:130.5px;height:36px;object-fit:contain;}
+  .brand-logo-dark{display:none;}
+  body.dark .brand-logo-light{display:none;}
+  body.dark .brand-logo-dark{display:block;}
+  .footer-logo{display:block;width:174px;height:48px;object-fit:contain;}
   .nav-links{display:flex;align-items:center;gap:2px;flex-wrap:nowrap;}
   .nav-links a{font-size:13.5px;font-weight:500;color:var(--ink-2);padding:8px 14px;border-radius:8px;transition:color .15s, background .15s;white-space:nowrap;}
   .nav-links a:hover{background:color-mix(in srgb, var(--ink) 6%, transparent);}
@@ -442,3 +441,4 @@
   .cta-form input::placeholder,.cta-form textarea::placeholder{color:rgba(255,255,255,0.5);}
   .cta-form input:focus,.cta-form textarea:focus{border-color:var(--accent-2);background:rgba(255,255,255,0.1);}
   .cta-form button{margin-top:4px;align-self:flex-start;border:none;cursor:pointer;}
+
