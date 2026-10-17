@@ -8,7 +8,7 @@ const PROGRAMMES = [
     name: 'Rail Baltica TEN-T',
     score: 84,
     band: 'h',
-    note: 'Cost overrun 4× baseline · 14-month detection lead',
+    note: 'ECA Jan 2026: first phase about €24B, 2030 deadline will be missed',
     evidence: [
       { ic: 'BC', label: 'Bidder concentration · Latvia', shap: '+18.4', w: 92 },
       { ic: 'CD', label: 'Cross-state coordination divergence', shap: '+14.2', w: 78 },
@@ -104,16 +104,9 @@ function IzereDemo(){
       <div className="demo-bar">
         <div className="demo-bar-l">
           <span className="mono" style={{fontSize:11,color:'var(--ink-3)',letterSpacing:'0.08em'}}>izere/portfolio</span>
-          <div className="demo-tabs">
-            <span className="demo-tab active">Overview</span>
-            <span className="demo-tab">Programmes</span>
-            <span className="demo-tab">Signals</span>
-            <span className="demo-tab">Audit</span>
-          </div>
         </div>
         <div className="demo-bar-r">
           <span className="live-dot">DEMO · 5 PROGRAMMES</span>
-          <span>· €481B</span>
         </div>
       </div>
 
@@ -124,7 +117,7 @@ function IzereDemo(){
             <span className="demo-overline-l">Portfolio risk overview</span>
             <span className="demo-overline-r">ILLUSTRATIVE SCORES</span>
           </div>
-          <h3 className="demo-headline">Five programmes.<br/><em>Three</em> tracking late.</h3>
+          <h3 className="demo-headline">Five programmes, ranked by risk.</h3>
 
           <div className="prog-list">
             {PROGRAMMES.map(p => (
@@ -148,7 +141,7 @@ function IzereDemo(){
         {/* RIGHT: detail panel */}
         <div className="demo-right">
           <div>
-            <div className="panel-headline">Programme detail · evidence chain</div>
+            <div className="panel-headline">Programme detail · what drives the score</div>
             <div className="panel-name" style={{marginTop:6}}>{selected.name}</div>
             <div style={{fontSize:12.5,color:'var(--ink-3)',marginTop:4,fontFamily:'var(--mono)'}}>{selected.note}</div>
           </div>
@@ -177,14 +170,14 @@ function IzereDemo(){
                     <div className="ev-w-fill" style={{width: ev.w + '%'}}></div>
                   </div>
                 </div>
-                <div className="ev-shap">SHAP {ev.shap}</div>
+                <div className="ev-shap">{ev.shap}</div>
               </div>
             ))}
           </div>
 
           <div className="whatif">
             <div className="whatif-hd">
-              <span className="l">What-if · interventions</span>
+              <span className="l">What-if · illustrative effects</span>
               <span className="r">{Object.values(interventions).filter(Boolean).length} of {INTERVENTIONS.length} active</span>
             </div>
             <div className="whatif-options">
