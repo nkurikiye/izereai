@@ -113,8 +113,7 @@
         <a href="index.html#demo">Live demo</a>
       </div>
       <div class="nav-cta">
-        <a href="index.html#contact" class="btn btn-ghost">Log in</a>
-        <a href="index.html#contact" class="btn btn-primary">Request demo <span class="arr">→</span></a>
+        <a href="index.html#contact" class="btn btn-primary">Book a briefing <span class="arr">→</span></a>
       </div>
       <label class="nav-burger" for="nav-toggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></label>
     </div>
@@ -126,8 +125,8 @@
     <div class="page-crumb">
       <a href="index.html">Izere</a><span class="sep">/</span><span class="here">Platform</span>
     </div>
-    <h1>The <em>execution</em><br/>intelligence layer.</h1>
-    <p class="lede">Izere ingests programme data from existing institutional systems, models actors and dependencies as a dynamic graph, and produces explainable risk intelligence with a continuous audit trail. Five layers. API-first. Federated by default.</p>
+    <h1>How Izere is built.</h1>
+    <p class="lede">Izere is designed to take programme data from existing institutional systems, model the actors and dependencies as a graph, and produce risk scores that come with their evidence and an audit trail. This page shows the planned architecture. The product is at prototype stage.</p>
   </div>
 </section>
 
@@ -137,17 +136,17 @@
     <div class="section-header">
       <div class="lhs">
         <span class="eyebrow"><span class="dot"></span>System architecture</span>
-        <h2>Five layers, <em>one</em> evidence chain.</h2>
+        <h2>Five layers, one evidence chain.</h2>
       </div>
       <div class="rhs">
-        Each layer is independently deployable and independently auditable. Data flows are versioned end-to-end so any score can be reproduced from raw inputs at any point in time.
+        The design goal is that each layer can be deployed and audited on its own, and that data flows are versioned end to end, so any score can be reproduced from raw inputs.
       </div>
     </div>
 
     <div class="arch-frame">
       <div class="arch-hd">
-        <span class="t">izere/architecture · v2.4.0</span>
-        <span class="v">SCALE 1:1 · UTC 2026-04-30</span>
+        <span class="t">izere/architecture · design draft</span>
+        <span class="v">PLANNED · OCT 2026</span>
       </div>
 
       <div class="arch-svg-wrap">
@@ -241,9 +240,9 @@
             <circle cx="40" cy="100" r="5" fill="white"/>
           </g>
 
-          <text x="560" y="320" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="10">edges: 2.4M</text>
-          <text x="560" y="340" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="10">nodes: 487K</text>
-          <text x="560" y="360" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="10">trained: federated</text>
+          <text x="560" y="320" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="10">actors · contracts</text>
+          <text x="560" y="340" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="10">dependencies · events</text>
+          <text x="560" y="360" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="10">training: federated (planned)</text>
         </g>
 
         <!-- LAYER 04: EXPLAIN -->
@@ -256,22 +255,22 @@
           <!-- SHAP bars -->
           <g transform="translate(820, 150)">
             <rect x="0" y="0" width="120" height="14" rx="2" fill="rgba(0,122,255,0.7)"/>
-            <text x="0" y="-4" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="9">+18.4 Bidder conc.</text>
+            <text x="0" y="-4" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="9">Bidder concentration</text>
 
             <rect x="0" y="28" width="92" height="14" rx="2" fill="rgba(0,122,255,0.7)"/>
-            <text x="0" y="24" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="9">+14.2 Coordination</text>
+            <text x="0" y="24" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="9">Coordination</text>
 
             <rect x="0" y="56" width="76" height="14" rx="2" fill="rgba(0,122,255,0.7)"/>
-            <text x="0" y="52" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="9">+11.8 Financing gap</text>
+            <text x="0" y="52" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="9">Financing gap</text>
 
             <rect x="0" y="84" width="58" height="14" rx="2" fill="rgba(0,122,255,0.7)"/>
-            <text x="0" y="80" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="9">+9.1 Milestone amend.</text>
+            <text x="0" y="80" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="9">Milestone amendments</text>
 
             <rect x="0" y="112" width="46" height="14" rx="2" fill="rgba(0,122,255,0.7)"/>
-            <text x="0" y="108" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="9">+7.3 Governance dist.</text>
+            <text x="0" y="108" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="9">Governance distance</text>
 
             <line x1="0" y1="148" x2="160" y2="148" stroke="rgba(255,255,255,0.15)" stroke-dasharray="2,3"/>
-            <text x="0" y="174" fill="white" font-family="JetBrains Mono" font-size="11">Σ = 84/100</text>
+            <text x="0" y="174" fill="white" font-family="JetBrains Mono" font-size="11">Σ = score (0–100)</text>
             <text x="0" y="190" fill="rgba(255,255,255,0.5)" font-family="JetBrains Mono" font-size="9">contestable · versioned</text>
           </g>
         </g>
@@ -319,7 +318,7 @@
         <rect x="40" y="420" width="1140" height="100" rx="10" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.10)" stroke-dasharray="4,4"/>
         <text x="60" y="450" fill="rgba(255,255,255,0.55)" font-family="JetBrains Mono" font-size="11" letter-spacing="1.5">AUDIT LANE · L0</text>
         <text x="60" y="476" fill="white" font-family="Instrument Serif" font-size="22">Versioned lineage · model cards · access logs · evidence chain</text>
-        <text x="60" y="500" fill="rgba(255,255,255,0.5)" font-family="JetBrains Mono" font-size="10">Spans every layer · reproducible to raw input · EU AI Act high-risk system documentation generated continuously</text>
+        <text x="60" y="500" fill="rgba(255,255,255,0.5)" font-family="JetBrains Mono" font-size="10">Spans every layer · reproducible to raw input · built with EU AI Act documentation in mind</text>
       </svg>
       </div>
 
@@ -337,12 +336,12 @@
         <div class="arch-leg">
           <span class="k">L3</span>
           <span class="n">Model</span>
-          <span class="d">Graph NN trained federated; insights compound without raw data leaving perimeter.</span>
+          <span class="d">Graph model, designed for federated training so raw data stays inside each institution.</span>
         </div>
         <div class="arch-leg">
           <span class="k">L4</span>
           <span class="n">Explain</span>
-          <span class="d">SHAP attribution per score. Every output is contestable by an institutional auditor.</span>
+          <span class="d">SHAP attribution per score, so an auditor can see what drove it and challenge it.</span>
         </div>
       </div>
     </div>
@@ -355,10 +354,10 @@
     <div class="section-header">
       <div class="lhs">
         <span class="eyebrow"><span class="dot"></span>Data sources</span>
-        <h2>Read what programmes <em>already</em> produce.</h2>
+        <h2>Read what programmes already produce.</h2>
       </div>
       <div class="rhs">
-        Izere does not ask institutions to change their procurement, programme-management, or supervision systems. We integrate against existing public and institutional data feeds.
+        Izere is meant to work alongside the procurement, programme-management and supervision systems institutions already use. The plan is to read from existing public and institutional data feeds. Access to some sources depends on the institution's own permissions.
       </div>
     </div>
 
@@ -413,10 +412,10 @@
     <div class="section-header">
       <div class="lhs">
         <span class="eyebrow"><span class="dot"></span>Integration surfaces</span>
-        <h2>Three ways to <em>consume</em> Izere.</h2>
+        <h2>Three planned ways to use Izere.</h2>
       </div>
       <div class="rhs">
-        Choose the surface that fits your institutional process. All three sit on the same evidence chain — programme managers, auditors, and policy leadership see the same scores.
+        All three would sit on the same evidence chain, so programme managers, auditors and policy leaders see the same scores.
       </div>
     </div>
 
@@ -424,20 +423,20 @@
       <div class="int-cell">
         <span class="k">SURFACE 01</span>
         <h4>Dashboard UI</h4>
-        <p>Programme managers and managing authorities. Real-time portfolio view, programme detail with full evidence chain, what-if intervention modelling, exportable audit packs.</p>
-        <code>https://app.izereai.com/portfolio</code>
+        <p>Planned. A portfolio view for programme managers and managing authorities, with the evidence behind each score and what-if scenarios. A clickable prototype is on the homepage.</p>
+        <code>prototype · see the demo</code>
       </div>
       <div class="int-cell">
         <span class="k">SURFACE 02</span>
         <h4>REST + GraphQL API</h4>
-        <p>Programmatic access for institutions integrating Izere into existing supervision pipelines. Risk scores, signals, audit metadata. Webhook subscriptions for threshold events.</p>
-        <code>POST /v2/programmes/:id/score</code>
+        <p>Planned. Programmatic access for institutions that want scores and signals inside their own supervision tools.</p>
+        <code>planned · not yet available</code>
       </div>
       <div class="int-cell">
         <span class="k">SURFACE 03</span>
         <h4>Briefing reports</h4>
-        <p>Monthly PDF briefings for policy leadership and audit committees. Portfolio summary, top-risk programmes, intervention recommendations, methodology notes.</p>
-        <code>monthly · institutional · branded</code>
+        <p>Planned. Periodic PDF briefings for policy leaders and audit committees: portfolio summary, programmes that need attention, and methodology notes.</p>
+        <code>planned</code>
       </div>
     </div>
   </div>
@@ -448,53 +447,48 @@
   <div class="wrap">
     <div class="section-header">
       <div class="lhs">
-        <span class="eyebrow"><span class="dot"></span>Specifications</span>
-        <h2>Built for <em>institutional</em> deployment.</h2>
+        <span class="eyebrow"><span class="dot"></span>Design targets</span>
+        <h2>What Izere is being built to meet.</h2>
       </div>
       <div class="rhs">
-        These are the constraints Izere ships against. Reviewable in detail by institutional security and procurement before contracting.
+        These are targets for the first institutional deployments, not certifications or commitments. Security and procurement teams are welcome to review and challenge them.
       </div>
     </div>
 
     <div class="spec-row">
       <span class="k">Hosting</span>
-      <span class="v">EU sovereign cloud · OVHcloud (FR), Open Telekom Cloud (DE), or institutional on-premise. <strong>No US-jurisdiction routing</strong> at any layer.</span>
-      <span class="badge">EU-only</span>
+      <span class="v">EU-based cloud or institutional on-premise, with no routing of institutional data through non-EU jurisdictions. The hosting provider will be chosen with the first deployment.</span>
+      <span class="badge">Target</span>
     </div>
     <div class="spec-row">
       <span class="k">Data residency</span>
-      <span class="v">All raw and derived data resides within the institution's selected EU jurisdiction. Federated training emits gradients only — never raw data.</span>
-      <span class="badge">Federated</span>
+      <span class="v">Raw and derived data stays in the institution's chosen EU jurisdiction. Federated training would share model updates only, never raw data.</span>
+      <span class="badge">Target</span>
     </div>
     <div class="spec-row">
       <span class="k">Encryption</span>
-      <span class="v">AES-256 at rest, TLS 1.3 in transit, customer-managed KMS keys optional. <strong>Confidential compute</strong> for sensitive programmes.</span>
-      <span class="badge">CC available</span>
+      <span class="v">AES-256 at rest, TLS 1.3 in transit, and optional customer-managed keys.</span>
+      <span class="badge">Target</span>
     </div>
     <div class="spec-row">
       <span class="k">Compliance</span>
-      <span class="v">GDPR Art. 28 DPA, EU AI Act high-risk system documentation, ISO 27001 (in audit), SOC 2 Type II (Q3 2026 target).</span>
-      <span class="badge">Auditable</span>
+      <span class="v">A GDPR data processing agreement and EU AI Act documentation are planned for the first deployment. No security certification, such as ISO 27001, has been obtained yet.</span>
+      <span class="badge">Planned</span>
     </div>
     <div class="spec-row">
       <span class="k">Authentication</span>
-      <span class="v">SAML 2.0, OIDC, eIDAS-compliant institutional identity. SCIM provisioning. MFA enforced. Granular role-based access by programme.</span>
-      <span class="badge">eIDAS</span>
+      <span class="v">SAML 2.0 and OIDC single sign-on, multi-factor authentication, and role-based access by programme.</span>
+      <span class="badge">Target</span>
     </div>
     <div class="spec-row">
-      <span class="k">SLA</span>
-      <span class="v">99.9% availability for dashboard and API. P95 score-query latency &lt; 250ms. Recovery time objective 4h, recovery point objective 15min.</span>
-      <span class="badge">99.9%</span>
+      <span class="k">Availability</span>
+      <span class="v">No service level is offered at prototype stage. Targets will be agreed with each institution.</span>
+      <span class="badge">Not yet</span>
     </div>
     <div class="spec-row">
       <span class="k">Audit trail</span>
-      <span class="v">Every score reproducible end-to-end from raw inputs. Append-only event log. Independent third-party auditor read-access available.</span>
-      <span class="badge">Reproducible</span>
-    </div>
-    <div class="spec-row">
-      <span class="k">Procurement</span>
-      <span class="v">Compatible with EU framework agreement procedures. DG REGIO, DG GROW, ECA, EIB pre-qualified vendor list (in progress).</span>
-      <span class="badge">Pre-qual.</span>
+      <span class="v">Every score reproducible from raw inputs, with an append-only event log and read access for independent auditors.</span>
+      <span class="badge">Design goal</span>
     </div>
   </div>
 </section>
@@ -504,10 +498,10 @@
   <div class="cta-bg"><div class="cta-bg-grid"></div></div>
   <div class="wrap">
     <div class="cta-content">
-      <h2>Need a <em>technical</em> walkthrough?</h2>
+      <h2>Want a technical walkthrough?</h2>
       <div class="right">
-        <p>We provide architecture deep-dives for institutional security, audit, and procurement teams. Reviewable documentation in advance. Two-hour technical session.</p>
-        <a href="index.html#contact" class="btn btn-primary btn-lg" style="background:var(--paper);color:var(--ink);">Request technical session <span class="arr">→</span></a>
+        <p>We are happy to walk security, audit and procurement teams through the design and answer hard questions. Tell us what you want to see.</p>
+        <a href="index.html#contact" class="btn btn-primary btn-lg" style="background:var(--paper);color:var(--ink);">Request a technical session <span class="arr">→</span></a>
       </div>
     </div>
   </div>
@@ -518,11 +512,8 @@
     <div class="footer-grid">
       <div>
         <div class="footer-brand"><img class="footer-logo" src="assets/izere-lockup-dark.svg" alt="Izere" width="232" height="64" loading="lazy" /></div>
-        <p class="footer-desc">Delivery intelligence for EU-funded programmes and public infrastructure investment. Clear evidence for decisions about public investment.</p>
+        <p class="footer-desc">Early-stage delivery intelligence for EU-funded programmes, built in Luxembourg.</p>
         <div class="footer-badges">
-          <span class="footer-badge">EU AI Act</span>
-          <span class="footer-badge">GDPR</span>
-          <span class="footer-badge">XAI Enabled</span>
           <span class="footer-badge">Luxembourg</span>
         </div>
       </div>
@@ -537,13 +528,10 @@
         <h5>Company</h5>
         <a href="team.html">Team</a>
         <a href="index.html#contact">Contact</a>
-        <a href="#">Press</a>
       </div>
       <div class="footer-col">
         <h5>Legal</h5>
-        <a href="#">Privacy policy</a>
-        <a href="#">Terms of use</a>
-        <a href="#">Data governance</a>
+        <a href="mailto:alain@izereai.com?subject=Privacy%20request">Privacy requests</a>
       </div>
     </div>
     <div class="footer-bottom">
