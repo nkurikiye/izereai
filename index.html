@@ -16,6 +16,7 @@
     <nav aria-label="Primary navigation">
       <a href="index.html" aria-current="page">Home</a>
       <a href="wealth-time-machine.html">Demo</a>
+      <a href="institutions.html">Institutions</a>
       <a href="about.html">About</a>
     </nav>
     <a class="nav-cta" href="#pilot">Design a pilot</a>
@@ -38,6 +39,24 @@
       <p class="eyebrow">A different beginning</p>
       <h2>Don’t start with a product.<br><span>Start with understanding.</span></h2>
       <p class="lead">Izere turns abstract financial concepts into decisions people can see, test and remember. Institutions gain a trusted path from curiosity to qualified intent.</p>
+    </section>
+
+    <section class="europe-opportunity reveal" aria-labelledby="europe-title">
+      <div class="europe-inner section">
+        <div class="europe-heading">
+          <p class="eyebrow">Europe’s investment gap</p>
+          <h2 id="europe-title">Europe does not lack savings.<br><span>It lacks a trusted bridge.</span></h2>
+          <p>Households want financial security. Europe needs productive investment. Financial institutions sit between the two—but conventional product journeys often begin before understanding does.</p>
+        </div>
+        <div class="europe-stats" aria-label="European savings and investment indicators">
+          <article><small>EU HOUSEHOLD BANK DEPOSITS</small><strong>€10tn</strong><p>A large pool of safe, accessible household savings.</p></article>
+          <article><small>EURO-AREA PORTFOLIOS</small><strong>32%</strong><p>Held in currency and deposits in Q2 2025.</p></article>
+          <article><small>ANNUAL INVESTMENT NEED</small><strong>€750–800bn</strong><p>Estimated for Europe’s strategic priorities by 2030.</p></article>
+        </div>
+        <div class="europe-bridge" aria-hidden="true"><span>SAVINGS</span><i><b></b></i><strong>UNDERSTANDING</strong><i><b></b></i><span>PARTICIPATION</span></div>
+        <div class="europe-action"><p>Izere adds the education, simulation and evidence layer that can connect customer curiosity to an institution-controlled next step.</p><a class="button light" href="institutions.html">Explore the institutional case</a></div>
+        <p class="europe-source">Sources: European Commission Savings and Investments Union; ECB Financial Integration and Structure in the Euro Area, 2026.</p>
+      </div>
     </section>
 
     <section class="chapter freedom reveal">
@@ -135,7 +154,7 @@
     </section>
   </main>
 
-  <footer><img src="assets/izere-lockup-dark.svg" alt="Izere"><p>Financial capability before financial products.</p><nav aria-label="Footer navigation"><a href="index.html">Home</a><a href="wealth-time-machine.html">Demo</a><a href="about.html">About</a></nav><small>© 2026 Izere · Luxembourg · Education, not investment advice.</small></footer>
+  <footer><img src="assets/izere-lockup-dark.svg" alt="Izere"><p>Financial capability before financial products.</p><nav aria-label="Footer navigation"><a href="index.html">Home</a><a href="wealth-time-machine.html">Demo</a><a href="institutions.html">Institutions</a><a href="about.html">About</a></nav><small>© 2026 Izere · Luxembourg · Education, not investment advice.</small></footer>
   <script>
     const racers=document.querySelectorAll('[data-racer]'),result=document.querySelector('#race-result');
     racers.forEach(card=>card.addEventListener('click',()=>{racers.forEach(c=>{const active=c===card;c.classList.toggle('selected',active);c.setAttribute('aria-pressed',active)});result.hidden=false;requestAnimationFrame(()=>{document.querySelector('#maya-bar').style.width='100%';document.querySelector('#leo-bar').style.width='76%'});result.scrollIntoView({behavior:'smooth',block:'nearest'})}));
