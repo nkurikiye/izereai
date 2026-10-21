@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Banking dashboard — Bakame nudge</title>
+<style>
+
+body{margin:0}
+a{color:#1376a5}a:hover{color:#0d5a80}
+
+html{background:#d9dde1}
+#dc-root{width:390px;margin:0 auto}
+@media (min-width:430px){html:not(.shot) body{padding:24px 0}html:not(.shot) #dc-root>div{border-radius:32px;box-shadow:0 20px 50px rgba(7,21,34,.25)}}</style>
+</head>
+<body>
+<template id="dc-template"><div style="width: 390px; height: 844px; box-sizing: border-box; background: #f4f5f6; color: #0d1116; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; overflow: hidden">
+
+  <header style="padding: 28px 20px 12px; display: flex; align-items: center; justify-content: space-between">
+    <div style="display: flex; flex-direction: column; gap: 2px">
+      <span style="font-size: 13px; color: #5f6871">Good morning,</span>
+      <span style="font-size: 22px; font-weight: 650; letter-spacing: -0.04em">[Customer name]</span>
+    </div>
+    <button type="button" aria-label="Notifications" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #d8dde1; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0d1116" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
+    </button>
+  </header>
+
+  <section style="margin: 4px 20px 0; padding: 20px; border-radius: 22px; background: #FFFFFF; border: 1px solid #d8dde1; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <span style="font-size: 10px; font-weight: 760; letter-spacing: 0.13em; text-transform: uppercase; color: #5f6871">Current account · ••4821</span>
+      <span style="font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 99px; background: #f4f5f6; color: #5f6871">EUR</span>
+    </div>
+    <div style="font-size: 40px; font-weight: 650; letter-spacing: -0.06em; font-variant-numeric: tabular-nums">€12,480.50</div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+      <button type="button" style="height: 44px; border-radius: 99px; border: 1px solid #d8dde1; background: #f4f5f6; color: #0d1116; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer">Transfer</button>
+      <button type="button" style="height: 44px; border-radius: 99px; border: 1px solid #d8dde1; background: #f4f5f6; color: #0d1116; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer">Pay</button>
+      <button type="button" style="height: 44px; border-radius: 99px; border: 1px solid #d8dde1; background: #f4f5f6; color: #0d1116; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer">Cards</button>
+    </div>
+  </section>
+
+  <sc-if value="{{showNudge}}" hint-placeholder-val="{{ true }}">
+  <section aria-label="Bakame suggestion" style="position: relative; margin: 40px 20px 0; padding: 20px 132px 20px 20px; border-radius: 24px; border: 1px solid #1b3548; background: radial-gradient(circle at 85% 0, rgba(79, 195, 247, 0.22), transparent 45%), #071522; color: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
+    <img src="images/bakame-welcome.png" alt="Bakame, the Welcome Guide, waving" style="position: absolute; right: 6px; bottom: 0; width: 124px; height: 218px; object-fit: contain; object-position: center bottom; filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.45))">
+    <span style="font-size: 10px; font-weight: 760; letter-spacing: 0.13em; text-transform: uppercase; color: #6dccf3">Bakame · Welcome Guide</span>
+    <p style="margin: 0; font-size: 17px; line-height: 1.3; font-weight: 650; letter-spacing: -0.02em">€6,800 has sat untouched for 47 days.</p>
+    <p style="margin: 0; font-size: 13px; line-height: 1.45; color: #adc0cc">Want to see what it could become? Just a simulation, no commitment.</p>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap">
+      <a href="2-sandbox.html" style="height: 44px; padding: 0 20px; border-radius: 99px; background: #FFFFFF; color: #071522; font-size: 14px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center">Show me</a>
+      <button type="button" onClick="{{dismiss}}" style="height: 44px; padding: 0 16px; border-radius: 99px; border: 1px solid rgba(255, 255, 255, 0.5); background: transparent; color: #FFFFFF; font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer">Not now</button>
+    </div>
+  </section>
+  </sc-if>
+
+  <sc-if value="{{showChip}}" hint-placeholder-val="{{ false }}">
+  <div style="margin: 16px 20px 0; display: flex">
+    <button type="button" onClick="{{restore}}" style="min-height: 44px; padding: 0 16px; border-radius: 99px; border: 1px solid #d8dde1; background: #FFFFFF; color: #0d1116; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer">Bakame will check back next week · Undo</button>
+  </div>
+  </sc-if>
+
+  <section style="margin: 20px 20px 0; display: flex; flex-direction: column; gap: 4px; flex-grow: 1">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 6px">
+      <h2 style="margin: 0; font-size: 17px; font-weight: 650; letter-spacing: -0.03em">Recent activity</h2>
+      <a href="#" style="font-size: 13px; font-weight: 650; text-decoration: none">See all</a>
+    </div>
+    <sc-for list="{{txns}}" as="t" hint-placeholder-count="4">
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #d8dde1">
+        <div style="width: 40px; height: 40px; border-radius: 12px; background: #FFFFFF; border: 1px solid #d8dde1; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 760; color: #5f6871">{{t.initial}}</div>
+        <div style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1">
+          <span style="font-size: 14px; font-weight: 650">{{t.name}}</span>
+          <span style="font-size: 12px; color: #5f6871">{{t.when}}</span>
+        </div>
+        <span style="font-size: 14px; font-weight: 650; font-variant-numeric: tabular-nums">{{t.amount}}</span>
+      </div>
+    </sc-for>
+  </section>
+
+  <nav aria-label="Main" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 8px 12px 22px; background: #FFFFFF; border-top: 1px solid #d8dde1">
+    <a href="#" style="min-height: 44px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 760; color: #071522; text-decoration: none">Home</a>
+    <a href="#" style="min-height: 44px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #5f6871; text-decoration: none">Payments</a>
+    <a href="2-sandbox.html" style="min-height: 44px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #5f6871; text-decoration: none">Izere</a>
+    <a href="#" style="min-height: 44px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #5f6871; text-decoration: none">Profile</a>
+  </nav>
+</div></template>
+<div id="dc-root"></div>
+<script>
+class DCLogic {
+  constructor(props) { this.props = props || {}; this.state = {}; }
+  setState(patch) { Object.assign(this.state, patch); dcRender(); }
+  forceUpdate() { dcRender(); }
+}
+function dcLookup(scope, path) {
+  path = path.trim();
+  if (path === 'true') return true;
+  if (path === 'false') return false;
+  return path.split('.').reduce((v, k) => (v == null ? undefined : v[k]), scope);
+}
+const WHOLE = /^\s*\{\{([^}]+)\}\}\s*$/;
+function dcInterp(str, scope) {
+  return str.replace(/\{\{([^}]+)\}\}/g, (_, p) => { const v = dcLookup(scope, p); return v == null ? '' : String(v); });
+}
+function dcProcess(node, scope, out) {
+  if (node.nodeType === 3) { out.appendChild(document.createTextNode(dcInterp(node.textContent, scope))); return; }
+  if (node.nodeType !== 1) return;
+  const tag = node.tagName.toLowerCase();
+  if (tag === 'sc-if') {
+    const m = (node.getAttribute('value') || '').match(WHOLE);
+    if (m && dcLookup(scope, m[1])) node.childNodes.forEach((c) => dcProcess(c, scope, out));
+    return;
+  }
+  if (tag === 'sc-for') {
+    const m = (node.getAttribute('list') || '').match(WHOLE);
+    const as = node.getAttribute('as') || 'item';
+    (m ? dcLookup(scope, m[1]) || [] : []).forEach((item, i) => {
+      const s = Object.assign({}, scope, { [as]: item, $index: i });
+      node.childNodes.forEach((c) => dcProcess(c, s, out));
+    });
+    return;
+  }
+  const el = node.namespaceURI === 'http://www.w3.org/1999/xhtml'
+    ? document.createElement(node.localName)
+    : document.createElementNS(node.namespaceURI, node.localName);
+  for (const a of Array.from(node.attributes)) {
+    if (a.name.startsWith('hint-')) continue;
+    const m = a.value.match(WHOLE);
+    if (a.name.startsWith('on') && m) {
+      const fn = dcLookup(scope, m[1]);
+      if (typeof fn === 'function') el.addEventListener(a.name.slice(2), fn);
+      continue;
+    }
+    if ((a.name === 'checked' || a.name === 'disabled') && m) { el[a.name] = !!dcLookup(scope, m[1]); continue; }
+    el.setAttribute(a.name, dcInterp(a.value, scope));
+  }
+  const kids = node.content ? node.content.childNodes : node.childNodes;
+  kids.forEach((c) => dcProcess(c, scope, el));
+  out.appendChild(el);
+}
+let dcInstance;
+function dcRender() {
+  const root = document.getElementById('dc-root');
+  const frag = document.createDocumentFragment();
+  const vals = dcInstance.renderVals();
+  document.getElementById('dc-template').content.childNodes.forEach((c) => dcProcess(c, vals, frag));
+  root.replaceChildren(frag);
+}
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { dismissed: false };
+  }
+  renderVals() {
+    return {
+      showNudge: !this.state.dismissed,
+      showChip: this.state.dismissed,
+      dismiss: () => this.setState({ dismissed: true }),
+      restore: () => this.setState({ dismissed: false }),
+      txns: [
+        { initial: 'SP', name: 'SEPA transfer — Léa', when: 'Today, 09:12', amount: '−€45.00' },
+        { initial: 'SL', name: 'Salary — [Employer]', when: '25 Sep', amount: '+€3,850.00' },
+        { initial: 'EL', name: 'Electricity — [Provider]', when: '22 Sep', amount: '−€96.40' },
+        { initial: 'GR', name: 'Groceries — [Store]', when: '20 Sep', amount: '−€82.75' }
+      ]
+    };
+  }
+}
+const dcProps = {};
+dcInstance = new Component(dcProps);
+const dcQuery = new URLSearchParams(location.search);
+if (dcQuery.has('shot')) document.documentElement.classList.add('shot');
+const dcStart = dcQuery.get('state');
+if (dcStart) Object.assign(dcInstance.state, JSON.parse(dcStart));
+dcRender();
+</script>
+</body>
+</html>

@@ -91,6 +91,30 @@
       </div>
     </section>
 
+    <section class="bakame-journey reveal" id="bakame-journey" aria-labelledby="bakame-journey-title">
+      <div class="bakame-journey-inner section">
+        <div class="bakame-journey-copy">
+          <p class="eyebrow">Bakame across every coaching moment</p>
+          <h2 id="bakame-journey-title">One guide.<br><span>The whole journey.</span></h2>
+          <p>Bakame appears when a saver needs context—not pressure. He helps people explore a possibility, understand the trade-offs and stay calm when the experience becomes emotional.</p>
+          <div class="journey-tabs" role="tablist" aria-label="Explore Bakame’s investor journey">
+            <button type="button" role="tab" aria-selected="true" data-journey-step="trigger"><i>01</i><span><b>Notice</b><small>A timely, optional nudge</small></span></button>
+            <button type="button" role="tab" aria-selected="false" data-journey-step="sandbox"><i>02</i><span><b>Explore</b><small>Simulation without commitment</small></span></button>
+            <button type="button" role="tab" aria-selected="false" data-journey-step="handoff"><i>03</i><span><b>Handoff</b><small>The institution takes control</small></span></button>
+            <button type="button" role="tab" aria-selected="false" data-journey-step="milestone"><i>04</i><span><b>Reinforce</b><small>Reward the habit</small></span></button>
+            <button type="button" role="tab" aria-selected="false" data-journey-step="stress"><i>05</i><span><b>Protect</b><small>Slow an emotional decision</small></span></button>
+          </div>
+          <p class="journey-explainer" id="journey-explainer" aria-live="polite">Detect an education opportunity without shaming the saver or recommending a product.</p>
+          <a class="button light" href="bakame-flow/1-trigger.html">Walk through the full flow</a>
+          <small class="journey-note">Illustrative prototype. Izere provides education and simulation; the institution retains suitability, disclosures and execution.</small>
+        </div>
+        <div class="journey-device" aria-label="Bakame journey preview">
+          <span class="journey-device-top" aria-hidden="true"></span>
+          <img id="journey-screen" src="bakame-flow/screenshots/1-trigger.png" alt="Bakame offering an optional educational simulation inside a banking app">
+        </div>
+      </div>
+    </section>
+
     <section class="demo-showcase section reveal" id="demo">
       <div class="demo-intro">
         <p class="eyebrow">Experience the product</p>
@@ -159,6 +183,8 @@
     const racers=document.querySelectorAll('[data-racer]'),result=document.querySelector('#race-result');
     racers.forEach(card=>card.addEventListener('click',()=>{racers.forEach(c=>{const active=c===card;c.classList.toggle('selected',active);c.setAttribute('aria-pressed',active)});result.hidden=false;requestAnimationFrame(()=>{document.querySelector('#maya-bar').style.width='100%';document.querySelector('#leo-bar').style.width='76%'});result.scrollIntoView({behavior:'smooth',block:'nearest'})}));
     document.querySelector('#race-reset').addEventListener('click',()=>{racers.forEach(c=>{c.classList.remove('selected');c.setAttribute('aria-pressed','false')});document.querySelector('#maya-bar').style.width='0';document.querySelector('#leo-bar').style.width='0';result.hidden=true});
+    const journeySteps={trigger:{image:'bakame-flow/screenshots/1-trigger.png',alt:'Bakame offering an optional educational simulation inside a banking app',copy:'Detect an education opportunity without shaming the saver or recommending a product.'},sandbox:{image:'bakame-flow/screenshots/2-sandbox.png',alt:'Bakame guiding an interactive investment-growth simulation',copy:'Turn curiosity into a reversible simulation where assumptions, uncertainty and trade-offs remain visible.'},handoff:{image:'bakame-flow/screenshots/3-handoff.png',alt:'An institution-controlled investment handoff with Bakame explaining costs and risk',copy:'Pass informed intent into the bank’s governed journey for suitability, disclosures and execution.'},milestone:{image:'bakame-flow/screenshots/4-milestone-celebration.png',alt:'Bakame celebrating thirty days of consistent investing',copy:'Celebrate consistency and learning progress—not trading frequency or market performance.'},stress:{image:'bakame-flow/screenshots/5-stress-test-caution.png',alt:'Bakame slowing an emotional sell decision during a market decline',copy:'Create a calm pause, explain the consequence and preserve the customer’s freedom to decide.'}};
+    document.querySelectorAll('[data-journey-step]').forEach(button=>button.addEventListener('click',()=>{const step=journeySteps[button.dataset.journeyStep];document.querySelectorAll('[data-journey-step]').forEach(item=>item.setAttribute('aria-selected',String(item===button)));const screen=document.querySelector('#journey-screen');screen.classList.add('changing');setTimeout(()=>{screen.src=step.image;screen.alt=step.alt;document.querySelector('#journey-explainer').textContent=step.copy;screen.classList.remove('changing')},160)}));
     if(!matchMedia('(prefers-reduced-motion: reduce)').matches){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target)}}),{threshold:.14});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}
   </script>
 </body>

@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Izere sandbox — wealth simulation</title>
+<style>
+
+body{margin:0}
+a{color:#8edafb}a:hover{color:#c3e8f8}
+
+html{background:#d9dde1}
+#dc-root{width:390px;margin:0 auto}
+@media (min-width:430px){html:not(.shot) body{padding:24px 0}html:not(.shot) #dc-root>div{border-radius:32px;box-shadow:0 20px 50px rgba(7,21,34,.25)}}</style>
+</head>
+<body>
+<template id="dc-template"><div style="width: 390px; height: 844px; box-sizing: border-box; background: #050b11; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; overflow: hidden">
+
+  <header style="padding: 22px 20px 8px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #1b2a35">
+    <a href="1-trigger.html" aria-label="Close Izere and return to dashboard" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #293943; display: flex; align-items: center; justify-content: center; text-decoration: none">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+    </a>
+    <div style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1">
+      <span style="font-size: 19px; font-weight: 650; letter-spacing: -0.04em">Izere</span>
+      <span style="font-size: 12px; color: #94a6b2">Simulation · nothing is invested</span>
+    </div>
+    <span style="font-size: 9px; font-weight: 760; letter-spacing: 0.12em; text-transform: uppercase; padding: 7px 10px; border-radius: 99px; border: 1px solid #293943; color: #6dccf3">Education</span>
+  </header>
+
+  <section aria-label="Bakame, Game Master" style="position: relative; margin: 14px 20px 0; padding: 16px 16px 16px 132px; min-height: 96px; border-radius: 22px; border: 1px solid #2f4c60; background: linear-gradient(145deg, #132d40, #0b1c29); display: flex; flex-direction: column; justify-content: center; gap: 6px">
+    <img src="images/bakame-explaining.png" alt="Bakame, the Game Master, presenting the options" style="position: absolute; left: 0; bottom: 0; width: 132px; height: 117px; object-fit: contain; object-position: center bottom; filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.5))">
+    <span style="font-size: 9px; font-weight: 760; letter-spacing: 0.12em; text-transform: uppercase; color: #f2c777">Quest unlocked · {{quest}}</span>
+    <p style="margin: 0; font-size: 14px; line-height: 1.4; font-weight: 600; color: #e8f0f4">Pick an amount and a horizon. I'll show you where the path leads.</p>
+  </section>
+
+  <section style="margin: 14px 20px 0; padding: 18px; border-radius: 22px; border: 1px solid #243440; background: radial-gradient(circle at 50% 0, rgba(30, 130, 175, 0.13), transparent 50%), #0b1218; display: flex; flex-direction: column; gap: 4px">
+    <span style="font-size: 9px; font-weight: 760; letter-spacing: 0.12em; text-transform: uppercase; color: #62bde8">In {{years}} {{yearWord}}, {{amountLabel}} could become</span>
+    <div style="display: flex; align-items: baseline; gap: 10px">
+      <span style="font-size: 44px; font-weight: 650; letter-spacing: -0.07em; font-variant-numeric: tabular-nums">{{finalLabel}}</span>
+      <span style="font-size: 14px; font-weight: 700; color: #82e3bd">+{{gainLabel}}</span>
+    </div>
+    <div role="img" aria-label="{{chartLabel}}" style="height: 150px; margin-top: 8px; display: flex; align-items: flex-end; gap: 4px; border-bottom: 1px solid #253640">
+      <sc-for list="{{bars}}" as="b" hint-placeholder-count="6">
+        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%">
+          <div style="{{b.style}}"></div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display: flex; justify-content: space-between; margin-top: 6px; font-size: 11px; font-weight: 650; color: #899da9">
+      <span>Today</span>
+      <span>Year {{years}}</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px; margin-top: 4px; font-size: 12px; color: #899da9">
+      <span style="width: 10px; height: 10px; border-radius: 3px; background: #3a4a55"></span>
+      <span>Left in the current account it stays {{amountLabel}}</span>
+    </div>
+  </section>
+
+  <fieldset style="margin: 14px 20px 0; padding: 0; border: 0">
+    <legend style="padding: 0; margin-bottom: 8px; font-size: 9px; font-weight: 760; letter-spacing: 0.12em; text-transform: uppercase; color: #94a6b2">Amount</legend>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; padding: 5px; border: 1px solid #293943; border-radius: 99px; background: #071017">
+      <sc-for list="{{amounts}}" as="c" hint-placeholder-count="4">
+        <button type="button" onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="{{c.style}}">{{c.label}}</button>
+      </sc-for>
+    </div>
+  </fieldset>
+
+  <fieldset style="margin: 12px 20px 0; padding: 0; border: 0">
+    <legend style="padding: 0; margin-bottom: 8px; font-size: 9px; font-weight: 760; letter-spacing: 0.12em; text-transform: uppercase; color: #94a6b2">Horizon</legend>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; padding: 5px; border: 1px solid #293943; border-radius: 99px; background: #071017">
+      <sc-for list="{{horizons}}" as="c" hint-placeholder-count="4">
+        <button type="button" onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="{{c.style}}">{{c.label}}</button>
+      </sc-for>
+    </div>
+  </fieldset>
+
+  <div style="flex-grow: 1"></div>
+
+  <footer style="padding: 10px 20px 24px; display: flex; flex-direction: column; gap: 10px">
+    <p style="margin: 0; font-size: 11px; line-height: 1.45; color: #899da9">Illustration at an assumed {{ratePct}}% a year. Education, not investment advice. Returns are not guaranteed and values can fall.</p>
+    <a href="3-handoff.html" style="height: 51px; border-radius: 99px; background: #FFFFFF; color: #071522; font-size: 15px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center">Continue with [Bank] · {{amountLabel}}</a>
+  </footer>
+</div></template>
+<div id="dc-root"></div>
+<script>
+class DCLogic {
+  constructor(props) { this.props = props || {}; this.state = {}; }
+  setState(patch) { Object.assign(this.state, patch); dcRender(); }
+  forceUpdate() { dcRender(); }
+}
+function dcLookup(scope, path) {
+  path = path.trim();
+  if (path === 'true') return true;
+  if (path === 'false') return false;
+  return path.split('.').reduce((v, k) => (v == null ? undefined : v[k]), scope);
+}
+const WHOLE = /^\s*\{\{([^}]+)\}\}\s*$/;
+function dcInterp(str, scope) {
+  return str.replace(/\{\{([^}]+)\}\}/g, (_, p) => { const v = dcLookup(scope, p); return v == null ? '' : String(v); });
+}
+function dcProcess(node, scope, out) {
+  if (node.nodeType === 3) { out.appendChild(document.createTextNode(dcInterp(node.textContent, scope))); return; }
+  if (node.nodeType !== 1) return;
+  const tag = node.tagName.toLowerCase();
+  if (tag === 'sc-if') {
+    const m = (node.getAttribute('value') || '').match(WHOLE);
+    if (m && dcLookup(scope, m[1])) node.childNodes.forEach((c) => dcProcess(c, scope, out));
+    return;
+  }
+  if (tag === 'sc-for') {
+    const m = (node.getAttribute('list') || '').match(WHOLE);
+    const as = node.getAttribute('as') || 'item';
+    (m ? dcLookup(scope, m[1]) || [] : []).forEach((item, i) => {
+      const s = Object.assign({}, scope, { [as]: item, $index: i });
+      node.childNodes.forEach((c) => dcProcess(c, s, out));
+    });
+    return;
+  }
+  const el = node.namespaceURI === 'http://www.w3.org/1999/xhtml'
+    ? document.createElement(node.localName)
+    : document.createElementNS(node.namespaceURI, node.localName);
+  for (const a of Array.from(node.attributes)) {
+    if (a.name.startsWith('hint-')) continue;
+    const m = a.value.match(WHOLE);
+    if (a.name.startsWith('on') && m) {
+      const fn = dcLookup(scope, m[1]);
+      if (typeof fn === 'function') el.addEventListener(a.name.slice(2), fn);
+      continue;
+    }
+    if ((a.name === 'checked' || a.name === 'disabled') && m) { el[a.name] = !!dcLookup(scope, m[1]); continue; }
+    el.setAttribute(a.name, dcInterp(a.value, scope));
+  }
+  const kids = node.content ? node.content.childNodes : node.childNodes;
+  kids.forEach((c) => dcProcess(c, scope, el));
+  out.appendChild(el);
+}
+let dcInstance;
+function dcRender() {
+  const root = document.getElementById('dc-root');
+  const frag = document.createDocumentFragment();
+  const vals = dcInstance.renderVals();
+  document.getElementById('dc-template').content.childNodes.forEach((c) => dcProcess(c, vals, frag));
+  root.replaceChildren(frag);
+}
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { amount: 2500, years: 5 };
+  }
+  renderVals() {
+    const rate = this.props.rate ?? 0.06;
+    const a = this.state.amount;
+    const y = this.state.years;
+    const eur = (n) => '€' + Math.round(n).toLocaleString('en-US');
+    const finalV = a * Math.pow(1 + rate, y);
+    const bars = [];
+    for (let t = 0; t <= y; t++) {
+      const v = a * Math.pow(1 + rate, t);
+      const h = Math.max(8, Math.round(140 * v / finalV));
+      const fill = t === 0 ? '#3a4a55' : (t === y ? 'linear-gradient(180deg, #82e3bd, #4fc3f7)' : '#27617e');
+      bars.push({ style: 'width: 100%; max-width: 28px; height: ' + h + 'px; border-radius: 7px 7px 0 0; background: ' + fill });
+    }
+    const chip = (on) => 'min-height: 40px; border-radius: 99px; border: 0; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; ' + (on ? 'background: #FFFFFF; color: #06111a' : 'background: transparent; color: #a5b8c4');
+    const amounts = [500, 1000, 2500, 5000].map((v) => ({
+      label: v >= 1000 ? '€' + (v / 1000) + 'k' : '€' + v,
+      on: v === a,
+      style: chip(v === a),
+      pick: () => this.setState({ amount: v })
+    }));
+    const quests = { 1: 'The Sprint', 3: 'The Journey', 5: 'The Expedition', 10: 'The Legend' };
+    const horizons = [1, 3, 5, 10].map((v) => ({
+      label: v + (v === 1 ? ' yr' : ' yrs'),
+      on: v === y,
+      style: chip(v === y),
+      pick: () => this.setState({ years: v })
+    }));
+    return {
+      bars,
+      amounts,
+      horizons,
+      years: y,
+      yearWord: y === 1 ? 'year' : 'years',
+      quest: quests[y],
+      amountLabel: eur(a),
+      finalLabel: eur(finalV),
+      gainLabel: eur(finalV - a),
+      ratePct: Math.round(rate * 100),
+      chartLabel: 'Projected growth from ' + eur(a) + ' to ' + eur(finalV) + ' over ' + y + ' years'
+    };
+  }
+}
+const dcProps = {"rate": 0.06};
+dcInstance = new Component(dcProps);
+const dcQuery = new URLSearchParams(location.search);
+if (dcQuery.has('shot')) document.documentElement.classList.add('shot');
+const dcStart = dcQuery.get('state');
+if (dcStart) Object.assign(dcInstance.state, JSON.parse(dcStart));
+dcRender();
+</script>
+</body>
+</html>

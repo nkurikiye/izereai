@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Order confirmation — governed handoff</title>
+<style>
+
+body{margin:0}
+a{color:#1376a5}a:hover{color:#0d5a80}
+
+html{background:#d9dde1}
+#dc-root{width:390px;margin:0 auto}
+@media (min-width:430px){html:not(.shot) body{padding:24px 0}html:not(.shot) #dc-root>div{border-radius:32px;box-shadow:0 20px 50px rgba(7,21,34,.25)}}</style>
+</head>
+<body>
+<template id="dc-template"><div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; background: #050b11; color: #0d1116; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased; overflow: hidden">
+
+  <div aria-hidden="true" style="padding: 26px 20px; display: flex; flex-direction: column; gap: 14px">
+    <div style="font-size: 19px; font-weight: 650; letter-spacing: -0.04em; color: #FFFFFF">Izere</div>
+    <div style="height: 90px; border-radius: 22px; border: 1px solid #243440; background: #0b1218"></div>
+  </div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(5, 11, 17, 0.6)"></div>
+
+  <section role="dialog" aria-modal="true" aria-labelledby="ho-title" style="position: absolute; left: 0; right: 0; bottom: 0; height: 770px; box-sizing: border-box; padding: 10px 20px 22px; border-radius: 28px 28px 0 0; background: #FFFFFF; display: flex; flex-direction: column; gap: 10px">
+    <div aria-hidden="true" style="align-self: center; width: 40px; height: 5px; border-radius: 3px; background: #d8dde1"></div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <div style="display: flex; flex-direction: column; gap: 3px">
+        <span style="font-size: 9px; font-weight: 760; letter-spacing: 0.12em; text-transform: uppercase; color: #348eb8">Handoff to [Bank]</span>
+        <h1 id="ho-title" style="margin: 0; font-size: 24px; font-weight: 650; letter-spacing: -0.05em">Confirm your order</h1>
+      </div>
+      <a href="2-sandbox.html" style="min-height: 44px; display: flex; align-items: center; font-size: 14px; font-weight: 650; text-decoration: none">Cancel</a>
+    </div>
+
+    <div style="position: relative; display: flex; align-items: center; min-height: 82px; padding: 12px 14px 12px 104px; border-radius: 20px; border: 1px solid #1b3548; background: #071522">
+      <img src="images/bakame-thinking.png" alt="Bakame, the Financial Strategist, thinking it through" style="position: absolute; left: 0; bottom: 0; width: 100px; height: 95px; object-fit: contain; object-position: center bottom; filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.5))">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <span style="font-size: 9px; font-weight: 760; letter-spacing: 0.12em; text-transform: uppercase; color: #6dccf3">Bakame · Strategist</span>
+        <p style="margin: 0; font-size: 13px; line-height: 1.4; font-weight: 600; color: #e8f0f4">Here's what it costs, the risk you take, and who makes the call.</p>
+      </div>
+    </div>
+
+    <dl style="margin: 0; display: flex; flex-direction: column">
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #eceff1"><dt style="font-size: 13px; color: #5f6871">Product</dt><dd style="margin: 0; font-size: 13px; font-weight: 650; text-align: right">[Fund name] · [ISIN]</dd></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #eceff1"><dt style="font-size: 13px; color: #5f6871">Amount</dt><dd style="margin: 0; font-size: 13px; font-weight: 650; text-align: right; font-variant-numeric: tabular-nums">€2,500.00</dd></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #eceff1"><dt style="font-size: 13px; color: #5f6871">Costs</dt><dd style="margin: 0; font-size: 13px; font-weight: 650; text-align: right">[€ one-off] + [% a year]</dd></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #eceff1"><dt style="font-size: 13px; color: #5f6871">Total cost over 5 years</dt><dd style="margin: 0; font-size: 13px; font-weight: 650; text-align: right">[€ total]</dd></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #eceff1"><dt style="font-size: 13px; color: #5f6871">Paid from</dt><dd style="margin: 0; font-size: 13px; font-weight: 650; text-align: right">Current account ••4821</dd></div>
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 0"><dt style="font-size: 13px; color: #5f6871">Risk indicator</dt><dd style="margin: 0; display: flex; align-items: center; gap: 8px">
+        <span aria-hidden="true" style="display: flex; gap: 3px"><span style="width: 12px; height: 7px; border-radius: 7px; background: #4fc3f7"></span><span style="width: 12px; height: 7px; border-radius: 7px; background: #4fc3f7"></span><span style="width: 12px; height: 7px; border-radius: 7px; background: #4fc3f7"></span><span style="width: 12px; height: 7px; border-radius: 7px; background: #d8dde1"></span><span style="width: 12px; height: 7px; border-radius: 7px; background: #d8dde1"></span><span style="width: 12px; height: 7px; border-radius: 7px; background: #d8dde1"></span><span style="width: 12px; height: 7px; border-radius: 7px; background: #d8dde1"></span></span>
+        <span style="font-size: 13px; font-weight: 650">[3] of 7</span>
+      </dd></div>
+    </dl>
+
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+      <div style="padding: 10px 12px; border-radius: 14px; background: #f4f5f6; display: flex; flex-direction: column; gap: 3px">
+        <span style="font-size: 9px; font-weight: 760; letter-spacing: 0.1em; text-transform: uppercase; color: #348eb8">Value for money</span>
+        <span style="font-size: 12px; font-weight: 650">[Bank] assessment: [result]</span>
+      </div>
+      <div style="padding: 10px 12px; border-radius: 14px; background: #f4f5f6; display: flex; flex-direction: column; gap: 3px">
+        <span style="font-size: 9px; font-weight: 760; letter-spacing: 0.1em; text-transform: uppercase; color: #348eb8">Appropriateness</span>
+        <span style="font-size: 12px; font-weight: 650">[Bank] check: [result]</span>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 2px">
+      <label style="display: flex; gap: 10px; align-items: flex-start; min-height: 44px; font-size: 13px; line-height: 1.4; cursor: pointer">
+        <input type="checkbox" checked="{{kid}}" onChange="{{toggleKid}}" style="width: 20px; height: 20px; margin: 1px 0 0; accent-color: #071522; flex-shrink: 0">
+        <span>I have read the <a href="#">Key Information Document</a> and cost summary.</span>
+      </label>
+      <label style="display: flex; gap: 10px; align-items: flex-start; min-height: 44px; font-size: 13px; line-height: 1.4; cursor: pointer">
+        <input type="checkbox" checked="{{risk}}" onChange="{{toggleRisk}}" style="width: 20px; height: 20px; margin: 1px 0 0; accent-color: #071522; flex-shrink: 0">
+        <span>I understand this can lose value and is not a bank deposit.</span>
+      </label>
+    </div>
+
+    <div style="flex-grow: 1"></div>
+
+    <sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
+      <a href="4-milestone.html" style="height: 51px; border-radius: 99px; background: #111111; color: #FFFFFF; font-size: 15px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center">Confirm with [Bank]</a>
+    </sc-if>
+    <sc-if value="{{notReady}}" hint-placeholder-val="{{ true }}">
+      <button type="button" disabled="{{yes}}" style="height: 51px; border-radius: 99px; border: 0; background: #e4e8eb; color: #5f6871; font-size: 15px; font-weight: 700; font-family: inherit">Tick both boxes to confirm</button>
+    </sc-if>
+    <p style="margin: 0; font-size: 11px; line-height: 1.4; color: #5f6871; text-align: center">Izere provides education only. [Bank] decides on suitability or appropriateness, provides disclosures and executes the order under applicable investor-protection requirements.</p>
+  </section>
+</div></template>
+<div id="dc-root"></div>
+<script>
+class DCLogic {
+  constructor(props) { this.props = props || {}; this.state = {}; }
+  setState(patch) { Object.assign(this.state, patch); dcRender(); }
+  forceUpdate() { dcRender(); }
+}
+function dcLookup(scope, path) {
+  path = path.trim();
+  if (path === 'true') return true;
+  if (path === 'false') return false;
+  return path.split('.').reduce((v, k) => (v == null ? undefined : v[k]), scope);
+}
+const WHOLE = /^\s*\{\{([^}]+)\}\}\s*$/;
+function dcInterp(str, scope) {
+  return str.replace(/\{\{([^}]+)\}\}/g, (_, p) => { const v = dcLookup(scope, p); return v == null ? '' : String(v); });
+}
+function dcProcess(node, scope, out) {
+  if (node.nodeType === 3) { out.appendChild(document.createTextNode(dcInterp(node.textContent, scope))); return; }
+  if (node.nodeType !== 1) return;
+  const tag = node.tagName.toLowerCase();
+  if (tag === 'sc-if') {
+    const m = (node.getAttribute('value') || '').match(WHOLE);
+    if (m && dcLookup(scope, m[1])) node.childNodes.forEach((c) => dcProcess(c, scope, out));
+    return;
+  }
+  if (tag === 'sc-for') {
+    const m = (node.getAttribute('list') || '').match(WHOLE);
+    const as = node.getAttribute('as') || 'item';
+    (m ? dcLookup(scope, m[1]) || [] : []).forEach((item, i) => {
+      const s = Object.assign({}, scope, { [as]: item, $index: i });
+      node.childNodes.forEach((c) => dcProcess(c, s, out));
+    });
+    return;
+  }
+  const el = node.namespaceURI === 'http://www.w3.org/1999/xhtml'
+    ? document.createElement(node.localName)
+    : document.createElementNS(node.namespaceURI, node.localName);
+  for (const a of Array.from(node.attributes)) {
+    if (a.name.startsWith('hint-')) continue;
+    const m = a.value.match(WHOLE);
+    if (a.name.startsWith('on') && m) {
+      const fn = dcLookup(scope, m[1]);
+      if (typeof fn === 'function') el.addEventListener(a.name.slice(2), fn);
+      continue;
+    }
+    if ((a.name === 'checked' || a.name === 'disabled') && m) { el[a.name] = !!dcLookup(scope, m[1]); continue; }
+    el.setAttribute(a.name, dcInterp(a.value, scope));
+  }
+  const kids = node.content ? node.content.childNodes : node.childNodes;
+  kids.forEach((c) => dcProcess(c, scope, el));
+  out.appendChild(el);
+}
+let dcInstance;
+function dcRender() {
+  const root = document.getElementById('dc-root');
+  const frag = document.createDocumentFragment();
+  const vals = dcInstance.renderVals();
+  document.getElementById('dc-template').content.childNodes.forEach((c) => dcProcess(c, vals, frag));
+  root.replaceChildren(frag);
+}
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { kid: false, risk: false };
+  }
+  renderVals() {
+    const ready = this.state.kid && this.state.risk;
+    return {
+      kid: this.state.kid,
+      risk: this.state.risk,
+      toggleKid: () => this.setState({ kid: !this.state.kid }),
+      toggleRisk: () => this.setState({ risk: !this.state.risk }),
+      ready,
+      notReady: !ready,
+      yes: true
+    };
+  }
+}
+const dcProps = {};
+dcInstance = new Component(dcProps);
+const dcQuery = new URLSearchParams(location.search);
+if (dcQuery.has('shot')) document.documentElement.classList.add('shot');
+const dcStart = dcQuery.get('state');
+if (dcStart) Object.assign(dcInstance.state, JSON.parse(dcStart));
+dcRender();
+</script>
+</body>
+</html>
