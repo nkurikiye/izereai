@@ -13,10 +13,9 @@
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Izere home"><img src="assets/izere-lockup-dark.svg" alt="Izere"></a>
     <nav aria-label="Primary navigation">
-      <a href="#experience">Experience</a>
-      <a href="wealth-time-machine.html">Live demo</a>
-      <a href="#platform">Platform</a>
-      <a href="financial-freedom.html">Freedom Lab</a>
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="wealth-time-machine.html">Demo</a>
+      <a href="about.html">About</a>
     </nav>
     <a class="nav-cta" href="#pilot">Design a pilot</a>
   </header>
@@ -132,7 +131,7 @@
     </section>
   </main>
 
-  <footer><img src="assets/izere-lockup-dark.svg" alt="Izere"><p>Financial capability before financial products.</p><small>© 2026 Izere · Luxembourg · Education, not investment advice.</small></footer>
+  <footer><img src="assets/izere-lockup-dark.svg" alt="Izere"><p>Financial capability before financial products.</p><nav aria-label="Footer navigation"><a href="index.html">Home</a><a href="wealth-time-machine.html">Demo</a><a href="about.html">About</a></nav><small>© 2026 Izere · Luxembourg · Education, not investment advice.</small></footer>
   <script>
     const racers=document.querySelectorAll('[data-racer]'),result=document.querySelector('#race-result');
     racers.forEach(card=>card.addEventListener('click',()=>{racers.forEach(c=>{const active=c===card;c.classList.toggle('selected',active);c.setAttribute('aria-pressed',active)});result.hidden=false;requestAnimationFrame(()=>{document.querySelector('#maya-bar').style.width='100%';document.querySelector('#leo-bar').style.width='76%'});result.scrollIntoView({behavior:'smooth',block:'nearest'})}));

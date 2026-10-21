@@ -8,12 +8,13 @@
   <title>Wealth Time Machine — Izere Demo</title>
   <link rel="icon" href="assets/izere-favicon.svg">
   <link rel="stylesheet" href="demo.css">
+  <style>header nav{display:flex;gap:28px}header nav a{color:var(--muted);font-size:.78rem;text-decoration:none}header nav a[aria-current="page"]{color:#fff}footer nav{display:flex;gap:22px}@media(max-width:600px){header nav{display:none}}</style>
 </head>
 <body>
   <header>
     <a class="brand" href="index.html" aria-label="Return to Izere"><img src="assets/izere-lockup-dark.svg" alt="Izere"></a>
-    <span>Interactive demo</span>
-    <a class="exit" href="index.html">Exit demo</a>
+    <nav aria-label="Primary navigation"><a href="index.html">Home</a><a href="wealth-time-machine.html" aria-current="page">Demo</a><a href="about.html">About</a></nav>
+    <a class="exit" href="index.html#pilot">Design a pilot</a>
   </header>
 
   <main>
@@ -62,7 +63,7 @@
     </section>
   </main>
 
-  <footer><p>Educational simulation only. Izere does not provide investment advice or investment products.</p><a href="index.html#pilot">Explore an institutional pilot</a></footer>
+  <footer><p>Educational simulation only. Izere does not provide investment advice or investment products.</p><nav><a href="index.html">Home</a><a href="about.html">About</a><a href="index.html#pilot">Institutional pilot</a></nav></footer>
 
   <script>
     const slider=document.querySelector('#savings-slider'),savingsValue=document.querySelector('#savings-value'),startBtn=document.querySelector('#start-btn'),resetBtn=document.querySelector('#reset-btn'),yearDisplay=document.querySelector('#year-display'),cashTotal=document.querySelector('#cash-total'),investTotal=document.querySelector('#invest-total'),cashBar=document.querySelector('#cash-bar'),investBar=document.querySelector('#invest-bar'),cashTrack=document.querySelector('#cash-track'),investTrack=document.querySelector('#invest-track'),returnLabel=document.querySelector('#return-label'),insight=document.querySelector('#insight'),insightCopy=document.querySelector('#insight-copy');
