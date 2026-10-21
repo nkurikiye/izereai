@@ -8,6 +8,7 @@
   <title>Wealth Time Machine — Izere Demo</title>
   <link rel="icon" href="assets/izere-favicon.svg">
   <link rel="stylesheet" href="demo.css">
+  <link rel="stylesheet" href="split-mission.css">
   <style>header nav{display:flex;gap:28px}header nav a{color:var(--muted);font-size:.78rem;text-decoration:none}header nav a[aria-current="page"]{color:#fff}footer nav{display:flex;gap:22px}@media(max-width:600px){header nav{display:none}}</style>
 </head>
 <body>
@@ -56,6 +57,33 @@
       <button type="button" id="reset-btn">Change the assumptions</button>
     </section>
 
+    <section class="split-mission" id="split-mission">
+      <div class="split-intro">
+        <div><p class="eyebrow">Money Mission 03 · Opportunity cost</p><h2>Spend now.<br><span>Grow later.</span></h2></div>
+        <p>There is no universally correct split. Move €100 between present enjoyment and a long-term investment scenario, then examine what each choice gives up.</p>
+      </div>
+
+      <div class="split-app">
+        <div class="split-controls">
+          <p class="eyebrow">Make the allocation</p>
+          <h3>You have €100.<br>What matters now?</h3>
+          <div class="allocation-values"><div class="today"><small>ENJOY TODAY</small><strong id="today-value">€50</strong></div><div class="later"><small>INVEST FOR LATER</small><strong id="later-value">€50</strong></div></div>
+          <label class="sr-only" for="split-slider">Amount allocated to enjoying today</label>
+          <input type="range" id="split-slider" min="0" max="100" value="50" aria-valuetext="50 euros for today and 50 euros for later">
+          <div class="slider-labels"><span>Future first</span><span>Today first</span></div>
+          <button type="button" class="split-button" id="split-button">Reveal the trade-off <span>›</span></button>
+        </div>
+
+        <div class="split-outlook">
+          <p class="eyebrow">Ten-year illustration</p>
+          <div class="outlook-card"><div><small>PRESENT VALUE</small><h4>Use and enjoyment today</h4><p>The amount spent serves a present preference. Its value is personal—not assumed to be zero.</p></div><strong id="today-result">€50</strong></div>
+          <div class="outlook-card growth"><div><small>FUTURE SCENARIO</small><h4>Long-term investment value</h4><p>At a constant illustrative 5% annual return, before fees, taxes and inflation.</p></div><strong id="later-result">€81</strong></div>
+          <div class="split-result" id="split-result" hidden aria-live="polite"><i>✓</i><div><small>DECISION INSIGHT</small><strong id="split-title">A balanced choice.</strong><p id="split-copy"></p></div></div>
+          <p class="split-boundary">Educational illustration only. Real investment returns fluctuate and losses are possible. Izere does not execute transactions.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="learn-more">
       <p class="eyebrow">What this demo teaches</p>
       <div class="lessons"><article><span>01</span><h3>Contributions build the base.</h3><p>Regular saving matters before any return assumption enters the picture.</p></article><article><span>02</span><h3>Returns compound over time.</h3><p>Growth can generate further growth, but the path is never smooth or guaranteed.</p></article><article><span>03</span><h3>Assumptions change outcomes.</h3><p>Test several rates instead of treating one historical average as a promise.</p></article></div>
@@ -74,6 +102,10 @@
     function run(){if(timer)return;const monthly=Number(slider.value),annual=monthly*12,rate=Number(document.querySelector('[name="rate"]:checked').value);let year=0,cash=0,invest=0;insight.hidden=true;startBtn.disabled=true;slider.disabled=true;document.querySelectorAll('[name="rate"]').forEach(i=>i.disabled=true);draw(0,0,0);timer=setInterval(()=>{year++;cash=(cash+annual)*1.015;invest=(invest+annual)*(1+rate);draw(cash,invest,year);if(year===30){clearInterval(timer);timer=null;const difference=invest-cash;insightCopy.textContent=`You contributed ${format(annual*30)} in both scenarios. Under these simplified assumptions, compound growth creates a ${format(difference)} difference after 30 years. That outcome is illustrative: real markets rise and fall.`;insight.hidden=false;startBtn.disabled=false;slider.disabled=false;document.querySelectorAll('[name="rate"]').forEach(i=>i.disabled=false);insight.scrollIntoView({behavior:'smooth',block:'center'})}},95)}
     function reset(){if(timer){clearInterval(timer);timer=null}draw(0,0,0);insight.hidden=true;startBtn.disabled=false;slider.disabled=false;document.querySelectorAll('[name="rate"]').forEach(i=>i.disabled=false);document.querySelector('.simulator').scrollIntoView({behavior:'smooth',block:'start'})}
     startBtn.addEventListener('click',run);resetBtn.addEventListener('click',reset);
+    const splitSlider=document.querySelector('#split-slider'),todayValue=document.querySelector('#today-value'),laterValue=document.querySelector('#later-value'),todayResult=document.querySelector('#today-result'),laterResult=document.querySelector('#later-result'),splitButton=document.querySelector('#split-button'),splitResult=document.querySelector('#split-result'),splitTitle=document.querySelector('#split-title'),splitCopy=document.querySelector('#split-copy');
+    function updateSplit(){const today=Number(splitSlider.value),later=100-today,future=later*Math.pow(1.05,10);todayValue.textContent=format(today);laterValue.textContent=format(later);todayResult.textContent=format(today);laterResult.textContent=format(future);splitSlider.style.setProperty('--split',`${today}%`);splitSlider.setAttribute('aria-valuetext',`${today} euros for today and ${later} euros for later`);splitResult.hidden=true}
+    function revealSplit(){const today=Number(splitSlider.value),later=100-today;if(later===0){splitTitle.textContent='All value today.';splitCopy.textContent='That may fit your present priorities, but this scenario leaves no capital invested for potential long-term growth.'}else if(today===0){splitTitle.textContent='All value later.';splitCopy.textContent='This maximises the amount exposed to potential compound growth, while giving up present use and accepting market risk.'}else{splitTitle.textContent='A balance across time.';splitCopy.textContent=`You kept ${format(today)} for present enjoyment and allocated ${format(later)} to a long-term scenario. The appropriate split depends on your goals, liquidity needs, time horizon and capacity for loss.`}splitResult.hidden=false;splitResult.scrollIntoView({behavior:'smooth',block:'nearest'})}
+    splitSlider.addEventListener('input',updateSplit);splitButton.addEventListener('click',revealSplit);updateSplit();
   </script>
 </body>
 </html>
