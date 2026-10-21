@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Financial Freedom Lab — Izere</title>
+  <meta name="description" content="Explore how time, contributions, inflation and withdrawals interact through educational financial scenarios.">
+  <link rel="icon" href="assets/izere-favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="home.css"><link rel="stylesheet" href="freedom.css">
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html"><img src="assets/izere-lockup-light.svg" alt="Izere"></a>
+    <nav><a href="#time">Power of time</a><a href="#number">Freedom number</a><a href="#sequence">First crash</a></nav>
+    <a class="pill dark" href="index.html#contact">Design a pilot</a>
+  </header>
+
+  <main>
+    <section class="lab-hero wrap">
+      <a class="back-link" href="index.html">← Back to Izere</a>
+      <p class="kicker">Money Mission 03 · Financial Freedom Lab</p>
+      <h1>Could your savings<br><span>buy back your time?</span></h1>
+      <p>Explore how saving, investment growth, inflation and withdrawals interact. Change the assumptions. Examine the trade-offs. Keep the uncertainty visible.</p>
+      <div class="lab-progress"><span>Three skills</span><i><b id="overall-progress"></b></i><strong id="skill-count">0 of 3 completed</strong></div>
+    </section>
+
+    <section class="lab-mission section" id="time">
+      <div class="wrap">
+        <div class="mission-label"><span>01</span><div><p class="kicker">The power of time</p><h2>Watch consistency compound.</h2></div></div>
+        <div class="lab-card">
+          <div class="lab-controls">
+            <label>Starting amount <output id="start-output">€10,000</output><input id="start" type="range" min="0" max="50000" step="1000" value="10000"></label>
+            <label>Monthly contribution <output id="monthly-output">€100</output><input id="monthly-freedom" type="range" min="0" max="1000" step="25" value="100"></label>
+            <label>Time <output id="years-output">30 years</output><input id="years-freedom" type="range" min="5" max="40" step="5" value="30"></label>
+            <label>Illustrative return <output id="return-output">6%</output><input id="return-rate" type="range" min="0" max="10" step=".5" value="6"></label>
+            <label>Illustrative inflation <output id="inflation-output">2.5%</output><input id="inflation" type="range" min="0" max="6" step=".5" value="2.5"></label>
+          </div>
+          <div class="growth-view">
+            <p>Illustrative future value</p><strong id="nominal-value">€171,396</strong><span>Purchasing power in today’s money: <b id="real-value">€81,600</b></span>
+            <div class="time-bars" id="time-bars"><div><i></i><span>Today</span><b>€10k</b></div><div><i></i><span>10 years</span><b></b></div><div><i></i><span>20 years</span><b></b></div><div><i></i><span>30 years</span><b></b></div></div>
+            <small>Illustrative only. Excludes taxes, fees and market volatility. Returns are not guaranteed.</small>
+          </div>
+        </div>
+        <div class="learning-check"><div><span class="check-icon">✓</span><strong>Time Thinker</strong><p>Nominal growth and purchasing power are different.</p></div><button type="button" data-complete="time">Mark skill understood</button></div>
+      </div>
+    </section>
+
+    <section class="lab-mission pale section" id="number">
+      <div class="wrap">
+        <div class="mission-label"><span>02</span><div><p class="kicker">Build your freedom number</p><h2>One expense. Three scenarios.</h2></div></div>
+        <div class="number-card">
+          <label>Illustrative annual spending <span class="currency-input">€ <input id="spending" type="number" min="10000" max="200000" step="1000" value="40000"></span></label>
+          <div class="target-grid">
+            <article><small>4.0% INITIAL WITHDRAWAL</small><strong id="target-4">€1,000,000</strong><div class="blocks blocks-25"></div><p>25× annual spending</p></article>
+            <article><small>3.5% INITIAL WITHDRAWAL</small><strong id="target-35">€1,143,000</strong><div class="blocks blocks-29"></div><p>Approximately 28.6×</p></article>
+            <article><small>3.3% INITIAL WITHDRAWAL</small><strong id="target-33">€1,212,000</strong><div class="blocks blocks-30"></div><p>Approximately 30.3×</p></article>
+          </div>
+          <p class="boundary-box"><strong>Planning scenarios—not safe or guaranteed amounts.</strong> Outcomes depend on market returns, inflation, allocation, fees, taxes, horizon, spending flexibility and other income.</p>
+        </div>
+        <div class="learning-check"><div><span class="check-icon">✓</span><strong>Goal Builder</strong><p>A lower withdrawal assumption requires a larger starting portfolio.</p></div><button type="button" data-complete="number">Mark skill understood</button></div>
+      </div>
+    </section>
+
+    <section class="lab-mission dark-lab section" id="sequence">
+      <div class="wrap">
+        <div class="mission-label"><span>03</span><div><p class="kicker">Survive the first crash</p><h2>Same returns. Different order.</h2></div></div>
+        <p class="sequence-intro">Both scenarios begin with €1 million, withdraw €40,000 in year one and experience the same ten annual returns—in reverse order.</p>
+        <div class="sequence-grid">
+          <article><small>EARLY LOSSES</small><h3>Scenario A</h3><svg viewBox="0 0 500 220" role="img" aria-label="Portfolio with losses early in retirement"><path class="gridline" d="M0 180H500 M0 120H500 M0 60H500"></path><path id="path-a" class="sequence-path path-a"></path></svg><strong id="end-a">—</strong><span>Illustrative balance after 10 years</span></article>
+          <article><small>LATE LOSSES</small><h3>Scenario B</h3><svg viewBox="0 0 500 220" role="img" aria-label="Portfolio with losses later in retirement"><path class="gridline" d="M0 180H500 M0 120H500 M0 60H500"></path><path id="path-b" class="sequence-path path-b"></path></svg><strong id="end-b">—</strong><span>Illustrative balance after 10 years</span></article>
+        </div>
+        <div class="sequence-answer"><span class="check-icon">!</span><div><small>WHY THEY DIVERGE</small><h3>Withdrawals make the order of returns matter.</h3><p>Losses early in retirement shrink the capital available to recover, while withdrawals continue. Average return alone does not describe this risk.</p></div></div>
+        <div class="learning-check"><div><span class="check-icon">✓</span><strong>Risk Navigator</strong><p>Sequence risk grows when withdrawals and market losses overlap.</p></div><button type="button" data-complete="sequence">Mark skill understood</button></div>
+      </div>
+    </section>
+
+    <section class="explain wrap section">
+      <div><p class="kicker">Adaptive explanation preview</p><h2>Make the same idea understandable in different ways.</h2></div>
+      <div><div class="explain-tabs"><button class="selected" data-explain="simple">Explain simply</button><button data-explain="math">Show the maths</button><button data-explain="example">Give an example</button><button data-explain="risk">Explain the risk</button></div><p id="explanation">Compounding means your returns may begin earning returns of their own. More time gives that process more opportunities to repeat.</p><small>This demonstrates Izere’s adaptive-learning pattern. It does not provide personal investment advice.</small></div>
+    </section>
+
+    <section class="lab-finish"><div class="wrap">
+      <p class="kicker">Learning summary</p><h2 id="finish-title">Complete all three skills.</h2><p id="finish-copy">Explore each mission, then mark the concept as understood.</p>
+      <a class="pill blue" href="index.html#banks">See how this fits a bank journey</a>
+    </div></section>
+  </main>
+
+  <footer><div class="wrap"><img src="assets/izere-lockup-dark.svg" alt="Izere"><p>Financial capability before financial products.</p><small>Educational scenarios only. No forecast or investment recommendation.</small></div></footer>
+  <script>
+    const money=new Intl.NumberFormat('en-LU',{style:'currency',currency:'EUR',maximumFractionDigits:0});
+    const ids=['start','monthly-freedom','years-freedom','return-rate','inflation'];
+    function future(start,monthly,years,annual){const n=years*12,r=annual/1200;return start*Math.pow(1+r,n)+(r?monthly*((Math.pow(1+r,n)-1)/r):monthly*n)}
+    function updateGrowth(){const s=+start.value,m=+document.querySelector('#monthly-freedom').value,y=+document.querySelector('#years-freedom').value,r=+document.querySelector('#return-rate').value,inf=+inflation.value;document.querySelector('#start-output').textContent=money.format(s);document.querySelector('#monthly-output').textContent=money.format(m);document.querySelector('#years-output').textContent=y+' years';document.querySelector('#return-output').textContent=r+'%';document.querySelector('#inflation-output').textContent=inf+'%';const value=future(s,m,y,r),real=value/Math.pow(1+inf/100,y);document.querySelector('#nominal-value').textContent=money.format(value);document.querySelector('#real-value').textContent=money.format(real);const points=[0,Math.round(y/3),Math.round(2*y/3),y],vals=points.map(t=>future(s,m,t,r)),max=Math.max(...vals,1);document.querySelectorAll('#time-bars>div').forEach((d,i)=>{d.querySelector('i').style.height=(20+vals[i]/max*80)+'%';d.querySelector('span').textContent=i?'Year '+points[i]:'Today';d.querySelector('b').textContent=money.format(vals[i])})}
+    ids.forEach(id=>document.querySelector('#'+id).addEventListener('input',updateGrowth));updateGrowth();
+    function updateTargets(){const e=+spending.value;document.querySelector('#target-4').textContent=money.format(e/0.04);document.querySelector('#target-35').textContent=money.format(e/0.035);document.querySelector('#target-33').textContent=money.format(e/0.033)}spending.addEventListener('input',updateTargets);updateTargets();
+    document.querySelectorAll('.blocks').forEach((box,index)=>{const count=[25,29,30][index];box.innerHTML=Array.from({length:count},(_,i)=>'<i style="--d:'+i+'"></i>').join('')});
+    const early=[-25,-10,8,12,15,10,8,7,6,5],late=[...early].reverse();
+    function sequence(returns){let v=1000000,w=40000,values=[v];returns.forEach(x=>{v=(v-w)*(1+x/100);w*=1.02;values.push(Math.max(0,v))});return values}
+    function draw(values,id,out){const max=Math.max(...values),min=Math.min(...values),range=max-min||1,path=values.map((v,i)=>((i?'L':'M')+' '+(i/(values.length-1)*500).toFixed(1)+' '+(200-(v-min)/range*170).toFixed(1))).join(' ');document.querySelector(id).setAttribute('d',path);document.querySelector(out).textContent=money.format(values.at(-1))}
+    draw(sequence(early),'#path-a','#end-a');draw(sequence(late),'#path-b','#end-b');
+    const done=new Set;document.querySelectorAll('[data-complete]').forEach(btn=>btn.addEventListener('click',()=>{done.add(btn.dataset.complete);btn.textContent='Skill completed ✓';btn.classList.add('completed');document.querySelector('#skill-count').textContent=done.size+' of 3 completed';document.querySelector('#overall-progress').style.width=(done.size/3*100)+'%';if(done.size===3){document.querySelector('#finish-title').textContent='Financial Freedom foundations completed.';document.querySelector('#finish-copy').textContent='Time Thinker · Goal Builder · Risk Navigator'}}));
+    const explain={simple:'Compounding means your returns may begin earning returns of their own. More time gives that process more opportunities to repeat.',math:'Future value combines the starting capital grown over time with the accumulated value of every contribution. Inflation-adjusted value divides that result by cumulative inflation.',example:'Imagine planting one tree every month. Older trees have more seasons to grow and produce seeds. Starting earlier gives more of the forest time to develop.',risk:'Illustrative returns are not smooth. Losses, fees, inflation and taxes can materially reduce outcomes, especially when withdrawals begin during a downturn.'};
+    document.querySelectorAll('[data-explain]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-explain]').forEach(b=>b.classList.toggle('selected',b===btn));explanation.textContent=explain[btn.dataset.explain]}));
+  </script>
+</body>
+</html>
