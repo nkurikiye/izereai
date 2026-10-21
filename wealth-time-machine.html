@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="demo.css">
   <link rel="stylesheet" href="quest.css">
   <link rel="stylesheet" href="split-mission.css">
+  <link rel="stylesheet" href="ten-year-run.css">
   <style>header nav{display:flex;gap:28px}header nav a{color:var(--muted);font-size:.78rem;text-decoration:none}header nav a[aria-current="page"]{color:#fff}footer nav{display:flex;gap:22px}@media(max-width:600px){header nav{display:none}}</style>
 </head>
 <body>
@@ -41,7 +42,7 @@
       <a class="mission-node active" id="node-1" href="#mission-one"><span><b>01</b><i>◆</i></span><small>Life happens</small><strong>Build your buffer</strong></a>
       <a class="mission-node locked" id="node-2" href="#compound-mission" aria-disabled="true"><span><b>02</b><i>↗</i></span><small>Locked</small><strong>Compound growth</strong></a>
       <a class="mission-node locked" id="node-3" href="#split-mission" aria-disabled="true"><span><b>03</b><i>◒</i></span><small>Locked</small><strong>Opportunity cost</strong></a>
-      <div class="mission-node locked" aria-disabled="true"><span><b>04</b><i>◎</i></span><small>Coming next</small><strong>Risk &amp; return</strong></div>
+      <a class="mission-node featured" id="node-4" href="#ten-year-run"><span><b>04</b><i>◎</i></span><small>New mission</small><strong>10-Year Run</strong></a>
       <div class="mission-node locked" aria-disabled="true"><span><b>05</b><i>▦</i></span><small>Coming next</small><strong>Build an ETF</strong></div>
       <div class="mission-node locked" aria-disabled="true"><span><b>06</b><i>♢</i></span><small>Final mission</small><strong>Future freedom</strong></div>
     </nav>
@@ -105,6 +106,7 @@
         <article class="skill-badge" id="liquidity-badge"><i>◇</i><span><small>MISSION 01</small><strong>Liquidity lens</strong></span></article>
         <article class="skill-badge"><i>↗</i><span><small>MISSION 02</small><strong>Compound thinker</strong></span></article>
         <article class="skill-badge"><i>◒</i><span><small>MISSION 03</small><strong>Trade-off pro</strong></span></article>
+        <article class="skill-badge" id="resilience-badge"><i>◎</i><span><small>MISSION 04</small><strong>Resilient allocator</strong></span></article>
       </div>
     </section>
 
@@ -173,6 +175,88 @@
       </div>
     </section>
 
+    <section class="decade-mission" id="ten-year-run" aria-labelledby="decade-title">
+      <div class="decade-intro">
+        <div>
+          <p class="eyebrow">Money Mission 04 · The 10-Year Run</p>
+          <h2 id="decade-title">Can your plan<br><span>survive a decade?</span></h2>
+        </div>
+        <p>Make five decisions across ten simulated years. Markets move, life interrupts and inflation changes what your money can buy. Your score rewards judgement—not returns.</p>
+      </div>
+
+      <div class="goal-gate" id="goal-gate">
+        <div class="goal-copy"><p class="eyebrow">Choose your destination</p><h3>What should this decade help you build?</h3><p>Your goal changes the coaching and the definition of a balanced plan. It does not produce investment advice.</p></div>
+        <div class="goal-options" role="radiogroup" aria-label="Choose a financial learning goal">
+          <button type="button" class="goal-option selected" role="radio" aria-checked="true" data-goal="security"><i>◇</i><span><small>FOUNDATION</small><strong>Financial security</strong><em>Prioritise resilience</em></span></button>
+          <button type="button" class="goal-option" role="radio" aria-checked="false" data-goal="home"><i>⌂</i><span><small>MEDIUM TERM</small><strong>Future home</strong><em>Balance access and growth</em></span></button>
+          <button type="button" class="goal-option" role="radio" aria-checked="false" data-goal="freedom"><i>↗</i><span><small>LONG TERM</small><strong>Future freedom</strong><em>Accept more uncertainty</em></span></button>
+        </div>
+        <button type="button" class="start-run" id="start-run">Start the decade <span>›</span></button>
+      </div>
+
+      <div class="decade-game" id="decade-game" hidden>
+        <header class="game-hud">
+          <div class="run-brand"><span>10</span><div><small>IZERE MONEY QUEST</small><strong>The 10-Year Run</strong></div></div>
+          <div class="round-meter"><div><span id="run-round">Round 1 of 5</span><b id="run-years">Years 1–2</b></div><i><b id="run-progress"></b></i></div>
+          <div class="scenario-chip"><small>SCENARIO</small><strong>Volatile decade</strong></div>
+        </header>
+
+        <div class="game-layout">
+          <aside class="run-dashboard">
+            <div class="goal-label"><small>YOUR GOAL</small><strong id="run-goal">Financial security</strong></div>
+            <div class="wealth-total"><small>TOTAL WEALTH</small><strong id="nominal-total">€1,000</strong><button type="button" id="real-toggle" aria-pressed="false">Show today’s purchasing power</button></div>
+            <div class="run-metrics">
+              <div><small>CASH BUFFER</small><strong id="cash-months">0.6 months</strong><i><b id="buffer-bar"></b></i></div>
+              <div><small>AVAILABLE CASH</small><strong id="run-cash">€1,000</strong></div>
+              <div><small>INVESTMENT SCENARIO</small><strong id="run-investments">€0</strong></div>
+            </div>
+            <div class="decade-timeline" aria-label="Ten-year progress"><i class="current"><b>1–2</b><span></span></i><i><b>3–4</b><span></span></i><i><b>5–6</b><span></span></i><i><b>7–8</b><span></span></i><i><b>9–10</b></i></div>
+            <p class="model-note">Illustrative scenario. Returns, inflation and life events are predefined for learning—not forecasts.</p>
+          </aside>
+
+          <section class="round-stage">
+            <div id="decision-panel">
+              <div class="round-story"><div><p class="eyebrow" id="round-kicker">Round 01 · Build the base</p><h3 id="round-title">Your plan begins.</h3><p id="round-story">You can direct €10,000 of savings across the next two years. Decide how much remains available and how much enters a long-term investment simulation.</p></div><span class="round-icon" id="round-icon">01</span></div>
+              <div class="allocation-panel">
+                <div class="allocation-head"><div><small>ALLOCATE ACROSS TWO YEARS</small><strong>€10,000</strong></div><span id="allocation-label">Balanced starting point</span></div>
+                <div class="allocation-values"><div class="cash"><small>KEEP AVAILABLE</small><strong id="run-cash-allocation">€5,000</strong></div><div class="invest"><small>LONG-TERM SCENARIO</small><strong id="run-invest-allocation">€5,000</strong></div></div>
+                <label class="sr-only" for="run-allocation">Amount of the ten thousand euros kept as cash</label>
+                <input type="range" id="run-allocation" min="0" max="10000" step="500" value="5000" aria-valuetext="5000 euros kept available and 5000 euros invested">
+                <div class="allocation-scale"><span>More long-term growth</span><span>More immediate access</span></div>
+              </div>
+              <div class="decision-preview"><div><small>BEFORE YOU COMMIT</small><p id="decision-preview-copy">This split adds to both your safety buffer and your exposure to market movements.</p></div><span>?</span></div>
+              <button type="button" class="commit-round" id="commit-round">Commit this two-year plan <span>›</span></button>
+            </div>
+
+            <div class="round-result" id="round-result" hidden aria-live="polite">
+              <div class="event-reveal"><div class="event-symbol" id="event-symbol">!</div><div><small id="event-date">YEAR 2 · LIFE EVENT</small><h3 id="event-title"></h3><p id="event-copy"></p></div></div>
+              <div class="market-reveal"><div><small>MARKET PATH</small><strong id="market-result"></strong><p id="market-copy"></p></div><div class="market-spark" id="market-spark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+              <div class="result-numbers"><div><small>NOMINAL WEALTH</small><strong id="result-nominal"></strong></div><div><small>TODAY’S PURCHASING POWER</small><strong id="result-real"></strong></div><div><small>LIQUIDITY IMPACT</small><strong id="result-liquidity"></strong></div></div>
+              <div class="run-coach"><div class="run-izi"><span></span></div><div><small>IZI · EXPLAINABLE COACH</small><strong id="run-coach-title"></strong><p id="run-coach-copy"></p><em>Generated from the disclosed scenario state—not personalised investment advice.</em></div></div>
+              <div class="knowledge-check"><small>QUICK CHECK</small><h4 id="quiz-question"></h4><div id="quiz-options" class="quiz-options"></div><p id="quiz-feedback" hidden></p></div>
+              <button type="button" class="next-round" id="next-round" disabled>Continue to the next round <span>›</span></button>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="decade-report" id="decade-report" hidden aria-live="polite">
+        <div class="report-hero"><div><p class="eyebrow">Decade complete</p><h3 id="report-profile">Resilient planner.</h3><p id="report-summary"></p></div><div class="report-score"><span id="report-score">0</span><small>/ 100<br>JUDGEMENT SCORE</small></div></div>
+        <div class="report-grid">
+          <div class="competency-list">
+            <div><span>Financial resilience</span><i><b id="score-resilience"></b></i><strong id="value-resilience">0</strong></div>
+            <div><span>Goal alignment</span><i><b id="score-alignment"></b></i><strong id="value-alignment">0</strong></div>
+            <div><span>Risk understanding</span><i><b id="score-risk"></b></i><strong id="value-risk">0</strong></div>
+            <div><span>Inflation awareness</span><i><b id="score-inflation"></b></i><strong id="value-inflation">0</strong></div>
+            <div><span>Concept mastery</span><i><b id="score-mastery"></b></i><strong id="value-mastery">0</strong></div>
+          </div>
+          <div class="report-outcomes"><div><small>FINAL NOMINAL WEALTH</small><strong id="final-nominal"></strong></div><div><small>REAL PURCHASING POWER</small><strong id="final-real"></strong></div><div><small>FORCED SALES</small><strong id="final-sales"></strong></div></div>
+        </div>
+        <div class="report-actions"><button type="button" id="restart-run">Run another decade</button><a href="index.html#pilot">See how institutions use Izere <span>›</span></a></div>
+        <p class="report-boundary">Educational simulation only. The score evaluates decisions within this fictional scenario; it does not assess suitability or predict investment outcomes.</p>
+      </div>
+    </section>
+
     <section class="learn-more">
       <p class="eyebrow">What this demo teaches</p>
       <div class="lessons"><article><span>01</span><h3>Contributions build the base.</h3><p>Regular saving matters before any return assumption enters the picture.</p></article><article><span>02</span><h3>Returns compound over time.</h3><p>Growth can generate further growth, but the path is never smooth or guaranteed.</p></article><article><span>03</span><h3>Assumptions change outcomes.</h3><p>Test several rates instead of treating one historical average as a promise.</p></article></div>
@@ -182,6 +266,9 @@
 
   <footer><p>Educational simulation only. Izere does not provide investment advice or investment products.</p><nav><a href="index.html">Home</a><a href="about.html">About</a><a href="index.html#pilot">Institutional pilot</a></nav></footer>
 
+  <script src="scenario-data.js"></script>
+  <script src="scenario-engine.js"></script>
+  <script src="ten-year-run.js"></script>
   <script src="quest.js"></script>
   <script>
     const slider=document.querySelector('#savings-slider'),savingsValue=document.querySelector('#savings-value'),startBtn=document.querySelector('#start-btn'),resetBtn=document.querySelector('#reset-btn'),yearDisplay=document.querySelector('#year-display'),cashTotal=document.querySelector('#cash-total'),investTotal=document.querySelector('#invest-total'),cashBar=document.querySelector('#cash-bar'),investBar=document.querySelector('#invest-bar'),cashTrack=document.querySelector('#cash-track'),investTrack=document.querySelector('#invest-track'),returnLabel=document.querySelector('#return-label'),insight=document.querySelector('#insight'),insightCopy=document.querySelector('#insight-copy');
