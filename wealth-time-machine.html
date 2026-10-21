@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="An interactive Izere learning demo exploring saving, time and compound growth.">
+  <meta name="description" content="Play Izere Money Quest: make real-life financial choices, explore consequences and build investing confidence.">
   <meta name="theme-color" content="#060608">
-  <title>Wealth Time Machine — Izere Demo</title>
+  <title>Izere Money Quest — Interactive Financial Learning</title>
   <link rel="icon" href="assets/izere-favicon.svg">
   <link rel="stylesheet" href="demo.css">
+  <link rel="stylesheet" href="quest.css">
   <link rel="stylesheet" href="split-mission.css">
   <style>header nav{display:flex;gap:28px}header nav a{color:var(--muted);font-size:.78rem;text-decoration:none}header nav a[aria-current="page"]{color:#fff}footer nav{display:flex;gap:22px}@media(max-width:600px){header nav{display:none}}</style>
 </head>
@@ -19,7 +20,95 @@
   </header>
 
   <main>
-    <section class="intro">
+    <section class="quest-hero" aria-labelledby="quest-title">
+      <div class="quest-welcome">
+        <div class="izi-guide" aria-hidden="true"><span></span><i></i></div>
+        <div>
+          <p class="eyebrow">Izere Money Quest</p>
+          <h1 id="quest-title">Your money.<br><span>Your move.</span></h1>
+          <p>Make real-life choices, see what happens and build the judgement to invest with confidence.</p>
+        </div>
+      </div>
+      <div class="quest-stats" aria-label="Learning progress">
+        <div><small>WEEKLY QUEST</small><strong><span id="quest-progress">0</span>/3</strong></div>
+        <div><small>SKILL POINTS</small><strong><span id="xp-total">0</span> XP</strong></div>
+        <div class="mastery-stat"><span class="mastery-ring" id="mastery-ring"><b id="mastery-value">0%</b></span><small>MONEY MASTERY</small></div>
+      </div>
+    </section>
+
+    <nav class="mission-map" aria-label="Money Quest missions">
+      <div class="map-line" aria-hidden="true"><i id="map-progress"></i></div>
+      <a class="mission-node active" id="node-1" href="#mission-one"><span><b>01</b><i>◆</i></span><small>Life happens</small><strong>Build your buffer</strong></a>
+      <a class="mission-node locked" id="node-2" href="#compound-mission" aria-disabled="true"><span><b>02</b><i>↗</i></span><small>Locked</small><strong>Compound growth</strong></a>
+      <a class="mission-node locked" id="node-3" href="#split-mission" aria-disabled="true"><span><b>03</b><i>◒</i></span><small>Locked</small><strong>Opportunity cost</strong></a>
+      <div class="mission-node locked" aria-disabled="true"><span><b>04</b><i>◎</i></span><small>Coming next</small><strong>Risk &amp; return</strong></div>
+      <div class="mission-node locked" aria-disabled="true"><span><b>05</b><i>▦</i></span><small>Coming next</small><strong>Build an ETF</strong></div>
+      <div class="mission-node locked" aria-disabled="true"><span><b>06</b><i>♢</i></span><small>Final mission</small><strong>Future freedom</strong></div>
+    </nav>
+
+    <section class="life-mission" id="mission-one" aria-labelledby="life-mission-title">
+      <div class="mission-scene">
+        <div class="scene-topline"><span>MISSION 01</span><span>+120 XP</span></div>
+        <div class="scene-copy">
+          <p class="eyebrow">Friday · 17:40</p>
+          <h2 id="life-mission-title">You earned your<br><span>first €100.</span></h2>
+          <p>A weekend job just paid you. Three choices are competing for the same money. What job should your €100 do?</p>
+        </div>
+        <div class="wallet-card" aria-hidden="true">
+          <div><small>AVAILABLE</small><strong>€100</strong></div>
+          <span>WEEKEND PAY</span>
+          <i></i><i></i><i></i>
+        </div>
+        <div class="scene-note"><i>1</i><p><strong>Choose deliberately.</strong><br>There is no perfect option—only a trade-off you understand.</p></div>
+      </div>
+
+      <div class="mission-play">
+        <div class="play-head"><div><p class="eyebrow">Choose your move</p><h3>What matters most today?</h3></div><span id="choice-status">Select one</span></div>
+        <div class="choice-grid" role="radiogroup" aria-label="Choose how to use the 100 euros">
+          <button class="choice-card" type="button" role="radio" aria-checked="false" data-choice="experience">
+            <span class="choice-icon coral">♪</span><span><small>ENJOY IT</small><strong>Concert with friends</strong><em>€100 today</em></span><i>›</i>
+          </button>
+          <button class="choice-card" type="button" role="radio" aria-checked="false" data-choice="buffer">
+            <span class="choice-icon blue">⌁</span><span><small>PROTECT IT</small><strong>Emergency buffer</strong><em>€100 kept available</em></span><i>›</i>
+          </button>
+          <button class="choice-card" type="button" role="radio" aria-checked="false" data-choice="invest">
+            <span class="choice-icon green">↗</span><span><small>GROW IT</small><strong>Investment simulation</strong><em>€100 for the long term</em></span><i>›</i>
+          </button>
+        </div>
+        <button class="resolve-button" id="resolve-choice" type="button" disabled>See what happens <span>›</span></button>
+
+        <div class="consequence" id="consequence" hidden aria-live="polite">
+          <div class="event-card">
+            <span class="event-pulse">!</span>
+            <div><small>THREE WEEKS LATER</small><strong>Your phone screen breaks.</strong><p>The repair costs €80. How does your earlier choice affect you now?</p></div>
+          </div>
+          <div class="outcome-card">
+            <div><small>YOUR OUTCOME</small><h4 id="outcome-title"></h4><p id="outcome-copy"></p></div>
+            <strong id="outcome-number"></strong>
+          </div>
+          <div class="coach-card">
+            <div class="mini-izi" aria-hidden="true"><span></span></div>
+            <div><small>IZI · AI COACH PROTOTYPE</small><strong id="coach-title"></strong><p id="coach-copy"></p><span>Grounded in this learning scenario—not personalised investment advice.</span></div>
+          </div>
+          <div class="mission-reward">
+            <div class="badge-earned"><span>◇</span><div><small>SKILL UNLOCKED</small><strong>Liquidity lens</strong></div></div>
+            <div class="reward-actions"><button id="retry-choice" type="button">Explore another outcome</button><a href="#compound-mission">Next mission <span>›</span></a></div>
+          </div>
+        </div>
+      </div>
+      <div class="quest-sparkles" id="quest-sparkles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </section>
+
+    <section class="skills-shelf" aria-label="Your financial skills">
+      <div><p class="eyebrow">Your skill passport</p><h2>Learn it. Try it.<br><span>Own the skill.</span></h2></div>
+      <div class="badge-row">
+        <article class="skill-badge" id="liquidity-badge"><i>◇</i><span><small>MISSION 01</small><strong>Liquidity lens</strong></span></article>
+        <article class="skill-badge"><i>↗</i><span><small>MISSION 02</small><strong>Compound thinker</strong></span></article>
+        <article class="skill-badge"><i>◒</i><span><small>MISSION 03</small><strong>Trade-off pro</strong></span></article>
+      </div>
+    </section>
+
+    <section class="intro" id="compound-mission">
       <div>
         <p class="eyebrow">Money Mission 02 · Compound growth</p>
         <h1>Put time<br><span>on your side.</span></h1>
@@ -93,6 +182,7 @@
 
   <footer><p>Educational simulation only. Izere does not provide investment advice or investment products.</p><nav><a href="index.html">Home</a><a href="about.html">About</a><a href="index.html#pilot">Institutional pilot</a></nav></footer>
 
+  <script src="quest.js"></script>
   <script>
     const slider=document.querySelector('#savings-slider'),savingsValue=document.querySelector('#savings-value'),startBtn=document.querySelector('#start-btn'),resetBtn=document.querySelector('#reset-btn'),yearDisplay=document.querySelector('#year-display'),cashTotal=document.querySelector('#cash-total'),investTotal=document.querySelector('#invest-total'),cashBar=document.querySelector('#cash-bar'),investBar=document.querySelector('#invest-bar'),cashTrack=document.querySelector('#cash-track'),investTrack=document.querySelector('#invest-track'),returnLabel=document.querySelector('#return-label'),insight=document.querySelector('#insight'),insightCopy=document.querySelector('#insight-copy');
     const target=1000000,format=value=>new Intl.NumberFormat('en-IE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(value);let timer=null;
