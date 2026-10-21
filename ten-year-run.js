@@ -41,6 +41,7 @@
     resultLiquidity: document.querySelector('#result-liquidity'),
     coachTitle: document.querySelector('#run-coach-title'),
     coachCopy: document.querySelector('#run-coach-copy'),
+    coachMascot: document.querySelector('#run-bakame'),
     quizQuestion: document.querySelector('#quiz-question'),
     quizOptions: document.querySelector('#quiz-options'),
     quizFeedback: document.querySelector('#quiz-feedback'),
@@ -184,6 +185,9 @@
     elements.resultLiquidity.textContent = liquidityLabel(result);
     elements.coachTitle.textContent = result.coach.title;
     elements.coachCopy.textContent = result.coach.copy;
+    elements.coachMascot.src = result.uncovered > 0 || result.forcedSale > 0
+      ? 'assets/bakame/caution.png'
+      : 'assets/bakame/explaining.png';
     renderQuiz(result.round.quiz);
     updateTimeline(roundNumber);
     elements.progress.style.width = `${(roundNumber / data.rounds.length) * 100}%`;

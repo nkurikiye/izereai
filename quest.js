@@ -48,6 +48,9 @@ resolveChoice.addEventListener('click', () => {
   document.querySelector('#outcome-number').textContent = outcome.number;
   document.querySelector('#coach-title').textContent = outcome.coachTitle;
   document.querySelector('#coach-copy').textContent = outcome.coachCopy;
+  document.querySelector('#mission-one-bakame').src = selectedChoice === 'buffer'
+    ? 'assets/bakame/celebrating.png'
+    : 'assets/bakame/caution.png';
   consequence.hidden = false;
   resolveChoice.textContent = 'Outcome revealed';
   resolveChoice.disabled = true;
@@ -81,6 +84,7 @@ retryChoice.addEventListener('click', () => {
   });
   document.querySelector('#choice-status').textContent = 'Select one';
   consequence.hidden = true;
+  document.querySelector('#mission-one-bakame').src = 'assets/bakame/explaining.png';
   resolveChoice.innerHTML = 'See what happens <span>›</span>';
   resolveChoice.disabled = true;
   document.querySelector('.mission-play').scrollIntoView({ behavior: 'smooth', block: 'start' });

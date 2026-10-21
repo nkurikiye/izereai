@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="quest.css">
   <link rel="stylesheet" href="split-mission.css">
   <link rel="stylesheet" href="ten-year-run.css">
+  <link rel="stylesheet" href="bakame.css">
   <style>header nav{display:flex;gap:28px}header nav a{color:var(--muted);font-size:.78rem;text-decoration:none}header nav a[aria-current="page"]{color:#fff}footer nav{display:flex;gap:22px}@media(max-width:600px){header nav{display:none}}</style>
 </head>
 <body>
@@ -23,7 +24,7 @@
   <main>
     <section class="quest-hero" aria-labelledby="quest-title">
       <div class="quest-welcome">
-        <div class="izi-guide" aria-hidden="true"><span></span><i></i></div>
+        <div class="bakame-hero" aria-hidden="true"><img src="assets/bakame/welcome.png" alt=""></div>
         <div>
           <p class="eyebrow">Izere Money Quest</p>
           <h1 id="quest-title">Your money.<br><span>Your move.</span></h1>
@@ -88,11 +89,11 @@
             <strong id="outcome-number"></strong>
           </div>
           <div class="coach-card">
-            <div class="mini-izi" aria-hidden="true"><span></span></div>
-            <div><small>IZI · AI COACH PROTOTYPE</small><strong id="coach-title"></strong><p id="coach-copy"></p><span>Grounded in this learning scenario—not personalised investment advice.</span></div>
+            <img class="bakame-coach" id="mission-one-bakame" src="assets/bakame/explaining.png" alt="" aria-hidden="true">
+            <div><small>BAKAME · LEARNING COACH</small><strong id="coach-title"></strong><p id="coach-copy"></p><span>Grounded in this learning scenario—not personalised investment advice.</span></div>
           </div>
           <div class="mission-reward">
-            <div class="badge-earned"><span>◇</span><div><small>SKILL UNLOCKED</small><strong>Liquidity lens</strong></div></div>
+            <div class="badge-earned"><span>◇</span><div><small>SKILL UNLOCKED</small><strong>Liquidity lens</strong></div><img class="bakame-reward" src="assets/bakame/celebrating.png" alt="Bakame celebrates the unlocked skill"></div>
             <div class="reward-actions"><button id="retry-choice" type="button">Explore another outcome</button><a href="#compound-mission">Next mission <span>›</span></a></div>
           </div>
         </div>
@@ -143,7 +144,7 @@
     </section>
 
     <section class="insight" id="insight" hidden aria-live="polite">
-      <div class="insight-mark">✓</div>
+      <img class="bakame-insight" src="assets/bakame/celebrating.png" alt="Bakame celebrates the insight">
       <div><p class="eyebrow">Insight unlocked</p><h2 id="insight-title">Time compounds the difference.</h2><p id="insight-copy"></p></div>
       <button type="button" id="reset-btn">Change the assumptions</button>
     </section>
@@ -169,7 +170,7 @@
           <p class="eyebrow">Ten-year illustration</p>
           <div class="outlook-card"><div><small>PRESENT VALUE</small><h4>Use and enjoyment today</h4><p>The amount spent serves a present preference. Its value is personal—not assumed to be zero.</p></div><strong id="today-result">€50</strong></div>
           <div class="outlook-card growth"><div><small>FUTURE SCENARIO</small><h4>Long-term investment value</h4><p>At a constant illustrative 5% annual return, before fees, taxes and inflation.</p></div><strong id="later-result">€81</strong></div>
-          <div class="split-result" id="split-result" hidden aria-live="polite"><i>✓</i><div><small>DECISION INSIGHT</small><strong id="split-title">A balanced choice.</strong><p id="split-copy"></p></div></div>
+          <div class="split-result" id="split-result" hidden aria-live="polite"><img class="bakame-split" src="assets/bakame/explaining.png" alt="" aria-hidden="true"><div><small>BAKAME · DECISION INSIGHT</small><strong id="split-title">A balanced choice.</strong><p id="split-copy"></p></div></div>
           <p class="split-boundary">Educational illustration only. Real investment returns fluctuate and losses are possible. Izere does not execute transactions.</p>
         </div>
       </div>
@@ -232,8 +233,8 @@
               <div class="event-reveal"><div class="event-symbol" id="event-symbol">!</div><div><small id="event-date">YEAR 2 · LIFE EVENT</small><h3 id="event-title"></h3><p id="event-copy"></p></div></div>
               <div class="market-reveal"><div><small>MARKET PATH</small><strong id="market-result"></strong><p id="market-copy"></p></div><div class="market-spark" id="market-spark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
               <div class="result-numbers"><div><small>NOMINAL WEALTH</small><strong id="result-nominal"></strong></div><div><small>TODAY’S PURCHASING POWER</small><strong id="result-real"></strong></div><div><small>LIQUIDITY IMPACT</small><strong id="result-liquidity"></strong></div></div>
-              <div class="run-coach"><div class="run-izi"><span></span></div><div><small>IZI · EXPLAINABLE COACH</small><strong id="run-coach-title"></strong><p id="run-coach-copy"></p><em>Generated from the disclosed scenario state—not personalised investment advice.</em></div></div>
-              <div class="knowledge-check"><small>QUICK CHECK</small><h4 id="quiz-question"></h4><div id="quiz-options" class="quiz-options"></div><p id="quiz-feedback" hidden></p></div>
+              <div class="run-coach"><img class="bakame-coach" id="run-bakame" src="assets/bakame/explaining.png" alt="" aria-hidden="true"><div><small>BAKAME · EXPLAINABLE COACH</small><strong id="run-coach-title"></strong><p id="run-coach-copy"></p><em>Generated from the disclosed scenario state—not personalised investment advice.</em></div></div>
+              <div class="knowledge-check"><img class="bakame-thinking" src="assets/bakame/thinking.png" alt="" aria-hidden="true"><small>BAKAME’S QUICK CHECK</small><h4 id="quiz-question"></h4><div id="quiz-options" class="quiz-options"></div><p id="quiz-feedback" hidden></p></div>
               <button type="button" class="next-round" id="next-round" disabled>Continue to the next round <span>›</span></button>
             </div>
           </section>
@@ -241,7 +242,7 @@
       </div>
 
       <div class="decade-report" id="decade-report" hidden aria-live="polite">
-        <div class="report-hero"><div><p class="eyebrow">Decade complete</p><h3 id="report-profile">Resilient planner.</h3><p id="report-summary"></p></div><div class="report-score"><span id="report-score">0</span><small>/ 100<br>JUDGEMENT SCORE</small></div></div>
+        <div class="report-hero"><img class="bakame-report" src="assets/bakame/celebrating.png" alt="Bakame celebrates the completed decade"><div><p class="eyebrow">Decade complete</p><h3 id="report-profile">Resilient planner.</h3><p id="report-summary"></p></div><div class="report-score"><span id="report-score">0</span><small>/ 100<br>JUDGEMENT SCORE</small></div></div>
         <div class="report-grid">
           <div class="competency-list">
             <div><span>Financial resilience</span><i><b id="score-resilience"></b></i><strong id="value-resilience">0</strong></div>
@@ -261,6 +262,12 @@
       <p class="eyebrow">What this demo teaches</p>
       <div class="lessons"><article><span>01</span><h3>Contributions build the base.</h3><p>Regular saving matters before any return assumption enters the picture.</p></article><article><span>02</span><h3>Returns compound over time.</h3><p>Growth can generate further growth, but the path is never smooth or guaranteed.</p></article><article><span>03</span><h3>Assumptions change outcomes.</h3><p>Test several rates instead of treating one historical average as a promise.</p></article></div>
       <a href="financial-freedom.html">Continue to the Financial Freedom Lab <span>›</span></a>
+    </section>
+
+    <section class="future-freedom" aria-labelledby="future-freedom-title">
+      <img src="assets/bakame/future-freedom.png" alt="Bakame relaxing by the sea after building long-term financial flexibility">
+      <div class="future-freedom-shade"></div>
+      <div class="future-freedom-copy"><p class="eyebrow">Mission 06 · Coming next</p><h2 id="future-freedom-title">Freedom is not a finish line.<br><span>It is having more choices.</span></h2><p>Build a long-term plan, stress-test it and learn what financial flexibility can look like—without promises or shortcuts.</p></div>
     </section>
   </main>
 
