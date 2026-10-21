@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="An interactive Izere learning demo exploring saving, time and compound growth.">
+  <meta name="theme-color" content="#060608">
+  <title>Wealth Time Machine — Izere Demo</title>
+  <link rel="icon" href="assets/izere-favicon.svg">
+  <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+  <header>
+    <a class="brand" href="index.html" aria-label="Return to Izere"><img src="assets/izere-lockup-dark.svg" alt="Izere"></a>
+    <span>Interactive demo</span>
+    <a class="exit" href="index.html">Exit demo</a>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div>
+        <p class="eyebrow">Money Mission 02 · Compound growth</p>
+        <h1>Put time<br><span>on your side.</span></h1>
+        <p class="lede">Compare two simplified scenarios over 30 years. Change the monthly contribution and the illustrative return, then watch the paths separate.</p>
+      </div>
+      <div class="mission-progress"><span>2 of 6 skills</span><i><b></b></i></div>
+    </section>
+
+    <section class="simulator" aria-labelledby="sim-title">
+      <div class="controls">
+        <div class="control-head"><div><p class="eyebrow">Set the scenario</p><h2 id="sim-title">Your assumptions.</h2></div><button class="run" id="start-btn" type="button">Run 30 years <span>›</span></button></div>
+        <label for="savings-slider"><span>Monthly contribution</span><strong>€<output id="savings-value">500</output></strong></label>
+        <input type="range" id="savings-slider" min="50" max="3000" step="50" value="500">
+        <fieldset><legend>Illustrative annual return</legend><div class="rate-options"><label><input type="radio" name="rate" value="0.03"><span>3%</span></label><label><input type="radio" name="rate" value="0.05" checked><span>5%</span></label><label><input type="radio" name="rate" value="0.07"><span>7%</span></label></div></fieldset>
+        <p class="boundary">These are constant-rate illustrations—not forecasts. Actual investments fluctuate and may lose value. Fees, taxes and inflation are excluded.</p>
+      </div>
+
+      <div class="stage">
+        <div class="year"><small>YEAR</small><strong id="year-display">0</strong><span>/ 30</span></div>
+        <div class="track-card cash-card">
+          <div class="track-heading"><div><small>SCENARIO A</small><h3>Cash contribution</h3><p>Illustrative 1.5% annual interest</p></div><strong id="cash-total">€0</strong></div>
+          <div class="track" role="progressbar" aria-label="Cash scenario progress toward one million euros" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="cash-track"><i id="cash-bar"></i></div>
+        </div>
+        <div class="track-card growth-card">
+          <div class="track-heading"><div><small>SCENARIO B</small><h3>Diversified investment</h3><p id="return-label">Illustrative 5% annual return</p></div><strong id="invest-total">€0</strong></div>
+          <div class="track" role="progressbar" aria-label="Investment scenario progress toward one million euros" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="invest-track"><i id="invest-bar"></i></div>
+        </div>
+        <div class="goal-line"><span>Learning reference</span><strong>€1,000,000</strong></div>
+      </div>
+    </section>
+
+    <section class="insight" id="insight" hidden aria-live="polite">
+      <div class="insight-mark">✓</div>
+      <div><p class="eyebrow">Insight unlocked</p><h2 id="insight-title">Time compounds the difference.</h2><p id="insight-copy"></p></div>
+      <button type="button" id="reset-btn">Change the assumptions</button>
+    </section>
+
+    <section class="learn-more">
+      <p class="eyebrow">What this demo teaches</p>
+      <div class="lessons"><article><span>01</span><h3>Contributions build the base.</h3><p>Regular saving matters before any return assumption enters the picture.</p></article><article><span>02</span><h3>Returns compound over time.</h3><p>Growth can generate further growth, but the path is never smooth or guaranteed.</p></article><article><span>03</span><h3>Assumptions change outcomes.</h3><p>Test several rates instead of treating one historical average as a promise.</p></article></div>
+      <a href="financial-freedom.html">Continue to the Financial Freedom Lab <span>›</span></a>
+    </section>
+  </main>
+
+  <footer><p>Educational simulation only. Izere does not provide investment advice or investment products.</p><a href="index.html#pilot">Explore an institutional pilot</a></footer>
+
+  <script>
+    const slider=document.querySelector('#savings-slider'),savingsValue=document.querySelector('#savings-value'),startBtn=document.querySelector('#start-btn'),resetBtn=document.querySelector('#reset-btn'),yearDisplay=document.querySelector('#year-display'),cashTotal=document.querySelector('#cash-total'),investTotal=document.querySelector('#invest-total'),cashBar=document.querySelector('#cash-bar'),investBar=document.querySelector('#invest-bar'),cashTrack=document.querySelector('#cash-track'),investTrack=document.querySelector('#invest-track'),returnLabel=document.querySelector('#return-label'),insight=document.querySelector('#insight'),insightCopy=document.querySelector('#insight-copy');
+    const target=1000000,format=value=>new Intl.NumberFormat('en-IE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(value);let timer=null;
+    slider.addEventListener('input',()=>savingsValue.value=Number(slider.value).toLocaleString('en-IE'));
+    document.querySelectorAll('[name="rate"]').forEach(input=>input.addEventListener('change',()=>returnLabel.textContent=`Illustrative ${Math.round(Number(input.value)*100)}% annual return`));
+    function draw(cash,invest,year){yearDisplay.textContent=year;cashTotal.textContent=format(cash);investTotal.textContent=format(invest);const cashPct=Math.min(cash/target*100,100),investPct=Math.min(invest/target*100,100);cashBar.style.width=`${cashPct}%`;investBar.style.width=`${investPct}%`;cashTrack.setAttribute('aria-valuenow',Math.round(cashPct));investTrack.setAttribute('aria-valuenow',Math.round(investPct))}
+    function run(){if(timer)return;const monthly=Number(slider.value),annual=monthly*12,rate=Number(document.querySelector('[name="rate"]:checked').value);let year=0,cash=0,invest=0;insight.hidden=true;startBtn.disabled=true;slider.disabled=true;document.querySelectorAll('[name="rate"]').forEach(i=>i.disabled=true);draw(0,0,0);timer=setInterval(()=>{year++;cash=(cash+annual)*1.015;invest=(invest+annual)*(1+rate);draw(cash,invest,year);if(year===30){clearInterval(timer);timer=null;const difference=invest-cash;insightCopy.textContent=`You contributed ${format(annual*30)} in both scenarios. Under these simplified assumptions, compound growth creates a ${format(difference)} difference after 30 years. That outcome is illustrative: real markets rise and fall.`;insight.hidden=false;startBtn.disabled=false;slider.disabled=false;document.querySelectorAll('[name="rate"]').forEach(i=>i.disabled=false);insight.scrollIntoView({behavior:'smooth',block:'center'})}},95)}
+    function reset(){if(timer){clearInterval(timer);timer=null}draw(0,0,0);insight.hidden=true;startBtn.disabled=false;slider.disabled=false;document.querySelectorAll('[name="rate"]').forEach(i=>i.disabled=false);document.querySelector('.simulator').scrollIntoView({behavior:'smooth',block:'start'})}
+    startBtn.addEventListener('click',run);resetBtn.addEventListener('click',reset);
+  </script>
+</body>
+</html>
