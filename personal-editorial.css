@@ -1,0 +1,277 @@
+:root {
+  --paper: #fbfaf7;
+  --paper-warm: #f0ece4;
+  --editorial-ink: #151719;
+  --editorial-muted: #61686c;
+  --editorial-rule: #d4d0c8;
+  --editorial-green: #557f6e;
+}
+
+body {
+  color: var(--editorial-ink);
+  background: var(--paper);
+}
+
+body > header {
+  width: min(1320px, calc(100% - 48px));
+  border-color: var(--editorial-rule);
+}
+
+body > header nav a {
+  color: #65686a;
+}
+
+body > header nav a[aria-current="page"] {
+  color: var(--editorial-ink);
+  font-weight: 650;
+}
+
+body > header .exit {
+  padding: 10px 16px;
+  border: 1px solid #bfc0bb;
+  border-radius: 99px;
+  color: var(--editorial-ink);
+}
+
+.track-switcher {
+  width: min(880px, calc(100% - 48px));
+  margin-top: 32px;
+  border-color: var(--editorial-rule);
+  background: #e9e5dd;
+  box-shadow: 0 12px 40px #3a403b0d;
+}
+
+.track-switcher a {
+  color: #777a77;
+}
+
+.track-switcher a.active {
+  color: var(--editorial-ink);
+  background: #fff;
+  box-shadow: 0 8px 24px #4b514b12;
+}
+
+.track-switcher small {
+  color: var(--editorial-green);
+}
+
+.quest-hero {
+  position: relative;
+  width: min(1320px, calc(100% - 32px));
+  min-height: 720px;
+  margin: 28px auto;
+  padding: 95px 72px 70px;
+  overflow: hidden;
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 82% 18%, #d9eee2 0, transparent 28%),
+    linear-gradient(145deg, #e6ece8, #e9e2d8 72%);
+}
+
+.quest-hero::after {
+  content: "";
+  position: absolute;
+  right: -100px;
+  bottom: -180px;
+  width: 520px;
+  height: 520px;
+  border: 1px solid #75887b33;
+  border-radius: 50%;
+  box-shadow: 0 0 0 70px #ffffff29, 0 0 0 140px #ffffff18;
+}
+
+.quest-welcome,
+.quest-stats {
+  position: relative;
+  z-index: 1;
+}
+
+.quest-welcome h1 {
+  color: var(--editorial-ink);
+  font-size: clamp(4.8rem, 8.6vw, 8.6rem);
+}
+
+.quest-welcome h1 span {
+  color: var(--editorial-green);
+}
+
+.quest-welcome > div > p:last-child {
+  color: #50595a;
+  font-size: 1.18rem;
+}
+
+.bakame-hero {
+  filter: drop-shadow(0 25px 38px #33433b30);
+}
+
+.bakame-hero::after {
+  background: #3a463633;
+}
+
+.quest-stats > div {
+  color: var(--editorial-ink);
+  border-color: #ffffffab;
+  background: #ffffff9c;
+  box-shadow: 0 14px 35px #3d4a4212;
+  backdrop-filter: blur(12px);
+}
+
+.quest-stats small {
+  color: #68706c;
+}
+
+.mastery-ring {
+  background: conic-gradient(var(--editorial-green) var(--mastery), #d8d9d4 0);
+}
+
+.mastery-ring::before {
+  background: #f8f8f4;
+}
+
+.learner-compass {
+  border-color: var(--editorial-rule);
+  background: var(--paper-warm);
+  box-shadow: 0 28px 70px #353b3612;
+}
+
+.game-world {
+  margin-top: 90px;
+  padding: 125px 0 1px;
+  color: #f5f5f7;
+  background: #060608;
+}
+
+.game-world-intro {
+  display: grid;
+  grid-template-columns: 1fr .55fr;
+  gap: 70px;
+  align-items: end;
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto 72px;
+}
+
+.game-world-intro .eyebrow {
+  grid-column: 1 / -1;
+  margin-bottom: -32px;
+  color: #8d8d95;
+}
+
+.game-world-intro h2 {
+  margin: 0;
+  color: #f5f5f7;
+  font-size: clamp(3.8rem, 6.7vw, 7rem);
+  font-weight: 680;
+  line-height: .9;
+}
+
+.game-world-intro h2 span {
+  color: #85858b;
+}
+
+.game-world-intro > p:last-child {
+  max-width: 520px;
+  margin: 0 0 8px;
+  color: #a7a7ad;
+  font-size: 1.04rem;
+}
+
+.game-world .mission-map {
+  margin-bottom: 28px;
+}
+
+.game-world .learn-more {
+  color: #f5f5f7;
+}
+
+.learning-footer {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  color: #fff;
+  border-color: #262629;
+  background: #000;
+}
+
+.learning-footer > img {
+  width: 105px;
+}
+
+.learning-footer p {
+  margin: 0;
+  text-align: center;
+}
+
+.learning-footer nav a {
+  color: #a1a1a6;
+}
+
+@media (max-width: 1050px) {
+  .quest-hero {
+    min-height: 0;
+    padding: 80px 50px 65px;
+  }
+
+  .game-world-intro {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .game-world-intro .eyebrow {
+    margin-bottom: 0;
+  }
+
+  .learning-footer {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .learning-footer p {
+    text-align: left;
+  }
+}
+
+@media (max-width: 680px) {
+  body > header {
+    width: calc(100% - 32px);
+  }
+
+  .track-switcher {
+    width: calc(100% - 24px);
+  }
+
+  .quest-hero {
+    width: calc(100% - 16px);
+    margin-top: 12px;
+    padding: 60px 24px 48px;
+    border-radius: 22px;
+  }
+
+  .quest-hero::after {
+    right: -210px;
+    bottom: -250px;
+  }
+
+  .quest-welcome h1 {
+    font-size: 4.2rem;
+  }
+
+  .game-world {
+    margin-top: 55px;
+    padding-top: 90px;
+  }
+
+  .game-world-intro {
+    width: calc(100% - 32px);
+    margin-bottom: 48px;
+  }
+
+  .game-world-intro h2 {
+    font-size: 3.5rem;
+  }
+
+  .learning-footer {
+    padding: 44px 24px;
+  }
+}

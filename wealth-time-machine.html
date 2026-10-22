@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Learn saving, investing and long-term wealth through safe, interactive money simulations with Izere and Bakame.">
-  <meta name="theme-color" content="#060608">
+  <meta name="theme-color" content="#fbfaf7">
   <title>Personal Money Lab — Izere Money Quest</title>
   <link rel="icon" href="assets/izere-favicon.svg">
   <link rel="stylesheet" href="demo.css">
@@ -13,10 +13,11 @@
   <link rel="stylesheet" href="ten-year-run.css">
   <link rel="stylesheet" href="bakame.css">
   <style>header nav{display:flex;gap:28px}header nav a{color:var(--muted);font-size:.78rem;text-decoration:none}header nav a[aria-current="page"]{color:#fff}footer nav{display:flex;gap:22px}@media(max-width:600px){header nav{display:none}}</style>
+  <link rel="stylesheet" href="personal-editorial.css">
 </head>
 <body>
   <header>
-    <a class="brand" href="index.html" aria-label="Return to Izere"><img src="assets/izere-lockup-dark.svg" alt="Izere"></a>
+    <a class="brand" href="index.html" aria-label="Return to Izere"><img src="assets/izere-lockup-light.svg" alt="Izere"></a>
     <nav aria-label="Primary navigation"><a href="index.html">Home</a><a href="wealth-time-machine.html" aria-current="page">Learn</a><a href="institutions.html">Institutions</a><a href="about.html">About</a></nav>
     <a class="exit" href="#mission-one">Start learning</a>
   </header>
@@ -58,6 +59,13 @@
         </ol>
       </div>
     </section>
+
+    <div class="game-world">
+      <section class="game-world-intro" aria-labelledby="practice-room-title">
+        <p class="eyebrow">The practice room</p>
+        <h2 id="practice-room-title">Make the choice.<br><span>See the consequence.</span></h2>
+        <p>Each mission turns an abstract money concept into a decision you can test. Your score rewards understanding and resilience—not risk-taking or returns.</p>
+      </section>
 
     <nav class="mission-map" aria-label="Money Quest missions">
       <div class="map-line" aria-hidden="true"><i id="map-progress"></i></div>
@@ -290,9 +298,10 @@
       <div class="future-freedom-shade"></div>
       <div class="future-freedom-copy"><p class="eyebrow">Mission 06 · Coming next</p><h2 id="future-freedom-title">Freedom is not a finish line.<br><span>It is having more choices.</span></h2><p>Build a long-term plan, stress-test it and learn what financial flexibility can look like—without promises or shortcuts.</p></div>
     </section>
+    </div>
   </main>
 
-  <footer><p>Educational simulation only. Izere does not provide investment advice or investment products.</p><nav><a href="index.html">Home</a><a href="institutions.html">Institutions</a><a href="about.html">About</a><a href="index.html#pilot">Institutional pilot</a></nav></footer>
+  <footer class="learning-footer"><img src="assets/izere-lockup-dark.svg" alt="Izere"><p>Educational simulation only. Izere does not provide investment advice or investment products.</p><nav><a href="index.html">Home</a><a href="institutions.html">Institutions</a><a href="about.html">About</a><a href="index.html#pilot">Institutional pilot</a></nav></footer>
 
   <script src="scenario-data.js"></script>
   <script src="scenario-engine.js"></script>
