@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Play Izere Founder Wealth Lab: build a company, raise capital, protect ownership and explore different exit paths.">
+  <meta name="theme-color" content="#070b11">
+  <title>Founder Wealth Lab — Izere Money Quest</title>
+  <link rel="icon" href="assets/izere-favicon.svg">
+  <link rel="stylesheet" href="founder-lab.css">
+  <link rel="stylesheet" href="bakame.css">
+</head>
+<body>
+  <header class="lab-header">
+    <a class="lab-brand" href="index.html" aria-label="Return to Izere"><img src="assets/izere-lockup-dark.svg" alt="Izere"></a>
+    <nav aria-label="Primary navigation"><a href="index.html">Home</a><a href="wealth-time-machine.html" aria-current="page">Demo</a><a href="institutions.html">Institutions</a><a href="about.html">About</a></nav>
+    <a class="lab-exit" href="index.html#pilot">Design a pilot</a>
+  </header>
+
+  <main>
+    <nav class="track-switcher" aria-label="Choose a Money Quest learning path">
+      <a href="wealth-time-machine.html"><small>CORE PATH</small><strong>Personal Investor</strong><span>Save · invest · diversify</span></a>
+      <a class="active" href="founder-wealth-lab.html" aria-current="page"><small>ADVANCED PATH</small><strong>Founder Wealth</strong><span>Build · raise · own · exit</span></a>
+    </nav>
+
+    <section class="lab-hero" aria-labelledby="lab-title">
+      <div class="lab-hero-copy">
+        <p class="eyebrow">Izere Money Quest · Advanced path</p>
+        <h1 id="lab-title">From equity<br><span>to exit.</span></h1>
+        <p>Build a fictional company, raise capital, face difficult trade-offs and learn how founder wealth can be created—or lost.</p>
+        <a class="start-link" href="#founder-game">Start the founder journey <span>↓</span></a>
+      </div>
+      <div class="lab-hero-visual">
+        <div class="equity-orbit" aria-hidden="true"><span>100%</span><i></i><i></i><i></i></div>
+        <img src="assets/bakame/explaining.png" alt="Bakame introduces the Founder Wealth Lab">
+        <p>Ownership is only the beginning.</p>
+      </div>
+    </section>
+
+    <section class="founder-game" id="founder-game" aria-labelledby="mission-title">
+      <div class="game-heading">
+        <div><p class="eyebrow">Seven decisions · One founder journey</p><h2>Build the company.<br><span>Understand the wealth.</span></h2></div>
+        <p>Every number is part of a fictional learning scenario. Your score rewards judgement, not the highest valuation or fastest exit.</p>
+      </div>
+
+      <nav class="founder-map" id="founder-map" aria-label="Founder Wealth Lab missions"></nav>
+
+      <div class="game-shell">
+        <aside class="founder-dashboard" aria-label="Founder journey dashboard">
+          <div class="company-mark"><span>IV</span><div><small>YOUR FICTIONAL COMPANY</small><strong>Indigo Ventures</strong></div></div>
+          <div class="dashboard-metric ownership-metric"><small>FOUNDER STAKE</small><strong id="ownership-value">100%</strong><i><b id="ownership-bar"></b></i></div>
+          <div class="dashboard-metric"><small>RUNWAY</small><strong id="runway-value">9 months</strong><i><b id="runway-bar"></b></i></div>
+          <div class="dashboard-metric"><small>RESILIENCE</small><strong id="resilience-value">40/100</strong><i><b id="resilience-bar"></b></i></div>
+          <div class="journey-progress"><div><small>MISSIONS COMPLETED</small><strong><span id="completed-value">0</span>/7</strong></div><i><b id="journey-progress"></b></i></div>
+          <p class="scenario-boundary">Game assumptions are simplified for learning. They are not forecasts, valuations, legal advice or tax advice.</p>
+        </aside>
+
+        <section class="mission-panel">
+          <div class="mission-story">
+            <div><p class="eyebrow" id="mission-kicker">Mission 01 · Ownership</p><h2 id="mission-title">Start the company.</h2><p id="mission-brief"></p></div>
+            <span class="mission-symbol" id="mission-symbol" aria-hidden="true">01</span>
+          </div>
+
+          <div class="choice-heading"><div><small>CHOOSE YOUR MOVE</small><strong id="choice-question"></strong></div><span id="choice-state">Select one</span></div>
+          <div class="founder-choices" id="founder-choices" role="radiogroup" aria-label="Choose your response"></div>
+          <button class="reveal-choice" id="reveal-choice" type="button" disabled>See the consequence <span>›</span></button>
+
+          <div class="mission-result" id="mission-result" hidden aria-live="polite">
+            <div class="result-event"><span id="event-icon">!</span><div><small>WHAT HAPPENS NEXT</small><h3 id="event-title"></h3><p id="event-copy"></p></div></div>
+            <div class="result-shifts" aria-label="Scenario metric changes"><div><small>FOUNDER STAKE</small><strong id="stake-shift"></strong></div><div><small>RUNWAY</small><strong id="runway-shift"></strong></div><div><small>RESILIENCE</small><strong id="resilience-shift"></strong></div></div>
+            <div class="learning-grid">
+              <article class="engine-card"><small>WEALTH ENGINE</small><h3 id="engine-title"></h3><p id="engine-copy"></p></article>
+              <article class="reality-card"><small>REALITY CHECK</small><h3 id="reality-title"></h3><p id="reality-copy"></p></article>
+            </div>
+            <div class="bakame-founder"><img id="founder-bakame" src="assets/bakame/explaining.png" alt=""><div><small>BAKAME · FOUNDER COACH</small><strong id="coach-title"></strong><p id="coach-copy"></p></div></div>
+            <details class="lux-lens"><summary><span>🇱🇺</span><div><small>LOCAL LENS</small><strong>See the Luxembourg perspective</strong></div><b>+</b></summary><p id="lux-copy"></p></details>
+            <button class="next-founder" id="next-founder" type="button">Continue to Mission 02 <span>›</span></button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="engine-library" aria-labelledby="engine-library-title">
+      <div class="engine-heading"><p class="eyebrow">The five wealth engines</p><h2 id="engine-library-title">Founder wealth is a system.<br><span>Not a salary.</span></h2><p>Unlock each mechanism inside the game, then return here to see how the pieces connect.</p></div>
+      <div class="engine-list">
+        <article><span>01</span><div><h3>Equity ownership</h3><p>Company shares can create substantial paper wealth, while remaining volatile and difficult to spend.</p></div></article>
+        <article><span>02</span><div><h3>Recycling gains</h3><p>Some founders use proceeds from one venture to finance the next—taking fresh concentration risk.</p></div></article>
+        <article><span>03</span><div><h3>Stock-based compensation</h3><p>Options and performance shares link compensation to company value, with conditions and downside.</p></div></article>
+        <article><span>04</span><div><h3>Borrowing against shares</h3><p>Share-backed borrowing can avoid an immediate sale but introduces collateral and margin-call risk.</p></div></article>
+        <article><span>05</span><div><h3>Connected ventures</h3><p>Reputation, talent and capital can move across companies, but this advantage is unusually difficult to reproduce.</p></div></article>
+      </div>
+    </section>
+
+    <section class="lab-boundary">
+      <img src="assets/bakame/caution.png" alt="Bakame gives an important caution">
+      <div><p class="eyebrow">Keep the story honest</p><h2>One famous winner<br><span>does not prove the path.</span></h2><p>Founder stories can hide failed ventures, dilution, illiquidity, leverage and luck. Izere teaches the mechanism and the downside together.</p></div>
+    </section>
+  </main>
+
+  <footer><p>Educational simulation only. Izere does not provide investment, legal or tax advice.</p><nav><a href="index.html">Home</a><a href="wealth-time-machine.html">Personal Investor path</a><a href="institutions.html">Institutions</a><a href="index.html#pilot">Pilot</a></nav></footer>
+  <script src="founder-lab.js"></script>
+</body>
+</html>

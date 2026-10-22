@@ -8,6 +8,7 @@
   <title>For Financial Institutions — Izere</title>
   <link rel="icon" href="assets/izere-favicon.svg">
   <link rel="stylesheet" href="institutions.css">
+  <link rel="stylesheet" href="institutions-editorial.css">
 </head>
 <body>
   <header class="institution-header">
@@ -18,41 +19,76 @@
 
   <main>
     <section class="institution-hero" id="top">
-      <img src="assets/institution-capital-bridge.jpg" alt="An artistic bridge connecting European households, institutions and productive investment">
+      <img src="assets/photos/young-investor.jpg" alt="A young woman exploring an opportunity on her phone">
       <div class="hero-shade"></div>
       <div class="hero-copy">
         <p class="eyebrow">For financial institutions</p>
         <h1>Europe saves.<br><span>Izere builds the bridge.</span></h1>
-        <p>AI-powered education and simulation infrastructure that helps banks turn investor curiosity into informed, measurable participation.</p>
-        <div><a class="button light" href="#system">Explore the system</a><a class="text-link" href="wealth-time-machine.html">Experience the learner journey <span>›</span></a></div>
+        <p>Education and simulation that helps banks turn curiosity into understanding—and helps new investors take their next step with confidence.</p>
+        <div><a class="button light" href="#system">See how it works</a><a class="text-link" href="wealth-time-machine.html">Experience the learner journey <span>›</span></a></div>
       </div>
-      <a class="scroll-cue" href="#opportunity"><span></span>Why now</a>
+      <figure class="hero-product" aria-label="Illustrative Izere learning experience">
+        <img src="bakame-flow/screenshots/2-sandbox.png" alt="Izere simulation showing how money could grow over time">
+        <figcaption><span>LIVE PROTOTYPE</span> Learn first. Decide later.</figcaption>
+      </figure>
+      <a class="scroll-cue" href="#problem"><span></span>The problem</a>
+    </section>
+
+    <section class="human-problem section" id="problem">
+      <div class="problem-intro reveal">
+        <div>
+          <p class="eyebrow">The problem</p>
+          <h2>Most of us were never taught<br><span>how to build wealth.</span></h2>
+        </div>
+        <p>We learn how to earn money and save it. But not how to invest it, own part of a business or turn an idea into a company. Then, suddenly, we are expected to make important decisions.</p>
+      </div>
+
+      <div class="problem-stories reveal">
+        <article class="story-photo">
+          <span class="story-number">01</span>
+          <img src="assets/alain.jpg" alt="Izere founder Alain Nkurikiye">
+          <p class="story-voice">“I have an idea.”</p>
+          <h3>But starting feels more complicated than it should.</h3>
+          <p>Words like valuation, equity and dilution arrive before the founder has had a chance to learn what they mean in practice.</p>
+        </article>
+        <article class="story-screen">
+          <span class="story-number">02</span>
+          <img src="bakame-flow/screenshots/1-trigger.png" alt="An Izere invitation to explore investing through a simulation">
+          <p class="story-voice">“I have some savings.”</p>
+          <h3>But investing still feels unfamiliar.</h3>
+          <p>The person wants their money to grow, but choosing an investment feels difficult—and making a mistake feels expensive.</p>
+        </article>
+        <article>
+          <span class="story-number">03</span>
+          <p class="story-voice">“We want to help people begin.”</p>
+          <h3>But confidence does not come from a product page.</h3>
+          <p>Institutions offer useful products and programmes, yet many people need to understand and practise before they feel ready.</p>
+        </article>
+      </div>
+
+      <div class="problem-close reveal">
+        <p>People need somewhere to explore, ask simple questions and learn by doing—without risking real money or giving away part of their company.</p>
+        <div><small>WHY IZERE EXISTS</small><strong>When people understand what they are doing, taking the next step feels natural.</strong></div>
+      </div>
     </section>
 
     <section class="opportunity section reveal" id="opportunity">
-      <div class="opportunity-copy"><p class="eyebrow">The opportunity</p><h2>Capital is available.<br><span>Confidence is not.</span></h2><p>Europe has deep household savings and an urgent investment requirement. The missing infrastructure is a trusted path that helps novice investors understand risk, time and trade-offs before entering a product journey.</p></div>
-      <div class="number-stage" aria-label="European savings indicators">
-        <article class="number-card primary"><small>EU HOUSEHOLD BANK DEPOSITS</small><strong data-count="10" data-prefix="€" data-suffix="tn">€0tn</strong><p>Safe and accessible—but not always aligned with long-term wealth goals.</p></article>
-        <article class="number-card"><small>IN CURRENCY & DEPOSITS</small><strong data-count="32" data-suffix="%">0%</strong><p>Share of euro-area household financial assets, Q2 2025.</p></article>
-        <article class="number-card"><small>ANNUAL INVESTMENT NEED</small><strong>€750–800bn</strong><p>Estimated additional investment required for Europe’s priorities by 2030.</p></article>
+      <div class="opportunity-copy"><p class="eyebrow">Why it matters</p><h2>A personal challenge.<br><span>A European opportunity.</span></h2><p>When more people understand how investing works, household savings can support their long-term goals—and help finance the businesses and ideas Europe needs.</p></div>
+      <div class="allocation-figure reveal" aria-label="Thirty-two of every one hundred euros of euro-area household financial assets are held in currency and deposits">
+        <div class="allocation-copy"><small>€100 OF HOUSEHOLD FINANCIAL ASSETS</small><strong><span>€32</span> remains in currency and deposits.</strong><p>Each dot represents one euro. The blue dots show the share held in cash and deposits in Q2 2025.</p></div>
+        <div class="allocation-dots" aria-hidden="true"></div>
+        <aside><div><small>HOUSEHOLD BANK DEPOSITS</small><strong>≈ €10tn</strong></div><div><small>EUROPE'S ADDITIONAL ANNUAL NEED</small><strong>€750–800bn</strong></div></aside>
       </div>
       <p class="source-note">Sources: European Commission, Savings and Investments Union; ECB, Financial Integration and Structure in the Euro Area 2026.</p>
     </section>
 
-    <section class="flow-section" id="system">
-      <div class="section flow-heading reveal"><p class="eyebrow">The conversion gap</p><h2>Same customer.<br><span>A different journey.</span></h2><p>Switch between the conventional experience and an Izere-enabled journey.</p></div>
-      <div class="flow-console reveal">
-        <div class="flow-tabs" role="tablist" aria-label="Compare customer journeys"><button type="button" role="tab" aria-selected="true" data-flow="today">Today</button><button type="button" role="tab" aria-selected="false" data-flow="izere">With Izere</button></div>
-        <div class="flow-canvas" data-active-flow="today">
-          <div class="flow-person"><span></span><small>YOUNG SAVER</small><strong>Curious, but uncertain</strong></div>
-          <div class="flow-line"><i></i></div>
-          <div class="flow-step step-one"><b>01</b><small id="flow-one-label">PRODUCT FIRST</small><strong id="flow-one-title">Catalogue and disclosures</strong><p id="flow-one-copy">The journey begins with documents and product language.</p></div>
-          <div class="flow-line"><i></i></div>
-          <div class="flow-step step-two"><b>02</b><small id="flow-two-label">FRICTION</small><strong id="flow-two-title">Questionnaire without context</strong><p id="flow-two-copy">The customer answers before understanding the trade-offs.</p></div>
-          <div class="flow-line"><i></i></div>
-          <div class="flow-outcome"><small id="flow-outcome-label">OUTCOME</small><strong id="flow-outcome-title">Cash remains idle—or leaves</strong><p id="flow-outcome-copy">The bank retains the deposit but may lose the investment relationship.</p></div>
-        </div>
-        <div class="flow-meter"><span>Trust</span><i><b id="trust-meter"></b></i><strong id="trust-label">Fragile</strong><span>Understanding</span><i><b id="understanding-meter"></b></i><strong id="understanding-label">Low</strong></div>
+    <section class="journey-story" id="system">
+      <div class="section journey-heading reveal"><p class="eyebrow">A more human journey</p><h2>Four moments.<br><span>One confident next step.</span></h2><p>Instead of beginning with a product catalogue, begin with the question already in the customer’s mind.</p></div>
+      <div class="storyboard reveal">
+        <figure><div class="storyboard-portrait"><img src="assets/photos/young-investor.jpg" alt="A young saver looking at her phone"></div><figcaption><small>01 · CURIOSITY</small><strong>“Could my savings do more?”</strong><p>Start with a familiar question, not a financial product.</p></figcaption></figure>
+        <figure><div class="storyboard-phone"><img src="bakame-flow/screenshots/1-trigger.png" alt="Bakame inviting a saver to try a short simulation"></div><figcaption><small>02 · INVITATION</small><strong>“Show me—without investing.”</strong><p>Offer a safe, optional way to explore.</p></figcaption></figure>
+        <figure><div class="storyboard-phone"><img src="bakame-flow/screenshots/2-sandbox.png" alt="An interactive Izere investment growth simulation"></div><figcaption><small>03 · PRACTICE</small><strong>“Now I see the trade-off.”</strong><p>Let the learner change assumptions and see consequences.</p></figcaption></figure>
+        <figure><div class="storyboard-phone"><img src="bakame-flow/screenshots/3-handoff.png" alt="Izere handing an informed learner back to the institution"></div><figcaption><small>04 · NEXT STEP</small><strong>“I know what to ask.”</strong><p>Continue inside the institution when the learner feels ready.</p></figcaption></figure>
       </div>
     </section>
 
@@ -65,29 +101,25 @@
       <p class="policy-boundary">Izere is not presented as a compliance substitute. It provides an education and evidence layer that can sit upstream of institution-owned suitability, advice and execution.</p>
     </section>
 
-    <section class="activation" aria-labelledby="activation-title">
-      <div class="activation-inner section">
-        <div class="activation-copy reveal"><p class="eyebrow">The activation layer</p><h2 id="activation-title">Four capabilities.<br><span>One governed handoff.</span></h2><p>Select a capability to see what Izere contributes—and what remains under institutional control.</p></div>
-        <div class="activation-system reveal">
-          <div class="activation-orbit" role="tablist" aria-label="Izere capabilities">
-            <button class="orbit-node n1 active" type="button" role="tab" aria-selected="true" data-capability="learn"><i>01</i><span>Learn</span></button>
-            <button class="orbit-node n2" type="button" role="tab" aria-selected="false" data-capability="simulate"><i>02</i><span>Simulate</span></button>
-            <button class="orbit-node n3" type="button" role="tab" aria-selected="false" data-capability="evidence"><i>03</i><span>Evidence</span></button>
-            <button class="orbit-node n4" type="button" role="tab" aria-selected="false" data-capability="handoff"><i>04</i><span>Handoff</span></button>
-            <div class="orbit-core"><img src="assets/izere-symbol-dark.svg" alt=""><small>ADAPTIVE LAYER</small><strong>IZERE</strong></div>
-          </div>
-          <article class="capability-card" aria-live="polite"><small id="capability-kicker">01 · LEARN</small><h3 id="capability-title">Make complexity understandable.</h3><p id="capability-copy">AI adapts explanations, examples and difficulty to the learner while remaining grounded in institution-approved content.</p><ul id="capability-list"><li>Plain-language concepts</li><li>Adaptive learning paths</li><li>Source-grounded explanations</li></ul></article>
+    <section class="product-story" aria-labelledby="activation-title">
+      <div class="section">
+        <div class="product-heading reveal"><p class="eyebrow">What Izere adds</p><h2 id="activation-title">Learning you can see.<br><span>Progress you can measure.</span></h2><p>The product is the visual: short explanations, reversible decisions and a clear record of what the learner understood.</p></div>
+        <div class="product-filmstrip reveal">
+          <article><img src="bakame-flow/screenshots/1-trigger.png" alt="Izere learning invitation"><div><small>01 · EXPLAIN</small><h3>Start in plain language.</h3><p>Bakame turns an unfamiliar concept into a question the learner recognises.</p></div></article>
+          <article><img src="bakame-flow/screenshots/2-sandbox.png" alt="Izere investment simulation"><div><small>02 · TRY</small><h3>Practise without pressure.</h3><p>The learner changes an amount or time horizon and sees what the choice could mean.</p></div></article>
+          <article><img src="bakame-flow/screenshots/5-stress-test-caution.png" alt="Izere market stress learning screen"><div><small>03 · REFLECT</small><h3>Slow down emotional decisions.</h3><p>A calm explanation creates room to think before acting.</p></div></article>
         </div>
       </div>
     </section>
 
     <section class="control section reveal">
-      <div class="control-heading"><p class="eyebrow">Clear responsibility</p><h2>Izere enables the journey.<br><span>The institution controls the decision.</span></h2></div>
-      <div class="control-grid">
-        <article class="izere-control"><small>IZERE LAYER</small><h3>Capability and evidence</h3><ul><li>Financial education</li><li>Scenario-based simulations</li><li>Comprehension signals</li><li>Learning progression</li><li>Qualified-interest handoff</li></ul></article>
-        <div class="control-lock" aria-hidden="true"><span></span><b>CONTROLLED<br>BOUNDARY</b></div>
-        <article><small>INSTITUTION LAYER</small><h3>Governance and execution</h3><ul><li>Product manufacturing</li><li>Target-market definition</li><li>Suitability or appropriateness</li><li>Advice and disclosures</li><li>Transactions and servicing</li></ul></article>
+      <div class="control-heading"><p class="eyebrow">A simple boundary</p><h2>Izere helps people prepare.<br><span>Your institution manages the financial decision.</span></h2></div>
+      <div class="two-lane" aria-label="Responsibilities of Izere and the financial institution">
+        <div><small>IZERE</small><ol><li>Learn</li><li>Practise</li><li>Understand</li></ol></div>
+        <span aria-hidden="true">→</span>
+        <div><small>YOUR INSTITUTION</small><ol><li>Choose</li><li>Verify</li><li>Invest</li></ol></div>
       </div>
+      <p class="boundary-note">Education and simulation stay separate from suitability, advice and execution.</p>
     </section>
 
     <section class="pilot" id="pilot">
@@ -100,7 +132,7 @@
     </section>
   </main>
 
-  <footer><img src="assets/izere-lockup-dark.svg" alt="Izere"><p>Financial capability before financial products.</p><nav aria-label="Footer navigation"><a href="index.html">Home</a><a href="wealth-time-machine.html">Demo</a><a href="institutions.html">Institutions</a><a href="about.html">About</a></nav><small>© 2026 Izere · Luxembourg · Education, not investment advice.</small></footer>
-  <script src="institutions.js"></script>
+  <footer><img src="assets/izere-lockup-dark.svg" alt="Izere"><p>Learn to build. Learn to own.</p><nav aria-label="Footer navigation"><a href="index.html">Home</a><a href="wealth-time-machine.html">Demo</a><a href="institutions.html">Institutions</a><a href="about.html">About</a></nav><small>© 2026 Izere · Luxembourg · Education, not investment advice.</small></footer>
+  <script src="institutions.js?v=editorial-v2"></script>
 </body>
 </html>
