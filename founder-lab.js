@@ -76,7 +76,7 @@ if(floatingCoach&&labHero&&'IntersectionObserver' in window){
   coachObserver.observe(labHero);
 }
 
-const coachDrawing=$('#coach-drawing'),coachStatus=$('#coach-status'),coachSkill=$('#coach-skill'),coachXp=$('#coach-xp');
+const coachDrawing=$('#coach-drawing'),coachStatus=$('#coach-status'),coachSkill=$('#coach-skill'),coachXp=$('#coach-xp'),coachAction=$('#coach-action');
 function setCoachUnlocked(unlocked){
   if(!floatingCoach||!coachDrawing)return;
   coachDrawing.classList.toggle('is-active',unlocked);coachDrawing.classList.toggle('is-idle',!unlocked);
@@ -85,5 +85,6 @@ function setCoachUnlocked(unlocked){
   coachStatus.style.color=unlocked?'#3d5a45':'#8c8881';
   coachSkill.textContent=unlocked?'SKILL UNLOCKED':'CAPITAL COMPOUNDING';
   coachXp.textContent=unlocked?'+120 XP':'+0 XP';
+  if(coachAction)coachAction.textContent=unlocked?'Reset coach':'Unlock skill';
 }
 if(floatingCoach)floatingCoach.addEventListener('click',()=>setCoachUnlocked(floatingCoach.getAttribute('aria-pressed')!=='true'));
