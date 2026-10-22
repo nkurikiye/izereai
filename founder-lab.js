@@ -60,7 +60,7 @@ function renderMission(index){
   renderMap();updateDashboard();
 }
 function selectChoice(index){selected=index;choices.querySelectorAll('[data-choice]').forEach((button,i)=>{button.classList.toggle('selected',i===index);button.setAttribute('aria-checked',String(i===index))});reveal.disabled=false;$('#choice-state').textContent='Ready to reveal'}
-function resolveChoice(){if(selected===null||state.results[state.current])return;const mission=missions[state.current],choice=mission.choices[selected];state.ownership=clamp(state.ownership+choice.delta.ownership,1,100);state.runway=clamp(state.runway+choice.delta.runway,0,36);state.resilience=clamp(state.resilience+choice.delta.resilience,0,100);state.results[state.current]={choice:selected};state.unlocked=Math.max(state.unlocked,Math.min(state.current+1,missions.length-1));choices.querySelectorAll('button').forEach(button=>button.disabled=true);reveal.hidden=true;showResult(mission,choice,true);renderMap();updateDashboard()}
+function resolveChoice(){if(selected===null||state.results[state.current])return;const mission=missions[state.current],choice=mission.choices[selected];state.ownership=clamp(state.ownership+choice.delta.ownership,1,100);state.runway=clamp(state.runway+choice.delta.runway,0,36);state.resilience=clamp(state.resilience+choice.delta.resilience,0,100);state.results[state.current]={choice:selected};state.unlocked=Math.max(state.unlocked,Math.min(state.current+1,missions.length-1));choices.querySelectorAll('button').forEach(button=>button.disabled=true);reveal.hidden=true;showResult(mission,choice,true);renderMap();updateDashboard();setCoachUnlocked(true)}
 function showResult(mission,choice,scroll){
   $('#event-title').textContent=mission.event[0];$('#event-copy').textContent=`${mission.event[1]} ${choice.outcome}`;$('#stake-shift').textContent=deltaLabel(choice.delta.ownership,'%');$('#runway-shift').textContent=deltaLabel(choice.delta.runway,' months');$('#resilience-shift').textContent=deltaLabel(choice.delta.resilience,' points');
   $('#engine-title').textContent=mission.engine[0];$('#engine-copy').textContent=mission.engine[1];$('#reality-title').textContent=mission.reality[0];$('#reality-copy').textContent=mission.reality[1];$('#coach-title').textContent=choice.title;$('#coach-copy').textContent=choice.coach;$('#lux-copy').textContent=mission.lux;
@@ -75,3 +75,15 @@ if(floatingCoach&&labHero&&'IntersectionObserver' in window){
   const coachObserver=new IntersectionObserver(([entry])=>floatingCoach.classList.toggle('is-at-hero',entry.isIntersecting&&entry.intersectionRatio>.12),{threshold:[0,.12,.4]});
   coachObserver.observe(labHero);
 }
+
+const coachDrawing=$('#coach-drawing'),coachStatus=$('#coach-status'),coachSkill=$('#coach-skill'),coachXp=$('#coach-xp');
+function setCoachUnlocked(unlocked){
+  if(!floatingCoach||!coachDrawing)return;
+  coachDrawing.classList.toggle('is-active',unlocked);coachDrawing.classList.toggle('is-idle',!unlocked);
+  floatingCoach.setAttribute('aria-pressed',String(unlocked));
+  coachStatus.textContent=unlocked?'EVENT · METAMORPHOSIS':'SYSTEM · IDLE';
+  coachStatus.style.color=unlocked?'#3d5a45':'#8c8881';
+  coachSkill.textContent=unlocked?'SKILL UNLOCKED':'CAPITAL COMPOUNDING';
+  coachXp.textContent=unlocked?'+120 XP':'+0 XP';
+}
+if(floatingCoach)floatingCoach.addEventListener('click',()=>setCoachUnlocked(floatingCoach.getAttribute('aria-pressed')!=='true'));

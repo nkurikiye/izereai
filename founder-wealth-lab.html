@@ -123,12 +123,20 @@
     </div>
   </main>
 
-  <a class="bakame-ai-coach is-at-hero" href="#founder-game" aria-label="Go to Bakame's Founder Wealth coaching mission">
-    <span><img src="assets/bakame/line-coach.png" alt="" aria-hidden="true"></span>
-    <small>FOUNDER COACH</small>
-  </a>
+  <button class="bakame-ai-coach is-at-hero" id="coach-trigger" type="button" aria-pressed="false" aria-label="Simulate a Bakame coaching skill unlock">
+    <span class="coach-status" id="coach-status">SYSTEM · IDLE</span>
+    <span class="coach-drawing is-idle" id="coach-drawing" aria-hidden="true">
+      <svg viewBox="0 0 100 100" role="img">
+        <rect class="coach-frame" x="5" y="5" width="90" height="90" rx="2"></rect>
+        <circle class="coach-ripple" cx="50" cy="55" r="30"></circle>
+        <path class="coach-monoline" d="M35,75 L35,60 C35,45 42,40 50,40 C58,40 65,45 65,60 L65,75 M42,40 L38,15 C38,10 44,10 46,20 L48,40 M58,40 L62,15 C62,10 56,10 54,20 L52,40 M45,52 L50,55 L55,52"></path>
+      </svg>
+    </span>
+    <strong id="coach-skill">CAPITAL COMPOUNDING</strong>
+    <small class="coach-xp" id="coach-xp">+0 XP</small>
+  </button>
 
   <footer class="founder-footer"><img src="assets/izere-lockup-dark.svg" alt="Izere"><p>Educational simulation only. Izere does not provide investment, legal or tax advice.</p><nav><a href="index.html">Home</a><a href="wealth-time-machine.html">Personal Wealth path</a><a href="institutions.html">Institutions</a><a href="index.html#pilot">Pilot</a></nav></footer>
-  <script src="founder-lab.js?v=line-coach"></script>
+  <script src="founder-lab.js?v=architectural-coach"></script>
 </body>
 </html>
