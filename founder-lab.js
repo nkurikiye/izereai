@@ -69,3 +69,9 @@ function showResult(mission,choice,scroll){
 }
 function resetLab(){state.current=0;state.unlocked=0;state.results={};state.ownership=100;state.runway=9;state.resilience=40;renderMission(0);$('#founder-game').scrollIntoView({behavior:'smooth',block:'start'})}
 reveal.addEventListener('click',resolveChoice);next.addEventListener('click',()=>state.current===missions.length-1?resetLab():renderMission(state.current+1));renderMission(0);
+
+const floatingCoach=$('.bakame-ai-coach'),labHero=$('.lab-hero');
+if(floatingCoach&&labHero&&'IntersectionObserver' in window){
+  const coachObserver=new IntersectionObserver(([entry])=>floatingCoach.classList.toggle('is-at-hero',entry.isIntersecting&&entry.intersectionRatio>.12),{threshold:[0,.12,.4]});
+  coachObserver.observe(labHero);
+}

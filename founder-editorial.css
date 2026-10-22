@@ -5,6 +5,8 @@
   --editorial-muted: #61686c;
   --editorial-rule: #d4d0c8;
   --editorial-green: #557f6e;
+  --spacing-xl: 32px;
+  --spacing-md: 16px;
 }
 
 body {
@@ -318,6 +320,68 @@ body {
   text-align: center;
 }
 
+.bakame-ai-coach {
+  position: fixed;
+  right: var(--spacing-xl);
+  bottom: var(--spacing-xl);
+  z-index: 20;
+  display: grid;
+  width: 152px;
+  padding: 10px 10px 9px;
+  color: #2c2a29;
+  border: 1px solid #2c2a2938;
+  border-radius: 999px 999px 18px 18px;
+  background: #f4efe6e8;
+  box-shadow: 0 16px 38px #211f1c1c;
+  backdrop-filter: blur(10px);
+  text-decoration: none;
+  transition: all .4s cubic-bezier(.25, 1, .5, 1);
+}
+
+.bakame-ai-coach span {
+  display: grid;
+  place-items: end center;
+  height: 118px;
+  overflow: hidden;
+  border-radius: 999px 999px 12px 12px;
+}
+
+.bakame-ai-coach img {
+  width: 150px;
+  max-width: none;
+  mix-blend-mode: multiply;
+  filter: grayscale(.18) contrast(1.04);
+  transform: translateY(6px);
+}
+
+.bakame-ai-coach small {
+  padding-top: 7px;
+  border-top: 1px solid #2c2a2928;
+  font-size: .53rem;
+  font-weight: 760;
+  letter-spacing: .14em;
+  text-align: center;
+}
+
+.bakame-ai-coach:hover,
+.bakame-ai-coach:focus-visible {
+  border-color: #2c2a2970;
+  background: #fbf8f1;
+  box-shadow: 0 22px 50px #211f1c29;
+  transform: translateY(-5px);
+}
+
+.bakame-ai-coach:focus-visible {
+  outline: 2px solid #69a58a;
+  outline-offset: 4px;
+}
+
+.bakame-ai-coach.is-at-hero {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(18px) scale(.92);
+}
+
 @media (max-width: 950px) {
   .lab-hero {
     grid-template-columns: 1fr;
@@ -411,5 +475,31 @@ body {
 
   .founder-footer {
     padding: 44px 24px;
+  }
+
+  .bakame-ai-coach {
+    right: var(--spacing-md);
+    bottom: var(--spacing-md);
+    width: 118px;
+    padding: 8px;
+    transform: scale(.8);
+    transform-origin: right bottom;
+  }
+
+  .bakame-ai-coach span {
+    height: 90px;
+  }
+
+  .bakame-ai-coach img {
+    width: 118px;
+  }
+
+  .bakame-ai-coach:hover,
+  .bakame-ai-coach:focus-visible {
+    transform: scale(.8) translateY(-5px);
+  }
+
+  .bakame-ai-coach.is-at-hero {
+    transform: scale(.8) translateY(18px);
   }
 }
