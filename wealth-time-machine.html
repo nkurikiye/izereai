@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Play Izere Money Quest: make real-life financial choices, explore consequences and build investing confidence.">
+  <meta name="description" content="Learn saving, investing and long-term wealth through safe, interactive money simulations with Izere and Bakame.">
   <meta name="theme-color" content="#060608">
-  <title>Izere Money Quest — Interactive Financial Learning</title>
+  <title>Personal Money Lab — Izere Money Quest</title>
   <link rel="icon" href="assets/izere-favicon.svg">
   <link rel="stylesheet" href="demo.css">
   <link rel="stylesheet" href="quest.css">
@@ -17,28 +17,45 @@
 <body>
   <header>
     <a class="brand" href="index.html" aria-label="Return to Izere"><img src="assets/izere-lockup-dark.svg" alt="Izere"></a>
-    <nav aria-label="Primary navigation"><a href="index.html">Home</a><a href="wealth-time-machine.html" aria-current="page">Demo</a><a href="institutions.html">Institutions</a><a href="about.html">About</a></nav>
-    <a class="exit" href="index.html#pilot">Design a pilot</a>
+    <nav aria-label="Primary navigation"><a href="index.html">Home</a><a href="wealth-time-machine.html" aria-current="page">Learn</a><a href="institutions.html">Institutions</a><a href="about.html">About</a></nav>
+    <a class="exit" href="#mission-one">Start learning</a>
   </header>
 
   <main>
     <nav class="track-switcher" aria-label="Choose a Money Quest learning path">
-      <a class="active" href="wealth-time-machine.html" aria-current="page"><small>CORE PATH</small><strong>Personal Investor</strong><span>Save · invest · diversify</span></a>
+      <a class="active" href="wealth-time-machine.html" aria-current="page"><small>FOUNDATION PATH</small><strong>Personal Wealth</strong><span>Save · understand · invest</span></a>
       <a href="founder-wealth-lab.html"><small>ADVANCED PATH</small><strong>Founder Wealth</strong><span>Build · raise · own · exit</span></a>
     </nav>
     <section class="quest-hero" aria-labelledby="quest-title">
       <div class="quest-welcome">
         <div class="bakame-hero" aria-hidden="true"><img src="assets/bakame/welcome.png" alt=""></div>
         <div>
-          <p class="eyebrow">Izere Money Quest</p>
-          <h1 id="quest-title">Your money.<br><span>Your move.</span></h1>
-          <p>Make real-life choices, see what happens and build the judgement to invest with confidence.</p>
+          <p class="eyebrow">Personal Money Lab · Izere Money Quest</p>
+          <h1 id="quest-title">Learn money.<br><span>Build choices.</span></h1>
+          <p>Start with everyday decisions, practise without pressure and build the confidence to invest when you are ready.</p>
         </div>
       </div>
       <div class="quest-stats" aria-label="Learning progress">
-        <div><small>WEEKLY QUEST</small><strong><span id="quest-progress">0</span>/3</strong></div>
+        <div><small>SKILLS PRACTISED</small><strong><span id="quest-progress">0</span>/3</strong></div>
         <div><small>SKILL POINTS</small><strong><span id="xp-total">0</span> XP</strong></div>
-        <div class="mastery-stat"><span class="mastery-ring" id="mastery-ring"><b id="mastery-value">0%</b></span><small>MONEY MASTERY</small></div>
+        <div class="mastery-stat"><span class="mastery-ring" id="mastery-ring"><b id="mastery-value">0%</b></span><small>LEARNING PROGRESS</small></div>
+      </div>
+    </section>
+
+    <section class="learner-compass" aria-labelledby="learner-compass-title">
+      <figure>
+        <img src="assets/photos/young-investor-happy.jpg" alt="A young adult learning about money with confidence">
+        <figcaption>Curiosity is enough to begin.</figcaption>
+      </figure>
+      <div class="learner-compass-copy">
+        <p class="eyebrow">A safe place to practise</p>
+        <h2 id="learner-compass-title">No jargon.<br><span>No pressure.</span></h2>
+        <p>Designed first for young adults—and open to anyone who wants a clearer relationship with money. You will explore choices, see possible consequences and understand the reasoning before any real financial decision.</p>
+        <ol>
+          <li><span>01</span><div><strong>Start with real life</strong><p>Goals, spending, saving and the surprises that compete for the same money.</p></div></li>
+          <li><span>02</span><div><strong>See what could happen</strong><p>Use transparent simulations to explore time, inflation, risk and uncertainty.</p></div></li>
+          <li><span>03</span><div><strong>Build your own judgement</strong><p>Izere explains the trade-off. You remain in control of the choice.</p></div></li>
+        </ol>
       </div>
     </section>
 
@@ -57,12 +74,12 @@
         <div class="scene-topline"><span>MISSION 01</span><span>+120 XP</span></div>
         <div class="scene-copy">
           <p class="eyebrow">Friday · 17:40</p>
-          <h2 id="life-mission-title">You earned your<br><span>first €100.</span></h2>
-          <p>A weekend job just paid you. Three choices are competing for the same money. What job should your €100 do?</p>
+          <h2 id="life-mission-title">You have an extra<br><span>€100.</span></h2>
+          <p>It might be from a weekend job, a gift or money left after expenses. Three choices are competing for it. What job should your €100 do?</p>
         </div>
         <div class="wallet-card" aria-hidden="true">
           <div><small>AVAILABLE</small><strong>€100</strong></div>
-          <span>WEEKEND PAY</span>
+          <span>MONEY TO CHOOSE</span>
           <i></i><i></i><i></i>
         </div>
         <div class="scene-note"><i>1</i><p><strong>Choose deliberately.</strong><br>There is no perfect option—only a trade-off you understand.</p></div>
@@ -72,7 +89,7 @@
         <div class="play-head"><div><p class="eyebrow">Choose your move</p><h3>What matters most today?</h3></div><span id="choice-status">Select one</span></div>
         <div class="choice-grid" role="radiogroup" aria-label="Choose how to use the 100 euros">
           <button class="choice-card" type="button" role="radio" aria-checked="false" data-choice="experience">
-            <span class="choice-icon coral">♪</span><span><small>ENJOY IT</small><strong>Concert with friends</strong><em>€100 today</em></span><i>›</i>
+            <span class="choice-icon coral">♪</span><span><small>ENJOY IT</small><strong>A night out with friends</strong><em>€100 today</em></span><i>›</i>
           </button>
           <button class="choice-card" type="button" role="radio" aria-checked="false" data-choice="buffer">
             <span class="choice-icon blue">⌁</span><span><small>PROTECT IT</small><strong>Emergency buffer</strong><em>€100 kept available</em></span><i>›</i>

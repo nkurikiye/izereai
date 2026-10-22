@@ -1,10 +1,10 @@
 const questChoices = {
   experience: {
     title: 'The experience was real. So is the shortfall.',
-    copy: 'You enjoyed the concert, but the repair arrives with no money set aside. You now need €80 from another source or must delay the repair.',
+    copy: 'You enjoyed the night out, but the repair arrives with no money set aside. You now need €80 from another source or must delay the repair.',
     number: '€80 short',
     coachTitle: 'Opportunity cost is not regret.',
-    coachCopy: 'The concert was not automatically a bad decision. The lesson is to recognise that spending the full €100 removed your safety margin before you chose.'
+    coachCopy: 'Enjoying the money was not automatically a bad decision. The lesson is to recognise that spending the full €100 removed your safety margin before you chose.'
   },
   buffer: {
     title: 'Your buffer absorbs the surprise.',
