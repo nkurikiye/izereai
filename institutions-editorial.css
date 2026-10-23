@@ -28,3 +28,20 @@ body{background:#fbfaf7}
 .pilot{background:#eae4da;color:#111}.pilot h2{color:#111}.pilot h2 span{color:#747b7f}.pilot p{color:#60686d}.pilot .button.dark{background:#111;color:#fff}.pilot-board>div{border-radius:0;border-color:#cfc8bd;background:#f8f6f1}.pilot-board small{color:#287fa7}.pilot-board span{color:#6b7479}
 @media(max-width:980px){.institution-hero>img{width:100%;opacity:.55}.hero-shade{background:linear-gradient(0deg,#0d1821 0 35%,#0d1821aa 70%,#0d182155)}.hero-product{display:none}.problem-stories,.allocation-figure,.journey-heading,.product-heading,.product-filmstrip{grid-template-columns:1fr}.problem-stories{gap:60px}.problem-stories article:nth-child(3){padding-left:0;border-left:0}.allocation-dots{max-width:620px}.storyboard{grid-template-columns:1fr 1fr}.two-lane{grid-template-columns:1fr}.two-lane>span{transform:rotate(90deg);justify-self:center}}
 @media(max-width:650px){.institution-hero{min-height:780px}.institution-hero>img{object-position:52% center}.hero-copy h1{font-size:4rem}.problem-intro h2,.opportunity-copy h2,.journey-heading h2,.policy-heading h2,.product-heading h2,.control-heading h2{font-size:3.05rem}.problem-stories .story-screen img{width:84%}.allocation-figure{gap:35px;margin-top:50px;padding:40px 0}.allocation-dots{gap:6px}.journey-story{padding:90px 0}.journey-heading{width:calc(100% - 32px);padding-bottom:40px}.storyboard{grid-template-columns:1fr}.storyboard figure>div{height:420px}.storyboard figcaption{min-height:0}.product-filmstrip article{grid-template-rows:420px auto}.two-lane ol{flex-direction:column}.two-lane li+li{border-left:0;border-top:0}}
+
+
+/* Mobile product cards: keep the full phone screen separate from its caption. */
+@media(max-width:650px){
+  .product-filmstrip{gap:22px}
+  .product-filmstrip article{display:flex;flex-direction:column}
+  .product-filmstrip article img{
+    display:block;
+    width:100%;
+    height:auto;
+    aspect-ratio:9 / 16;
+    object-fit:contain;
+    background:#071522
+  }
+  .product-filmstrip article>div{position:relative;flex:1;padding:24px}
+  .product-filmstrip h3{font-size:1.7rem;line-height:1.05}
+}
