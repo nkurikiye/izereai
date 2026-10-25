@@ -18,7 +18,7 @@
   const maximumQuestions = 3;
   const configuredEndpoint = card.dataset.coachEndpoint.trim();
   const localHost = !window.location.hostname || ['localhost', '127.0.0.1'].includes(window.location.hostname);
-  const endpoint = configuredEndpoint || (localHost ? 'http://127.0.0.1:3000/api/coach/respond' : '');
+  const endpoint = configuredEndpoint || (localHost ? 'http://127.0.0.1:3000/api/coach/respond' : '/api/coach/respond');
   const imageByMood = {
     explaining: 'assets/bakame/explaining.png',
     thinking: 'assets/bakame/thinking.png',
