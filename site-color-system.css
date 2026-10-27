@@ -1,0 +1,74 @@
+:root{
+  --iz-violet:#8f83f4;
+  --iz-lavender:#c7bdf8;
+  --iz-coral:#ff7a70;
+  --iz-lime:#c9f060;
+  --iz-aqua:#70d8ef;
+  --iz-plum:#4f347e;
+  --iz-cream:#fffaf3;
+  --iz-ink:#171a22;
+}
+
+body.page-home,body.page-personal,body.page-founder,body.page-about,body.page-institutions{background:var(--iz-cream)}
+
+/* One navigation language across the public site. */
+.page-home .site-header,.page-personal>header,.page-founder .lab-header,.page-about>header{
+  position:relative;z-index:30;top:14px;width:auto;max-width:none;height:64px;margin:0 18px;padding:0 22px;border:1px solid rgba(20,24,32,.1);border-radius:18px;background:rgba(255,255,255,.9);box-shadow:0 12px 40px rgba(62,45,110,.12);backdrop-filter:blur(18px)
+}
+.page-home .site-header{position:absolute}
+.page-home .site-header nav a,.page-home .nav-cta,.page-personal>header nav a,.page-founder .lab-header nav a,.page-about>header nav a{color:#29303a}
+.page-home .site-header nav a[aria-current="page"],.page-personal>header nav a[aria-current="page"],.page-founder .lab-header nav a[aria-current="page"],.page-about>header nav a[aria-current="page"]{color:var(--iz-plum)}
+.page-home .nav-cta,.page-personal>header .exit,.page-founder .lab-exit,.page-about .header-cta{border-color:var(--iz-ink);color:#fff;background:var(--iz-ink)}
+
+/* Home: editorial colour, real people, and strong legibility. */
+.page-home .hero{min-height:900px;color:var(--iz-ink);background:linear-gradient(120deg,#b8acf7 0%,#9387f2 48%,#75cef2 100%)}
+.page-home .hero:before{content:"";position:absolute;z-index:1;right:-9vw;bottom:-16vw;width:42vw;height:42vw;border-radius:50%;background:rgba(201,240,96,.72)}
+.page-home .hero:after{content:"";position:absolute;z-index:1;top:125px;right:44%;width:125px;height:125px;border-radius:50%;background:rgba(255,122,112,.78)}
+.page-home .hero-media{z-index:2;top:145px;right:3.5%;bottom:auto;left:auto;width:53%;height:570px;opacity:1}
+.page-home .hero-media img{border:10px solid rgba(255,255,255,.94);border-radius:32px;object-position:center;box-shadow:0 34px 90px rgba(46,36,95,.28)}
+.page-home .hero-shade{z-index:2;background:linear-gradient(90deg,rgba(184,172,247,.98) 0 38%,rgba(184,172,247,.62) 48%,transparent 64%)}
+.page-home .hero-copy{z-index:4;padding-top:160px;color:var(--iz-ink)}
+.page-home .hero-copy .eyebrow{display:inline-flex;padding:8px 12px;border:1px solid rgba(21,26,35,.32);border-radius:99px;background:rgba(255,255,255,.28)}
+.page-home .hero h1{color:var(--iz-ink)}.page-home .hero h1 span{color:#fff}.page-home .hero-lede{color:#343844}
+.page-home .hero .button.light{color:#fff;background:var(--iz-ink)}.page-home .hero-link,.page-home .scroll-cue{color:var(--iz-ink)}
+.page-home .promise h2 span,.page-home .europe-heading h2 span,.page-home .growth-paths-heading h2 span{color:#7864c1}
+.page-home .europe-opportunity{background:linear-gradient(135deg,#e7f8fc,#f7fbff 52%,#efe9ff)}
+.page-home .europe-stats article:nth-child(1){background:#f2c8ec}.page-home .europe-stats article:nth-child(2){background:#d5f2f8}.page-home .europe-stats article:nth-child(3){background:#ecf7bd}
+.page-home .bakame-journey{background:linear-gradient(145deg,#3d2c68,#5d4691)}
+
+/* The two learning labs now share the same expressive family. */
+.page-personal .track-switcher,.page-founder .track-switcher{border-color:rgba(79,52,126,.16);background:#e9e2fb}
+.page-personal .track-switcher a.active,.page-founder .track-switcher a.active{color:var(--iz-ink);background:#fff}
+.page-personal .track-switcher small,.page-founder .track-switcher small{color:#674ea0}
+.page-personal .quest-hero,.page-founder .lab-hero{background:radial-gradient(circle at 83% 17%,rgba(201,240,96,.78),transparent 27%),linear-gradient(135deg,#c7bdf8 0%,#9f91f1 52%,#79d6ee 100%)}
+.page-personal .quest-hero:after,.page-founder .lab-hero:after{border-color:rgba(255,255,255,.42);box-shadow:0 0 0 70px rgba(255,255,255,.13),0 0 0 140px rgba(255,255,255,.08)}
+.page-personal .quest-welcome h1 span,.page-founder .lab-hero h1 span{color:#fff}
+.page-personal .quest-welcome>div>p:last-child,.page-founder .lab-hero-copy>p:not(.eyebrow),.page-founder .lab-hero-visual>p{color:#343844}
+.page-personal .quest-stats>div{background:rgba(255,255,255,.78)}
+.page-personal .learner-compass{background:#d8f3f7}.page-founder .founder-compass{background:#ffd8d3}
+.page-personal .game-world-intro h2 span,.page-founder .founder-world-intro h2 span{color:#7864c1}
+
+/* About: less corporate biography, more editorial founder story. */
+.page-about .about-hero{width:min(1320px,calc(100% - 32px));margin:28px auto;padding:120px 40px;border-radius:34px;background:radial-gradient(circle at 85% 20%,var(--iz-lime),transparent 25%),linear-gradient(125deg,#c7bdf8,#8f83f4 55%,#70d8ef)}
+.page-about .about-hero h1{color:var(--iz-ink)}.page-about .about-hero>p:last-child{color:#343844}
+.page-about .philosophy-heading h2 span,.page-about .bio h2 span,.page-about .about-cta h2 span{color:#7864c1}
+.page-about .philosophy-grid article:nth-child(1){background:#ffd8d3}.page-about .philosophy-grid article:nth-child(2){color:var(--iz-ink);background:#d8f3f7}.page-about .philosophy-grid article:nth-child(2) p{color:#555c65}.page-about .philosophy-grid article:nth-child(3){background:#e9f5bd}
+
+/* Bakame is prominent where coaching matters, and restrained elsewhere. */
+.bakame-intro-card{display:grid;grid-template-columns:minmax(220px,.72fr) 1.28fr;gap:50px;align-items:center;margin-top:70px;padding:44px;overflow:hidden;border:1px solid rgba(79,52,126,.14);border-radius:30px;background:linear-gradient(125deg,#f0eafd,#d9f3f8 58%,#edf7c5);box-shadow:0 24px 65px rgba(75,54,122,.12)}
+.bakame-intro-card>img{align-self:end;max-height:390px;object-fit:contain;filter:drop-shadow(0 24px 28px rgba(66,48,100,.2))}
+.bakame-intro-card h3,.bakame-intro-card h2{margin:0 0 22px;color:var(--iz-ink);font-size:clamp(2.3rem,4vw,4.6rem);line-height:.98;letter-spacing:-.055em}
+.bakame-intro-card h2 span{color:#6d58b8}.bakame-intro-card p:not(.eyebrow){max-width:680px;color:#4e5560}.bakame-intro-card a:not(.button){color:var(--iz-plum);font-weight:700;text-decoration:none}
+.product-story .bakame-intro-card{color:var(--iz-ink)}
+.about-bakame{width:min(1180px,calc(100% - 48px));padding:44px}.about-bakame>div>div{display:flex;gap:24px;align-items:center}.about-bakame .text-link{color:var(--iz-plum)}
+
+@media(max-width:900px){
+  .page-home .hero-media{top:112px;right:5%;width:90%;height:390px}.page-home .hero-shade{background:linear-gradient(0deg,#a99df4 0 43%,rgba(169,157,244,.92) 55%,transparent 78%)}.page-home .hero-copy{padding-top:510px}.bakame-intro-card{grid-template-columns:1fr}.bakame-intro-card>img{max-height:300px}
+}
+@media(max-width:650px){
+  .page-home .site-header,.page-personal>header,.page-founder .lab-header,.page-about>header{top:8px;margin:0 8px;padding:0 14px}
+  .page-home .hero{min-height:900px}.page-home .hero-media{top:94px;right:16px;width:calc(100% - 32px);height:230px}.page-home .hero-media img{border-width:6px;border-radius:24px}.page-home .hero-copy{padding-top:345px}.page-home .hero h1{font-size:3.75rem}.page-home .hero:after{top:80px;right:-30px;width:95px;height:95px}
+  .page-personal .quest-hero,.page-founder .lab-hero,.page-about .about-hero{width:calc(100% - 16px);padding-right:24px;padding-left:24px;border-radius:24px}
+  .page-about .about-hero{padding-top:95px;padding-bottom:80px}.page-about .about-hero h1{font-size:3.55rem}
+  .bakame-intro-card,.about-bakame{width:calc(100% - 16px);gap:18px;margin-top:35px;padding:28px 22px;border-radius:22px}.bakame-intro-card>img{max-height:240px}.bakame-intro-card h3,.bakame-intro-card h2{font-size:2.4rem}.about-bakame>div>div{align-items:flex-start;flex-direction:column}
+}
