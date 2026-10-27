@@ -64,3 +64,145 @@ body{background:#fbfaf7}
 
 @media(max-width:980px){.capital-system-map{grid-template-columns:1fr}.map-connector{min-height:54px}.map-connector>span{margin-bottom:8px}.map-connector>i{width:1px;height:32px}.map-connector>i:after{top:auto;right:-3px;bottom:-1px;border-top:7px solid #4f8095;border-right:4px solid transparent;border-bottom:0;border-left:4px solid transparent}.map-connector>i b{animation:map-signal-y 3.2s ease-in-out infinite}.map-connector-out>i b{animation-delay:1.15s}.capital-map-governance{grid-column:1;grid-template-columns:1fr 1fr}.capital-map-governance small{grid-column:1/-1}.capital-map-governance span{padding:10px 0 0;border-top:1px solid #c7c1b7;border-left:0}@keyframes map-signal-y{70%,100%{transform:translateY(27px)}}}
 @media(max-width:650px){.enterprise-hero-copy h1{font-size:3.45rem;overflow-wrap:anywhere}.architecture-viewer{padding:22px}.architecture-viewer-head{flex-direction:column}.capital-map-core>strong{margin-top:38px}.capital-map-governance{gap:10px}.trust-stack article,.trust-stack article:nth-child(1),.trust-stack article:nth-child(2){grid-template-columns:38px 1fr;margin:0;padding:18px 16px}.trust-stack em{grid-column:2}.pilot-offer h2{font-size:2.8rem}}
+
+/* Colour editorial system — inspired by bold magazine layouts, grounded in Izere. */
+:root{
+  --violet:#8f83f4;
+  --lavender:#c7bdf8;
+  --coral:#ff7a70;
+  --lime:#c9f060;
+  --aqua:#70d8ef;
+  --plum:#4f347e;
+  --cream:#fffaf3;
+}
+
+.institution-header{
+  top:14px;
+  right:18px;
+  left:18px;
+  width:auto;
+  border:1px solid rgba(20,24,32,.1);
+  border-radius:18px;
+  background:rgba(255,255,255,.88);
+  box-shadow:0 12px 40px rgba(62,45,110,.12);
+  backdrop-filter:blur(18px);
+}
+.institution-header nav a{color:#29303a}
+.institution-header nav a[aria-current="page"]{color:var(--plum)}
+.header-cta{border-color:#20242b;background:#20242b;color:#fff}
+
+.institution-hero{
+  min-height:920px;
+  overflow:hidden;
+  color:#161b24;
+  background:
+    radial-gradient(circle at 13% 18%,rgba(255,255,255,.46),transparent 25%),
+    linear-gradient(118deg,#b8acf7 0%,#9387f2 45%,#75cef2 100%);
+}
+.institution-hero:before,.institution-hero:after{content:"";position:absolute;z-index:1;border-radius:50%;pointer-events:none}
+.institution-hero:before{right:-8vw;bottom:-18vw;width:42vw;height:42vw;background:rgba(201,240,96,.7);filter:blur(2px)}
+.institution-hero:after{top:120px;right:38%;width:140px;height:140px;background:rgba(255,122,112,.78)}
+.institution-hero>img{
+  z-index:2;
+  top:150px;
+  right:3.5%;
+  bottom:auto;
+  left:auto;
+  width:52%;
+  height:550px;
+  border:10px solid rgba(255,255,255,.92);
+  border-radius:32px;
+  object-fit:cover;
+  object-position:right center;
+  filter:none;
+  box-shadow:0 34px 90px rgba(46,36,95,.28);
+}
+.hero-shade{z-index:2;background:linear-gradient(90deg,rgba(184,172,247,.98) 0 38%,rgba(184,172,247,.6) 48%,transparent 63%)}
+.hero-copy{z-index:4;padding-top:185px;color:#151a23}
+.hero-copy .eyebrow{display:inline-flex;padding:8px 12px;border:1px solid rgba(21,26,35,.34);border-radius:999px;color:#222937;background:rgba(255,255,255,.28)}
+.hero-copy h1{max-width:760px;color:#151a23;text-wrap:balance}
+.hero-copy h1 span{color:#fff;text-shadow:0 2px 0 rgba(45,33,103,.08)}
+.hero-copy>p:not(.eyebrow){max-width:590px;color:#313744}
+.hero-copy .button.light{background:#151a23;color:#fff;box-shadow:0 12px 30px rgba(28,22,59,.18)}
+.hero-copy .text-link{color:#1d2430}
+.hero-product{z-index:5;right:4.8%;bottom:5.5%;width:270px;transform:none}
+.spline-hero-container{min-height:240px;padding:54px 22px 46px;border-color:rgba(33,27,58,.14);border-radius:22px;background:rgba(255,255,255,.9);box-shadow:0 20px 55px rgba(50,36,102,.2);backdrop-filter:blur(16px)}
+.spline-hero-container:before{background:radial-gradient(circle at 85% 8%,rgba(201,240,96,.6),transparent 34%),linear-gradient(140deg,rgba(143,131,244,.14),transparent 48%)}
+.spline-slot-label{color:#674ea0}
+.hero-signal-flow span{border-color:rgba(57,45,92,.12);background:rgba(143,131,244,.08)}
+.hero-signal-flow i{border-color:#7d68c7;color:#634aa5}
+.hero-signal-flow b{color:#232833}
+.hero-signal-flow em{background:#a49ac8}
+.hero-signal-flow em:after{background:var(--coral)}
+.spline-hero-container>p{color:#6f687d}
+.hero-product figcaption{color:#252a34}.hero-product figcaption span{color:#684a9b}
+.scroll-cue{z-index:5;color:#202631}
+.scroll-cue span{border-color:#202631}
+
+.human-problem{background:var(--cream)}
+.problem-intro h2 span,.opportunity-copy h2 span,.journey-heading h2 span{color:#7864c1}
+.problem-stories article{padding:22px!important;border:1px solid rgba(35,37,43,.08)!important;border-radius:24px!important}
+.problem-stories article:nth-child(1){background:#f2c8ec!important}
+.problem-stories article:nth-child(2){background:#d5f2f8!important}
+.problem-stories article:nth-child(3){background:#ecf7bd!important}
+.problem-stories article img{border-radius:16px}
+.problem-stories .story-screen img{background:#fff}
+.story-number{border:0;border-radius:999px;background:rgba(255,255,255,.65)}
+.story-voice{color:#5b3d8a}
+
+.opportunity{background:linear-gradient(135deg,#e7f8fc 0%,#f7fbff 52%,#efe9ff 100%)}
+.allocation-figure{border-color:rgba(64,52,101,.18)}
+.allocation-dots i.active{border-color:#6d58b8;background:var(--violet)}
+.allocation-copy small,.allocation-figure aside small{color:#654c99}
+.allocation-copy strong span{color:#654c99}
+
+.journey-story{background:#efe9fb}
+.storyboard{gap:18px}
+.storyboard figure{overflow:hidden;border-radius:24px;box-shadow:0 18px 48px rgba(75,54,122,.1)}
+.storyboard figure:nth-child(1){background:#ffd4cb}
+.storyboard figure:nth-child(2){background:#d5f2f8}
+.storyboard figure:nth-child(3){background:#edf7c5}
+.storyboard figure:nth-child(4){background:#dcd3fb}
+.storyboard-phone{background:transparent}
+.storyboard small,.product-filmstrip small{color:#6750a0}
+.architecture-viewer{border-color:rgba(73,55,119,.16);border-radius:24px;box-shadow:0 25px 70px rgba(69,48,117,.11)}
+.capital-map-core{border-color:#5e4d97;background:linear-gradient(145deg,#4f347e,#765fc1)}
+
+.product-story{background:linear-gradient(145deg,#3d2c68,#5d4691);color:#fff}
+.enterprise-capabilities{gap:22px}
+.enterprise-capabilities article{border:0;border-radius:24px;background:#fff;color:#181b23;box-shadow:0 26px 60px rgba(24,15,48,.22)}
+.enterprise-capabilities article:nth-child(1){background:#ffd8d3}
+.enterprise-capabilities article:nth-child(2){background:#d8f3f7}
+.enterprise-capabilities article:nth-child(3){background:#e9f5bd}
+.enterprise-capabilities article>div{background:transparent}
+.enterprise-capabilities article>div:before{background:rgba(54,44,82,.2)}
+.enterprise-capabilities small{color:#654a96}
+.enterprise-capabilities h3{color:#181b23}
+.enterprise-capabilities p{color:#4f5560}
+.enterprise-capabilities article>img{opacity:1;filter:none}
+
+.control{background:#fffaf3}
+.control-heading h2 span{color:#7965bc}
+.pilot{background:linear-gradient(120deg,#c9f060,#e9f8b9 55%,#d7cdfb);color:#151a22}
+.pilot-board>div{border:0;border-radius:18px;background:rgba(255,255,255,.74);box-shadow:0 14px 36px rgba(45,56,30,.08)}
+.pilot-board small{color:#614c93}
+
+@media(max-width:980px){
+  .institution-header{top:8px;right:8px;left:8px}
+  .institution-hero>img{top:118px;right:5%;width:90%;height:390px;opacity:1}
+  .hero-shade{background:linear-gradient(0deg,#a99df4 0 43%,rgba(169,157,244,.92) 55%,transparent 78%)}
+  .hero-copy{padding-top:500px}
+  .institution-hero:after{top:90px;right:-30px;width:110px;height:110px}
+  .problem-stories article:nth-child(3){padding:22px!important}
+}
+@media(max-width:650px){
+  .institution-hero{min-height:910px}
+  .institution-hero>img{top:105px;right:16px;width:calc(100% - 32px);height:220px;border-width:6px;border-radius:24px;object-position:right center}
+  .hero-copy{padding-top:350px}
+  .hero-copy h1{font-size:3.25rem;line-height:.9}
+  .hero-copy>p:not(.eyebrow){font-size:.94rem}
+  .hero-copy .text-link{display:block;margin:18px 0 0}
+  .problem-stories article{padding:18px!important}
+  .storyboard{gap:22px}
+  .architecture-viewer{border-radius:18px}
+}
