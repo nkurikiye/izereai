@@ -2,6 +2,7 @@
 
 - `young-investor.jpg` — “Young woman uses phone by window overlooking cityscape,” MBA studio, Unsplash. https://unsplash.com/photos/J_wqNE9abJw
 - `learning-together.jpg` — “Children Using a Laptop,” Alena Darmel, Pexels. https://www.pexels.com/photo/children-using-a-laptop-7742822/
+- `institutions-learning-studio.jpg` — Generated for Izere with OpenAI image generation, 28 October 2026.
 - `young-investor-happy.jpg` — AI-generated specifically for Izere using OpenAI's built-in image generation tool, 22 October 2026.
 - `young-founder-idea.jpg` — AI-generated specifically for Izere using OpenAI's built-in image generation tool, 22 October 2026.
 - `maya.jpg` — AI-generated specifically for Izere using OpenAI's built-in image generation tool, 22 October 2026.
