@@ -21,3 +21,8 @@
 .bakame-journey-copy{min-width:0}
 .two-ways{text-align:center;padding-top:130px;padding-bottom:130px}.two-ways h2{max-width:980px;margin-left:auto;margin-right:auto;font-size:clamp(2.8rem,5.6vw,5.6rem)}.two-ways .lead{max-width:640px;margin:0 auto;font-size:1.25rem;color:var(--muted)}.two-ways-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:880px;margin:64px auto 0;text-align:left}.two-ways-grid article{padding:34px;border:1px solid var(--line);border-radius:24px;background:#fff}.two-ways-grid small{display:flex;flex-wrap:wrap;gap:10px;align-items:center;color:var(--blue);font-size:.68rem;font-weight:750;letter-spacing:.12em}.two-ways-grid em{padding:3px 9px;border-radius:99px;background:#eef6ff;color:#0058b0;font-size:.62rem;font-style:normal;letter-spacing:.06em;text-transform:uppercase}.two-ways-grid h3{margin:26px 0 12px;font-size:clamp(1.7rem,2.6vw,2.3rem);font-weight:650;line-height:1.05}.two-ways-grid p{margin:0;color:var(--muted);font-size:1rem}@media(max-width:760px){.two-ways{padding-top:90px;padding-bottom:90px}.two-ways-grid{grid-template-columns:1fr;margin-top:44px}.two-ways-grid article{padding:28px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+/* Secondary hero action: visible on desktop and mobile while preserving the site design. */
+.hero-bank-button{color:#fff;background:transparent;border:1.5px solid rgba(255,255,255,.9);white-space:nowrap;transition:background .2s,color .2s}
+.hero-bank-button:hover,.hero-bank-button:focus-visible{background:#fff;color:#111}
+@media(max-width:650px){.hero-actions{gap:12px}.hero-bank-button{min-width:150px}}
