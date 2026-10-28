@@ -14,3 +14,10 @@ body{background:#fbfaf7}
 .pilot{border-bottom:1px solid var(--editorial-rule)}
 @media(max-width:900px){.promise,.chapter{grid-template-columns:1fr}.promise .eyebrow{margin-bottom:0}.chapter-media{grid-row:1;min-height:520px}.chapter-copy{grid-column:1;grid-row:2;min-height:0;padding:60px 40px}.chapter-number{position:static;margin-bottom:40px}.product-chapter .chapter-media{min-height:580px}.growth-drawing{grid-template-columns:1fr}.growth-drawing>div{min-height:360px;border-right:0;border-bottom:1px solid #cfc7bb}.institution-device{right:5%;width:210px!important;height:390px!important}}
 @media(max-width:650px){.hero-media{width:100%;opacity:.64}.hero-shade{background:linear-gradient(0deg,#101a22 0 42%,#101a2288 72%,transparent)}.hero h1{font-size:4rem}.promise{display:block}.promise .eyebrow{margin-bottom:24px}.europe-opportunity{margin:0}.europe-stats{border-bottom:0}.europe-stats article{border-right:0;border-bottom:1px solid #c9c1b5}.chapter{width:calc(100% - 24px);margin:35px auto}.chapter-media{min-height:420px}.chapter-copy{padding:50px 28px}.chapter-copy h2{font-size:3rem}.product-chapter .chapter-media{min-height:500px;padding:35px 45px 0}.innovation .chapter-media img{margin-top:55px}.journey-device{box-shadow:10px 18px 0 #e43b48}.growth-drawing strong{bottom:30px}.institution-stage>img:first-of-type{min-height:440px}.institution-device{right:18px;width:150px!important;height:300px!important;border-width:5px}.growth-path-actions{padding:0}.growth-path-card{border-radius:0}}
+
+/* Featured Money Quest: give the working product preview priority after the hero. */
+.featured-demo{padding-top:110px;padding-bottom:110px}
+.featured-demo .demo-window{box-shadow:0 28px 70px rgba(9,24,40,.18);transition:transform .2s ease,box-shadow .2s ease}
+.featured-demo .demo-window:hover,.featured-demo .demo-window:focus-visible{transform:translateY(-5px);box-shadow:0 34px 80px rgba(9,24,40,.24)}
+@media(max-width:650px){.featured-demo{padding-top:72px;padding-bottom:80px}.featured-demo .demo-window:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.featured-demo .demo-window{transition:none}}
