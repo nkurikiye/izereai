@@ -120,6 +120,14 @@ function IzereDemo(){
   const reset = () => {setInterventions({});setInputs(initialInputs());};
   const riskLabel = n => n >= 70 ? 'High' : n >= 50 ? 'Elevated' : 'Lower';
 
+  const [question,setQuestion]=useState('why');
+  const explanations={
+    why: `The illustrative risk index is ${calculated.index}/100. The strongest contributors are ${calculated.contributions.slice(0,3).map(x=>x.label.toLowerCase()+' ('+(x.contribution>=0?'+':'')+x.contribution.toFixed(2)+')').join(', ')}. Contributions are log-odds terms, not verified causal drivers.`,
+    evidence: 'This demonstration uses manually entered project variables and hypothetical scenario profiles. It has no verified source-document evidence yet. A production system must cite dated contracts, reports, procurement records and extraction confidence.',
+    scenario: `You selected ${Object.values(interventions).filter(Boolean).length} intervention(s). The illustrative index changes from ${calculated.index} to ${projected}. These reductions are assumed for demonstration and have not been estimated from observed outcomes.`,
+    next: 'First investigate the largest risk contributors, verify them against current project documents, identify the accountable owner and check critical-path consequences. Human review is required before action.'
+  };
+  const answer=explanations[question];
   return (
     <div className="demo-frame">
       <div className="demo-bar">
@@ -202,6 +210,17 @@ function IzereDemo(){
             ))}
           </div>
 
+          <section aria-label="Ask Bakame" style={{marginTop:18,padding:16,border:"1px solid rgba(255,255,255,.25)",borderRadius:12,background:"rgba(255,255,255,.045)"}}>
+            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:12}}>
+              <img src="assets/bakame/explaining.png" alt="Bakame" style={{width:52,height:52,objectFit:"contain"}}/>
+              <div><strong style={{fontSize:17}}>Ask Bakame</strong><div style={{fontSize:12,opacity:.75}}>Your project intelligence assistant</div></div>
+            </div>
+            <div style={{display:"flex",flexWrap:"wrap",gap:6,marginBottom:12}}>
+              {[['why','Why this risk?'],['evidence','Show evidence'],['scenario','Explain scenario'],['next','What next?']].map(([id,label])=><button type="button" key={id} onClick={()=>setQuestion(id)} aria-pressed={question===id} style={{padding:"7px 9px",border:"1px solid rgba(255,255,255,.3)",borderRadius:6,background:question===id?"rgba(255,255,255,.22)":"transparent",color:"white",cursor:"pointer",fontSize:12}}>{label}</button>)}
+            </div>
+            <p aria-live="polite" style={{fontSize:13,lineHeight:1.6,margin:"0 0 8px"}}>{answer}</p>
+            <small style={{opacity:.65}}>Transparent, input-grounded explanations · Demo mode · No live AI service</small>
+          </section>
           <div className="whatif">
             <div className="whatif-hd">
               <span className="l">What-if · interventions</span>
