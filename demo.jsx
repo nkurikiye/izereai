@@ -86,6 +86,7 @@ const INTERVENTIONS = [
 function IzereDemo(){
   const [selectedId, setSelected] = useState('rail-baltica');
   const [interventions, setInterventions] = useState({});
+  const [view, setView] = useState('Overview');
 
   const selected = PROGRAMMES.find(p => p.id === selectedId);
   const totalImpact = useMemo(() => {
@@ -98,6 +99,8 @@ function IzereDemo(){
   const projectedBand = projected >= 70 ? 'h' : projected >= 50 ? 'm' : 'l';
 
   const toggle = (id) => setInterventions(prev => ({ ...prev, [id]: !prev[id] }));
+  const reset = () => setInterventions({});
+  const riskLabel = n => n >= 70 ? 'High' : n >= 50 ? 'Elevated' : 'Lower';
 
   return (
     <div className="demo-frame">
@@ -105,15 +108,11 @@ function IzereDemo(){
         <div className="demo-bar-l">
           <span className="mono" style={{fontSize:11,color:'rgba(255,255,255,0.6)',letterSpacing:'0.08em'}}>izere/portfolio</span>
           <div className="demo-tabs">
-            <span className="demo-tab active">Overview</span>
-            <span className="demo-tab">Programmes</span>
-            <span className="demo-tab">Signals</span>
-            <span className="demo-tab">Audit</span>
+            {['Overview','Programmes','Signals','Audit'].map(tab => <button key={tab} type="button" className={`demo-tab ${view === tab ? 'active' : ''}`} onClick={() => setView(tab)} style={{background:'transparent',border:0,cursor:'pointer',font:'inherit',color:'inherit'}} aria-pressed={view === tab}>{tab}</button>)}
           </div>
         </div>
         <div className="demo-bar-r">
-          <span className="live-dot">LIVE · 5 PROGRAMMES MONITORED</span>
-          <span>· €481B</span>
+          <span className="live-dot">INTERACTIVE SANDBOX · 5 SCENARIOS</span>
         </div>
       </div>
 
@@ -122,14 +121,16 @@ function IzereDemo(){
         <div className="demo-left">
           <div className="demo-overline">
             <span className="demo-overline-l">Portfolio risk overview</span>
-            <span className="demo-overline-r">UPDATED 04.30.26 — 14:08 UTC</span>
+            <span className="demo-overline-r">ILLUSTRATIVE DATA · NOT LIVE MONITORING</span>
           </div>
-          <h3 className="demo-headline">Five programmes.<br/><em>Three</em> tracking late.</h3>
+          <h3 className="demo-headline">Five scenarios.<br/><em>Explore</em> project risk.</h3>
 
           <div className="prog-list">
             {PROGRAMMES.map(p => (
-              <div key={p.id}
+              <button type="button" key={p.id}
                    className={`prog-row ${selectedId === p.id ? 'selected' : ''}`}
+                   style={{width:"100%",background:"transparent",border:0,textAlign:"left",cursor:"pointer",color:"inherit",font:"inherit"}}
+                   aria-pressed={selectedId === p.id}
                    onClick={() => { setSelected(p.id); setInterventions({}); }}>
                 <div className="lbl">
                   <span className="tag">{p.tag}</span>
@@ -139,7 +140,7 @@ function IzereDemo(){
                   <div className={`prog-bar-fill ${p.band}`} style={{width: p.score + '%'}}></div>
                 </div>
                 <div className="prog-val">{p.score}</div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -147,9 +148,10 @@ function IzereDemo(){
         {/* RIGHT: detail panel */}
         <div className="demo-right">
           <div>
-            <div className="panel-headline">Programme detail · evidence chain</div>
+            <div className="panel-headline">{view === "Audit" ? "Model transparency · audit" : view === "Signals" ? "Early-warning signals · evidence" : view === "Programmes" ? "Selected programme · profile" : "Programme detail · evidence chain"}</div>
             <div className="panel-name" style={{marginTop:6}}>{selected.name}</div>
             <div style={{fontSize:12.5,color:'rgba(255,255,255,0.55)',marginTop:4,fontFamily:'var(--mono)'}}>{selected.note}</div>
+            <div style={{fontSize:11,marginTop:8,color:"#d9d9d9"}}>Illustrative scenario based on public project themes. Scores, factor weights and effects are synthetic—not validated SHAP explanations or real-time predictions.</div>
           </div>
 
           <div style={{display:'flex',alignItems:'baseline',gap:14}}>
@@ -164,6 +166,7 @@ function IzereDemo(){
             )}
           </div>
 
+          {view === "Audit" && <div style={{fontSize:12,padding:"12px",border:"1px solid rgba(255,255,255,.2)",marginTop:10,lineHeight:1.6}}>MODEL CARD · DEMONSTRATION ONLY<br/>Inputs: example project signals. Risk score: illustrative index, 0–100. Factor contributions: illustrative weights, not computed SHAP values. Intervention effects: assumed, not causal estimates. Production use requires dated source evidence, model validation, calibration and human review.</div>}
           <div className="evidence">
             {selected.evidence.map((ev, i) => (
               <div key={i} className="ev-row">
@@ -174,7 +177,7 @@ function IzereDemo(){
                     <div className="ev-w-fill" style={{width: ev.w + '%'}}></div>
                   </div>
                 </div>
-                <div className="ev-shap">SHAP {ev.shap}</div>
+                <div className="ev-shap">Weight {ev.shap}</div>
               </div>
             ))}
           </div>
@@ -193,11 +196,13 @@ function IzereDemo(){
               ))}
             </div>
             <div className="whatif-impact">
-              <span>Projected impact on score</span>
+              <span>Illustrative scenario change</span>
               <span className={`delta ${totalImpact >= 0 ? 'neg' : ''}`}>
                 {totalImpact === 0 ? '—' : (totalImpact > 0 ? '+' : '') + totalImpact + ' pts'}
               </span>
             </div>
+            <button type="button" onClick={reset} style={{marginTop:10,padding:"8px 12px",background:"transparent",color:"white",border:"1px solid rgba(255,255,255,.4)",cursor:"pointer"}}>Reset scenario</button>
+            <div style={{fontSize:12,marginTop:10,color:"rgba(255,255,255,.75)"}} aria-live="polite">Baseline: {riskLabel(selected.score)} ({selected.score}/100) · Scenario: {riskLabel(projected)} ({projected}/100)</div>
           </div>
         </div>
       </div>
