@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Team — Izere</title>
+<meta name="description" content="The team behind Izere — execution-intelligence for European public capital." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared.css" />
+<style>
+  .page-hero{padding:148px 0 80px;border-bottom:1px solid var(--line);}
+  .page-crumb{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:var(--ink-4);text-transform:uppercase;}
+  .page-crumb .sep{opacity:0.4;}
+  .page-crumb .here{color:var(--ink-2);}
+  .page-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(56px,9vw,128px);line-height:0.96;letter-spacing:-0.025em;margin-top:24px;}
+  .page-hero h1 em{color:var(--accent);font-style:italic;}
+  .page-hero .lede{font-size:20px;line-height:1.5;color:var(--ink-2);max-width:680px;margin-top:32px;}
+
+  /* Founder section */
+  .founder{padding:120px 0;border-bottom:1px solid var(--line);}
+  .founder-grid{display:grid;grid-template-columns:340px 1fr;gap:64px;align-items:start;}
+  .founder-photo{
+    aspect-ratio:3/4;background:var(--paper-2);border-radius:12px;overflow:hidden;
+    position:relative;border:1px solid var(--line);
+  }
+  .founder-photo img{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block;}
+  .founder-photo .name-overlay{
+    position:absolute;left:18px;bottom:16px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:#fff;text-transform:uppercase;
+    padding:5px 10px;background:rgba(14,15,18,0.55);backdrop-filter:blur(6px);border-radius:99px;
+  }
+
+  .founder-text .role{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:var(--accent);text-transform:uppercase;margin-bottom:14px;}
+  .founder-text h2{font-family:var(--serif);font-weight:400;font-size:64px;line-height:1.0;letter-spacing:-0.02em;}
+  .founder-text h2 em{color:var(--accent);font-style:italic;}
+  .founder-text .credentials{display:flex;flex-wrap:wrap;gap:6px;margin-top:24px;}
+  .founder-text .credentials .b{font-family:var(--mono);font-size:10px;letter-spacing:0.06em;background:var(--paper-2);color:var(--ink-2);padding:5px 11px;border-radius:99px;}
+  .founder-text p{font-size:16px;line-height:1.7;color:var(--ink-2);margin-top:24px;max-width:620px;}
+  .founder-text p strong{color:var(--ink);font-weight:500;}
+
+  .founder-quote{
+    margin-top:40px;padding:28px 32px;
+    border-left:3px solid var(--accent);background:var(--paper-2);
+    font-family:var(--serif);font-size:24px;line-height:1.3;letter-spacing:-0.01em;color:var(--ink);
+  }
+  .founder-quote em{color:var(--accent);font-style:italic;}
+
+  /* Team grid */
+  .team-band{padding:120px 0;}
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  .person{display:flex;flex-direction:column;gap:14px;}
+  .person-photo{
+    aspect-ratio:1/1;background:var(--paper-2);border-radius:10px;overflow:hidden;
+    position:relative;border:1px solid var(--line);
+  }
+  .person-photo .ph{
+    position:absolute;inset:0;
+    background:linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, var(--paper-2)), var(--paper-2));
+  }
+  .person-photo .ph::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse 45% 55% at 50% 38%, var(--paper-3), transparent 70%);
+  }
+  .person-photo .ini{
+    position:absolute;bottom:14px;left:16px;font-family:var(--serif);font-size:42px;font-style:italic;color:var(--ink);opacity:0.4;letter-spacing:-0.02em;
+  }
+  .person-photo img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block;transform:scale(1.35);transform-origin:50% 22%;
+  }
+  .person-photo:has(img) .ph,
+  .person-photo:has(img) .ini{display:none;}
+  .person h3{font-family:var(--serif);font-size:24px;font-weight:400;letter-spacing:-0.01em;line-height:1.2;}
+  .person .role{font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;color:var(--accent);text-transform:uppercase;}
+  .person p{font-size:13.5px;line-height:1.6;color:var(--ink-3);}
+  .person .prior{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:8px;}
+  .person .prior .b{font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;background:var(--paper-2);color:var(--ink-3);padding:3px 8px;border-radius:99px;}
+
+  /* Advisors band */
+  .advisors-band{padding:120px 0;background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .adv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);}
+  .adv-cell{padding:32px;background:var(--paper);border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:60px 1fr;gap:18px;align-items:start;}
+  .adv-cell .ini{
+    width:48px;height:48px;border-radius:50%;background:var(--ink);color:var(--paper);
+    display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:22px;font-style:italic;
+  }
+  .adv-cell h4{font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:-0.01em;}
+  .adv-cell .role{font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--accent);text-transform:uppercase;margin-top:4px;}
+  .adv-cell p{font-size:13.5px;color:var(--ink-3);line-height:1.6;margin-top:10px;}
+
+  /* Hiring band */
+  .hiring-band{padding:120px 0;}
+  .roles-list{border-top:1px solid var(--line);}
+  .role-row{
+    display:grid;grid-template-columns:1fr 200px 140px 60px;gap:24px;align-items:center;
+    padding:24px 0;border-bottom:1px solid var(--line);transition:background .15s;cursor:pointer;
+  }
+  .role-row:hover{background:var(--paper-2);padding-left:16px;padding-right:16px;}
+  .role-row .ttl{font-family:var(--serif);font-size:24px;font-weight:400;letter-spacing:-0.01em;line-height:1.2;}
+  .role-row .team-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;color:var(--ink-3);text-transform:uppercase;}
+  .role-row .loc{font-family:var(--mono);font-size:11px;color:var(--ink-3);}
+  .role-row .arr{font-family:var(--mono);font-size:13px;color:var(--ink);text-align:right;transition:transform .15s;}
+  .role-row:hover .arr{transform:translateX(4px);}
+
+  /* Values band */
+  .values-band{padding:120px 0;background:var(--ink);color:var(--paper);}
+  body.dark .values-band{background:#06070A;}
+  .values-band .section-header h2{color:#fff;}
+  .values-band .section-header h2 em{color:oklch(0.72 0.18 268);}
+  .values-band .section-header .rhs{color:rgba(255,255,255,0.6);}
+  .vals{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(255,255,255,0.10);border-left:1px solid rgba(255,255,255,0.10);}
+  .val{padding:36px 32px;border-right:1px solid rgba(255,255,255,0.10);border-bottom:1px solid rgba(255,255,255,0.10);}
+  .val .n{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:oklch(0.72 0.18 268);text-transform:uppercase;margin-bottom:24px;}
+  .val h4{font-family:var(--serif);font-size:28px;font-weight:400;letter-spacing:-0.01em;color:#fff;margin-bottom:14px;line-height:1.15;}
+  .val p{font-size:14px;line-height:1.7;color:rgba(255,255,255,0.65);}
+
+  @media(max-width:1100px){
+    .founder-grid{grid-template-columns:1fr;gap:48px;}
+    .founder-photo{max-width:340px;}
+    .team-grid{grid-template-columns:1fr 1fr;}
+    .adv-grid{grid-template-columns:1fr;}
+    .vals{grid-template-columns:1fr;}
+    .role-row{grid-template-columns:1fr;gap:8px;}
+    .role-row .arr{display:none;}
+  }
+  @media(max-width:680px){
+    .team-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <a href="index.html" class="brand"><span class="brand-wm">I<span class="cut">z</span>ere</span></a>
+      <div class="nav-links">
+        <a href="platform.html">Platform</a>
+        <a href="methodology.html">Methodology</a>
+        <a href="case-studies/rail-baltica.html">Case studies</a>
+        <a href="team.html" style="color:var(--ink);font-weight:600;">Team</a>
+        <a href="index.html#demo">Live demo</a>
+      </div>
+      <div class="nav-cta">
+        <a href="index.html#contact" class="btn btn-ghost">Log in</a>
+        <a href="index.html#contact" class="btn btn-primary">Request demo <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="page-crumb">
+      <a href="index.html">Izere</a><span class="sep">/</span><span class="here">Team</span>
+    </div>
+    <h1>Built by someone who has <em>worked</em><br/>inside the system.</h1>
+    <p class="lede">Izere is being built from a simple conviction formed over a career inside public-capital programmes: the execution gap is an intelligence problem, and the data to close it already exists.</p>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="founder">
+  <div class="wrap">
+    <div class="founder-grid">
+      <div class="founder-photo">
+        <img src="assets/alain-nkurikiye.jpg" alt="Alain Nkurikiye" />
+        <span class="name-overlay">Portrait · 2026</span>
+      </div>
+
+      <div class="founder-text">
+        <div class="role">Co-founder · CEO</div>
+        <h2>Alain <em>Nkurikiye</em></h2>
+        <div class="credentials">
+          <span class="b">Advisor · EC</span>
+          <span class="b">Advisor · AfDB</span>
+          <span class="b">DFI consulting</span>
+          <span class="b">Public investment</span>
+        </div>
+        <p>Alain has spent his career advising on the design, supervision, and execution of public-capital programmes — consulting work for the <strong>European Commission</strong>, the <strong>African Development Bank</strong>, and a portfolio of development finance institutions across Europe and Africa.</p>
+        <p>The pattern across that career: <strong>institutions could commit capital with extraordinary scale, and could not systematically deliver on it.</strong> The diagnostic frameworks were retrospective; the supervision tools were linear; the monitoring data was fragmented. Programme failures were structural, not financial — and almost always visible months before they were officially detected.</p>
+        <p>Izere is built to read what institutions already produce, in a way that a programme manager — and an institutional auditor — can both read end-to-end.</p>
+
+        <div class="founder-quote">
+          The capital is not the constraint. The capacity to <em>read</em> what the capital is doing is the constraint.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values-band">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="lhs">
+        <span class="eyebrow"><span class="dot"></span>How we work</span>
+        <h2>Three <em>operating</em> principles.</h2>
+      </div>
+      <div class="rhs">
+        These are not posters on a wall. They are how we make decisions when there is genuine tension between speed, scope, and rigour.
+      </div>
+    </div>
+
+    <div class="vals">
+      <div class="val">
+        <div class="n">P / 01</div>
+        <h4>Auditable by construction.</h4>
+        <p>If a feature, a score, or a deployment cannot be reviewed end-to-end by an institutional auditor, we do not ship it. This is a hard constraint, not a preference. It rules out whole categories of architectural choices that other ML companies make.</p>
+      </div>
+      <div class="val">
+        <div class="n">P / 02</div>
+        <h4>Decision-support, not decision-making.</h4>
+        <p>Izere informs institutional judgement. It does not automate it. No score triggers automated procurement, financial, or supervisory action. Every outcome flows through human institutional sign-off — and the system is designed so it cannot be otherwise.</p>
+      </div>
+      <div class="val">
+        <div class="n">P / 03</div>
+        <h4>Sovereign by default.</h4>
+        <p>EU-only hosting. Federated training. Customer-managed keys. Zero US-jurisdiction routing at any layer. Sovereignty is the deployment default, not an upgrade. The buyer should never have to ask for it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIRING -->
+<section class="hiring-band">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="lhs">
+        <span class="eyebrow"><span class="dot"></span>Open roles</span>
+        <h2>We are <em>hiring</em>.</h2>
+      </div>
+      <div class="rhs">
+        Izere is early. The first hires will shape the product, the methodology, and the company. Luxembourg-based, hybrid-friendly within EU-27 — every role owns a meaningful surface from day one.
+      </div>
+    </div>
+
+    <div class="roles-list">
+      <a href="#" class="role-row">
+        <span class="ttl">Senior ML Engineer · Graph models</span>
+        <span class="team-tag">Engineering</span>
+        <span class="loc">Luxembourg / EU-27</span>
+        <span class="arr">→</span>
+      </a>
+      <a href="#" class="role-row">
+        <span class="ttl">Institutional Sales Lead — DFI</span>
+        <span class="team-tag">Partnerships</span>
+        <span class="loc">Luxembourg / Brussels</span>
+        <span class="arr">→</span>
+      </a>
+      <a href="#" class="role-row">
+        <span class="ttl">Senior Backend Engineer</span>
+        <span class="team-tag">Engineering</span>
+        <span class="loc">Luxembourg / EU-27</span>
+        <span class="arr">→</span>
+      </a>
+      <a href="#" class="role-row">
+        <span class="ttl">Policy Analyst — EU public finance</span>
+        <span class="team-tag">Research</span>
+        <span class="loc">Luxembourg / Brussels</span>
+        <span class="arr">→</span>
+      </a>
+      <a href="#" class="role-row">
+        <span class="ttl">Security Engineer · Confidential compute</span>
+        <span class="team-tag">Engineering</span>
+        <span class="loc">Luxembourg / EU-27</span>
+        <span class="arr">→</span>
+      </a>
+    </div>
+
+    <p style="margin-top:48px;color:var(--ink-3);font-size:14.5px;line-height:1.7;max-width:540px;">
+      Don't see a fit but want to help build Izere from the ground up? <a href="mailto:hiring@izere.eu" style="color:var(--accent);">hiring@izere.eu</a>.
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Izere</div>
+        <p class="footer-desc">Delivery intelligence for EU-funded programmes and public infrastructure investment. Explainable AI for institutions that cannot afford to fail.</p>
+        <div class="footer-badges">
+          <span class="footer-badge">EU AI Act</span><span class="footer-badge">GDPR</span><span class="footer-badge">XAI Enabled</span><span class="footer-badge">Luxembourg</span>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Product</h5>
+        <a href="platform.html">Platform</a><a href="methodology.html">Methodology</a><a href="case-studies/rail-baltica.html">Case studies</a><a href="index.html#demo">Live demo</a>
+      </div>
+      <div class="footer-col"><h5>Company</h5>
+        <a href="team.html">Team</a><a href="index.html#contact">Contact</a><a href="#">Press</a>
+      </div>
+      <div class="footer-col"><h5>Legal</h5>
+        <a href="#">Privacy policy</a><a href="#">Terms of use</a><a href="#">Data governance</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 IZERE SÀRL-S · LUXEMBOURG · ALL RIGHTS RESERVED</span><span>LUXEMBOURG · EUROPE</span></div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 24); });
+</script>
+
+</body>
+</html>
