@@ -1,202 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Izere Infrastructure — See project risks before they become costly</title>
-<meta name="description" content="Izere is the execution-intelligence layer for EU-funded programmes, DFIs, and public infrastructure investment. Detect emerging delivery risks and explain the evidence behind them." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="shared.css" />
-<link rel="icon" href="assets/izere-favicon.svg" />
-
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-
-
-</head>
-<body>
-
-<nav class="nav" id="nav">
-  <div class="wrap">
-    <div class="nav-inner">
-      <a href="#top" class="brand">
-        <img src="assets/izere-lockup-light.svg" alt="Izere" style="height:34px;width:auto;max-width:160px;object-fit:contain">
-      </a>
-      <div class="nav-links">
-        <a href="platform.html">Platform</a>
-        <a href="methodology.html">Methodology</a>
-        <a href="case-studies/rail-baltica.html">Case studies</a>
-        <a href="team.html">Team</a>
-        <a href="#demo">Live demo</a>
-      </div>
-      <div class="nav-cta">
-        <a href="#contact" class="btn btn-ghost">Log in</a>
-        <a href="#contact" class="btn btn-primary">Request demo <span class="arr">→</span></a>
-      </div>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div class="hero-eyebrow">
-        <span class="num">№ 001 / DELIVERY INTELLIGENCE</span>
-        <span class="rule"></span>
-        <span class="loc">LUXEMBOURG · EU-27</span>
-      </div>
-
-      <h1>
-        See project risks<br/>
-        <em>before</em> they<br/>
-        become costly.
-      </h1>
-
-      <div class="hero-sub-row">
-        <p class="hero-lede">
-          Izere helps infrastructure teams <span class="accent">assess project readiness</span>, spot <span class="accent">early warning signals</span>, and decide what to do next — with evidence they can inspect.
-        </p>
-        <div class="hero-actions">
-          <a href="#demo" class="btn btn-primary btn-lg">Explore the risk demo <span class="arr">↓</span></a>
-          <a href="#contact" class="btn btn-ghost btn-lg">Discuss a pilot</a>
-        </div>
-      </div>
-
-      <div class="hero-meta">
-        <div class="hero-meta-cell"><div class="v"><em>01</em></div><div class="l">Project readiness</div></div></div>
-        <div class="hero-meta-cell"><div class="v"><em>XAI</em></div><div class="l">Explainable warnings</div></div>
-        <div class="hero-meta-cell"><div class="v"><em>3</em></div><div class="l">Signals · risk · action</div></div>
-        <div class="hero-meta-cell"><div class="v"><em>EU-27</em></div><div class="l">Target geography</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- INTERACTIVE DEMO -->
-<section class="demo-section" id="demo">
-  <div class="wrap">
-    <div class="eyebrow" style="margin-bottom:18px;"><span class="dot"></span>Interactive prototype · illustrative scenarios</div>
-    <h2 style="font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.5vw,46px);line-height:1.05;letter-spacing:-0.02em;margin-bottom:32px;max-width:720px;">Choose a project. See the <em style="color:var(--accent);font-style:italic;">warning signals</em>. Explore interventions.</h2>
-    <div id="izere-demo"></div>
-  </div>
-</section>
-
-<!-- VALUE -->
-<section class="band dark" id="gap"><div class="wrap"><div class="section-header"><div class="lhs"><span class="eyebrow"><span class="dot"></span>Why Izere</span><h2>Warnings are scattered.<br/><em>Decisions come too late.</em></h2></div><div class="rhs">Project evidence is spread across permits, procurement, engineering reports and milestone updates. Izere brings the signals together for human review.</div></div><div class="stat-grid"><div class="stat-cell"><span class="stat-num accent">01</span><span class="stat-cap">Assess design, permitting, procurement and funding readiness before execution.</span><span class="stat-meta">READINESS</span></div><div class="stat-cell"><span class="stat-num accent">02</span><span class="stat-cap">Spot emerging issues and trace warnings back to their evidence.</span><span class="stat-meta">EARLY WARNING</span></div><div class="stat-cell"><span class="stat-num accent">03</span><span class="stat-cap">Prioritise interventions with accountable project teams.</span><span class="stat-meta">ACTION</span></div></div></div></section><section class="case-band" id="case"><div class="wrap"><div class="section-header"><div class="lhs"><span class="eyebrow"><span class="dot"></span>Illustrative scenario</span><h2>What could derail<br/><em>your next project?</em></h2></div><div class="rhs">Explore a hypothetical cross-border railway programme. This is a demonstration of the workflow, not a claim that Izere predicted historical outcomes.</div></div><div class="case-grid"><div class="case-text"><h2>Three signals worth <em>investigating.</em></h2><p><strong>Procurement:</strong> repeated tender changes may indicate market or scope uncertainty.</p><p><strong>Readiness:</strong> unresolved permits and immature design packages can threaten milestones.</p><p><strong>Coordination:</strong> dependencies across contractors and jurisdictions require active monitoring.</p><a href="#demo" class="btn btn-primary btn-lg">Explore the scenario →</a></div><div class="case-timeline"><div class="ct-hd"><span class="t">Evidence to action</span></div><div class="ct-events"><div class="ct-event"><span class="d">INPUT</span><span class="dot"></span><span>Project reports, permits and milestones</span></div><div class="ct-event"><span class="d">REVIEW</span><span class="dot"></span><span>Source-linked signals and uncertainty</span></div><div class="ct-event"><span class="d">ACTION</span><span class="dot now"></span><span>Human-reviewed mitigation plan</span></div></div></div></div></div></section>
-<!-- HOW IT WORKS -->
-<section class="band" id="how">
-  <div class="wrap">
-    <div class="section-header">
-      <div class="lhs">
-        <span class="eyebrow"><span class="dot"></span>How it works</span>
-        <h2>From fragmented data<br/>to <em>explainable</em> intelligence.</h2>
-      </div>
-      <div class="rhs">
-        Izere operates as a decision-support layer alongside existing procurement, programme-management, and supervision systems — not replacing them.
-      </div>
-    </div>
-
-    <div class="hiw">
-      <div class="hiw-step">
-        <div class="num">STEP 01 / INGEST</div>
-        <h3>Read what programmes already produce.</h3>
-        <p>Milestone reports, change events, coordination signals, governance structures, and disbursement patterns are unified into a single execution data model. API-first; nothing proprietary required.</p>
-        <div class="hiw-tags"><span class="t">TED · PPDS</span><span class="t">ESPD</span><span class="t">Arachne</span><span class="t">API-first</span></div>
-      </div>
-      <div class="hiw-step">
-        <div class="num">STEP 02 / ANALYSE</div>
-        <h3>Score, explain, and trace every output.</h3>
-        <p>Structured project signals and relationships support explainable assessments. Pilot validation is required before any predictive performance claims.</p>
-        <div class="hiw-tags"><span class="t">Graph NN</span><span class="t">SHAP / XAI</span><span class="t">Federated</span><span class="t">Audit trail</span></div>
-      </div>
-      <div class="hiw-step">
-        <div class="num">STEP 03 / INTERVENE</div>
-        <h3>Help teams act before risks escalate.</h3>
-        <p>Programme managers and managing authorities receive structured risk intelligence months earlier — enabling timely corrective action while the cost of correction is still small.</p>
-        <div class="hiw-tags"><span class="t">Risk score</span><span class="t">Alert feed</span><span class="t">Audit pack</span><span class="t">Playbooks</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="meth-band" id="methodology"><div class="wrap"><div class="section-header"><div class="lhs"><span class="eyebrow"><span class="dot"></span>Trust and evidence</span><h2>Evidence first.<br/><em>Humans in control.</em></h2></div><div class="rhs">Izere is a decision-support prototype. Model performance, integrations, privacy controls and regulatory obligations must be assessed during pilots before production deployment.</div></div><div class="meth-grid"><div class="meth-list"><div class="meth-item"><span class="k">01</span><div><h4>Traceable evidence</h4><p>Link each warning to a source or explicitly identified assumption.</p></div></div><div class="meth-item"><span class="k">02</span><div><h4>Explainable uncertainty</h4><p>Distinguish observed events from inferred risks and illustrative scores.</p></div></div><div class="meth-item"><span class="k">03</span><div><h4>Human oversight</h4><p>Project teams review recommendations and remain accountable for decisions.</p></div></div></div><div><p style="font-family:var(--serif);font-size:28px;line-height:1.2;color:var(--ink);">Start with a focused pilot.</p><p style="margin-top:24px;color:var(--ink-3);">Evaluate usefulness, evidence quality and analyst time saved across a sample of projects.</p><a href="#contact" class="btn btn-primary">Discuss a pilot →</a></div></div></div></section>
-<!-- CTA -->
-<section class="cta-band" id="contact">
-  <div class="cta-bg"><div class="cta-bg-grid"></div></div>
-  <div class="wrap">
-    <div class="cta-content">
-      <h2>Find the risks in<br/><em>your project portfolio.</em></h2>
-      <div class="right">
-        <p>Discuss a focused 6–8 week pilot to assess project readiness, evidence-backed warnings and actionable next steps.</p>
-        <a href="mailto:hello@izere.eu" class="btn btn-primary btn-lg" style="background:var(--paper);color:var(--ink);">hello@izere.eu <span class="arr">→</span></a>
-        <span class="mono" style="font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.08em;margin-top:6px;">PILOT ENQUIRIES · LUXEMBOURG</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand">Izere</div>
-        <p class="footer-desc">Delivery intelligence for EU-funded programmes and public infrastructure investment. Explainable AI for institutions that cannot afford to fail.</p>
-        <div class="footer-badges">
-          <span class="footer-badge">EU AI Act</span>
-          <span class="footer-badge">GDPR</span>
-          <span class="footer-badge">XAI Enabled</span>
-          <span class="footer-badge">Luxembourg</span>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h5>Product</h5>
-        <a href="platform.html">Platform</a>
-        <a href="methodology.html">Methodology</a>
-        <a href="case-studies/rail-baltica.html">Case studies</a>
-        <a href="#demo">Live demo</a>
-      </div>
-      <div class="footer-col">
-        <h5>Company</h5>
-        <a href="team.html">Team</a>
-        <a href="#contact">Contact</a>
-        <a href="#">Press</a>
-      </div>
-      <div class="footer-col">
-        <h5>Legal</h5>
-        <a href="#">Privacy policy</a>
-        <a href="#">Terms of use</a>
-        <a href="#">Data governance</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 IZERE SÀRL-S · LUXEMBOURG · ALL RIGHTS RESERVED</span>
-      <span>LUXEMBOURG · EUROPE</span>
-    </div>
-  </div>
-</footer>
-
-<div id="tweaks-root"></div>
-
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Izere — Infrastructure intelligence</title>
+<meta name="description" content="Izere helps infrastructure teams assess project readiness, spot early warning signals and take informed action.">
+<link rel="icon" href="assets/izere-favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#161a20;--muted:#65707a;--paper:#fafaf8;--line:#e5e7e6;--accent:#5c63da}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 'DM Sans',sans-serif}a{color:inherit;text-decoration:none}.wrap{max-width:1160px;margin:auto;padding:0 28px}.nav{border-bottom:1px solid var(--line);background:rgba(250,250,248,.96);position:sticky;top:0;z-index:20}.nav-inner{display:flex;align-items:center;justify-content:space-between;height:80px;gap:20px}.logo{display:flex;align-items:center;font-size:27px;font-weight:700;letter-spacing:-1.5px}.logo img{height:34px;max-width:155px}.links{display:flex;gap:32px;font-size:13px;color:#555e67}.btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;border:1px solid var(--ink);border-radius:5px;padding:13px 20px;font:600 13px 'DM Sans',sans-serif;cursor:pointer;background:transparent;transition:transform .2s,background .2s}.btn:hover{transform:translateY(-2px)}.btn.dark{background:var(--ink);color:white}.btn.light{background:white;color:var(--ink);border-color:#dfe1e3}.hero{padding:122px 0 95px}.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--accent)}h1,h2,h3,p{margin-top:0}h1,h2{font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-.035em}h1{font-size:clamp(65px,9.4vw,132px);line-height:.96;max-width:1050px;margin:27px 0 36px}h1 em,h2 em{color:var(--accent);font-weight:400}.hero-bottom{display:flex;justify-content:space-between;gap:50px;align-items:end}.lead{font-size:18px;max-width:560px;color:#515a65;line-height:1.7}.actions{display:flex;gap:12px;flex-wrap:wrap}.divider{border-top:1px solid var(--line)}.section{padding:105px 0}.section-title{font-size:clamp(43px,5vw,72px);line-height:1.05;max-width:780px;margin:17px 0 24px}.intro{color:var(--muted);max-width:640px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:58px;border-top:1px solid var(--line)}.step{padding:34px 35px 20px 0;border-right:1px solid var(--line)}.step:not(:first-child){padding-left:35px}.step:last-child{border-right:0}.number{font-size:12px;color:var(--accent);font-weight:700}.step h3{font-size:20px;letter-spacing:-.03em;margin:44px 0 12px}.step p{color:var(--muted);font-size:14px}.demo-section{background:#151a23;color:#f9f9f8;padding:96px 0}.demo-section .intro{color:#aab1ba}.demo-panel{background:#202632;border:1px solid #363d49;border-radius:12px;margin-top:42px;overflow:hidden}.demo-head{display:flex;justify-content:space-between;gap:20px;padding:23px 26px;border-bottom:1px solid #363d49;align-items:center}.demo-head strong{font-size:15px}.tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#adb7ff}.demo-grid{display:grid;grid-template-columns:1fr 1fr}.demo-col{padding:27px}.demo-col+ .demo-col{border-left:1px solid #363d49}.demo-col h3{font-size:13px;font-weight:600;color:#b7bec9;margin-bottom:20px}.signal{display:flex;align-items:flex-start;gap:14px;border-bottom:1px solid #343b47;padding:15px 0;font-size:14px}.signal:last-child{border:0}.dot{width:9px;height:9px;background:#e8ad65;border-radius:50%;margin-top:7px;flex-shrink:0}.signal small{display:block;color:#9fa9b7;margin-top:5px}.risk{font-family:'Instrument Serif',serif;font-size:75px;line-height:1;color:#d7b08d}.risk-label{font-size:12px;color:#abb4c1}.demo-select{background:#151a23;color:white;border:1px solid #555f6f;padding:11px;border-radius:5px;width:100%;font:inherit}.demo-note{font-size:12px;color:#aeb6c2;padding:17px 26px;border-top:1px solid #363d49}.outcome{font-size:15px;color:#e4e8f0;margin-top:20px}.outcome strong{color:#c2c5ff}.pilot{display:flex;align-items:end;justify-content:space-between;gap:40px}.footer{padding:36px 0;border-top:1px solid var(--line);color:#777f88;font-size:12px}.footer .wrap{display:flex;justify-content:space-between;gap:20px}.mobile-nav{display:none}@media(max-width:760px){.wrap{padding:0 20px}.nav-inner{height:68px}.links{display:none}.nav .btn{padding:10px 13px}.hero{padding:78px 0 75px}h1{font-size:clamp(57px,13vw,84px)}.hero-bottom,.pilot{display:block}.hero-bottom .actions{margin-top:25px}.section{padding:75px 0}.three,.demo-grid{grid-template-columns:1fr}.step,.step:not(:first-child){border-right:0;border-bottom:1px solid var(--line);padding:25px 0}.step h3{margin-top:18px}.demo-col+.demo-col{border-left:0;border-top:1px solid #363d49}.demo-head{align-items:start;flex-direction:column}.footer .wrap{flex-direction:column}.pilot .actions{margin-top:25px}}
+</style></head><body>
+<header class="nav"><div class="wrap nav-inner"><a class="logo" href="#top" aria-label="Izere home"><img src="assets/izere-lockup-light.svg" alt="Izere" onerror="this.style.display='none';this.parentNode.append('IZERE')"></a><nav class="links"><a href="#approach">How it works</a><a href="#demo">Demo</a><a href="#pilot">Pilot</a></nav><a class="btn dark" href="mailto:hello@izere.eu?subject=Izere%20pilot%20enquiry">Get in touch ↗</a></div></header>
+<main><section class="hero" id="top"><div class="wrap"><div class="eyebrow">Infrastructure intelligence · Luxembourg</div><h1>See risks <em>before</em><br>they become costly.</h1><div class="hero-bottom"><p class="lead">Izere helps infrastructure teams understand project readiness, identify early warning signals and make better-informed decisions — with evidence behind every finding.</p><div class="actions"><a class="btn dark" href="#demo">Explore the demo ↗</a><a class="btn light" href="#pilot">Discuss a pilot</a></div></div></div></section>
+<section class="section divider" id="approach"><div class="wrap"><div class="eyebrow">One clear workflow</div><h2 class="section-title">From scattered signals<br>to <em>clear decisions.</em></h2><p class="intro">Infrastructure projects generate thousands of documents and updates. Izere helps teams focus on what needs attention.</p><div class="three"><article class="step"><span class="number">01 / ASSESS</span><h3>Know if you're ready.</h3><p>Review design maturity, permits, procurement, funding and stakeholder dependencies.</p></article><article class="step"><span class="number">02 / DETECT</span><h3>Spot the warning signs.</h3><p>Connect milestones, changes and project evidence to emerging delivery risks.</p></article><article class="step"><span class="number">03 / ACT</span><h3>Decide what comes next.</h3><p>Review source-linked findings and prioritise interventions with accountable teams.</p></article></div></div></section>
+<section class="demo-section" id="demo"><div class="wrap"><div class="eyebrow">Interactive prototype</div><h2 class="section-title">See how Izere <em>thinks.</em></h2><p class="intro">Explore a hypothetical infrastructure project and see how changes to project conditions affect a transparent, rule-based risk illustration.</p><div class="demo-panel"><div class="demo-head"><strong>Project readiness lab</strong><span class="tag">Illustrative data · Not a prediction</span></div><div class="demo-grid"><div class="demo-col"><h3>Project conditions</h3><label for="scenario">Choose a scenario</label><select class="demo-select" id="scenario"><option value="rail">Cross-border rail project</option><option value="energy">Regional energy project</option><option value="digital">Public digital infrastructure</option></select><div style="margin-top:23px"><label class="signal"><input type="checkbox" id="permits" checked> Unresolved permits</label><label class="signal"><input type="checkbox" id="design" checked> Incomplete detailed design</label><label class="signal"><input type="checkbox" id="procurement"> Procurement amendments</label></div></div><div class="demo-col"><h3>Illustrative risk assessment</h3><div class="risk" id="score">68</div><div class="risk-label" id="band">Elevated attention required</div><p class="outcome" id="action">Prioritise permit resolution and design review before committing to the next milestone.</p><div class="tag" style="margin-top:28px">Explainable · Human-reviewed</div></div></div><div class="demo-note">Scores are illustrative heuristics based only on the selected inputs. No live project data, trained prediction model or autonomous decision-making is used in this demo.</div></div></div></section>
+<section class="section" id="pilot"><div class="wrap pilot"><div><div class="eyebrow">Work with us</div><h2 class="section-title">Start with <em>one project.</em></h2><p class="intro">Explore a focused 6–8 week pilot to test evidence quality, warning usefulness and time saved for your project team.</p></div><div class="actions"><a class="btn dark" href="mailto:hello@izere.eu?subject=Infrastructure%20pilot%20discussion">Discuss a pilot ↗</a></div></div></section></main>
+<footer class="footer"><div class="wrap"><span>© 2026 Izere · Luxembourg</span><span>Infrastructure intelligence · Evidence first · Humans in control</span></div></footer>
 <script>
-  // Reveal-on-scroll for non-demo sections
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // Nav scroll state
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 24); });
-
-</script>
-
-<script type="text/babel" src="tweaks-panel.jsx"></script>
-<script type="text/babel" src="demo.jsx"></script>
-<script type="text/babel" src="tweaks.jsx"></script>
-
-</body>
-</html>
+const presets={rail:[true,true,false],energy:[true,false,true],digital:[false,true,true]};
+const scenario=document.getElementById('scenario'),checks=['permits','design','procurement'].map(id=>document.getElementById(id));
+function render(){const active=checks.map(x=>x.checked),weights=[24,22,18],score=22+active.reduce((n,on,i)=>n+(on?weights[i]:0),0);document.getElementById('score').textContent=score;document.getElementById('band').textContent=score>=60?'Elevated attention required':score>=40?'Review recommended':'Lower illustrative risk';const messages=['Resolve permitting dependencies and confirm approval dates.','Validate detailed design before locking milestones.','Review tender changes and supplier capacity.'];document.getElementById('action').textContent=active.some(Boolean)?messages.filter((_,i)=>active[i]).join(' '):'No selected warning signals. Continue normal monitoring and validate the underlying evidence.'}
+scenario.addEventListener('change',()=>{checks.forEach((c,i)=>c.checked=presets[scenario.value][i]);render()});checks.forEach(c=>c.addEventListener('change',render));render();
+</script></body></html>
