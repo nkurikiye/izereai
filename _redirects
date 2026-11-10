@@ -1,9 +1,9 @@
 /platform.html /institutions 301!
 /platform /institutions 301!
-/methodology.html /institutions 301!
-/methodology /institutions 301!
+/methodology /methodology.html 200
 /team.html /about 301!
 /team /about 301!
-/case-studies/rail-baltica.html /institutions 301!
-/case-studies/rail-baltica /institutions 301!
-/case-studies/rail-baltica/ /institutions 301!
+/case-studies/rail-baltica /case-studies/rail-baltica.html 200
+/case-studies/rail-baltica/ /case-studies/rail-baltica.html 200
+/solution /solution.html 200
+/demo /demo.html 200
