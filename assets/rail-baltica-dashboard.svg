@@ -3,7 +3,7 @@
   <desc id="desc">An illustrative dashboard showing a retrospective risk score and three connected signals.</desc>
   <rect width="960" height="600" fill="#f7f7f4"/>
   <rect width="960" height="56" fill="#1a1a1a"/>
-  <text x="28" y="36" font-family="Georgia,serif" font-size="22" font-weight="600" fill="#fafaf8">Izere<tspan fill="#c0392b">.</tspan></text>
+  <text x="28" y="36" font-family="Georgia,serif" font-size="22" font-weight="600" fill="#fafaf8">Izere<tspan fill="#1a3a5c">.</tspan></text>
   <text x="864" y="34" font-family="Arial,sans-serif" font-size="10" fill="#c9c9c5">REPORT 04</text>
   <rect y="56" width="190" height="544" fill="#ecece8"/>
   <text x="26" y="94" font-family="Arial,sans-serif" font-size="10" fill="#6b6b6b">PROGRAMME</text>
@@ -21,14 +21,14 @@
   <text x="222" y="170" font-family="Arial,sans-serif" font-size="12" fill="#6b6b6b">Three connected signals are moving in the same direction.</text>
   <rect x="738" y="88" width="168" height="104" fill="#fff" stroke="#dfdfdb"/>
   <text x="760" y="116" font-family="Arial,sans-serif" font-size="9" fill="#6b6b6b">RISK SCORE</text>
-  <text x="760" y="165" font-family="Georgia,serif" font-size="48" fill="#c0392b">78</text>
+  <text x="760" y="165" font-family="Georgia,serif" font-size="48" fill="#1a3a5c">78</text>
   <text x="821" y="163" font-family="Arial,sans-serif" font-size="12" fill="#6b6b6b">/ 100</text>
   <text x="222" y="226" font-family="Arial,sans-serif" font-size="10" fill="#6b6b6b">WHAT MOVED</text>
   <rect x="222" y="246" width="210" height="138" fill="#fff" stroke="#dfdfdb"/>
-  <rect x="222" y="246" width="210" height="3" fill="#c0392b"/>
+  <rect x="222" y="246" width="210" height="3" fill="#1a3a5c"/>
   <text x="240" y="279" font-family="Arial,sans-serif" font-size="9" fill="#6b6b6b">PROCUREMENT</text>
   <text x="240" y="317" font-family="Georgia,serif" font-size="19" fill="#1a1a1a">Bidder concentration</text>
-  <text x="240" y="351" font-family="Arial,sans-serif" font-size="11" fill="#c0392b">+18.4 contribution</text>
+  <text x="240" y="351" font-family="Arial,sans-serif" font-size="11" fill="#1a3a5c">+18.4 contribution</text>
   <rect x="450" y="246" width="210" height="138" fill="#fff" stroke="#dfdfdb"/>
   <rect x="450" y="246" width="210" height="3" fill="#1a1a1a"/>
   <text x="468" y="279" font-family="Arial,sans-serif" font-size="9" fill="#6b6b6b">GOVERNANCE</text>
