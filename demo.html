@@ -1,6 +1,47 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Interactive demo | Izere</title><meta name="description" content="Explore a transparent, illustrative infrastructure project readiness assessment."><link rel="canonical" href="https://izereai.com/demo.html"><link rel="icon" href="assets/izere-favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="izere-site.css"></head><body><header class="nav"><div class="wrap nav-inner"><a class="logo" href="index.html" aria-label="Izere home"><img src="assets/izere-lockup-light.svg" alt="Izere" width="145" height="40"></a><nav class="links" aria-label="Main navigation"><a href="index.html">Home</a><a href="solution.html">Solution</a><a href="demo.html" aria-current="page">Demo</a><a href="about.html">About</a><a href="pilot.html">Pilot</a></nav><a class="nav-contact" href="mailto:alain@izereai.com?subject=Izere%20pilot%20enquiry">Let’s talk ↗</a></div></header><main><section class="page-hero"><div class="wrap"><div class="eyebrow">Interactive prototype</div><h1>A project changes.<br><em>What needs attention?</em></h1><p class="lead">Use the readiness lab below to explore how selected conditions change an illustrative risk assessment. This is a prototype, not a live project prediction.</p></div></section><section class="demo-section" id="demo"><div class="wrap"><div class="eyebrow">Interactive prototype</div><h2 class="section-title">Change a condition.<br><em>See what matters.</em></h2><p class="intro">Explore a hypothetical infrastructure project and see how changes to project conditions affect a transparent, rule-based risk illustration.</p><div class="demo-panel"><div class="demo-head"><strong>Project readiness lab</strong><span class="tag">Illustrative data · Not a prediction</span></div><div class="demo-grid"><div class="demo-col"><h3>Project conditions</h3><label for="scenario">Choose a scenario</label><select class="demo-select" id="scenario"><option value="rail">Cross-border rail project</option><option value="energy">Regional energy project</option><option value="digital">Public digital infrastructure</option></select><div style="margin-top:23px"><label class="signal"><input type="checkbox" id="permits" checked> Unresolved permits</label><label class="signal"><input type="checkbox" id="design" checked> Incomplete detailed design</label><label class="signal"><input type="checkbox" id="procurement"> Procurement amendments</label></div></div><div class="demo-col"><h3>Illustrative risk assessment</h3><div class="risk" id="score">68</div><div class="risk-label" id="band">Elevated attention required</div><p class="outcome" id="action">Prioritise permit resolution and design review before committing to the next milestone.</p><div class="tag" style="margin-top:28px">Explainable · Human-reviewed</div></div></div><div class="demo-note">Scores are illustrative heuristics based only on the selected inputs. No live project data, trained prediction model or autonomous decision-making is used in this demo.</div></div></div></section><section class="section pilot"><div class="wrap pilot-grid"><div><div class="eyebrow">Explore Izere</div><h2 class="section-title">See the signals.<br><em>Choose the next step.</em></h2></div><a class="btn" href="pilot.html">Discuss a pilot ↗</a></div></section></main><footer class="footer"><div class="wrap"><span>© 2026 Izere · Luxembourg</span><span>Evidence first. People in control.</span><a href="mailto:alain@izereai.com">alain@izereai.com ↗</a></div></footer><script>
-const presets={rail:[true,true,false],energy:[true,false,true],digital:[false,true,true]};
-const scenario=document.getElementById('scenario'),checks=['permits','design','procurement'].map(id=>document.getElementById(id));
-function render(){const active=checks.map(x=>x.checked),weights=[24,22,18],score=22+active.reduce((n,on,i)=>n+(on?weights[i]:0),0);document.getElementById('score').textContent=score;document.getElementById('band').textContent=score>=60?'Elevated attention required':score>=40?'Review recommended':'Lower illustrative risk';const messages=['Resolve permitting dependencies and confirm approval dates.','Validate detailed design before locking milestones.','Review tender changes and supplier capacity.'];document.getElementById('action').textContent=active.some(Boolean)?messages.filter((_,i)=>active[i]).join(' '):'No selected warning signals. Continue normal monitoring and validate the underlying evidence.'}
-scenario.addEventListener('change',()=>{checks.forEach((c,i)=>c.checked=presets[scenario.value][i]);render()});checks.forEach(c=>c.addEventListener('change',render));render();
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Interactive readiness demo | Izere</title><meta name="description" content="Explore a transparent infrastructure project readiness scenario in the Izere prototype.">
+  <link rel="canonical" href="https://izereai.com/demo"><link rel="icon" href="assets/izere-favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="institutional-pages.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><div class="shell nav-inner"><a class="wordmark" href="/" aria-label="Izere home">Izere</a><nav aria-label="Main navigation"><a href="/solution">Solution</a><a href="/methodology">Methodology</a><a href="/about">Founder</a></nav><a class="nav-action" href="/pilot">Discuss a pilot</a></div></header>
+  <main id="main">
+    <section class="page-hero"><div class="shell page-hero__grid"><div><p class="kicker">Interactive prototype</p><h1>Change a condition. See what needs attention.</h1></div><p class="page-hero__lede">Explore how selected project conditions change a transparent, rule-based risk illustration. This is an explanatory prototype—not a live project prediction.</p></div></section>
+    <section class="section"><div class="shell">
+      <div class="demo-panel">
+        <div class="demo-panel__head"><strong>Project readiness lab</strong><span>Illustrative data · human-reviewed</span></div>
+        <div class="demo-grid">
+          <div class="demo-controls"><h2>Project conditions</h2><label class="field-label" for="scenario">Scenario</label><select class="demo-select" id="scenario"><option value="rail">Cross-border rail project</option><option value="energy">Regional energy project</option><option value="digital">Public digital infrastructure</option></select><label class="field-label">Evidence signals</label><label class="signal"><input type="checkbox" id="permits" checked> Unresolved permits</label><label class="signal"><input type="checkbox" id="design" checked> Incomplete detailed design</label><label class="signal"><input type="checkbox" id="procurement"> Procurement amendments</label><label class="signal"><input type="checkbox" id="funding"> Funding gap</label></div>
+          <div class="demo-result" aria-live="polite"><p class="kicker">Illustrative risk score</p><div class="risk-score" id="score">68</div><p class="risk-band" id="band">Elevated attention required</p><p class="risk-action" id="action">Prioritise permit resolution and design review before committing to the next milestone.</p></div>
+        </div>
+        <div class="demo-note">The score uses only the conditions selected above. It does not use live project data, a trained production model or autonomous decision-making.</div>
+      </div>
+    </div></section>
+    <section class="closing"><div class="shell closing__inner"><div><h2>Use your own evidence in a pilot.</h2><p>Agree one project, one delivery question and the records needed to evaluate the warning.</p></div><a class="button button--primary" href="/pilot">Discuss a pilot <span>→</span></a></div></section>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><span class="wordmark">Izere</span><p>Execution intelligence for European infrastructure.</p><a href="mailto:alain@izereai.com">alain@izereai.com</a></div></footer>
+  <script>
+    const weights = { permits: 24, design: 20, procurement: 17, funding: 21 };
+    const base = { rail: 24, energy: 20, digital: 16 };
+    const scenario = document.getElementById('scenario');
+    const checks = [...document.querySelectorAll('.signal input')];
+    function update() {
+      let value = base[scenario.value];
+      checks.forEach(input => { if (input.checked) value += weights[input.id]; });
+      value = Math.min(value, 96);
+      document.getElementById('score').textContent = value;
+      const band = document.getElementById('band');
+      const action = document.getElementById('action');
+      if (value >= 70) { band.textContent = 'Priority review required'; action.textContent = 'Reconfirm the evidence and affected milestones before the next commitment or disbursement.'; }
+      else if (value >= 45) { band.textContent = 'Elevated attention required'; action.textContent = 'Resolve the selected dependencies and document the responsible owner before the next milestone.'; }
+      else { band.textContent = 'Routine monitoring'; action.textContent = 'Continue monitoring the evidence and confirm that assumptions remain current.'; }
+    }
+    scenario.addEventListener('change', update); checks.forEach(input => input.addEventListener('change', update)); update();
+  </script>
+</body>
+</html>
