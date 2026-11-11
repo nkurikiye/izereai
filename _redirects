@@ -1,5 +1,5 @@
-/platform.html /institutions 301!
-/platform /institutions 301!
+/platform.html /solution 301!
+/platform /solution 301!
 /methodology /methodology.html 200
 /team.html /about 301!
 /team /about 301!
@@ -7,3 +7,20 @@
 /case-studies/rail-baltica/ /case-studies/rail-baltica.html 200
 /solution /solution.html 200
 /demo /demo.html 200
+/about /about.html 200
+/pilot /pilot.html 200
+
+# Retire legacy brand surfaces while keeping inbound links useful.
+/institutions.html /solution 301!
+/institutions /solution 301!
+/rail-baltica.html /case-studies/rail-baltica 301!
+/rail-baltica /case-studies/rail-baltica 301!
+/financial-freedom.html / 301!
+/financial-freedom / 301!
+/founder-wealth-lab.html /about 301!
+/founder-wealth-lab /about 301!
+/wealth-time-machine.html / 301!
+/wealth-time-machine / 301!
+/bakame-flow/* / 301!
+/thanks.html /pilot 301!
+/thanks /pilot 301!
